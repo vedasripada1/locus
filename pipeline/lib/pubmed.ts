@@ -88,8 +88,9 @@ function rec(pmid: string, title: string, abs: any, journal: string, year: strin
   publicationTypes: string[], mesh: string[], book: boolean, retrievedAt: string): PubmedRecord {
   const abstract = (abs ?? []).map((p: any) => (p?.["@Label"] ? `${p["@Label"]}: ` : "") + text(p)).join("\n");
   return {
-    pmid, title: title.replace(/\s+/g, " ").trim(), abstract, journal, year, doi, book,
-    firstAuthor: author ? text(author.LastName ?? author.CollectiveName) : "",
+    pmid, title: title.replace(/\s+/g, " ").trim(), abstract, journal: journal.replace(/®/g, "").trim(), year, doi, book,
+    // Some records carry initials-only names (e.g. LastName "Mn" with no ForeName): omit those.
+    firstAuthor: !author ? "" : author.CollectiveName ? text(author.CollectiveName) : author.ForeName || text(author.LastName).length >= 3 ? text(author.LastName) : "",
     publicationTypes, mesh,
     source: { source: "PubMed", version: `PMID ${pmid}`, retrievedAt: retrievedAt.slice(0, 10), url: `https://pubmed.ncbi.nlm.nih.gov/${pmid}/` },
   };

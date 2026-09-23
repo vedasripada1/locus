@@ -67,6 +67,7 @@ async function fetchSite(seed: SeedSite): Promise<VariantSite | null> {
 // ─── ClinVar ───────────────────────────────────────────────────────────────
 function stars(status: string): ReviewStars {
   const s = status.toLowerCase();
+  if (s.startsWith("no ")) return 0; // "no assertion criteria provided", "no classification provided", ...
   if (s.includes("practice guideline")) return 4;
   if (s.includes("expert panel")) return 3;
   if (s.includes("multiple submitters, no conflicts")) return 2;
@@ -157,7 +158,7 @@ function parseCsvLine(line: string): string[] {
   return out;
 }
 
-async function fetchClinGen(genes: Set<string>): Promise<ClinGenValidity[]> {
+async function fetchClinGen(_curatedGenes: Set<string>): Promise<ClinGenValidity[]> {
   const url = "https://search.clinicalgenome.org/kb/gene-validity/download";
   const c = await get<string>(url, "text");
   const lines = c.body.split(/\r?\n/);
@@ -166,7 +167,8 @@ async function fetchClinGen(genes: Set<string>): Promise<ClinGenValidity[]> {
   sources.push(src);
   return lines
     .map(parseCsvLine)
-    .filter((r) => r.length >= 9 && genes.has(r[0]) && !/obsolete/i.test(r[2]))
+    // All curations are kept: the bulk ClinVar tier needs inheritance for any gene.
+    .filter((r) => r.length >= 9 && /^HGNC:/.test(r[1]) && !/obsolete/i.test(r[2]))
     .map((r) => ({ kind: "clingen" as const, gene: r[0], disease: r[2], mondo: r[3], moi: r[4], classification: r[6], url: r[7], source: src }));
 }
 

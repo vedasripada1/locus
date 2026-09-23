@@ -1,19 +1,20 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import bundleJson from "./evidence/bundle.json";
 import type { EvidenceBundle, ParsedGenome, UserContext } from "./core/types";
+import type { BulkResult } from "./core/bulk";
 import { buildReport, EMPTY_CONTEXT } from "./core/interpret";
 import { Upload } from "./ui/Upload";
-import demo23 from "./demo/synthetic-23andme.txt?raw";
-import demoAnc from "./demo/synthetic-ancestrydna.txt?raw";
+import { loadDemo } from "./demo";
 import { ReportView } from "./ui/ReportView";
 
 const bundle = bundleJson as unknown as EvidenceBundle;
 const KEEP = [...new Set(bundle.sites.flatMap((s) => [s.rsid, ...s.aliases]))];
+const DATA_BASE = new URL(`${import.meta.env.BASE_URL}data/`, location.href).href;
 
 type State =
   | { phase: "upload"; error?: string }
-  | { phase: "parsing"; name: string }
-  | { phase: "report"; name: string; genome: ParsedGenome };
+  | { phase: "parsing"; name: string; progress?: string }
+  | { phase: "report"; name: string; genome: ParsedGenome; bulk: BulkResult | null; bulkError: string | null };
 
 export default function App() {
   const [state, setState] = useState<State>({ phase: "upload" });
@@ -29,19 +30,19 @@ export default function App() {
     const w = new Worker(new URL("./worker/parse.worker.ts", import.meta.url), { type: "module" });
     workerRef.current = w;
     w.onmessage = (e) => {
+      if (e.data.progress) return setState({ phase: "parsing", name, progress: e.data.progress });
       stopWorker();
-      if (e.data.ok) setState({ phase: "report", name, genome: e.data.genome });
+      if (e.data.ok) setState({ phase: "report", name, genome: e.data.genome, bulk: e.data.bulk, bulkError: e.data.bulkError });
       else setState({ phase: "upload", error: e.data.error });
     };
     w.onerror = (e) => { stopWorker(); setState({ phase: "upload", error: `Could not read the file: ${e.message}` }); };
-    w.postMessage({ ...input, keep: KEEP });
+    w.postMessage({ ...input, keep: KEEP, exclude: KEEP, clingen: bundle.clingen, dataBase: DATA_BASE });
   }, []);
 
   // #demo=23andme or #demo=ancestrydna loads a synthetic file (for demos and smoke tests).
   useEffect(() => {
     const d = new URLSearchParams(location.hash.slice(1)).get("demo");
-    if (d === "23andme") analyse("synthetic-23andme.txt", { text: demo23 });
-    if (d === "ancestrydna") analyse("synthetic-ancestrydna.txt", { text: demoAnc });
+    if (d === "23andme" || d === "ancestrydna") loadDemo(d).then((text) => analyse(`synthetic-${d}.txt`, { text }));
   }, [analyse]);
 
   /** Deletion: drop every reference to genotype data and personal context. */
@@ -52,7 +53,7 @@ export default function App() {
   }, []);
 
   const report = useMemo(
-    () => (state.phase === "report" ? buildReport(state.genome, bundle, context) : null),
+    () => (state.phase === "report" ? { ...buildReport(state.genome, bundle, context), bulk: state.bulk, bulkError: state.bulkError } : null),
     [state, context],
   );
 
@@ -75,7 +76,7 @@ export default function App() {
       <main>
         {state.phase !== "report" && (
           <Upload
-            busy={state.phase === "parsing" ? state.name : null}
+            busy={state.phase === "parsing" ? `${state.name}${state.progress ? `: ${state.progress}` : ""}` : null}
             error={state.phase === "upload" ? state.error : undefined}
             onFile={(f) => analyse(f.name, { file: f })}
             onDemo={(name, text) => analyse(name, { text })}

@@ -127,3 +127,6 @@ tr:hover td { background: color-mix(in srgb, var(--mustard) 7%, transparent); }
 }
 
 .drop .btn { display: inline-block; margin-top: 10px; }
+
+ul.papers { margin: 6px 0 8px; padding-left: 18px; font-size: .92rem; }
+ul.papers li { margin: 4px 0; }

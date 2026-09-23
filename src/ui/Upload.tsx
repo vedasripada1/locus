@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { EvidenceBundle } from "../core/types";
-import demo23 from "../demo/synthetic-23andme.txt?raw";
-import demoAnc from "../demo/synthetic-ancestrydna.txt?raw";
+import { loadDemo, loadManifest, type Manifest } from "../demo";
 import { DISCLAIMER } from "../core/export";
 
 interface Props {
@@ -14,6 +13,8 @@ interface Props {
 
 export function Upload({ busy, error, onFile, onDemo, bundle }: Props) {
   const [over, setOver] = useState(false);
+  const [manifest, setManifest] = useState<Manifest | null>(null);
+  useEffect(() => { loadManifest().then(setManifest); }, []);
   const counts = {
     sites: bundle.sites.length,
     clinvar: bundle.clinvar.length,
@@ -47,16 +48,17 @@ export function Upload({ busy, error, onFile, onDemo, bundle }: Props) {
           )}
           <div className="btn-row" style={{ marginTop: 18 }}>
             <span className="muted">No file handy? Try synthetic data:</span>
-            <button className="btn secondary small" onClick={() => onDemo("synthetic-23andme.txt", demo23)} disabled={!!busy}>Demo 23andMe</button>
-            <button className="btn secondary small" onClick={() => onDemo("synthetic-ancestrydna.txt", demoAnc)} disabled={!!busy}>Demo AncestryDNA</button>
+            <button className="btn secondary small" onClick={() => loadDemo("23andme").then((t) => onDemo("synthetic-23andme.txt", t))} disabled={!!busy}>Demo 23andMe</button>
+            <button className="btn secondary small" onClick={() => loadDemo("ancestrydna").then((t) => onDemo("synthetic-ancestrydna.txt", t))} disabled={!!busy}>Demo AncestryDNA</button>
           </div>
         </div>
         <div className="panel">
           <h3>How this works</h3>
           <ol className="steps">
-            <li><span><b>Parse locally.</b> Format, genome build and call quality are checked; only the {counts.sites} curated sites are kept in memory.</span></li>
+            <li><span><b>Parse locally.</b> Format, genome build and call quality are checked. Only sites with evidence are kept in memory.</span></li>
             <li><span><b>Match.</b> Alleles are aligned to the forward strand. Strand-ambiguous, missing and unreadable calls are flagged, never guessed.</span></li>
-            <li><span><b>Interpret.</b> {counts.clinvar} ClinVar records and {counts.gwas} GWAS Catalog associations, kept in separate sections.</span></li>
+            <li><span><b>Interpret.</b> {counts.sites} curated sites in depth{manifest ? <>, plus a genome-wide screen of <b>{manifest.clinvar.variants.toLocaleString()}</b> ClinVar pathogenic variants{manifest.gwas && <> and <b>{manifest.gwas.groups.toLocaleString()}</b> GWAS Catalog variant–trait associations</>}</> : ""}. Clinical and association evidence stay in separate sections.</span></li>
+            <li><span><b>Read the papers.</b> Every allele links to the studies behind it{manifest ? <>: {manifest.papers.toLocaleString()} indexed papers</> : ""}.</span></li>
             <li><span><b>Discuss.</b> {counts.interventions} quote-verified actions, each labelled for whether the evidence is genotype-specific.</span></li>
           </ol>
         </div>

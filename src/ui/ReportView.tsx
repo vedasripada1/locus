@@ -4,6 +4,8 @@ import { DISCLAIMER, toJson, toMarkdown } from "../core/export";
 import { ContextForm } from "./ContextForm";
 import { FindingCard, InterventionCard } from "./Cards";
 import { EvidenceTable, CoverageTable, LiteraturePanel, SourcesPanel } from "./Tables";
+import { ClinVarScreen, GwasExplorer } from "./Bulk";
+import { PapersProvider } from "./Papers";
 
 interface Props {
   report: Report; bundle: EvidenceBundle; fileName: string;
@@ -61,11 +63,12 @@ export function ReportView({ report, bundle, fileName, context, onContext, onDel
   const stats = report.file.stats;
   const sections = useMemo(() => [
     ["all", "Everything"], ["clinical", "1 · Clinical"], ["disease", "2 · Disease"], ["metabolism", "3 · Metabolism"],
-    ["performance", "4 · Performance"], ["actions", "5 · Actions"], ["table", "Evidence table"], ["literature", "Literature"],
+    ["performance", "4 · Performance"], ["actions", "5 · Actions"], ["explorer", "Explorer (all GWAS)"], ["table", "Evidence table"], ["literature", "Literature"],
   ], []);
 
+  const bulk = report.bulk;
   return (
-    <>
+    <PapersProvider bulkCites={bulk?.clinvar.cites ?? {}} gwasStudies={bulk?.gwas.studies ?? {}}>
       <div className="toolbar no-print">
         <div className="wrap">
           <label>Section
@@ -112,13 +115,19 @@ export function ReportView({ report, bundle, fileName, context, onContext, onDel
             <div className="panel">
               <h3>Coverage of curated sites</h3>
               <div className="grid-3" style={{ gridTemplateColumns: "repeat(2, 1fr)" }}>
-                <Stat n={report.coverage.matched} label="tested & readable" />
+                <Stat n={report.coverage.matched} label="curated sites tested & readable" />
                 <Stat n={report.coverage.notOnArray} label="not on your chip" />
                 <Stat n={report.coverage.noCall} label="no-call" />
                 <Stat n={report.coverage.mismatch} label="allele mismatch" />
               </div>
+              {bulk && (
+                <p style={{ fontSize: ".9rem" }}>
+                  Genome-wide: <b>{bulk.clinvar.tested.toLocaleString()}</b> ClinVar pathogenic sites and <b>{bulk.gwas.tested.toLocaleString()}</b> GWAS Catalog sites were readable in your file.
+                </p>
+              )}
+              {report.bulkError && <p className="muted" style={{ fontSize: ".9rem" }}>{report.bulkError}</p>}
               <p className="muted" style={{ fontSize: ".9rem", marginBottom: 0 }}>
-                Untested sites are never treated as negative. See the coverage table at the end for each site.
+                Untested sites are never treated as negative. See the coverage table at the end for each curated site.
               </p>
             </div>
           </div>
@@ -136,12 +145,13 @@ export function ReportView({ report, bundle, fileName, context, onContext, onDel
             intro="Rare variants that ClinVar classifies as pathogenic or likely pathogenic, observed in your file. Each needs confirmation by clinical-grade testing and discussion with a genetics professional before it means anything.">
             {f(actionable).length ? f(actionable).map((x) => <FindingCard key={x.record.id} f={x} />) : (
               <div className="card key-none"><p className="headline">No pathogenic or likely pathogenic allele among the tested curated sites.</p>
-                <p className="muted" style={{ margin: 0 }}>This MVP checks {bundle.sites.filter((s) => s.domain === "clinical").length} clinical sites. Consumer chips cover a tiny fraction of disease-causing variants, so this does not rule out any condition.</p></div>
+                <p className="muted" style={{ margin: 0 }}>Among the {bundle.sites.filter((s) => s.domain === "clinical").length} curated clinical sites. The genome-wide screen below covers every ClinVar pathogenic variant on your chip. Consumer chips cover a small fraction of disease-causing variants, so neither rules out any condition.</p></div>
             )}
             <details>
               <summary>Other ClinVar results: conflicting, uncertain, not carried, not tested ({f(otherClinical).length})</summary>
               <div style={{ marginTop: 12 }}>{f(otherClinical).map((x) => <FindingCard key={x.record.id} f={x} compact />)}</div>
             </details>
+            {bulk && <ClinVarScreen bulk={bulk.clinvar} warning={bundle.warnings?.find((w) => w.id === "snp-chip-rare-variants")} showSensitive={fl.showSensitive} />}
           </Section>
         )}
         {show("disease") && (
@@ -174,6 +184,12 @@ export function ReportView({ report, bundle, fileName, context, onContext, onDel
             )}
           </Section>
         )}
+        {show("explorer") && bulk && (
+          <Section n="◼" keyName="none" title="Explorer: every GWAS association in your file"
+            intro="The curated sections above cover a small set of well-studied traits. This explorer lists every genome-wide significant GWAS Catalog association for variants in your file, with the studies behind each one.">
+            <GwasExplorer bulk={bulk.gwas} onCsv={(csv) => download(`gwas-associations-${stamp}.csv`, csv, "text/csv")} />
+          </Section>
+        )}
         {show("table") && (
           <Section n="◼" keyName="none" title="Evidence table" intro="Every association behind the findings above, with its source record.">
             <EvidenceTable report={report} filters={fl} />
@@ -195,7 +211,7 @@ export function ReportView({ report, bundle, fileName, context, onContext, onDel
           </>
         )}
       </div>
-    </>
+    </PapersProvider>
   );
 }
 

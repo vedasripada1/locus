@@ -29,6 +29,11 @@ export function verifyQuoted(q: Quoted, sourceText: string): string | null {
   return missing.length ? `value "${q.value}" has numbers not in its quote: ${missing.join(", ")}` : null;
 }
 
+/** "Author et al., Journal Year" (author omitted when PubMed has no usable name). */
+export function cite(r: { firstAuthor: string; journal: string; year: string }): string {
+  return `${r.firstAuthor ? `${r.firstAuthor} et al., ` : ""}${r.journal} ${r.year}`;
+}
+
 export function buildInterventions(seed: any[], texts: Map<string, SourceText>, audit: AuditEntry[]): Intervention[] {
   const out: Intervention[] = [];
   for (const iv of seed) {
@@ -44,7 +49,7 @@ export function buildInterventions(seed: any[], texts: Map<string, SourceText>, 
       const cand = r ? screen(r, iv.id, "curated") : null;
       studies.push({
         role: s.role, ref: s.ref,
-        citation: r ? `${r.firstAuthor || r.journal}${r.firstAuthor ? " et al." : ""}, ${r.journal} ${r.year}` : src.title,
+        citation: r ? cite(r) : src.title,
         title: src.title, doi: r?.doi ?? null,
         design: r ? classifyDesign(r.publicationTypes, r.mesh) : "other",
         sampleSize: s.sampleSize, population: s.population, exposure: s.exposure, outcomes: s.outcomes, harms: s.harms,
@@ -61,7 +66,7 @@ export function buildInterventions(seed: any[], texts: Map<string, SourceText>, 
         const src = texts.get(refKey(q.ref));
         const err = src ? verifyQuoted(q, src.text) : "source could not be retrieved";
         if (err) { audit.push({ stage: "verify", subject: `${iv.id} / ${what}`, outcome: "dropped", detail: err }); return null; }
-        return { value: q.value, quote: q.quote, source: src!.source, citation: src!.record ? `${src!.record.firstAuthor || src!.record.journal}, ${src!.record.journal} ${src!.record.year}` : src!.title };
+        return { value: q.value, quote: q.quote, source: src!.source, citation: src!.record ? cite(src!.record) : src!.title };
       };
       safety = {
         upperLimit: verifySafety(iv.safety.upperLimit, "upper limit"),
@@ -101,7 +106,7 @@ function verifyFlags(iv: any, texts: Map<string, SourceText>, audit: AuditEntry[
     const err = src ? verifyQuoted({ value: "", quote: f.evidence.quote }, src.text) : "source could not be retrieved";
     if (err) { audit.push({ stage: "verify", subject: `${iv.id} / context flag`, outcome: "dropped", detail: err }); return []; }
     const r = src!.record;
-    return [{ ...f, evidence: { value: "", quote: f.evidence.quote, source: src!.source, citation: r ? `${r.firstAuthor} et al., ${r.journal} ${r.year}` : src!.title } }];
+    return [{ ...f, evidence: { value: "", quote: f.evidence.quote, source: src!.source, citation: r ? cite(r) : src!.title } }];
   });
 }
 
@@ -112,6 +117,15 @@ function main() {
   const audit: AuditEntry[] = [...v.audit];
   const texts = new Map(lit.texts.map((t) => [t.key, t]));
   const interventions = buildInterventions(seedIv, texts, audit);
+
+  const warnings = readJson<{ warnings: any[] }>("pipeline/seeds/warnings.json").warnings.flatMap((w) => {
+    const src = texts.get(refKey(w.ref));
+    const errs = src ? w.quotes.map((q: string) => verifyQuoted({ value: "", quote: q }, src.text)).filter(Boolean) : ["source could not be retrieved"];
+    if (errs.length) { audit.push({ stage: "verify", subject: `warning ${w.id}`, outcome: "dropped", detail: errs.join("; ") }); return []; }
+    const r = src!.record;
+    const citation = r ? cite(r) : src!.title;
+    return [{ id: w.id, title: w.title, summary: w.summary, quotes: w.quotes.map((q: string) => ({ value: "", quote: q, source: src!.source, citation })) }];
+  });
 
   const traits: TraitTopic[] = v.topics.map((t: any) => ({
     id: t.id, label: t.label, phrase: t.phrase, domain: t.domain, rsids: t.rsids, traitPattern: t.traitPattern, reportedPattern: t.reportedPattern,
@@ -125,7 +139,7 @@ function main() {
   ];
   const bundle: EvidenceBundle = {
     schemaVersion: 1, builtAt: new Date().toISOString(), sources, sites: v.sites, clinvar: v.clinvar, clingen: v.clingen, gwas: v.gwas,
-    traits, interventions, literature: lit.candidates, audit,
+    traits, interventions, literature: lit.candidates, audit, warnings,
   };
   writeJson("src/evidence/bundle.json", bundle);
   const dropped = audit.filter((a) => a.outcome === "dropped");

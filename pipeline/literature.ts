@@ -10,6 +10,7 @@ import type { LiteratureCandidate, SourceVersion } from "../src/core/types";
 interface LitSeeds { design: string; topics: { id: string; intervention: string; geneDiet: string }[] }
 const seeds = readJson<LitSeeds>("pipeline/seeds/literature.json");
 const interventions = readJson<{ interventions: any[] }>("pipeline/seeds/interventions.json").interventions;
+const warnings = readJson<{ warnings: any[] }>("pipeline/seeds/warnings.json").warnings;
 
 const HUMAN_WORDS = /\b(patients?|participants?|subjects|volunteers|adults|children|women|men|individuals|cohort|humans?)\b/i;
 const ANIMAL_WORDS = /\b(mice|mouse|murine|rats?|rodents?|piglets?|zebrafish|drosophila|in vivo model)\b/i;
@@ -65,6 +66,7 @@ async function main() {
     for (const q of safety) refs.set(key(q.ref), q.ref);
     for (const f of iv.contextFlags) if (f.evidence) refs.set(key(f.evidence.ref), f.evidence.ref);
   }
+  for (const w of warnings) refs.set(key(w.ref), w.ref);
   const texts: SourceText[] = [];
   const pmids = [...refs.values()].filter((r) => r.pmid).map((r) => r.pmid!);
   for (const r of await fetchRecords(pmids)) {

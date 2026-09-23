@@ -248,7 +248,11 @@ export interface EvidenceBundle {
   literature: LiteratureCandidate[];
   /** Claims dropped by verification, kept for audit. */
   audit: AuditEntry[];
+  /** Report-level warnings, each backed by verified quotes. */
+  warnings?: VerifiedWarning[];
 }
+
+export interface VerifiedWarning { id: string; title: string; summary: string; quotes: SourcedQuote[] }
 
 export interface TraitTopic {
   id: string;
@@ -388,4 +392,7 @@ export interface Report {
   topicsWithoutAction: string[];
   contextNotes: string[];
   evidenceSources: SourceVersion[];
+  /** Genome-wide tiers; null when the data files are unavailable. */
+  bulk?: import("./bulk").BulkResult | null;
+  bulkError?: string | null;
 }

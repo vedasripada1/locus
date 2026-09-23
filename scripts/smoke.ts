@@ -20,13 +20,27 @@ for (const demo of ["23andme", "ancestrydna"]) {
   try {
     await page.waitForFunction(() => document.body.innerText.toLowerCase().includes("clinically significant findings"), { timeout: 15000 });
   } catch { problems.push("report did not render within 15s"); }
+  const t0 = Date.now();
+  await page.waitForFunction(() => document.body.innerText.toLowerCase().includes("genome-wide clinvar screen"), { timeout: 60000 }).catch(() => problems.push("genome-wide ClinVar screen did not render"));
+  const rendered = Date.now() - t0;
+  // Explorer: switch the toolbar section and check rows.
+  await page.select(".toolbar select", "explorer");
+  const rows = await page.$$eval("table tbody tr", (trs) => trs.length).catch(() => 0);
+  if (rows < 1) problems.push("explorer shows no rows");
+  // Papers: open the first paper list and wait for titles from the local index.
+  await page.select(".toolbar select", "clinical");
+  await page.evaluate(() => { const s = [...document.querySelectorAll("summary")].find((x) => x.textContent?.startsWith("Papers for this allele")); (s as HTMLElement | undefined)?.click(); });
+  await page.waitForFunction(() => document.querySelectorAll("ul.papers li").length > 0, { timeout: 30000 }).catch(() => problems.push("paper list did not load"));
+  const papers = await page.$$eval("ul.papers li", (li) => li.length);
+  await page.select(".toolbar select", "all");
   const text = await page.evaluate(() => document.body.innerText);
+  console.log(`  bulk tiers rendered +${rendered} ms; explorer rows ${rows}; papers listed ${papers}`);
   await page.screenshot({ path: `${out}/smoke-${demo}.png`, fullPage: true });
   // Delete control: returns to the upload screen.
   page.on("dialog", (d) => d.accept());
   const del = await page.$("button.btn.danger");
   if (del) { await del.click(); await page.waitForFunction(() => document.body.innerText.toLowerCase().includes("drop your raw data file here"), { timeout: 5000 }).catch(() => problems.push("delete did not clear the report")); }
-  const ok = !problems.length && !requests.length;
+  const ok = !problems.filter((p) => !p.startsWith("warn")).length && !requests.length;
   failed ||= !ok;
   console.log(`${demo}: ${ok ? "OK" : "FAIL"} · ${text.length} chars · external requests: ${requests.length}`);
   for (const p of [...problems, ...requests.map((r) => `external request: ${r}`)]) console.log(`  ${p}`);

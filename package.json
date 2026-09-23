@@ -13,7 +13,12 @@
     "evidence:build": "tsx pipeline/build.ts",
     "evidence:all": "npm run evidence:fetch && npm run evidence:literature && npm run evidence:build",
     "demo:make": "tsx scripts/make-demo.ts",
-    "smoke": "tsx scripts/smoke.ts"
+    "smoke": "tsx scripts/smoke.ts",
+    "bulk:download": "bash scripts/bulk-download.sh",
+    "bulk:clinvar": "tsx pipeline/bulk/clinvar.ts",
+    "bulk:gwas": "tsx pipeline/bulk/gwas.ts",
+    "bulk:package": "tsx pipeline/bulk/package.ts",
+    "bulk:all": "npm run bulk:clinvar && npm run bulk:gwas && npm run bulk:package && npm run demo:make"
   },
   "license": "UNLICENSED",
   "type": "module",

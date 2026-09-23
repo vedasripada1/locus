@@ -6,7 +6,7 @@
 |---|---|
 | **Static React + Vite app; analysis in the browser** | The strongest privacy guarantee is that genotypes never leave the device. With no backend, there is nothing to retain or breach. |
 | **Web Worker parsing (with `fflate` for .zip)** | Raw files are 15–25 MB. Parsing off the main thread keeps the UI responsive, and only curated sites are kept. |
-| **CSP `connect-src 'none'` in production** | Makes the "no network" promise enforceable, not just a policy. |
+| **CSP `connect-src 'self'` in production** | Makes the "nothing leaves the device" promise enforceable: the page can only read its own static evidence files. |
 | **Offline evidence pipeline (Node/tsx) → versioned JSON bundle** | Retrieval, verification and interpretation are separate and reproducible. The bundle is a reviewable artifact in git. |
 | **Pure TypeScript core (`src/core`)** | Parsing, matching, interpretation and export are deterministic pure functions, unit-tested with Vitest. |
 | **No LLM** | The spec allows an LLM only to summarise verified records. Fixed templates achieve that with zero hallucination risk. |
@@ -72,5 +72,25 @@ Palindromy is judged on **ref vs the main alternate allele** (highest dbSNP alle
 
 ## Tests
 
-- `tests/core.test.ts` (28 tests): both input formats, CRLF/BOM, VCF/CSV/empty/corrupt rejection, low call rate, discordant duplicates, forward/complement/palindromic/multi-allelic/mismatch/indel/merged/position cases, the ClinVar category ladder, GWAS strand and majority logic, contradictory sources, APOE, no-evidence topics, context flags, "no evidence-based personalized action", sensitive-result hiding, JSON export excluding raw data, and verification dropping fabricated quotes, animal-only supplements and missing sources.
+- `tests/core.test.ts` (28 tests) and `tests/bulk.test.ts` (13 tests, genome-wide tiers): both input formats, CRLF/BOM, VCF/CSV/empty/corrupt rejection, low call rate, discordant duplicates, forward/complement/palindromic/multi-allelic/mismatch/indel/merged/position cases, the ClinVar category ladder, GWAS strand and majority logic, contradictory sources, APOE, no-evidence topics, context flags, "no evidence-based personalized action", sensitive-result hiding, JSON export excluding raw data, and verification dropping fabricated quotes, animal-only supplements and missing sources.
 - `scripts/smoke.ts`: headless Chrome against the production build. It checks that the report renders for both demos, that there are no console errors and zero external requests, and that delete works.
+
+## Genome-wide tier (`pipeline/bulk/`, `src/core/bulk.ts`)
+
+```
+bulk:download ─▶ variant_summary.txt.gz ─┐                   ┌─▶ public/data/clinvar.json.gz  (≈243k P/LP variants + cited PMIDs)
+                 var_citations.txt ───────┼─▶ bulk:clinvar ──┤
+                 GWAS associations zip ───┼─▶ bulk:gwas ─────┼─▶ public/data/gwas.json.gz     (≈391k variant–trait groups + study metadata)
+                 trait mappings ──────────┘   (+ Ensembl)    └─▶ public/data/papers.json.gz   (≈128k paper titles; LitVar for curated sites)
+```
+
+- **ClinVar screen:** keeps germline aggregate Pathogenic/Likely pathogenic (not conflicting), ≥1★ (with the `"no assertion criteria provided"` → 0★ fix), with an rsID and simple GRCh37 VCF alleles ≤50 bp. The browser matches each row with `matchSite` (VCF alleles are forward-strand; indel kind comes from the allele lengths) and interprets it with the same `clinicalFinding` as the curated tier. The full ClinGen table supplies inheritance. A verified warning (Weedon et al. 2021) precedes all hits, and each hit carries a false-positive limitation.
+- **GWAS explorer:** keeps catalog rows with p < 5×10⁻⁸, a single rsID, a concrete effect allele, an OR/β value and one mapped trait. OR vs β is read from the CI text ("increase"/"decrease"/units ⇒ β). Rows are grouped per (current rsID, EFO URI). Alleles come from Ensembl GRCh37 (`allele_string`, ref first). The main alt is Ensembl's minor allele, or failing that the alt most often reported. Direction is expressed relative to the main alt; the lead association comes from the majority cluster; concordant publications and discordant associations are counted. Up to 25 PMIDs are kept per group. The domain comes from the catalog's EFO parent categories, plus a performance-trait regex.
+- **Papers per allele:**
+  - **ClinVar-cited:** the var_citations entries for that VariationID.
+  - **GWAS papers:** every study in the group, with titles from the catalog's own study columns.
+  - **LitVar2:** text-mined mentions for the rsID (curated sites only).
+
+  Titles for non-catalog PMIDs come from PubMed esummary, cached per PMID.
+- **Runtime:** the parse worker fetches the gz files from the same origin. It decompresses only if the gzip magic bytes are present, since some servers send `Content-Encoding: gzip`. It widens the parser's keep-set to all bulk rsIDs, screens both tiers, and returns only sites present in the file. The paper index loads lazily when a list is first opened.
+- **Curated sites are excluded from the bulk tiers,** so they appear once, with the richer interpretation.

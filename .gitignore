@@ -4,3 +4,4 @@ pipeline/cache
 *.local
 .env
 pipeline-*.log
+pipeline/out/*-bulk.json

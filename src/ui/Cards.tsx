@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { LABELS, PapersList, usePapers } from "./Papers";
 import type { Finding, InterventionAssessment, InterventionStudy, Quoted, SiteMatch } from "../core/types";
 
 const pmUrl = (p: string) => `https://pubmed.ncbi.nlm.nih.gov/${p}/`;
@@ -50,6 +51,7 @@ export function FindingCard({ f, compact }: { f: Finding; compact?: boolean }) {
         )}
         {compact && <p className="muted" style={{ margin: 0, fontSize: ".9rem" }}>Genotype: <Genotype m={f.match} /> · <a href={r.url} target="_blank" rel="noreferrer">{r.id}</a> · {r.classification}</p>}
         <Notes m={compact ? undefined : f.match} limits={f.limitations} />
+        {!compact && <ClinVarPapers rsid={r.rsid} url={r.url} />}
       </article>
     );
   }
@@ -74,6 +76,10 @@ export function FindingCard({ f, compact }: { f: Finding; compact?: boolean }) {
           <dt>Source</dt><dd>{a.firstAuthor} · <a href={a.url} target="_blank" rel="noreferrer">{a.studyAccession}</a> · <a href={a.paperUrl} target="_blank" rel="noreferrer">PMID {a.pmid}</a> · GWAS Catalog, retrieved {a.source.retrievedAt}</dd>
         </dl>
         <Notes m={f.match} limits={f.limitations} />
+        <PapersList groups={(file) => [
+          { ...LABELS.gwas, pmids: [...new Set([a, ...f.supporting].map((x) => Number(x.pmid)))] },
+          { ...LABELS.litvar, pmids: file?.litvar[a.rsid] ?? [] },
+        ]} />
       </article>
     );
   }
@@ -162,5 +168,17 @@ export function InterventionCard({ a }: { a: InterventionAssessment }) {
         <ul className="limits">{iv.limitations.map((l) => <li key={l}>{l}</li>)}<li>Discuss with a clinician before changing diet, medication or supplements. This report never replaces treatment.</li></ul>
       </details>
     </article>
+  );
+}
+
+/** ClinVar-cited papers for a variant (curated: from the paper index; bulk: from the screen), plus LitVar for curated sites. */
+function ClinVarPapers({ rsid, url }: { rsid: string; url: string }) {
+  const { bulkCites } = usePapers();
+  const varId = url.match(/variation\/(\d+)/)?.[1] ?? "";
+  return (
+    <PapersList groups={(file) => [
+      { ...LABELS.clinvar, pmids: bulkCites[varId] ?? [...new Set(file?.curatedCites[`${rsid}|${varId}`] ?? [])] },
+      { ...LABELS.litvar, pmids: file?.litvar[rsid] ?? [] },
+    ]} />
   );
 }

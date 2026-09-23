@@ -1,0 +1,16 @@
+{
+  "_comment": "Report-level warnings backed by verified quotes (checked by pipeline/build.ts like every other claim).",
+  "warnings": [
+    {
+      "id": "snp-chip-rare-variants",
+      "title": "Consumer chips are unreliable for very rare variants",
+      "summary": "In a study comparing SNP-chip calls with sequencing, most very rare variant calls from chips were wrong. Any rare pathogenic variant listed below must be confirmed with a clinical-grade test before it means anything.",
+      "ref": { "pmid": "33589468" },
+      "quotes": [
+        "for variants that are very rare in the population, with a frequency below 0.001% in UK Biobank, the positive predictive value was very low and only 16% of 4757 heterozygous genotypes from the SNP chips were confirmed with sequencing data",
+        "20/21 individuals analysed had at least one false positive rare pathogenic variant that had been incorrectly genotyped",
+        "SNP chips are extremely unreliable for genotyping very rare pathogenic variants and should not be used to guide health decisions without validation."
+      ]
+    }
+  ]
+}
