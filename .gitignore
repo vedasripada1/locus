@@ -1,0 +1,6 @@
+node_modules
+dist
+pipeline/cache
+*.local
+.env
+pipeline-*.log

@@ -1,0 +1,38 @@
+{
+  "name": "locus",
+  "version": "1.0.0",
+  "description": "Local-first, evidence-linked analysis of consumer raw genotype files",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit -p . && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p .",
+    "evidence:fetch": "tsx pipeline/fetch.ts",
+    "evidence:literature": "tsx pipeline/literature.ts",
+    "evidence:build": "tsx pipeline/build.ts",
+    "evidence:all": "npm run evidence:fetch && npm run evidence:literature && npm run evidence:build",
+    "demo:make": "tsx scripts/make-demo.ts",
+    "smoke": "tsx scripts/smoke.ts"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "dependencies": {
+    "fflate": "^0.8.3",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "fast-xml-parser": "^5.11.1",
+    "puppeteer-core": "^25.12.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.1"
+  },
+  "private": true
+}

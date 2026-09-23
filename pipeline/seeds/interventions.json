@@ -1,0 +1,726 @@
+{
+  "_comment": "Curated 'possible actions to discuss'. Rules: (1) every value carries a verbatim quote; pipeline/build.ts fetches the source and DROPS any study or safety item whose quote is not found in the source text, and any numeric value that does not appear inside its own quote. (2) genotypeInteraction records only what the cited study tested. (3) Titles, DOIs, journals and publication types are filled from PubMed at build time, never typed here. Refs: pmid → PubMed abstract; pmcid → PubMed Central full text; url → fetched web page.",
+  "interventions": [
+    {
+      "id": "lactose-tolerable-dose",
+      "name": "Keep lactose to modest servings (about a cup of milk at a time) if dairy causes symptoms",
+      "type": "food",
+      "triggers": [
+        {
+          "clinvar": "rs4988235",
+          "when": "alt-not-carried"
+        }
+      ],
+      "triggerNote": "Shown because you have no copies of the allele ClinVar lists for lactase persistence at this site. Other persistence variants exist (common in some African and Middle Eastern populations) and are not tested here; symptoms matter more than genotype.",
+      "summary": "A systematic review of randomized trials found most adults with lactose intolerance or malabsorption tolerate 12–15 g of lactose (about a cup of milk). Evidence for lactose-reduced milk, probiotics and other agents was insufficient.",
+      "studies": [
+        {
+          "ref": {
+            "pmid": "20404262"
+          },
+          "role": "general",
+          "genotypeInteraction": "not-tested",
+          "sampleSize": {
+            "value": "36",
+            "quote": "36 unique randomized studies"
+          },
+          "population": {
+            "value": "People with lactose intolerance or malabsorption",
+            "quote": "Randomized, controlled trials of individuals with lactose intolerance or malabsorption."
+          },
+          "exposure": {
+            "value": "12–15 g lactose",
+            "quote": "Moderate-quality evidence indicated that 12 to 15 g of lactose (approximately 1 cup of milk) is well tolerated by most adults."
+          },
+          "outcomes": [
+            {
+              "value": "Lactose-reduced products not shown effective",
+              "quote": "Evidence was insufficient that lactose-reduced solution or milk with a lactose content of 0 to 2 g, compared with greater than 12 g, is effective in reducing symptoms of lactose intolerance."
+            },
+            {
+              "value": "Probiotics insufficient",
+              "quote": "Evidence for probiotics, colonic adaptation, and other agents was also insufficient."
+            }
+          ],
+          "harms": null
+        }
+      ],
+      "safety": null,
+      "limitations": [
+        "Most included trials studied malabsorption rather than symptoms.",
+        "Genotype alone does not diagnose lactose intolerance."
+      ],
+      "contextFlags": [
+        {
+          "field": "dietaryRestrictions",
+          "matchAny": [
+            "vegan",
+            "dairy-free",
+            "dairy free",
+            "no dairy"
+          ],
+          "message": "You listed a dairy-free diet, so this item may not apply."
+        },
+        {
+          "field": "allergies",
+          "matchAny": [
+            "milk",
+            "dairy",
+            "casein",
+            "whey"
+          ],
+          "message": "Milk allergy is different from lactose intolerance. Do not reintroduce dairy based on this report."
+        }
+      ]
+    },
+    {
+      "id": "iron-panel-discussion",
+      "name": "Ask a clinician about an iron panel (transferrin saturation and ferritin)",
+      "type": "discuss with clinician",
+      "triggers": [
+        {
+          "clinvar": "rs1800562",
+          "when": "alt-homozygous"
+        },
+        {
+          "clinvarAll": [
+            "rs1800562",
+            "rs1799945"
+          ],
+          "when": "alt-carried"
+        }
+      ],
+      "triggerNote": "Shown because you have two copies of HFE C282Y, or one copy each of C282Y and H63D: the genotypes the guidelines discuss. Consumer data must be confirmed, and whether iron is actually raised is shown by blood tests, not genotype.",
+      "summary": "Haemochromatosis guidelines diagnose iron overload from blood iron measures, and treatment decisions rest on those measures, not on genotype alone.",
+      "studies": [
+        {
+          "ref": {
+            "pmid": "35662478"
+          },
+          "role": "general",
+          "genotypeInteraction": "not-tested",
+          "sampleSize": null,
+          "population": {
+            "value": "People homozygous for HFE p.Cys282Tyr",
+            "quote": "In patients homozygous for p.Cys282Tyr in HFE, provisional iron overload based on serum iron parameters"
+          },
+          "exposure": {
+            "value": "Serum iron parameters (TSAT, ferritin)",
+            "quote": "TSAT >45% and ferritin >200 μg/L in females and TSAT >50% and ferritin >300 μg/L in males and postmenopausal women"
+          },
+          "outcomes": [
+            {
+              "value": "Early treatment prevents complications",
+              "quote": "Early diagnosis and treatment by phlebotomy can prevent cirrhosis, hepatocellular carcinoma, diabetes, arthropathy and other complications."
+            }
+          ],
+          "harms": null
+        },
+        {
+          "ref": {
+            "pmid": "31335359"
+          },
+          "role": "general",
+          "genotypeInteraction": "not-tested",
+          "sampleSize": null,
+          "population": null,
+          "exposure": {
+            "value": "Serum ferritin at diagnosis",
+            "quote": "Serum ferritin of <1,000 ng/mL at diagnosis remains an important diagnostic test to identify patients with a low risk of advanced hepatic fibrosis"
+          },
+          "outcomes": [
+            {
+              "value": "Other genotypes: other causes more common",
+              "quote": "These diagnoses are more common than HH among patients with elevated serum ferritin who are not C282Y homozygotes or C282Y/H63D compound heterozygotes."
+            }
+          ],
+          "harms": null
+        }
+      ],
+      "safety": null,
+      "limitations": [
+        "Guidelines, not trials of screening by consumer genotype.",
+        "One copy of C282Y (carrier) is usually not the same as haemochromatosis; ClinGen lists the condition as autosomal recessive."
+      ],
+      "contextFlags": [
+        {
+          "field": "medications",
+          "matchAny": [
+            "omeprazole",
+            "esomeprazole",
+            "pantoprazole",
+            "lansoprazole",
+            "rabeprazole",
+            "ppi",
+            "proton pump"
+          ],
+          "message": "You listed a proton pump inhibitor. A small study (PMID 17344278) found PPIs reduced dietary non-haem iron absorption in C282Y homozygous patients. This is for discussion only: do not start, stop or change medication based on this report.",
+          "evidence": {
+            "ref": {
+              "pmid": "17344278"
+            },
+            "quote": "Administration of a PPI to patients with HH can inhibit the absorption of non-haem iron from a test meal and the habitual diet."
+          }
+        }
+      ]
+    },
+    {
+      "id": "fvl-risk-situations",
+      "name": "Discuss clot-risk situations (surgery, pregnancy, estrogen-containing contraception or HRT) with a clinician",
+      "type": "discuss with clinician",
+      "triggers": [
+        {
+          "clinvar": "rs6025",
+          "when": "alt-carried"
+        }
+      ],
+      "triggerNote": "Shown because the Factor V Leiden allele was observed. Consumer data must be confirmed by clinical testing first.",
+      "summary": "GeneReviews says heterozygotes without a history of clots are not routinely given long-term anticoagulation, and that some carriers may benefit from evaluation before surgery or pregnancy. It lists estrogen-containing contraception and HRT as things certain carriers should avoid.",
+      "studies": [
+        {
+          "ref": {
+            "pmid": "20301542"
+          },
+          "role": "general",
+          "genotypeInteraction": "not-tested",
+          "sampleSize": null,
+          "population": {
+            "value": "Factor V Leiden heterozygotes and homozygotes",
+            "quote": "Individuals who are heterozygous for the factor V Leiden variant have a slightly increased risk for VTE; individuals who are homozygous for the factor V Leiden variant have a much greater thrombotic risk."
+          },
+          "exposure": null,
+          "outcomes": [
+            {
+              "value": "No routine long-term anticoagulation if no prior clot",
+              "quote": "In the absence of a history of thrombosis, long-term prophylactic anticoagulation is not routinely recommended for asymptomatic factor V Leiden variant heterozygotes."
+            },
+            {
+              "value": "Evaluation before surgery or pregnancy",
+              "quote": "Factor V Leiden heterozygotes who do not require long-term anticoagulation may benefit from evaluation prior to exposure to circumstantial risk factors such as surgery or pregnancy."
+            },
+            {
+              "value": "Estrogen-containing contraception / HRT",
+              "quote": "Women with a history of VTE who are heterozygous for the factor V Leiden variant and women homozygous for the factor V Leiden variant with or without prior VTE should avoid estrogen-containing contraception and HRT."
+            }
+          ],
+          "harms": null
+        }
+      ],
+      "safety": null,
+      "limitations": [
+        "Expert review (GeneReviews), not a trial.",
+        "Many people with the variant never develop a clot."
+      ],
+      "contextFlags": [
+        {
+          "field": "medications",
+          "matchAny": [
+            "estradiol",
+            "estrogen",
+            "oestrogen",
+            "contracept",
+            "the pill",
+            "hrt",
+            "hormone replacement",
+            "ethinyl"
+          ],
+          "message": "You listed an estrogen-containing medication. Raise this with your prescriber. Do not stop any medication based on this report."
+        },
+        {
+          "field": "medications",
+          "matchAny": [
+            "warfarin",
+            "apixaban",
+            "rivaroxaban",
+            "dabigatran",
+            "edoxaban",
+            "heparin",
+            "anticoag"
+          ],
+          "message": "You listed an anticoagulant. Your treatment is already clinician-managed; this report does not change it."
+        }
+      ]
+    },
+    {
+      "id": "t2d-lifestyle",
+      "name": "Structured lifestyle programme (about 7% weight loss and 150 min/week activity), especially if blood glucose is raised",
+      "type": "lifestyle",
+      "triggers": [
+        {
+          "topic": "t2d",
+          "when": "effect-allele-carried"
+        }
+      ],
+      "triggerNote": "Shown because you carry a type 2 diabetes–associated allele. The lifestyle evidence applies regardless of genotype.",
+      "summary": "In the Diabetes Prevention Program, a lifestyle programme cut diabetes incidence by 58% among people with raised glucose. A follow-up analysis of TCF7L2 rs7903146 found the genotype-by-intervention interaction was not significant, so there is no evidence the benefit depends on this genotype.",
+      "studies": [
+        {
+          "ref": {
+            "pmid": "11832527"
+          },
+          "role": "general",
+          "genotypeInteraction": "not-tested",
+          "sampleSize": {
+            "value": "3234",
+            "quote": "We randomly assigned 3234 nondiabetic persons with elevated fasting and post-load plasma glucose concentrations"
+          },
+          "population": {
+            "value": "Adults without diabetes but with raised glucose; mean BMI 34",
+            "quote": "The mean age of the participants was 51 years, and the mean body-mass index (the weight in kilograms divided by the square of the height in meters) was 34.0; 68 percent were women, and 45 percent were members of minority groups."
+          },
+          "exposure": {
+            "value": "≥7% weight loss and ≥150 min/week activity",
+            "quote": "a lifestyle-modification program with the goals of at least a 7 percent weight loss and at least 150 minutes of physical activity per week"
+          },
+          "outcomes": [
+            {
+              "value": "58% lower incidence vs placebo",
+              "quote": "The lifestyle intervention reduced the incidence by 58 percent (95 percent confidence interval, 48 to 66 percent)"
+            }
+          ],
+          "harms": null
+        },
+        {
+          "ref": {
+            "pmid": "16855264"
+          },
+          "role": "genotype",
+          "genotypeInteraction": "tested-no-difference",
+          "sampleSize": {
+            "value": "3548",
+            "quote": "We genotyped these variants in 3548 participants"
+          },
+          "population": {
+            "value": "DPP participants with impaired glucose tolerance",
+            "quote": "persons with impaired glucose tolerance who were enrolled in the Diabetes Prevention Program"
+          },
+          "exposure": null,
+          "outcomes": [
+            {
+              "value": "Interaction not significant",
+              "quote": "P for the interaction between genotype and intervention not significant"
+            }
+          ],
+          "harms": null
+        }
+      ],
+      "safety": null,
+      "limitations": [
+        "Trial participants already had raised glucose; the effect in people with normal glucose was not tested here.",
+        "A blood test (HbA1c or fasting glucose) is far more informative than genotype."
+      ],
+      "contextFlags": [
+        {
+          "field": "diagnoses",
+          "matchAny": [
+            "diabetes",
+            "t2d",
+            "t1d"
+          ],
+          "message": "You listed diabetes. Management is clinician-led; this item is about prevention and does not replace treatment."
+        }
+      ]
+    },
+    {
+      "id": "fto-weight-loss",
+      "name": "Standard weight-management approaches work the same regardless of FTO genotype",
+      "type": "lifestyle",
+      "triggers": [
+        {
+          "topic": "bmi",
+          "when": "effect-allele-carried"
+        }
+      ],
+      "triggerNote": "Shown because you carry the BMI-associated FTO allele. The evidence shows no genotype-specific action is needed.",
+      "summary": "An individual-participant meta-analysis of 8 randomized trials found weight loss from dietary, physical activity or drug interventions did not differ by FTO genotype.",
+      "studies": [
+        {
+          "ref": {
+            "pmid": "27650503"
+          },
+          "role": "genotype",
+          "genotypeInteraction": "tested-no-difference",
+          "sampleSize": {
+            "value": "9563",
+            "quote": "We identified eight eligible randomised controlled trials for the systematic review and meta-analysis (n=9563)."
+          },
+          "population": {
+            "value": "Overweight or obese adults",
+            "quote": "Randomised controlled trials in overweight or obese adults reporting reduction in body mass index, body weight, or waist circumference by FTO genotype (rs9939609 or a proxy)"
+          },
+          "exposure": {
+            "value": "Diet, physical activity or drug-based weight-loss interventions",
+            "quote": "after dietary, physical activity, or drug based interventions"
+          },
+          "outcomes": [
+            {
+              "value": "No difference by genotype",
+              "quote": "carriage of the FTO minor allele was not associated with differential change in adiposity after weight loss interventions"
+            }
+          ],
+          "harms": null
+        }
+      ],
+      "safety": null,
+      "limitations": [
+        "Tested adults who were already overweight."
+      ],
+      "contextFlags": []
+    },
+    {
+      "id": "caffeine-endurance",
+      "name": "Caffeine before endurance exercise (limited, outcome-specific genotype evidence)",
+      "type": "supplement",
+      "triggers": [
+        {
+          "topic": "performance",
+          "when": "tested"
+        },
+        {
+          "topic": "caffeine",
+          "when": "tested"
+        }
+      ],
+      "triggerNote": "Shown because CYP1A2 rs762551 was tested. Compare your rs762551 genotype with the subgroup finding; the evidence is limited.",
+      "summary": "A meta-analysis of 12 small studies found caffeine improved cycling time trials overall, with the subgroup benefit seen only in people with the rs762551 A allele. Caffeine did not improve sprint (Wingate) or jump performance in any genotype.",
+      "studies": [
+        {
+          "ref": {
+            "pmid": "38158179"
+          },
+          "role": "genotype",
+          "genotypeInteraction": "tested-difference",
+          "sampleSize": {
+            "value": "666",
+            "quote": "The final number of studies meeting the inclusion criteria was 12 (n = 666 participants)."
+          },
+          "population": {
+            "value": "Athletes",
+            "quote": "comprehensively evaluate the influence of CYP1A2 gene types on athletes' exercise performance after caffeine intake"
+          },
+          "exposure": {
+            "value": "Acute caffeine intake",
+            "quote": "acute caffeine intake improved cycling time trial only in individuals with the A allele"
+          },
+          "outcomes": [
+            {
+              "value": "Cycling time trial improved overall",
+              "quote": "The overall analysis showed that the cycling time trial significantly improved after caffeine intake"
+            },
+            {
+              "value": "No effect on Wingate or jump, any genotype",
+              "quote": "acute caffeine supplementation failed to increase the Wingate or CMJ performance, regardless of CYP1A2 genotype"
+            }
+          ],
+          "harms": null
+        }
+      ],
+      "safety": {
+        "upperLimit": {
+          "value": "400 mg/day for most adults (FDA)",
+          "quote": "For most adults, the FDA has cited 400 milligrams* a day — that's about two to three 12-fluid-ounce cups of coffee — as an amount not generally associated with negative effects.",
+          "ref": {
+            "url": "https://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much"
+          }
+        },
+        "adverseEffects": [],
+        "interactions": [
+          {
+            "value": "Medications, conditions, pregnancy",
+            "quote": "If you are concerned about a condition or medication, or if you’re pregnant, trying to become pregnant, or breastfeeding, we recommend talking to your health care provider about whether you need to limit caffeine consumption.",
+            "ref": {
+              "url": "https://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much"
+            }
+          }
+        ]
+      },
+      "limitations": [
+        "Subgroup analysis of small trials; the genotype difference covers one outcome (cycling time trial) only.",
+        "The paper reports genotype as 'A allele'; the app matches this against the forward-strand allele at rs762551."
+      ],
+      "contextFlags": [
+        {
+          "field": "diagnoses",
+          "matchAny": [
+            "arrhythm",
+            "atrial",
+            "palpitation",
+            "anxiety",
+            "insomnia",
+            "pregnan",
+            "hypertension"
+          ],
+          "message": "You listed a condition that may make caffeine less suitable. Ask your clinician."
+        },
+        {
+          "field": "medications",
+          "matchAny": [
+            "fluvoxamine",
+            "ciprofloxacin",
+            "theophylline",
+            "clozapine",
+            "stimulant"
+          ],
+          "message": "You listed a medication that may interact with caffeine. The FDA advises talking to your health care provider."
+        }
+      ]
+    },
+    {
+      "id": "alcohol-aldh2",
+      "name": "Limit alcohol, especially if you flush when drinking",
+      "type": "lifestyle",
+      "triggers": [
+        {
+          "clinvar": "rs671",
+          "when": "alt-carried"
+        }
+      ],
+      "triggerNote": "Shown because the ALDH2 low-activity allele (rs671 A) was observed. This allele is common mainly in East Asian populations.",
+      "summary": "In the China Kadoorie Biobank, the rs671 GA genotype was associated with higher oesophageal cancer risk in men who drank weekly, and the increased risk was apparent at ≥30 g/day. It was not associated with higher risk in people who drank less than weekly.",
+      "studies": [
+        {
+          "ref": {
+            "pmid": "29707772"
+          },
+          "role": "genotype",
+          "genotypeInteraction": "tested-difference",
+          "sampleSize": {
+            "value": "0.5 million",
+            "quote": "with 10 years follow-up of 0.5 million adults aged 30-79 years"
+          },
+          "population": {
+            "value": "Chinese adults aged 30–79",
+            "quote": "0.5 million adults aged 30-79 years"
+          },
+          "exposure": {
+            "value": "Alcohol ≥30 g/day",
+            "quote": "The increased EC risk associated with \"soon\" response or rs671 GA was apparent in men consuming alcohol ≥30g/d."
+          },
+          "outcomes": [
+            {
+              "value": "GA vs GG HR 3.31 in male weekly drinkers",
+              "quote": "rs671 [n = 10,692; 94 EC cases; GA vs. GG 3.31 (1.94, 5.67)] were associated with EC risk"
+            },
+            {
+              "value": "No excess risk in infrequent drinkers",
+              "quote": "low active or inactive ALDH2 was not associated with increased EC risk"
+            }
+          ],
+          "harms": null
+        },
+        {
+          "ref": {
+            "pmid": "19320537"
+          },
+          "role": "general",
+          "genotypeInteraction": "not-tested",
+          "sampleSize": null,
+          "population": null,
+          "exposure": null,
+          "outcomes": [
+            {
+              "value": "Flushing linked to higher alcohol-related oesophageal cancer risk",
+              "quote": "evidence linking the alcohol flushing response (predominantly due to ALDH2 deficiency) with a much higher risk of esophageal cancer from alcohol consumption"
+            }
+          ],
+          "harms": null
+        }
+      ],
+      "safety": null,
+      "limitations": [
+        "Observational; one population (Chinese adults). The genotype finding comes mostly from men who drank weekly.",
+        "The GWAS 'alcohol drinking' association and cancer risk are different findings."
+      ],
+      "contextFlags": [
+        {
+          "field": "medications",
+          "matchAny": [
+            "disulfiram",
+            "metronidazole"
+          ],
+          "message": "You listed a medication known for alcohol reactions. Follow your prescriber's advice."
+        }
+      ]
+    },
+    {
+      "id": "vitamin-d-supplement",
+      "name": "Vitamin D supplements: no genotype-specific evidence; check a blood level first",
+      "type": "supplement",
+      "triggers": [
+        {
+          "topic": "vitd",
+          "when": "effect-allele-carried"
+        }
+      ],
+      "triggerNote": "Shown because you carry an allele associated with lower or higher vitamin D level. We found no verified trial showing supplementation benefits differ by this genotype.",
+      "summary": "In VITAL (25,871 adults), vitamin D3 at 2000 IU/day did not lower cancer or major cardiovascular events. The adult upper limit set by the IOM is 4000 IU/day.",
+      "studies": [
+        {
+          "ref": {
+            "pmid": "30415629"
+          },
+          "role": "general",
+          "genotypeInteraction": "not-tested",
+          "sampleSize": {
+            "value": "25,871",
+            "quote": "A total of 25,871 participants, including 5106 black participants, underwent randomization."
+          },
+          "population": {
+            "value": "US men ≥50 and women ≥55",
+            "quote": "among men 50 years of age or older and women 55 years of age or older in the United States"
+          },
+          "exposure": {
+            "value": "Vitamin D3 2000 IU/day",
+            "quote": "vitamin D3 (cholecalciferol) at a dose of 2000 IU per day"
+          },
+          "outcomes": [
+            {
+              "value": "No reduction in cancer or CVD events",
+              "quote": "Supplementation with vitamin D did not result in a lower incidence of invasive cancer or cardiovascular events than placebo."
+            }
+          ],
+          "harms": {
+            "value": "No excess hypercalcaemia",
+            "quote": "No excess risks of hypercalcemia or other adverse events were identified."
+          }
+        }
+      ],
+      "safety": {
+        "upperLimit": {
+          "value": "4000 IU/day (ages 9+)",
+          "quote": "For vitamin D, the ULs are now 4000 IU/d for ages 9 and older but are lower for infants and young children",
+          "ref": {
+            "pmcid": "PMC3046611"
+          }
+        },
+        "adverseEffects": [
+          {
+            "value": "UL indicators",
+            "quote": "The indicators considered in the determination of ULs included hypercalcemia, hypercalciuria, vascular and soft tissue calcification, nephrolithiasis",
+            "ref": {
+              "pmcid": "PMC3046611"
+            }
+          }
+        ],
+        "interactions": []
+      },
+      "limitations": [
+        "VITAL did not select people by genotype or low vitamin D level.",
+        "A blood 25(OH)D test measures status directly."
+      ],
+      "contextFlags": [
+        {
+          "field": "diagnoses",
+          "matchAny": [
+            "kidney stone",
+            "nephrolith",
+            "hypercalc",
+            "sarcoid",
+            "hyperparathyroid"
+          ],
+          "message": "You listed a condition where vitamin D supplements need clinician oversight."
+        },
+        {
+          "field": "ageRange",
+          "matchAny": [
+            "under 18",
+            "0-17",
+            "<18",
+            "child"
+          ],
+          "message": "Upper limits are lower for young children; the 4000 IU/day UL applies from age 9."
+        }
+      ]
+    },
+    {
+      "id": "folate-homocysteine",
+      "name": "Folate status and homocysteine: measure first; folic acid only with a clinician",
+      "type": "supplement",
+      "triggers": [
+        {
+          "topic": "homocysteine",
+          "when": "effect-allele-carried"
+        }
+      ],
+      "triggerNote": "Shown because you carry the MTHFR 677T allele associated with higher homocysteine.",
+      "summary": "In a post hoc analysis of a Chinese trial of hypertensive adults, folic acid 0.8 mg/day lowered homocysteine, and TT carriers needed higher folate levels (about 15 ng/mL) for the genotype difference to disappear. The upper limit for folic acid in adults is 1000 μg/day (EFSA).",
+      "studies": [
+        {
+          "ref": {
+            "pmid": "29371246"
+          },
+          "role": "genotype",
+          "genotypeInteraction": "tested-difference",
+          "sampleSize": {
+            "value": "16 413",
+            "quote": "This analysis included 16 413 participants from the CSPPT"
+          },
+          "population": {
+            "value": "Chinese hypertensive adults",
+            "quote": "0.8 mg daily folic acid therapy in Chinese hypertensive adults"
+          },
+          "exposure": {
+            "value": "Folic acid 0.8 mg/day (with enalapril)",
+            "quote": "either 10-mg enalapril+0.8-mg folic acid or 10-mg enalapril"
+          },
+          "outcomes": [
+            {
+              "value": "11% lower homocysteine",
+              "quote": "group difference: 1.61 μmol/L; 11% reduction"
+            },
+            {
+              "value": "TT needed higher folate",
+              "quote": "this difference in tHcy by genotype was eliminated when plasma folate levels reach ≈15 ng/mL or higher"
+            }
+          ],
+          "harms": null
+        }
+      ],
+      "safety": {
+        "upperLimit": {
+          "value": "1000 μg/day folic acid (adults)",
+          "quote": "1000 μg/day for adults, including pregnant and lactating women",
+          "ref": {
+            "pmid": "37965303"
+          }
+        },
+        "adverseEffects": [
+          {
+            "value": "Masking/progression in B12 deficiency",
+            "quote": "The risk of progression of neurological symptoms in cobalamin-deficient patients is considered as the critical effect to establish an UL for folic acid.",
+            "ref": {
+              "pmid": "37965303"
+            }
+          }
+        ],
+        "interactions": []
+      },
+      "limitations": [
+        "Post hoc analysis; one population; the outcome is a blood marker, not disease.",
+        "Homocysteine and folate can be measured directly."
+      ],
+      "contextFlags": [
+        {
+          "field": "medications",
+          "matchAny": [
+            "methotrexate",
+            "phenytoin",
+            "carbamazepine",
+            "valpro",
+            "sulfasalazine"
+          ],
+          "message": "You listed a medication whose use interacts with folate. Discuss before any folic acid supplement; do not change medication based on this report."
+        },
+        {
+          "field": "diagnoses",
+          "matchAny": [
+            "b12",
+            "pernicious",
+            "cobalamin"
+          ],
+          "message": "You listed a B12-related condition. The folic acid upper limit is set because of B12-deficiency risks."
+        }
+      ]
+    }
+  ]
+}

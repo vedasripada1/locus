@@ -1,0 +1,298 @@
+{
+  "_comment": "Curated seed list. Curators choose WHICH sites and trait groups to show; every fact about them (alleles, positions, classifications, effect sizes, studies) is retrieved from the source by pipeline/fetch.ts. Nothing here is an assertion about effect.",
+  "sites": [
+    {
+      "rsid": "rs1800562",
+      "gene": "HFE",
+      "label": "HFE C282Y",
+      "domain": "clinical",
+      "clinvar": true
+    },
+    {
+      "rsid": "rs1799945",
+      "gene": "HFE",
+      "label": "HFE H63D",
+      "domain": "clinical",
+      "clinvar": true
+    },
+    {
+      "rsid": "rs6025",
+      "gene": "F5",
+      "label": "Factor V Leiden",
+      "domain": "clinical",
+      "clinvar": true
+    },
+    {
+      "rsid": "rs1799963",
+      "gene": "F2",
+      "label": "Prothrombin G20210A",
+      "domain": "clinical",
+      "clinvar": true
+    },
+    {
+      "rsid": "rs113993960",
+      "gene": "CFTR",
+      "label": "CFTR F508del",
+      "domain": "clinical",
+      "clinvar": true
+    },
+    {
+      "rsid": "rs334",
+      "gene": "HBB",
+      "label": "HBB E6V (sickle)",
+      "domain": "clinical",
+      "clinvar": true
+    },
+    {
+      "rsid": "rs76763715",
+      "gene": "GBA1",
+      "label": "GBA1 N370S",
+      "domain": "clinical",
+      "clinvar": true
+    },
+    {
+      "rsid": "rs80357906",
+      "gene": "BRCA1",
+      "label": "BRCA1 c.5266dupC",
+      "domain": "clinical",
+      "clinvar": true
+    },
+    {
+      "rsid": "rs80359550",
+      "gene": "BRCA2",
+      "label": "BRCA2 c.5946delT",
+      "domain": "clinical",
+      "clinvar": true
+    },
+    {
+      "rsid": "rs7903146",
+      "gene": "TCF7L2",
+      "label": "TCF7L2 rs7903146",
+      "domain": "disease"
+    },
+    {
+      "rsid": "rs1801282",
+      "gene": "PPARG",
+      "label": "PPARG Pro12Ala",
+      "domain": "disease"
+    },
+    {
+      "rsid": "rs429358",
+      "gene": "APOE",
+      "label": "APOE rs429358",
+      "domain": "disease",
+      "sensitive": true,
+      "clinvar": true
+    },
+    {
+      "rsid": "rs7412",
+      "gene": "APOE",
+      "label": "APOE rs7412",
+      "domain": "disease",
+      "sensitive": true,
+      "clinvar": true
+    },
+    {
+      "rsid": "rs4988235",
+      "gene": "MCM6",
+      "label": "MCM6 −13910 (lactase)",
+      "domain": "metabolism",
+      "clinvar": true
+    },
+    {
+      "rsid": "rs1801133",
+      "gene": "MTHFR",
+      "label": "MTHFR C677T",
+      "domain": "metabolism",
+      "clinvar": true
+    },
+    {
+      "rsid": "rs9939609",
+      "gene": "FTO",
+      "label": "FTO rs9939609",
+      "domain": "metabolism"
+    },
+    {
+      "rsid": "rs671",
+      "gene": "ALDH2",
+      "label": "ALDH2 E504K",
+      "domain": "metabolism",
+      "clinvar": true
+    },
+    {
+      "rsid": "rs1229984",
+      "gene": "ADH1B",
+      "label": "ADH1B H48R",
+      "domain": "metabolism"
+    },
+    {
+      "rsid": "rs2282679",
+      "gene": "GC",
+      "label": "GC rs2282679",
+      "domain": "metabolism"
+    },
+    {
+      "rsid": "rs2472297",
+      "gene": "CYP1A1–CYP1A2",
+      "label": "CYP1A1/1A2 rs2472297",
+      "domain": "metabolism"
+    },
+    {
+      "rsid": "rs762551",
+      "gene": "CYP1A2",
+      "label": "CYP1A2 −163C>A",
+      "domain": "performance"
+    },
+    {
+      "rsid": "rs1815739",
+      "gene": "ACTN3",
+      "label": "ACTN3 R577X",
+      "domain": "performance"
+    }
+  ],
+  "topics": [
+    {
+      "id": "t2d",
+      "label": "Type 2 diabetes",
+      "domain": "disease",
+      "rsids": [
+        "rs7903146",
+        "rs1801282"
+      ],
+      "traitPattern": "^type 2 diabetes mellitus$",
+      "description": "A common condition influenced by many genes and strongly by weight, activity and diet. Single common variants shift odds modestly.",
+      "phrase": "type 2 diabetes"
+    },
+    {
+      "id": "vte",
+      "label": "Venous thromboembolism (blood clots)",
+      "domain": "disease",
+      "rsids": [
+        "rs6025",
+        "rs1799963"
+      ],
+      "traitPattern": "^venous thromboembolism$",
+      "description": "Clots in deep veins or lungs. Population association studies; see the clinical section for ClinVar interpretations of the same variants.",
+      "phrase": "venous thromboembolism"
+    },
+    {
+      "id": "alzheimers",
+      "label": "Alzheimer disease",
+      "domain": "disease",
+      "rsids": [
+        "rs429358",
+        "rs7412"
+      ],
+      "traitPattern": "^alzheimer'?s? disease$|^late-onset alzheimers disease$",
+      "description": "Sensitive: many people prefer not to learn APOE results. Hidden unless you choose to show it.",
+      "phrase": "Alzheimer disease"
+    },
+    {
+      "id": "ldl",
+      "label": "LDL cholesterol",
+      "domain": "metabolism",
+      "rsids": [
+        "rs7412",
+        "rs429358"
+      ],
+      "traitPattern": "^low density lipoprotein cholesterol measurement$",
+      "description": "Blood level of LDL cholesterol. Measured directly by a routine lipid panel, which is far more informative than genotype.",
+      "phrase": "LDL cholesterol",
+      "reportedPattern": "^(clinical )?(ldl|low density lipoprotein) cholesterol( levels)?$|^ldl cholesterol"
+    },
+    {
+      "id": "iron",
+      "label": "Iron status",
+      "domain": "metabolism",
+      "rsids": [
+        "rs1800562",
+        "rs1799945"
+      ],
+      "traitPattern": "^(serum iron amount|transferrin saturation measurement|iron biomarker measurement)$",
+      "description": "Blood markers of iron (serum iron, transferrin saturation). Measured directly by an iron panel.",
+      "phrase": "iron markers"
+    },
+    {
+      "id": "homocysteine",
+      "label": "Homocysteine level",
+      "domain": "metabolism",
+      "rsids": [
+        "rs1801133"
+      ],
+      "traitPattern": "^homocysteine measurement$",
+      "description": "Blood homocysteine, which depends heavily on folate, B12 and kidney function.",
+      "phrase": "homocysteine"
+    },
+    {
+      "id": "bmi",
+      "label": "Body mass index",
+      "domain": "metabolism",
+      "rsids": [
+        "rs9939609"
+      ],
+      "traitPattern": "^body mass index$",
+      "description": "Weight relative to height. Each common variant has a very small average effect.",
+      "phrase": "body mass index"
+    },
+    {
+      "id": "alcohol",
+      "label": "Alcohol intake and metabolism",
+      "domain": "metabolism",
+      "rsids": [
+        "rs671",
+        "rs1229984"
+      ],
+      "traitPattern": "^alcohol drinking$|^alcohol consumption measurement$",
+      "description": "Variants in alcohol-metabolising enzymes associated with how much people drink. Effects are ancestry-specific (rs671 is common mainly in East Asian populations).",
+      "phrase": "alcohol drinking"
+    },
+    {
+      "id": "vitd",
+      "label": "Vitamin D level",
+      "domain": "metabolism",
+      "rsids": [
+        "rs2282679"
+      ],
+      "traitPattern": "^vitamin D level$|^vitamin D measurement$",
+      "description": "Blood 25-hydroxyvitamin D. A blood test measures this directly.",
+      "phrase": "vitamin D level"
+    },
+    {
+      "id": "caffeine",
+      "label": "Coffee / caffeine intake",
+      "domain": "metabolism",
+      "rsids": [
+        "rs2472297",
+        "rs762551"
+      ],
+      "traitPattern": "coffee|caffeine",
+      "description": "Associations with habitual coffee or caffeine consumption.",
+      "phrase": "coffee or caffeine consumption",
+      "reportedPattern": "coffee consumption|caffeine consumption|coffee intake|caffeine intake"
+    },
+    {
+      "id": "lactase",
+      "label": "Lactase persistence",
+      "domain": "metabolism",
+      "rsids": [
+        "rs4988235"
+      ],
+      "traitPattern": "lactase persistence|lactose intolerance",
+      "description": "Whether the lactase enzyme stays active into adulthood. See the ClinVar interpretation of this site.",
+      "phrase": "lactase persistence",
+      "reportedPattern": "lactase persistence|lactose (in)?tolerance"
+    },
+    {
+      "id": "performance",
+      "label": "Athletic performance",
+      "domain": "performance",
+      "rsids": [
+        "rs1815739",
+        "rs762551"
+      ],
+      "traitPattern": "athlet|sprint|endurance|muscle strength|grip strength|physical performance|maximal oxygen",
+      "description": "Consumer tests often market these variants for training advice. Only genome-wide significant human associations are shown.",
+      "phrase": "athletic performance"
+    }
+  ]
+}

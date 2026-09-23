@@ -1,0 +1,18 @@
+{
+  "_comment": "PubMed queries for the literature review layer. Results are CANDIDATES: auto-classified, never turned into claims. Curated claims live in interventions.json.",
+  "design": "(meta-analysis[pt] OR systematic review[pt] OR randomized controlled trial[pt] OR guideline[pt] OR practice guideline[pt])",
+  "topics": [
+    { "id": "lactase", "intervention": "\"lactose intolerance\"[MeSH] AND (diet OR dairy OR lactase OR probiotic*)", "geneDiet": "(LCT OR MCM6 OR \"lactase persistence\") AND (dairy OR milk OR diet)" },
+    { "id": "iron", "intervention": "hemochromatosis[MeSH] AND (diet OR dietary OR tea OR \"ascorbic acid\" OR supplement*)", "geneDiet": "HFE AND (diet OR dietary iron OR supplement*)" },
+    { "id": "t2d", "intervention": "\"Diabetes Mellitus, Type 2\"[MeSH] AND prevention AND (diet OR \"dietary pattern\" OR lifestyle)", "geneDiet": "TCF7L2 AND (diet OR dietary OR lifestyle OR fiber)" },
+    { "id": "bmi", "intervention": "obesity[MeSH] AND (diet OR dietary pattern) AND weight loss", "geneDiet": "FTO AND (diet OR dietary OR weight loss) AND (interaction OR response)" },
+    { "id": "homocysteine", "intervention": "homocysteine AND (folate OR \"folic acid\" OR riboflavin OR \"vitamin B12\")", "geneDiet": "MTHFR AND (folate OR \"folic acid\" OR riboflavin)" },
+    { "id": "vitd", "intervention": "\"vitamin D\" AND supplementation AND (deficiency OR 25-hydroxyvitamin)", "geneDiet": "(\"vitamin D binding protein\" OR GC gene OR rs2282679) AND supplementation" },
+    { "id": "alcohol", "intervention": "alcohol drinking AND (reduction OR intervention) AND cancer", "geneDiet": "ALDH2 AND alcohol AND (cancer OR intake)" },
+    { "id": "caffeine", "intervention": "caffeine AND exercise performance", "geneDiet": "CYP1A2 AND caffeine" },
+    { "id": "performance", "intervention": "ACTN3 AND (training OR exercise)", "geneDiet": "ACTN3 AND (diet OR supplement* OR training response)" },
+    { "id": "vte", "intervention": "\"venous thromboembolism\" AND (diet OR dietary OR supplement*)", "geneDiet": "\"factor V Leiden\" AND (diet OR vitamin OR supplement*)" },
+    { "id": "ldl", "intervention": "LDL cholesterol AND (diet OR dietary pattern OR fiber OR plant sterols)", "geneDiet": "APOE AND (diet OR dietary fat) AND (LDL OR cholesterol)" },
+    { "id": "alzheimers", "intervention": "\"Alzheimer Disease\"[MeSH] AND prevention AND (diet OR dietary pattern OR supplement*)", "geneDiet": "APOE4 AND (diet OR supplement*) AND (cognition OR dementia)" }
+  ]
+}
