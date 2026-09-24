@@ -46,6 +46,7 @@ function Details({ item, go }: { item: SummaryItem; go: Go }) {
           <ul>{m.lines.map((l) => <li key={l}>{l}</li>)}</ul>
         </div>
       ))}
+      {item.talkTo && <p className="talk" style={{ gridColumn: "1 / -1" }}>You can talk this over with {item.talkTo}. Bringing a printout of this page (Print, top right) helps.</p>}
       <div className="card-foot" style={{ gridColumn: "1 / -1" }}>
         {item.sources.slice(0, 4).map((s) => <a key={s.url + s.label} href={s.url} target="_blank" rel="noreferrer">{s.label}</a>)}
         <span style={{ flex: 1 }} />
@@ -100,6 +101,7 @@ function ItemRow({ item, go, focused }: { item: SummaryItem; go: Go; focused: bo
         <span className={`chip ${!item.sufficient ? "conf-low" : /unverified/.test(item.evidenceLabel) ? "conf-moderate" : "conf-higher"}`}>{item.sufficient ? item.evidenceLabel : `Weaker: ${item.evidenceLabel}`}</span>
       </div>
       <p className="plain" style={{ margin: "6px 0" }}>{item.plain}</p>
+      {item.highlights?.map((h) => <p key={h} className="highlight">{h}</p>)}
       {item.list && <ul className="plain-list">{item.list.map((l) => <li key={l}>{l}</li>)}</ul>}
       <button className="linklike no-print" onClick={() => setOpen(!open)} aria-expanded={open}>{open ? "Hide details" : "Why and what to do"}</button>
       {open && <Details item={item} go={go} />}
@@ -135,6 +137,7 @@ export function ResultsView({ summary, report, fileName, context, onContext, go,
       <section className="block summary-top">
         <p className="muted" style={{ margin: 0 }}>Your results · {fileName} · {report.file.format === "23andme" ? "23andMe" : "AncestryDNA"}</p>
         <h2 className="summary-headline">{summary.headline}</h2>
+        <p className="talk-banner"><b>Talk it over with a professional.</b> Anything here can be discussed with your doctor, a genetic counsellor (for health findings), a registered dietitian (for diet), or a pharmacist (for supplements and medicines). This report is a starting point for that conversation, not a diagnosis or a treatment plan.</p>
         {accuracyLine(report) && (
           <p className="accuracy-line"><b>✓</b> {accuracyLine(report)} <button className="linklike" onClick={() => go({ tab: "appendix", section: "all" })}>See the check</button> · <button className="linklike" onClick={() => go({ tab: "appendix", section: "raw" })}>Your raw data</button></p>
         )}

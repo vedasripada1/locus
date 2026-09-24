@@ -30,7 +30,7 @@ export NCBI_EMAIL=you@example.org       # optional; NCBI asks tools to identify 
 export NCBI_API_KEY=...                 # optional; raises the NCBI limit from 3 to 10 requests/s
 npm run evidence:all                    # curated tier: fetch → literature → build (verify)
 npm run bulk:download                   # genome-wide tier sources (~1.5 GB into pipeline/cache/bulk)
-npm run bulk:all                        # ClinVar screen, GWAS grouping (+Ensembl alleles), EFO definitions, CTD nutrients, paper index, demo files
+npm run bulk:all                        # ClinVar screen, GWAS grouping (+Ensembl alleles), EFO definitions, CTD nutrients, GeneReviews + MedlinePlus, paper index, demo files
 ```
 
 Requires Node 20+ (developed on Node 24). `npm run smoke` needs Google Chrome installed (set `CHROME_PATH` if it isn't in `/Applications`).
@@ -78,6 +78,8 @@ Each stage is a separate module with typed inputs and outputs (`src/core/types.t
 | GWAS Catalog downloads (associations v1.0.2, trait mappings) | Genome-wide association explorer; study metadata per paper | Bulk download | EMBL-EBI terms |
 | [Ensembl REST](https://grch37.rest.ensembl.org) (GRCh37) | Forward-strand alleles and positions for GWAS-only sites | `POST /variation/homo_sapiens`, 200 ids/call | [Ensembl terms](https://www.ensembl.org/info/about/legal/) |
 | [CTD](https://ctdbase.org/) chemical–gene interactions | Nutrient–gene expression research (human, dietary compounds) | Bulk download | Free with citation, links, and notification of CTD if published ([terms](https://ctdbase.org/about/legal.jsp)) |
+| [GeneReviews](https://www.ncbi.nlm.nih.gov/books/NBK1116/) (NCBI Bookshelf, via PubMed abstracts + FTP gene map) | What a condition is, what specialists recommend if a finding is confirmed, family implications (verbatim) | E-utilities + FTP | Copyright University of Washington; short verbatim excerpts with links |
+| [MedlinePlus](https://medlineplus.gov/) (NLM) health topics | What a trait is and general diet/lifestyle advice for panels (verbatim, labelled not genotype-based) | MedlinePlus Web Service | Public domain (NLM-authored) |
 | [Experimental Factor Ontology](https://www.ebi.ac.uk/efo/) via [OLS4](https://www.ebi.ac.uk/ols4/) | Plain definitions of GWAS traits | REST API, cached | Apache 2.0 |
 | [LitVar2](https://www.ncbi.nlm.nih.gov/research/litvar2/) (NCBI) | Text-mined papers mentioning curated variants | REST API | Public domain |
 | [FDA consumer update](https://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much) | Caffeine intake guidance | Page fetch | US government work |
@@ -140,6 +142,19 @@ How the lean is worked out (`traitLean` in `src/core/plain.ts`):
 It is **direction-only** and not a validated risk score: it doesn't weigh effect sizes, and frequencies come from each study's population. Every card says what a lean can mean ("your genetic starting point may be slightly above or below average") and what it can't ("doesn't show you have or will get a condition; no personal level or risk"). For measured traits it points to the blood test.
 
 Each card also includes plain **trait definitions** from the Experimental Factor Ontology (EBI OLS; 805 of 808 traits). The variant list shows your copies next to a typical person's, e.g. "you have 1 copy of C (a typical person has about 1.4)".
+
+### From a finding to what you can do
+
+Every card ends with who to talk it over with (a doctor, genetic counsellor, registered dietitian or pharmacist). A banner at the top says that anything in the report can be discussed with a professional.
+
+- **Health findings** (e.g. BRCA1/2, HFE) show:
+  - what the condition is (GeneReviews clinical characteristics);
+  - **how likely the result is real** (for BRCA1/2, Weedon et al. found only 4.2% of chip positives were confirmed);
+  - **if a clinical test confirms it, what specialists recommend** (the GeneReviews management section: surveillance, prevention, what to avoid, relatives);
+  - family implications;
+  - concrete next steps: don't act on it yet, ask about a confirmation test, and find a genetic counsellor (NSGC directory in the US, or a referral elsewhere).
+- **Trait panels** show what each trait is and **what can help**. This comes from MedlinePlus (NIH), e.g. "You may be able to lower your triglyceride levels with lifestyle changes: controlling your weight; regular physical activity; limiting sugar and refined foods…". It is labelled **general advice for everyone, not based on your genes**, because no study shows it works differently by genotype. Where an evidence-backed step from Diet & supplements relates, the card links to it.
+- **The nutrient–gene table** explains each gene's relevance in words, e.g. "linked to red cell distribution width: a measure of the range of variation of red blood cell volume…".
 
 ### Nutrients and your genes (lab research)
 

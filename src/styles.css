@@ -191,3 +191,7 @@ ul.papers li { margin: 4px 0; }
 .result-row.weak { opacity: .85; border-style: dashed; }
 
 .accuracy-line { font-size: .92rem; border-left: 3px solid var(--olive); padding: 6px 12px; background: var(--panel); max-width: 90ch; }
+.highlight { margin: 4px 0; font-size: .95rem; max-width: 80ch; padding-left: 10px; border-left: 3px solid var(--mustard); }
+.talk { margin: 8px 0 0; font-size: .9rem; }
+.talk-banner { font-size: .92rem; border-left: 3px solid var(--teak); padding: 8px 12px; background: var(--panel); max-width: 90ch; }
+.why-next li { white-space: pre-line; }

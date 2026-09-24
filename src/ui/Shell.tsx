@@ -20,7 +20,7 @@ export function ReportView({ report, bundle, fileName, context, onContext, onDel
   const [showSensitive, setShowSensitive] = useState(false);
   const [focus, setFocus] = useState<string | undefined>();
   const [appendix, setAppendix] = useState<{ section: string; query?: string; n: number }>({ section: "all", n: 0 });
-  const summary = useMemo(() => summarize(report, { showSensitive }), [report, showSensitive]);
+  const summary = useMemo(() => summarize(report, { showSensitive, warnings: bundle.warnings }), [report, showSensitive, bundle]);
   const stamp = report.generatedAt.slice(0, 10);
 
   const go: Go = (t) => {

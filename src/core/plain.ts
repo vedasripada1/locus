@@ -6,6 +6,8 @@ import type { ClinicalFinding, ClinGenValidity, GwasFinding, InterventionAssessm
 import type { BulkGwasHit } from "./bulk";
 import { classifyClinVar } from "./interpret";
 import { readableGenotype } from "./match";
+import { chapterFor, firstSentences, managementParts, topicsFor, type References } from "./refs";
+import type { VerifiedWarning } from "./types";
 
 export type Tone = "confirm" | "action" | "know" | "clear" | "quality";
 export type Category = "diet" | "supplement" | "lifestyle" | "clinician" | "health" | "medication" | "trait" | "clear" | "quality";
@@ -73,6 +75,10 @@ export interface SummaryItem {
   list?: string[];
   /** Extra detail sections shown when the card is opened. */
   more?: { title: string; lines: string[] }[];
+  /** Short, always-visible context lines (what it is, what can help). */
+  highlights?: string[];
+  /** Who to talk it over with. */
+  talkTo?: string;
   /** Where the technical detail lives in the appendix. */
   appendix: { section: string; query?: string };
   sources: { label: string; url: string }[];
@@ -148,7 +154,7 @@ function clinvarWhy(f: ClinicalFinding, cond: string): string {
 
 // ─── Item builders ──────────────────────────────────────────────────────────
 
-export function confirmItem(f: ClinicalFinding, bulk = false): SummaryItem {
+export function confirmItem(f: ClinicalFinding, bulk = false, refs?: References | null, warnings: VerifiedWarning[] = []): SummaryItem {
   const r = f.record;
   const cond = mainCondition(f);
   const moi = inheritance(f, cond);
@@ -168,17 +174,31 @@ export function confirmItem(f: ClinicalFinding, bulk = false): SummaryItem {
   const next = ["Confirm with a clinical-grade genetic test before acting on this.", "Talk to a doctor or genetic counsellor."];
   if (moi === "AR" && !two) next.push("Mainly relevant for family planning: a child is affected only if both parents pass on a copy.");
   if (moi === "AD" || moi === "SD") next.push("Once confirmed, close relatives may want to know.");
-  if (bulk) {
-    why.unshift("Found by the genome-wide scan. Consumer chips misread very rare variants often: in one large study only 16% of very rare chip calls were confirmed by sequencing (Weedon et al., BMJ 2021).");
-    next.push("If it matches a condition in you or your family, mention it to a doctor or genetic counsellor.");
+  const brca = /^BRCA[12]$/.test(f.match.site.gene);
+  const brcaWarning = warnings.find((w) => w.id === "snp-chip-brca");
+  if (brca && brcaWarning) why.unshift(`How likely this is real: ${brcaWarning.summary} "${brcaWarning.quotes[0].quote}" (${brcaWarning.quotes[0].citation}).`);
+  else if (bulk) why.unshift("How likely this is real: consumer chips misread very rare variants often. In one large study only 16% of very rare chip calls were confirmed by sequencing (Weedon et al., BMJ 2021).");
+  next.unshift("Don't make health decisions from this result alone: first get it confirmed.");
+  next.push("A genetic counsellor can explain what a confirmed result would mean for you and your relatives. In the US, the National Society of Genetic Counselors lists counsellors at findageneticcounselor.nsgc.org; elsewhere, ask your doctor for a referral. Bringing a printout of this page helps.");
+  const ch = chapterFor(refs, f.match.site.gene, [cond, ...r.conditions]);
+  const more: SummaryItem["more"] = [];
+  const highlights: string[] = [];
+  if (ch) {
+    if (ch.clinical) { more.push({ title: `What ${ch.title} is (GeneReviews)`, lines: [firstSentences(ch.clinical, 3)] }); highlights.push(`About this condition: ${firstSentences(ch.clinical, 1)}`); }
+    if (ch.management) {
+      more.push({ title: "If a clinical test confirms it: what specialists recommend (GeneReviews, management section)", lines: managementParts(ch.management).slice(0, 7).map((m) => shorten(m, 380, ch.url)) });
+      highlights.push("If it's confirmed, there are established steps (screening, prevention, and care plans) that specialists use; open the details to read them.");
+    }
+    if (ch.counseling) more.push({ title: "Family (GeneReviews, genetic counseling section)", lines: [firstSentences(ch.counseling, 2)] });
+    next.push("If confirmed, specialists plan screening and prevention with you using guidance like the GeneReviews management section below. Decisions are made with your care team, not from this report.");
   }
   return {
     id: `confirm-${r.id}`, tone: "confirm", category: "health", sufficient: r.stars >= 2, carried: true,
     evidenceLabel: `ClinVar ${r.stars}★${bulk ? " · chip call unverified" : ""}`,
     whyYou: `Your file shows ${f.zygosity === "homozygous" ? "two copies" : "one copy"} of a variant ClinVar lists as pathogenic.`,
-    title: `${f.match.site.gene}: ${cond}`, plain, why, next,
+    title: `${f.match.site.gene}: ${cond}`, plain, why, next, more, highlights, talkTo: "a doctor or genetic counsellor",
     confidence: bulk || r.stars < 2 || f.match.site.kind !== "snv" ? "low" : "moderate",
-    appendix: { section: "clinical" }, sources: [{ label: `ClinVar ${r.id}`, url: r.url }], sensitive: f.match.site.sensitive,
+    appendix: { section: "clinical" }, sources: [{ label: `ClinVar ${r.id}`, url: r.url }, ...(ch ? [{ label: `GeneReviews: ${ch.title}`, url: ch.url }] : [])], sensitive: f.match.site.sensitive,
   };
 }
 
@@ -207,6 +227,7 @@ export function actionItem(a: InterventionAssessment): SummaryItem {
   const DNA = { "difference-reported": "Maybe: limited evidence of a difference by genotype", "tested-no-difference": "No: works the same for everyone", "not-established": "Not shown: general advice" } as const;
   return {
     id: `action-${iv.id}`, tone: "action", category, sufficient, carried: true,
+    talkTo: category === "supplement" ? "your doctor or a pharmacist" : category === "clinician" ? "your doctor" : "your doctor or a registered dietitian",
     evidenceLabel: cap(a.bestDesign), whyYou: iv.triggerNote.split(/(?<=\.)\s/)[0], dnaMatters: DNA[a.genotypeSpecific],
     caution: a.contextWarnings[0] ?? (iv.safety?.upperLimit ? `Upper limit: ${iv.safety.upperLimit.value}` : undefined),
     title: cap(iv.name), plain: iv.summary, why, next,
@@ -233,7 +254,7 @@ export function knowItem(f: GwasFinding, actionsFor: string[]): SummaryItem {
   const next = actionsFor.length ? actionsFor.map((x) => `See "${x}" under Things you could do.`) : ["No specific action is supported by evidence for this result."];
   if (f.topic.domain === "metabolism") next.push(f.topic.description);
   return {
-    id: `know-${f.topic.id}-${a.rsid}`, tone: "know", category: "trait", sufficient: f.strength === "strong", carried: n > 0,
+    id: `know-${f.topic.id}-${a.rsid}`, tone: "know", category: "trait", sufficient: f.strength === "strong", carried: n > 0, talkTo: "your doctor",
     evidenceLabel: `${f.consistency.studies} studies agree`, whyYou: `You carry ${copies(n)} of the ${f.match.site.gene} allele studied.`,
     title: f.topic.label, plain, why, next,
     confidence: f.strength === "strong" ? "higher" : "moderate",
@@ -247,7 +268,7 @@ export function drugItem(f: ClinicalFinding): SummaryItem | null {
   if (!m || !(f.altCopies ?? 0)) return null;
   const [, drug, effect] = m;
   return {
-    id: `drug-${f.record.id}`, tone: "know", category: "medication", sufficient: f.record.stars >= 3, carried: true,
+    id: `drug-${f.record.id}`, tone: "know", category: "medication", sufficient: f.record.stars >= 3, carried: true, talkTo: "your prescriber or a pharmacist",
     evidenceLabel: `ClinVar ${f.record.stars}★${f.record.stars >= 3 ? " expert panel" : ""}`, whyYou: `Your genotype: ${readableGenotype(f.match)}`,
     title: `${cap(drug)}: medication response`,
     plain: `You carry a variant in ${f.match.site.gene} that ClinVar lists as affecting ${effect.toLowerCase()} of ${drug}.`,
@@ -260,7 +281,9 @@ export function drugItem(f: ClinicalFinding): SummaryItem | null {
 
 // ─── Summary ────────────────────────────────────────────────────────────────
 
-export function summarize(r: Report, opts: { showSensitive: boolean }): Summary {
+export function summarize(r: Report, opts: { showSensitive: boolean; warnings?: VerifiedWarning[] }): Summary {
+  const refs = r.refs;
+  const warnings = opts.warnings ?? [];
   const items: SummaryItem[] = [];
   const visible = (i: SummaryItem) => opts.showSensitive || !i.sensitive;
 
@@ -273,9 +296,9 @@ export function summarize(r: Report, opts: { showSensitive: boolean }): Summary 
   }
 
   // Confirm with a doctor.
-  for (const f of r.clinical.filter((c) => c.category === "pathogenic-carried")) items.push(confirmItem(f));
+  for (const f of r.clinical.filter((c) => c.category === "pathogenic-carried")) items.push(confirmItem(f, false, refs, warnings));
   // Genome-wide scan hits: one item each (filterable), marked as unverified chip calls.
-  for (const f of r.bulk?.clinvar.carried ?? []) items.push(confirmItem(f, true));
+  for (const f of r.bulk?.clinvar.carried ?? []) items.push(confirmItem(f, true, refs, warnings));
 
   // Things you could do.
   for (const a of r.interventions) items.push(actionItem(a));
@@ -351,12 +374,18 @@ export function summarize(r: Report, opts: { showSensitive: boolean }): Summary 
           ? "For measured traits (blood levels, markers), a routine blood test tells you your actual value and is far more useful than genotype."
           : "No specific action is supported by evidence for these results.",
       ],
+      highlights: panelHighlights(refs, [...clear, ...assessed]),
+      talkTo: "your doctor or a registered dietitian",
       more: [
+        ...panelTopics(refs, [...clear, ...assessed]),
         { title: "What these traits are (from the Experimental Factor Ontology)", lines: assessed.slice(0, 8).filter((l) => l.definition).map((l) => `${cap(l.trait)}: ${l.definition}`) },
         { title: "Variants behind this (you carry the reported allele; compare with a typical person to see which way each one pushes)", lines: inPanel.filter((h) => (h.copies ?? 0) > 0).sort((a, b) => b.concordantPubs - a.concordantPubs).slice(0, 15).map(panelLine) },
       ],
-      confidence: "moderate", appendix: { section: "explorer", query: leans[0].trait }, sources: [],
+      confidence: "moderate", appendix: { section: "explorer", query: leans[0].trait },
+      sources: uniqueTopics(refs, [...clear, ...assessed]).map((t) => ({ label: `MedlinePlus: ${t.title}`, url: t.url })),
     });
+    const related = (PANEL_ACTIONS[p.id] ?? []).flatMap((tid) => actionTopics.get(tid) ?? []);
+    if (related.length) items[items.length - 1].next.push(...related.map((x) => `Related evidence-backed step: "${x}" (see Diet & supplements).`));
   }
 
   // Checked and not found.
@@ -449,4 +478,50 @@ export function plainTrait(trait: string, kind: "OR" | "beta"): string {
 export function leanLine(l: TraitLean): string {
   const what = l.lean === "none" ? "no clear lean" : `leans slightly ${l.lean === "higher" ? "higher" : "lower"}`;
   return `${cap(plainTrait(l.trait, l.kind))}: ${what}. Of ${l.n} independent variant${l.n === 1 ? "" : "s"}, ${l.higher} point higher than typical, ${l.lower} lower, ${l.typical} about typical.`;
+}
+
+/** Panels linked to curated action topics. */
+const PANEL_ACTIONS: Record<string, string[]> = { glucose: ["t2d"], body: ["bmi"], vitamins: ["vitd", "homocysteine", "iron"], intake: ["caffeine", "alcohol", "lactase"], fitness: ["performance"] };
+
+function uniqueTopics(refs: References | null | undefined, leans: TraitLean[]) {
+  const seen = new Set<string>();
+  const out = [];
+  for (const l of leans) for (const t of topicsFor(refs, l.trait)) {
+    if (seen.has(t) || !refs?.medlineplus.topics[t]) continue;
+    seen.add(t);
+    out.push(refs.medlineplus.topics[t]);
+  }
+  return out.slice(0, 3);
+}
+
+/** Always-visible: what the top trait is and what can help, from MedlinePlus. */
+export function panelHighlights(refs: References | null | undefined, leans: TraitLean[]): string[] {
+  const t = uniqueTopics(refs, leans)[0];
+  if (!t) return [];
+  const help = t.lifestyle.find((b) => /lower|reduce|prevent|help|treat|manage|control|improve|may be able/i.test(b.split("\n")[0])) ?? t.lifestyle[0];
+  return [
+    `About ${t.title.toLowerCase()}: ${firstSentences(t.summary.replace(/\n/g, " "), 2)}`,
+    ...(help ? [`What can help (general advice from MedlinePlus, not based on your genes): ${help.replace(/\n• /g, "; ").replace(/:;/, ":")}`] : []),
+  ];
+}
+
+function panelTopics(refs: References | null | undefined, leans: TraitLean[]): { title: string; lines: string[] }[] {
+  const ts = uniqueTopics(refs, leans);
+  if (!ts.length) return [];
+  return [{
+    title: "What these are and what can help (MedlinePlus, NIH: general advice for everyone, not based on your genes)",
+    lines: ts.flatMap((t) => {
+      const about = firstSentences(t.summary.replace(/\n/g, " "), 2);
+      const help = t.lifestyle.find((b) => /lower|reduce|prevent|help|treat|manage|control|improve|may be able/i.test(b.split("\n")[0]) && !about.includes(b.split("\n")[0]));
+      return [`${t.title}: ${about}`, ...(help ? [shorten(help.replace(/\n• /g, "; ").replace(/:;/, ":"), 420, t.url)] : [])];
+    }),
+  }];
+}
+
+/** Cut verbatim text at a sentence boundary near `max` characters, pointing to the full source. */
+export function shorten(text: string, max: number, url?: string): string {
+  if (text.length <= max) return text;
+  let out = "";
+  for (const sn of text.split(/(?<=[.!?;])\s+/)) { if ((out + " " + sn).length > max) break; out = out ? `${out} ${sn}` : sn; }
+  return `${out || text.slice(0, max)} … (continued${url ? ` at ${url}` : " in the source"})`;
 }

@@ -7,6 +7,7 @@ import { bulkRsids, loadGz, positionCandidates, screenClinVar, screenGwas, type 
 import { auditSummary, linkByPosition, newAudit, recordAudit } from "../core/audit";
 import { matchSite } from "../core/match";
 import type { ClinGenValidity, VariantSite } from "../core/types";
+import type { References } from "../core/refs";
 
 export type WorkerIn = { file?: File; text?: string; keep: string[]; exclude: string[]; clingen: ClinGenValidity[]; sites: VariantSite[]; dataBase: string };
 
@@ -26,10 +27,11 @@ self.onmessage = async (e: MessageEvent<WorkerIn>) => {
   const { dataBase } = e.data;
   try {
     post({ progress: "Loading evidence data…" });
-    const [text, cv, gw] = await Promise.all([
+    const [text, cv, gw, refs] = await Promise.all([
       e.data.text ?? readText(e.data.file!),
       loadGz<BulkClinVarFile>(`${dataBase}clinvar.json.gz`).catch(() => null),
       loadGz<BulkGwasFile>(`${dataBase}gwas.json.gz`).catch(() => null),
+      loadGz<References>(`${dataBase}references.json.gz`).catch(() => null),
     ]);
     post({ progress: "Reading your whole file…" });
     const keep = new Set([...e.data.keep, ...bulkRsids(cv, gw)]);
@@ -44,7 +46,7 @@ self.onmessage = async (e: MessageEvent<WorkerIn>) => {
     for (const site of e.data.sites) recordAudit(audit, matchSite(genome, site));
     const exclude = new Set(e.data.exclude);
     const bulk: BulkResult | null = cv && gw ? { clinvar: screenClinVar(genome, cv, e.data.clingen, audit), gwas: screenGwas(genome, gw, exclude, audit) } : null;
-    post({ ok: true, genome, bulk, audit: { ...auditSummary(audit), linkedByPosition }, bulkError: bulk ? null : "Bulk evidence files (public/data) could not be loaded; showing the curated report only." });
+    post({ ok: true, genome, bulk, refs, audit: { ...auditSummary(audit), linkedByPosition }, bulkError: bulk ? null : "Bulk evidence files (public/data) could not be loaded; showing the curated report only." });
   } catch (err) {
     const known = err instanceof ParseError;
     post({ ok: false, error: known ? err.message : `Unexpected error while reading the file: ${(err as Error).message}`, code: known ? err.code : "internal" });

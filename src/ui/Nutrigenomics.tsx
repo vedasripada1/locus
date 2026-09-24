@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 import type { Report } from "../core/types";
 import { loadGz } from "../core/bulk";
 import { PapersList } from "./Papers";
+import { plainTrait } from "../core/plain";
+import { firstSentences } from "../core/refs";
 
 /** [nutrientIdx, gene, upPmidCount, downPmidCount, pmids] */
 type Row = [number, string, number, number, number[]];
@@ -13,10 +15,14 @@ const url = (f: string) => new URL(`${import.meta.env.BASE_URL}data/${f}`, locat
 export function relevantGenes(r: Report): Map<string, string> {
   const g = new Map<string, string>();
   const add = (gene: string | undefined, why: string) => { for (const x of (gene ?? "").split(/[,;\s]+/)) if (x && /^[A-Z0-9-]{2,15}$/.test(x) && !g.has(x)) g.set(x, why); };
-  for (const f of r.clinical) if (f.category === "pathogenic-carried") add(f.match.site.gene, "health finding you carry");
-  for (const f of r.bulk?.clinvar.carried ?? []) if (f.record.stars >= 2) add(f.match.site.gene, "health finding you carry (chip call unverified)");
-  for (const f of [...r.disease, ...r.metabolism, ...r.performance]) if (f.kind === "gwas" && (f.effectCopies ?? 0) > 0 && f.strength !== "conflicting") add(f.match.site.gene, `${f.topic.label.toLowerCase()} variant you carry`);
-  for (const h of r.bulk?.gwas.hits ?? []) if (h.strength === "strong" && (h.copies ?? 0) > 0) add(h.gene, `well-replicated ${h.trait} variant you carry`);
+  for (const f of r.clinical) if (f.category === "pathogenic-carried") add(f.match.site.gene, `Health finding: ${f.record.conditions[0] ?? "see Health findings"}`);
+  for (const f of r.bulk?.clinvar.carried ?? []) if (f.record.stars >= 2) add(f.match.site.gene, `Health finding (chip call unverified): ${f.record.conditions[0] ?? "see Health findings"}`);
+  for (const f of [...r.disease, ...r.metabolism, ...r.performance]) if (f.kind === "gwas" && (f.effectCopies ?? 0) > 0 && f.strength !== "conflicting") add(f.match.site.gene, `You carry a variant here linked to ${f.topic.phrase}: ${f.topic.description}`);
+  for (const h of r.bulk?.gwas.hits ?? []) {
+    if (h.strength !== "strong" || !(h.copies ?? 0)) continue;
+    const what = h.traitDefinition ? `: ${firstSentences(h.traitDefinition, 1)}` : "";
+    add(h.gene, `You carry a well-replicated variant here linked to ${plainTrait(h.trait, h.kind)}${what}`);
+  }
   return g;
 }
 

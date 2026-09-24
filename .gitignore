@@ -7,3 +7,4 @@ pipeline-*.log
 pipeline/out/*-bulk.json
 pipeline/out/nutrigenomics.json
 pipeline/out/efo-defs.json
+pipeline/out/references.json

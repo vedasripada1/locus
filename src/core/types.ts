@@ -411,4 +411,6 @@ export interface Report {
   audit?: (import("./audit").AuditSummary & { linkedByPosition: number }) | null;
   /** The whole file as a table. */
   table?: GenomeTable;
+  /** Verbatim reference text (GeneReviews, MedlinePlus). */
+  refs?: import("./refs").References | null;
 }

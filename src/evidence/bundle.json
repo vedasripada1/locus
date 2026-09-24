@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "builtAt": "2026-09-24T15:32:12.089Z",
+ "builtAt": "2026-09-24T19:11:49.353Z",
  "sources": [
   {
    "source": "dbSNP",
@@ -71894,6 +71894,35 @@
     {
      "value": "",
      "quote": "SNP chips are extremely unreliable for genotyping very rare pathogenic variants and should not be used to guide health decisions without validation.",
+     "source": {
+      "source": "PubMed",
+      "version": "PMID 33589468",
+      "retrievedAt": "2026-09-23",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33589468/"
+     },
+     "citation": "Mn et al., BMJ 2021"
+    }
+   ]
+  },
+  {
+   "id": "snp-chip-brca",
+   "title": "BRCA1/BRCA2 results from consumer chips are usually wrong",
+   "summary": "In the same study, most BRCA1 and BRCA2 variants reported by SNP chips were not confirmed by sequencing, and people with a chip-only positive result had cancer rates similar to controls.",
+   "quotes": [
+    {
+     "value": "",
+     "quote": "For pathogenic variants in the BRCA1 and BRCA2 genes, which are individually very rare, the overall performance metrics for the SNP chips versus sequencing in the UK Biobank were: sensitivity 34.6%, specificity 98.3%, positive predictive value 4.2%, and negative predictive value 99.9%.",
+     "source": {
+      "source": "PubMed",
+      "version": "PMID 33589468",
+      "retrievedAt": "2026-09-23",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33589468/"
+     },
+     "citation": "Mn et al., BMJ 2021"
+    },
+    {
+     "value": "",
+     "quote": "Rates of BRCA related cancers in UK Biobank participants with a positive SNP chip result were similar to those for age matched controls (odds ratio 1.31, 95% confidence interval 0.99 to 1.71) because the vast majority of variants were false positives",
      "source": {
       "source": "PubMed",
       "version": "PMID 33589468",

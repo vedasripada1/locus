@@ -78,6 +78,7 @@ async function main() {
   write("clinvar.json.gz", { version: cv.version, retrievedAt: cv.retrievedAt, genes: cv.genes, conditions: cv.conditions, sigs, rows, cites });
   if (gw) write("gwas.json.gz", gw);
   if (ng) write("nutrigenomics.json.gz", ng);
+  if (existsSync(join(ROOT, "pipeline/out/references.json"))) write("references.json.gz", read("pipeline/out/references.json"));
   write("papers.json.gz", { retrievedAt: new Date().toISOString().slice(0, 10), papers, curatedCites, litvar: lit });
   writeFileSync(join(OUT, "manifest.json"), JSON.stringify({
     builtAt: new Date().toISOString(), clinvar: { version: cv.version, variants: rows.length }, gwas: gw ? { version: gw.version, groups: gw.groups.length, sites: Object.keys(gw.sites).length } : null,
