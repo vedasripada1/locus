@@ -7,11 +7,42 @@ import type { BulkGwasHit } from "./bulk";
 import { classifyClinVar } from "./interpret";
 
 export type Tone = "confirm" | "action" | "know" | "clear" | "quality";
+export type Category = "diet" | "supplement" | "lifestyle" | "clinician" | "health" | "medication" | "trait" | "clear" | "quality";
+
+/**
+ * What counts as sufficient evidence to show an item by default. Items below the bar are
+ * hidden unless the user asks for weaker evidence (and always remain in the appendix).
+ */
+export const SUFFICIENT_RULES: Record<Category, string> = {
+  diet: "A human randomized trial, meta-analysis, systematic review or clinical guideline supports it.",
+  supplement: "A human randomized trial, meta-analysis or systematic review supports it, and a verified upper limit exists.",
+  lifestyle: "A human randomized trial, meta-analysis, systematic review or clinical guideline supports it.",
+  clinician: "A clinical guideline, randomized trial, meta-analysis or systematic review supports it.",
+  health: "ClinVar classifies the variant pathogenic with at least 2 review stars.",
+  medication: "A ClinVar expert panel (3+ review stars) classifies the drug response.",
+  trait: "At least 3 publications agree on the direction, with no substantial disagreement.",
+  clear: "Always shown (it reports what was tested).",
+  quality: "Always shown.",
+};
+const STRONG_DESIGNS = ["guideline", "meta-analysis", "systematic review", "randomized controlled trial"];
 export type Confidence = "higher" | "moderate" | "low";
 
 export interface SummaryItem {
   id: string;
   tone: Tone;
+  category: Category;
+  /** Meets the SUFFICIENT_RULES bar for its category. */
+  sufficient: boolean;
+  /** Short label for the evidence behind it, e.g. "Meta-analysis" or "ClinVar 2★". */
+  evidenceLabel: string;
+  /** One line: why this may apply to you. */
+  whyYou: string;
+  /** One line: does your DNA change the advice? (actions only) */
+  dnaMatters?: string;
+  /** One line: the most important limit or caution (actions only). */
+  caution?: string;
+  /** Whether you carry the relevant allele (false for "checked and not found"). */
+  carried: boolean;
   title: string;
   /** One or two sentences a non-specialist can read. */
   plain: string;
@@ -117,8 +148,15 @@ export function confirmItem(f: ClinicalFinding, bulk = false): SummaryItem {
   const next = ["Confirm with a clinical-grade genetic test before acting on this.", "Talk to a doctor or genetic counsellor."];
   if (moi === "AR" && !two) next.push("Mainly relevant for family planning: a child is affected only if both parents pass on a copy.");
   if (moi === "AD" || moi === "SD") next.push("Once confirmed, close relatives may want to know.");
+  if (bulk) {
+    why.unshift("Found by the genome-wide scan. Consumer chips misread very rare variants often: in one large study only 16% of very rare chip calls were confirmed by sequencing (Weedon et al., BMJ 2021).");
+    next.push("If it matches a condition in you or your family, mention it to a doctor or genetic counsellor.");
+  }
   return {
-    id: `confirm-${r.id}`, tone: "confirm", title: `${f.match.site.gene}: ${cond}`, plain, why, next,
+    id: `confirm-${r.id}`, tone: "confirm", category: "health", sufficient: r.stars >= 2, carried: true,
+    evidenceLabel: `ClinVar ${r.stars}★${bulk ? " · chip call unverified" : ""}`,
+    whyYou: `Your file shows ${f.zygosity === "homozygous" ? "two copies" : "one copy"} of a variant ClinVar lists as pathogenic.`,
+    title: `${f.match.site.gene}: ${cond}`, plain, why, next,
     confidence: bulk || r.stars < 2 || f.match.site.kind !== "snv" ? "low" : "moderate",
     appendix: { section: "clinical" }, sources: [{ label: `ClinVar ${r.id}`, url: r.url }], sensitive: f.match.site.sensitive,
   };
@@ -144,8 +182,14 @@ export function actionItem(a: InterventionAssessment): SummaryItem {
   if (iv.type === "discuss with clinician") next.push("Bring this up at your next appointment. Don't change medication based on this report.");
   if (iv.type === "food" || iv.type === "lifestyle") next.push("Low-risk to try. Talk to a clinician if you have a related condition.");
   const sources = [...iv.generalEvidence, ...iv.genotypeEvidence].map((s) => ({ label: s.citation, url: s.ref.pmid ? `https://pubmed.ncbi.nlm.nih.gov/${s.ref.pmid}/` : s.source.url }));
+  const category: Category = iv.type === "supplement" ? "supplement" : iv.type === "lifestyle" ? "lifestyle" : iv.type === "discuss with clinician" ? "clinician" : "diet";
+  const sufficient = STRONG_DESIGNS.includes(a.bestDesign) && (category !== "supplement" || !!iv.safety?.upperLimit);
+  const DNA = { "difference-reported": "Maybe: limited evidence of a difference by genotype", "tested-no-difference": "No: works the same for everyone", "not-established": "Not shown: general advice" } as const;
   return {
-    id: `action-${iv.id}`, tone: "action", title: cap(iv.name), plain: iv.summary, why, next,
+    id: `action-${iv.id}`, tone: "action", category, sufficient, carried: true,
+    evidenceLabel: cap(a.bestDesign), whyYou: iv.triggerNote.split(/(?<=\.)\s/)[0], dnaMatters: DNA[a.genotypeSpecific],
+    caution: a.contextWarnings[0] ?? (iv.safety?.upperLimit ? `Upper limit: ${iv.safety.upperLimit.value}` : undefined),
+    title: cap(iv.name), plain: iv.summary, why, next,
     confidence: strong ? "higher" : a.bestDesign === "randomized controlled trial" ? "moderate" : "low",
     appendix: { section: "actions" }, sources, sensitive: a.triggeredBy.some((t) => /alzheimer/i.test(t)),
   };
@@ -169,7 +213,9 @@ export function knowItem(f: GwasFinding, actionsFor: string[]): SummaryItem {
   const next = actionsFor.length ? actionsFor.map((x) => `See "${x}" under Things you could do.`) : ["No specific action is supported by evidence for this result."];
   if (f.topic.domain === "metabolism") next.push(f.topic.description);
   return {
-    id: `know-${f.topic.id}-${a.rsid}`, tone: "know", title: f.topic.label, plain, why, next,
+    id: `know-${f.topic.id}-${a.rsid}`, tone: "know", category: "trait", sufficient: f.strength === "strong", carried: n > 0,
+    evidenceLabel: `${f.consistency.studies} studies agree`, whyYou: `You carry ${copies(n)} of the ${f.match.site.gene} allele studied.`,
+    title: f.topic.label, plain, why, next,
     confidence: f.strength === "strong" ? "higher" : "moderate",
     appendix: { section: f.topic.domain }, sources: [{ label: `${a.firstAuthor}, PMID ${a.pmid}`, url: a.paperUrl }], sensitive: f.match.site.sensitive,
   };
@@ -181,7 +227,9 @@ export function drugItem(f: ClinicalFinding): SummaryItem | null {
   if (!m || !(f.altCopies ?? 0)) return null;
   const [, drug, effect] = m;
   return {
-    id: `drug-${f.record.id}`, tone: "know", title: `${cap(drug)}: medication response`,
+    id: `drug-${f.record.id}`, tone: "know", category: "medication", sufficient: f.record.stars >= 3, carried: true,
+    evidenceLabel: `ClinVar ${f.record.stars}★${f.record.stars >= 3 ? " expert panel" : ""}`, whyYou: `Your genotype: ${f.match.call?.raw} (${f.zygosity}).`,
+    title: `${cap(drug)}: medication response`,
     plain: `You carry a variant in ${f.match.site.gene} that ClinVar lists as affecting ${effect.toLowerCase()} of ${drug}.`,
     why: [`ClinVar: "${f.record.classification}" (${f.record.stars}/4 stars: ${f.record.reviewStatus}).`, `Your genotype: ${f.match.call?.raw} (${f.zygosity}).`],
     next: [`If you are ever prescribed ${drug}, mention this result to the prescriber. Don't change any medication yourself.`],
@@ -200,24 +248,14 @@ export function summarize(r: Report, opts: { showSensitive: boolean }): Summary 
   // Only problems that undermine every result; minor ones (a few unreadable rows) stay in the appendix.
   const warns = r.file.issues.filter((i) => i.severity === "warning" && ["low-call-rate", "build"].includes(i.code));
   if (warns.length) {
-    items.push({ id: "quality", tone: "quality", title: "Check your file first", plain: "Something about your file lowers confidence in every result below.",
+    items.push({ id: "quality", tone: "quality", category: "quality", sufficient: true, carried: false, evidenceLabel: "File check", whyYou: "Applies to every result.", title: "Check your file first", plain: "Something about your file lowers confidence in every result below.",
       why: warns.map((w) => w.message), next: ["If possible, download a fresh copy of your raw data and upload it again."], confidence: "moderate", appendix: { section: "all" }, sources: [] });
   }
 
   // Confirm with a doctor.
   for (const f of r.clinical.filter((c) => c.category === "pathogenic-carried")) items.push(confirmItem(f));
-  const bulkHits = r.bulk?.clinvar.carried ?? [];
-  if (bulkHits.length) {
-    const warning = "Consumer chips misread very rare variants often: in one large study, only 16% of very rare chip calls were confirmed by sequencing (Weedon et al., BMJ 2021).";
-    items.push({
-      id: "confirm-bulk", tone: "confirm", title: `${bulkHits.length} rare variant${bulkHits.length === 1 ? "" : "s"} flagged by the genome-wide scan`,
-      plain: `Your chip reported ${bulkHits.length === 1 ? "a rare variant" : "rare variants"} that ClinVar lists as disease-causing. Most calls like these turn out to be chip errors, so treat them as leads to check, not results.`,
-      why: [warning, `${r.bulk!.clinvar.tested.toLocaleString()} known disease-causing variants were readable on your chip; the listed allele was seen at ${bulkHits.length}.`],
-      next: ["Don't act on these without a clinical-grade test.", "If one matches a condition in you or your family, mention it to a doctor or genetic counsellor."],
-      confidence: "low", list: bulkHits.map((f) => { const i = confirmItem(f, true); return `${i.title} (${f.zygosity}, ClinVar ${f.record.stars}★): ${i.plain}`; }),
-      appendix: { section: "clinical" }, sources: [{ label: "Weedon et al., BMJ 2021 (PMID 33589468)", url: "https://pubmed.ncbi.nlm.nih.gov/33589468/" }],
-    });
-  }
+  // Genome-wide scan hits: one item each (filterable), marked as unverified chip calls.
+  for (const f of r.bulk?.clinvar.carried ?? []) items.push(confirmItem(f, true));
 
   // Things you could do.
   for (const a of r.interventions) items.push(actionItem(a));
@@ -232,7 +270,7 @@ export function summarize(r: Report, opts: { showSensitive: boolean }): Summary 
     if (f.kind === "gwas" && confirmed.has(f.match.site.rsid)) continue;
     if (f.kind === "gwas" && (f.effectCopies ?? 0) > 0 && (f.strength === "strong" || f.strength === "moderate")) items.push(knowItem(f, actionTopics.get(f.topic.id) ?? []));
     if (f.kind === "composite" && f.result !== "unknown") {
-      items.push({ id: "know-apoe", tone: "know", title: "APOE type", plain: `Your APOE type appears to be ${f.result}. APOE is linked to Alzheimer disease and cholesterol; the Alzheimer and LDL rows in the appendix show what studies report.`,
+      items.push({ id: "know-apoe", tone: "know", category: "trait", sufficient: true, carried: true, evidenceLabel: "Derived from 2 SNPs", whyYou: "From your rs429358 and rs7412 genotypes.", title: "APOE type", plain: `Your APOE type appears to be ${f.result}. APOE is linked to Alzheimer disease and cholesterol; the Alzheimer and LDL rows in the appendix show what studies report.`,
         why: [f.headline, ...(f.ambiguity ? [f.ambiguity] : [])], next: ["Consider genetic counselling before acting on APOE results.", "No action is supported by evidence based on APOE type alone."],
         confidence: "moderate", appendix: { section: "disease" }, sources: [], sensitive: true });
     }
@@ -240,14 +278,18 @@ export function summarize(r: Report, opts: { showSensitive: boolean }): Summary 
   }
   for (const f of r.clinical) { const d = drugItem(f); if (d && !items.some((i) => i.id === d.id)) items.push(d); }
   const notable = (r.bulk?.gwas.hits ?? []).filter((h) => h.domain === "disease" && (h.copies ?? 0) > 0 && h.strength === "strong" && h.kind === "OR" && (h.value >= 1.5 || h.value <= 1 / 1.5));
-  if (notable.length) {
-    const top = [...notable].sort((a, b) => Math.max(b.value, 1 / b.value) - Math.max(a.value, 1 / a.value)).filter((h) => opts.showSensitive || !/alzheimer/i.test(h.trait)).slice(0, 8);
+  const top = [...notable].sort((a, b) => Math.max(b.value, 1 / b.value) - Math.max(a.value, 1 / a.value)).slice(0, 25);
+  for (const h of top) {
+    const dir = h.value >= 1 ? "higher" : "lower";
     items.push({
-      id: "know-scan", tone: "know", title: "Notable from the genome-wide scan",
-      plain: `Of ${r.bulk!.gwas.hits.length.toLocaleString()} trait associations at variants in your file, these are well replicated (3+ studies agree) and have at least a moderate effect per copy. Each is still a relative effect, not a diagnosis.`,
-      why: ["Selected automatically: disease traits, strong replication, odds ratio at least 1.5 (or at most 0.67) per copy, and you carry the reported allele."],
-      next: ["Use Search or the appendix explorer to read the studies behind each one."], confidence: "moderate",
-      list: top.map((h) => scanLine(h)), appendix: { section: "explorer" }, sources: [],
+      id: `scan-${h.rsid}-${h.traitUri}`, tone: "know", category: "trait", sufficient: true, carried: true,
+      evidenceLabel: `${h.concordantPubs} studies agree`, whyYou: `You carry ${copies(h.copies ?? 0)} of the ${h.gene || h.rsid} allele studied.`,
+      title: cap(h.trait),
+      plain: `You carry ${copies(h.copies ?? 0)} of a variant near ${h.gene || "an unnamed gene"} linked to ${orAdverb(h.value)} ${dir} odds of ${h.trait}. It is a relative effect from population studies, not a diagnosis.`,
+      why: [`Genome-wide scan: odds ratio ${h.value} per copy (p ${h.p}); ${h.concordantPubs} publications agree on the direction.`, `Lead study sample: ${h.sample || "not reported"}.`, "Odds ratios compare groups. They are not your personal chance of getting the condition."],
+      next: ["No specific action is supported by evidence for this result.", "Open the technical details to read the studies."],
+      confidence: "moderate", appendix: { section: "explorer", query: h.rsid }, sources: [{ label: `PMID ${h.leadPmid}`, url: `https://pubmed.ncbi.nlm.nih.gov/${h.leadPmid}/` }],
+      sensitive: /alzheimer/i.test(h.trait),
     });
   }
 
@@ -260,7 +302,7 @@ export function summarize(r: Report, opts: { showSensitive: boolean }): Summary 
       ...[...new Set(untested.map((c) => c.match.site.label))].map((l) => `Not on your chip, so unknown: ${l}`),
     ];
     items.push({
-      id: "clear", tone: "clear", title: "Checked and not found",
+      id: "clear", tone: "clear", category: "clear", sufficient: true, carried: false, evidenceLabel: "Tested", whyYou: "These were on your chip.", title: "Checked and not found",
       plain: `${clear.length ? "Several well-known disease variants were checked and not found in your file." : "Key variants were checked."}${r.bulk ? ` The genome-wide scan read ${r.bulk.clinvar.tested.toLocaleString()} known disease-causing variants and found ${r.bulk.clinvar.carried.length}.` : ""}`,
       why: ["Chips test only specific positions, so this can't rule out a condition. Other variants in the same genes are not tested."],
       next: ["If a condition runs in your family, ask about clinical testing regardless of this result."], confidence: "moderate",
@@ -269,10 +311,10 @@ export function summarize(r: Report, opts: { showSensitive: boolean }): Summary 
   }
 
   const shown = items.filter(visible);
-  const n = (t: Tone) => shown.filter((i) => i.tone === t).length;
+  const n = (t: Tone) => shown.filter((i) => i.tone === t && i.sufficient).length;
   const headline = [
     n("confirm") ? `${n("confirm")} to confirm with a doctor` : "Nothing flagged to confirm with a doctor",
-    `${n("action")} possible action${n("action") === 1 ? "" : "s"}`,
+    `${n("action")} diet, supplement or lifestyle step${n("action") === 1 ? "" : "s"}`,
     `${n("know")} good to know`,
   ].join(" · ");
   return { headline, items: shown };

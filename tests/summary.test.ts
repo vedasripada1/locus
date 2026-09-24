@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { parseGenotypeText } from "../src/core/parse";
 import { buildReport } from "../src/core/interpret";
-import { orSize, summarize, inheritance } from "../src/core/plain";
+import { orSize, summarize, inheritance, actionItem, SUFFICIENT_RULES } from "../src/core/plain";
 import { searchReport, matchScore } from "../src/core/search";
 import { summaryMd } from "../src/core/export";
 import { bulkRsids, screenClinVar, screenGwas, type BulkClinVarFile, type BulkGwasFile } from "../src/core/bulk";
@@ -34,8 +34,10 @@ describe("plain-language summary", () => {
   const s = summarize(r, { showSensitive: false });
   const byId = (p: string) => s.items.filter((i) => i.id.startsWith(p));
 
-  it("leads with a count headline", () => {
-    expect(s.headline).toMatch(/to confirm with a doctor · \d+ possible action/);
+  it("leads with a count headline of sufficient-evidence items only", () => {
+    expect(s.headline).toMatch(/to confirm with a doctor · \d+ diet, supplement or lifestyle step/);
+    const n = s.items.filter((i) => i.tone === "action" && i.sufficient).length;
+    expect(s.headline).toContain(`${n} diet, supplement or lifestyle step`);
   });
   it("explains a recessive carrier in plain words, with rationale and next steps", () => {
     const c = byId("confirm-VCV-rs1")[0];
@@ -44,11 +46,14 @@ describe("plain-language summary", () => {
     expect(c.next.join(" ")).toMatch(/clinical-grade genetic test/);
     expect(c.next.join(" ")).toMatch(/family planning/);
   });
-  it("groups genome-wide rare hits with the false-positive caveat and low confidence", () => {
-    const b = byId("confirm-bulk")[0];
+  it("lists each genome-wide rare hit separately, with the false-positive caveat", () => {
+    const b = s.items.find((i) => i.id === "confirm-VariationID 51")!;
+    expect(b.category).toBe("health");
     expect(b.confidence).toBe("low");
     expect(b.why[0]).toMatch(/16%/);
-    expect(b.list![0]).toMatch(/CFTR/);
+    expect(b.title).toMatch(/CFTR/);
+    expect(b.evidenceLabel).toMatch(/chip call unverified/);
+    expect(b.sufficient).toBe(true); // 3★ classification; the genotype still needs confirmation
   });
   it("turns actions into plain items that say whether genes change the advice", () => {
     const a = byId("action-lifestyle")[0];
@@ -60,8 +65,23 @@ describe("plain-language summary", () => {
     expect(k.plain).toMatch(/2 copies.*slightly higher odds of type 2 diabetes\..*not a diagnosis/);
     expect(k.why.join(" ")).toMatch(/not your personal chance/);
   });
-  it("surfaces well-replicated moderate genome-wide hits", () => {
-    expect(byId("know-scan")[0].list![0]).toMatch(/Coronary artery disease: 2 copies of LPA rs600 allele T, moderately higher odds/);
+  it("surfaces well-replicated genome-wide hits with at least a moderate effect as trait items", () => {
+    const h = byId("scan-rs600")[0];
+    expect(h.category).toBe("trait");
+    expect(h.sufficient).toBe(true);
+    expect(h.plain).toMatch(/2 copies of a variant near LPA linked to moderately higher odds of coronary artery disease/);
+  });
+  it("applies the sufficient-evidence bar per category", () => {
+    const life = byId("action-lifestyle")[0];
+    expect(life.category).toBe("lifestyle");
+    expect(life.sufficient).toBe(true); // RCT
+    const a = r.interventions[0];
+    const weakDesign = actionItem({ ...a, bestDesign: "observational" });
+    expect(weakDesign.sufficient).toBe(false);
+    const noLimit = actionItem({ ...a, bestDesign: "meta-analysis", intervention: { ...a.intervention, type: "supplement", safety: null } });
+    expect(noLimit.category).toBe("supplement");
+    expect(noLimit.sufficient).toBe(false); // supplements also need a verified upper limit
+    expect(Object.keys(SUFFICIENT_RULES)).toContain("medication");
   });
   it("hides sensitive items unless opted in", () => {
     expect(s.items.some((i) => i.id === "know-apoe")).toBe(false);

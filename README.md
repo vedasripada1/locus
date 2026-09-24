@@ -95,18 +95,29 @@ Versions and retrieval dates for every record are in the bundle and shown under 
 
 ## How the report is organised
 
-The report has three tabs:
+The report has two tabs.
 
-1. **Summary** (the default). Plain-language cards in five groups:
-   - **Check your file:** only for problems that affect every result, such as a low call rate or an unknown genome build.
-   - **Confirm with a doctor:** possible findings that would matter if real.
-   - **Things you could do:** the verified actions.
-   - **Good to know:** well-replicated common variants and medication-response notes.
-   - **Checked and not found.**
+**Your results** (the default):
+- **Diet & supplements come first:** an easy-read card for each diet, supplement or lifestyle step that relates to your results. Each card has four fields: *why you*, *evidence* (design), *does your DNA change it?* and *limit / caution*.
+- **All your results:** a sticky, structured filter bar. It has category buttons with counts (Diet · Supplements · Lifestyle · Ask your doctor · Health findings · Medications · Traits & risks · Checked), an evidence level, "Only things I carry", and search within the chosen category. Search also answers coverage questions ("7 known disease-causing BRCA1 variants were readable on your chip; none flagged") and groups GWAS traits.
+- **Compact cards:** each result is one line of plain language; "Why and what to do" opens the rationale, next steps and sources.
+- **Personalize:** optional context at the bottom.
 
-   Each card says what it means, *what you could do*, *why you're seeing it* (the ClinVar/ClinGen/study facts behind it), and a confidence label. Links go to the sources and to the technical details. A search box sits at the top.
-2. **Search:** one box over everything. It covers summary items, curated sites, actions, flagged rare variants, **gene and condition coverage** ("7 known disease-causing BRCA1 variants were readable on your chip; none flagged"), and GWAS traits grouped by trait. Each result is a plain sentence with a link to the details.
-3. **Appendix (technical):** the full report described below: every finding with alleles, effect sizes, study populations, limitations and papers, plus the genome-wide screens, evidence table, literature layer, coverage table, sources and audit.
+**Technical appendix:** everything, for the curious: full findings, the genome-wide ClinVar screen, the GWAS explorer, evidence table, literature, coverage, sources and audit.
+
+### Only sufficient evidence by default
+
+Items below this bar are hidden unless you choose "Include weaker evidence". They are always in the appendix.
+
+| Category | Sufficient evidence means |
+|---|---|
+| Diet, lifestyle, ask your doctor | A human randomized trial, meta-analysis, systematic review, or clinical guideline |
+| Supplements | The same, **plus** a verified upper limit |
+| Health findings | ClinVar pathogenic with ≥2 review stars. Genome-wide chip calls are labelled "chip call unverified" because consumer chips often misread rare variants. |
+| Medications | ClinVar expert panel (≥3★) drug-response classification |
+| Traits & risks | ≥3 publications agree on direction, without substantial disagreement |
+
+With the current evidence, two items fall below the bar: "Limit alcohol if you flush" (best evidence is a large observational cohort) and the Factor V Leiden clot-risk discussion (source is GeneReviews, an expert review).
 
 Summary wording comes from fixed templates filled with values already in the report (`src/core/plain.ts`). A few rules keep it honest:
 - **Odds ratios** are described with a fixed rubric per copy: <1.15× "very slightly", 1.15–1.5× "slightly", 1.5–3× "moderately", ≥3× "much" higher or lower odds. They are always relative; absolute risk is never shown.

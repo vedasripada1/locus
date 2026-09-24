@@ -164,3 +164,28 @@ ul.papers li { margin: 4px 0; }
 .chip.conf-low { background: transparent; }
 .search-hit + .search-hit { margin-top: 10px; }
 .key-action .summary-card::before, .key-action.block .card::before { background: var(--black); }
+
+/* ── Results page: recommendations and structured filters ────────── */
+.recs { display: grid; gap: 14px; }
+.rec-head { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: baseline; }
+.rec-head h3 { margin: 0; }
+.rec-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px 18px; margin: 10px 0; padding: 12px 0 0; border-top: 1px solid color-mix(in srgb, var(--rule) 30%, transparent); }
+.rec-facts dt { font: 700 .72rem var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.rec-facts dd { margin: 2px 0 0; font-size: .95rem; }
+.chip.type-diet { background: var(--olive); color: #fff; border-color: var(--olive); }
+.chip.type-supplement { background: var(--mustard); color: var(--black); border-color: var(--mustard); }
+.chip.type-lifestyle { background: var(--teak); color: #fff; border-color: var(--teak); }
+.chip.type-health { background: var(--terracotta); color: #fff; border-color: var(--terracotta); }
+.chip.type-clinician { background: var(--black); color: var(--cream); }
+.filterbar { position: sticky; top: 58px; z-index: 4; background: var(--ground); padding: 10px 0; border-bottom: 1px solid var(--rule); }
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg-btn { appearance: none; border: 1px solid var(--rule); background: var(--ground); color: var(--ink); padding: 7px 12px; font: 600 .85rem var(--display); letter-spacing: .04em; cursor: pointer; }
+.seg-btn.on { background: var(--ink); color: var(--ground); }
+.seg-btn .count { font-weight: 400; opacity: .7; margin-left: 4px; }
+.seg-btn:focus-visible { outline: 3px solid var(--mustard); outline-offset: 1px; }
+.filter-row { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; margin-top: 10px; }
+.filter-row input[type=search] { flex: 1 1 280px; max-width: 520px; }
+.filter-row select { width: auto; margin-left: 6px; }
+.filter-row label { display: flex; align-items: center; gap: 6px; font-size: .9rem; }
+.result-row + .result-row { margin-top: 10px; }
+.result-row.weak { opacity: .85; border-style: dashed; }
