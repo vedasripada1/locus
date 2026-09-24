@@ -35,7 +35,11 @@ export interface BulkGwasHit {
 }
 
 export interface BulkResult {
-  clinvar: { version: string; tested: number; notCarried: number; noCall: number; carried: ClinicalFinding[]; cites: Record<string, number[]> };
+  clinvar: {
+    version: string; tested: number; notCarried: number; noCall: number; carried: ClinicalFinding[]; cites: Record<string, number[]>;
+    /** Coverage for search: readable ClinVar P/LP sites per gene and per condition, as [tested, carried]. */
+    byGene: Record<string, [number, number]>; byCondition: Record<string, [number, number]>;
+  };
   gwas: { version: string; tested: number; hits: BulkGwasHit[]; studies: BulkGwasFile["studies"] };
 }
 
@@ -77,7 +81,8 @@ function cvSite(r: CvRow, gene: string, src: SourceVersion): VariantSite {
 
 export function screenClinVar(genome: ParsedGenome, f: BulkClinVarFile, clingen: ClinGenValidity[]): BulkResult["clinvar"] {
   const src: SourceVersion = { source: "ClinVar", version: `variant_summary ${f.version}`, retrievedAt: f.retrievedAt, url: "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/" };
-  const out: BulkResult["clinvar"] = { version: f.version, tested: 0, notCarried: 0, noCall: 0, carried: [], cites: {} };
+  const out: BulkResult["clinvar"] = { version: f.version, tested: 0, notCarried: 0, noCall: 0, carried: [], cites: {}, byGene: {}, byCondition: {} };
+  const tally = (m: Record<string, [number, number]>, k: string, hit: boolean) => { const t = (m[k] ??= [0, 0]); t[0]++; if (hit) t[1]++; };
   const byGene = new Map<string, ClinGenValidity[]>();
   for (const g of clingen) (byGene.get(g.gene) ?? byGene.set(g.gene, []).get(g.gene)!).push(g);
   for (const r of f.rows) {
@@ -89,6 +94,8 @@ export function screenClinVar(genome: ParsedGenome, f: BulkClinVarFile, clingen:
     if (m.status !== "matched") continue;
     out.tested++;
     const copies = countAllele(m, r[4]);
+    tally(out.byGene, gene, !!copies);
+    for (const c of r[8]) tally(out.byCondition, f.conditions[c], !!copies);
     if (!copies) { out.notCarried++; continue; }
     const rec: ClinVarRecord = {
       kind: "clinvar", id: `VariationID ${r[9]}`, rsid: site.rsid, title: r[11], altAllele: r[4], classification: f.sigs[r[5]],

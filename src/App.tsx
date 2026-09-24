@@ -5,7 +5,7 @@ import type { BulkResult } from "./core/bulk";
 import { buildReport, EMPTY_CONTEXT } from "./core/interpret";
 import { Upload } from "./ui/Upload";
 import { loadDemo } from "./demo";
-import { ReportView } from "./ui/ReportView";
+import { ReportView } from "./ui/Shell";
 
 const bundle = bundleJson as unknown as EvidenceBundle;
 const KEEP = [...new Set(bundle.sites.flatMap((s) => [s.rsid, ...s.aliases]))];

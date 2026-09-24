@@ -12,7 +12,7 @@
         }
       ],
       "triggerNote": "Shown because you have no copies of the allele ClinVar lists for lactase persistence at this site. Other persistence variants exist (common in some African and Middle Eastern populations) and are not tested here; symptoms matter more than genotype.",
-      "summary": "A systematic review of randomized trials found most adults with lactose intolerance or malabsorption tolerate 12–15 g of lactose (about a cup of milk). Evidence for lactose-reduced milk, probiotics and other agents was insufficient.",
+      "summary": "Most adults who have trouble digesting milk sugar can still handle about 12–15 g of lactose at a time (roughly a cup of milk), according to a review of randomized trials. Lactose-free products, probiotics and similar aids were not clearly shown to help.",
       "studies": [
         {
           "ref": {
@@ -91,7 +91,7 @@
         }
       ],
       "triggerNote": "Shown because you have two copies of HFE C282Y, or one copy each of C282Y and H63D: the genotypes the guidelines discuss. Consumer data must be confirmed, and whether iron is actually raised is shown by blood tests, not genotype.",
-      "summary": "Haemochromatosis guidelines diagnose iron overload from blood iron measures, and treatment decisions rest on those measures, not on genotype alone.",
+      "summary": "A simple blood test (transferrin saturation and ferritin) shows whether iron is actually building up. Guidelines use these blood results, not genes alone, to decide on diagnosis and treatment; caught early, treatment can prevent liver and joint damage.",
       "studies": [
         {
           "ref": {
@@ -175,7 +175,7 @@
         }
       ],
       "triggerNote": "Shown because the Factor V Leiden allele was observed. Consumer data must be confirmed by clinical testing first.",
-      "summary": "GeneReviews says heterozygotes without a history of clots are not routinely given long-term anticoagulation, and that some carriers may benefit from evaluation before surgery or pregnancy. It lists estrogen-containing contraception and HRT as things certain carriers should avoid.",
+      "summary": "Most people with one copy of Factor V Leiden who have never had a clot don't need long-term blood thinners. The expert review (GeneReviews) suggests getting advice before surgery or pregnancy, and says some carriers should avoid estrogen-containing contraception and HRT.",
       "studies": [
         {
           "ref": {
@@ -252,7 +252,7 @@
         }
       ],
       "triggerNote": "Shown because you carry a type 2 diabetes–associated allele. The lifestyle evidence applies regardless of genotype.",
-      "summary": "In the Diabetes Prevention Program, a lifestyle programme cut diabetes incidence by 58% among people with raised glucose. A follow-up analysis of TCF7L2 rs7903146 found the genotype-by-intervention interaction was not significant, so there is no evidence the benefit depends on this genotype.",
+      "summary": "In a large trial of adults with raised blood sugar, a lifestyle programme (about 7% weight loss plus 150 minutes of activity a week) cut new diabetes cases by 58%. A follow-up found it worked just as well whatever TCF7L2 genotype people had.",
       "studies": [
         {
           "ref": {
@@ -332,7 +332,7 @@
         }
       ],
       "triggerNote": "Shown because you carry the BMI-associated FTO allele. The evidence shows no genotype-specific action is needed.",
-      "summary": "An individual-participant meta-analysis of 8 randomized trials found weight loss from dietary, physical activity or drug interventions did not differ by FTO genotype.",
+      "summary": "Across eight randomized trials, people with the FTO variant lost just as much weight with diet, exercise or medication as people without it. Your FTO result doesn't mean weight loss will be harder for you.",
       "studies": [
         {
           "ref": {
@@ -382,7 +382,7 @@
         }
       ],
       "triggerNote": "Shown because CYP1A2 rs762551 was tested. Compare your rs762551 genotype with the subgroup finding; the evidence is limited.",
-      "summary": "A meta-analysis of 12 small studies found caffeine improved cycling time trials overall, with the subgroup benefit seen only in people with the rs762551 A allele. Caffeine did not improve sprint (Wingate) or jump performance in any genotype.",
+      "summary": "Across 12 small studies, caffeine improved cycling time trials. The extra benefit showed up only in people with the rs762551 A allele. Caffeine didn't help sprint or jump performance for anyone.",
       "studies": [
         {
           "ref": {
@@ -476,7 +476,7 @@
         }
       ],
       "triggerNote": "Shown because the ALDH2 low-activity allele (rs671 A) was observed. This allele is common mainly in East Asian populations.",
-      "summary": "In the China Kadoorie Biobank, the rs671 GA genotype was associated with higher oesophageal cancer risk in men who drank weekly, and the increased risk was apparent at ≥30 g/day. It was not associated with higher risk in people who drank less than weekly.",
+      "summary": "In a study of half a million Chinese adults, men with this ALDH2 variant who drank weekly had a higher risk of oesophageal cancer, especially at 30 g or more of alcohol a day. People who drank less than weekly did not show extra risk.",
       "studies": [
         {
           "ref": {
@@ -553,7 +553,7 @@
         }
       ],
       "triggerNote": "Shown because you carry an allele associated with lower or higher vitamin D level. We found no verified trial showing supplementation benefits differ by this genotype.",
-      "summary": "In VITAL (25,871 adults), vitamin D3 at 2000 IU/day did not lower cancer or major cardiovascular events. The adult upper limit set by the IOM is 4000 IU/day.",
+      "summary": "In a large trial of 25,871 older adults, taking vitamin D (2000 IU a day) did not lower cancer or heart disease. A blood test shows whether your level is actually low; the safe upper limit for adults is 4000 IU a day.",
       "studies": [
         {
           "ref": {
@@ -643,7 +643,7 @@
         }
       ],
       "triggerNote": "Shown because you carry the MTHFR 677T allele associated with higher homocysteine.",
-      "summary": "In a post hoc analysis of a Chinese trial of hypertensive adults, folic acid 0.8 mg/day lowered homocysteine, and TT carriers needed higher folate levels (about 15 ng/mL) for the genotype difference to disappear. The upper limit for folic acid in adults is 1000 μg/day (EFSA).",
+      "summary": "In a large trial in China, folic acid (0.8 mg a day) lowered homocysteine by about 11%. People with two copies of the MTHFR T allele needed higher folate levels to get the same effect. Don't take more than 1000 μg of folic acid a day without advice.",
       "studies": [
         {
           "ref": {

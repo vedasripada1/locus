@@ -93,6 +93,29 @@ Versions and retrieval dates for every record are in the bundle and shown under 
 - **Google Scholar is not used.** It has no API and forbids scraping. **NIH ODS** fact sheets and **NCBI Bookshelf** sit behind bot challenges, which the pipeline doesn't try to get around. The equivalent values were taken from PubMed/PMC (the IOM vitamin D report summary in PMC; the EFSA folate UL opinion).
 - Responses are cached in `pipeline/cache/` (git-ignored) for `CACHE_MAX_AGE_DAYS` (default 30), so rebuilds are cheap and polite.
 
+## How the report is organised
+
+The report has three tabs:
+
+1. **Summary** (the default). Plain-language cards in five groups:
+   - **Check your file:** only for problems that affect every result, such as a low call rate or an unknown genome build.
+   - **Confirm with a doctor:** possible findings that would matter if real.
+   - **Things you could do:** the verified actions.
+   - **Good to know:** well-replicated common variants and medication-response notes.
+   - **Checked and not found.**
+
+   Each card says what it means, *what you could do*, *why you're seeing it* (the ClinVar/ClinGen/study facts behind it), and a confidence label. Links go to the sources and to the technical details. A search box sits at the top.
+2. **Search:** one box over everything. It covers summary items, curated sites, actions, flagged rare variants, **gene and condition coverage** ("7 known disease-causing BRCA1 variants were readable on your chip; none flagged"), and GWAS traits grouped by trait. Each result is a plain sentence with a link to the details.
+3. **Appendix (technical):** the full report described below: every finding with alleles, effect sizes, study populations, limitations and papers, plus the genome-wide screens, evidence table, literature layer, coverage table, sources and audit.
+
+Summary wording comes from fixed templates filled with values already in the report (`src/core/plain.ts`). A few rules keep it honest:
+- **Odds ratios** are described with a fixed rubric per copy: <1.15× "very slightly", 1.15–1.5× "slightly", 1.5–3× "moderately", ≥3× "much" higher or lower odds. They are always relative; absolute risk is never shown.
+- **Inheritance** is stated only when ClinGen is unambiguous for the named condition.
+- **The Factor V Leiden case:** when ClinVar's overall label differs from its per-condition call, both are shown.
+- **Numbers in summaries:** the hand-written action summaries are checked at build time; every number must appear in that action's verified quotes, or the build fails.
+
+The Markdown export puts the summary first and the technical appendix after it.
+
 ## What the report contains
 
 1. **Clinically significant findings requiring confirmation:** a ClinVar Pathogenic/Likely pathogenic allele observed in your file. That means either the aggregate classification, or a per-condition classification with ≥2★ review status, and never when the aggregate is "conflicting". Inheritance comes from ClinGen (e.g. "autosomal recessive; one copy usually indicates carrier status"). Conflicting, uncertain, not-carried and **not-tested** sites are listed separately.

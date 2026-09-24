@@ -1,6 +1,7 @@
 // Stage 4 — narrative / export. Renders a Report with fixed templates only.
 // No generated prose: every sentence is either a template or a verified value.
 import type { EvidenceBundle, Finding, Report } from "./types";
+import type { Summary } from "./plain";
 
 export const DISCLAIMER = [
   "This report is for information and discussion only. It is not a diagnosis and cannot rule a diagnosis in or out.",
@@ -27,10 +28,26 @@ function findingMd(f: Finding): string {
   return `### ${f.topic.label}\n- ${f.headline}\n`;
 }
 
-export function toMarkdown(r: Report, bundle: EvidenceBundle, opts: { showSensitive: boolean }): string {
+/** Plain-language summary: what it means, what to do, and why. */
+export function summaryMd(s: Summary): string {
+  const groups: [string, string][] = [["quality", "Check your file"], ["confirm", "Confirm with a doctor"], ["action", "Things you could do"], ["know", "Good to know"], ["clear", "Checked and not found"]];
+  return [`# Summary\n\n**${s.headline}**`, ...groups.map(([tone, title]) => {
+    const items = s.items.filter((i) => i.tone === tone);
+    if (!items.length) return "";
+    return `## ${title}\n\n${items.map((i) => [
+      `### ${i.title}`, i.plain, ...(i.list ?? []).map((l) => `- ${l}`),
+      `**What you could do:**`, ...i.next.map((n) => `- ${n}`),
+      `**Why you're seeing this** (${i.confidence} confidence):`, ...i.why.filter(Boolean).map((w) => `- ${w}`),
+      ...(i.sources.length ? [`Sources: ${i.sources.map((x) => `[${x.label}](${x.url})`).join(", ")}`] : []),
+    ].join("\n")).join("\n\n")}`;
+  })].filter(Boolean).join("\n\n");
+}
+
+export function toMarkdown(r: Report, bundle: EvidenceBundle, opts: { showSensitive: boolean }, summary?: Summary): string {
   const hide = (f: Finding) => !opts.showSensitive && (f.kind === "gwas" || f.kind === "clinical" ? f.match.site.sensitive : f.kind === "composite" || f.topic.id === "alzheimers");
   const sec = (title: string, fs: Finding[]) => `## ${title}\n\n${fs.filter((f) => !hide(f)).map(findingMd).join("\n") || "_Nothing to show._\n"}`;
   const out = [
+    ...(summary ? [summaryMd(summary), "---\n\n# Appendix: technical report"] : []),
     `# Genotype evidence report`,
     `Generated ${r.generatedAt.slice(0, 10)} from a ${r.file.format === "23andme" ? "23andMe" : "AncestryDNA"} file (${r.file.build}). Evidence bundle built ${bundle.builtAt.slice(0, 10)}.`,
     `> ${DISCLAIMER.join("\n> ")}`,

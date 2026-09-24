@@ -75,7 +75,8 @@ function bulkRows(seed: number, carriedClinVar: number) {
     out.push({ rsid, chrom: s[0], pos: s[1] ?? 0, alleles: r() < 0.01 ? null : [a(), a()].sort() });
   }
   const seen = new Set<string>();
-  return out.filter((o) => !seen.has(o.rsid) && seen.add(o.rsid));
+  const curated = new Set(b.sites.flatMap((x) => [x.rsid, ...x.aliases]));
+  return out.filter((o) => !curated.has(o.rsid) && (o.alleles ?? []).every((a) => /^[ACGT]$/.test(a)) && !seen.has(o.rsid) && seen.add(o.rsid));
 }
 
 const all23 = [...rows(spec23), ...bulkRows(7, 2), ...Array.from({ length: FILLER }, (_, i) => filler(i))];

@@ -50,11 +50,12 @@ export function toCsv(hits: BulkGwasHit[]): string {
   return [cols.join(","), ...hits.map((h) => cols.map((c) => esc(h[c])).join(","))].join("\n");
 }
 
-export function GwasExplorer({ bulk, onCsv }: { bulk: BulkResult["gwas"]; onCsv: (csv: string) => void }) {
-  const [domain, setDomain] = useState("disease");
-  const [carried, setCarried] = useState(true);
-  const [minStrength, setMinStrength] = useState<keyof typeof RANK>("moderate");
-  const [q, setQ] = useState("");
+export function GwasExplorer({ bulk, onCsv, initialQuery }: { bulk: BulkResult["gwas"]; onCsv: (csv: string) => void; initialQuery?: string }) {
+  // A query from Search opens the explorer unfiltered, so the searched rows are visible.
+  const [domain, setDomain] = useState(initialQuery ? "all" : "disease");
+  const [carried, setCarried] = useState(!initialQuery);
+  const [minStrength, setMinStrength] = useState<keyof typeof RANK>(initialQuery ? "insufficient" : "moderate");
+  const [q, setQ] = useState(initialQuery ?? "");
   const [sort, setSort] = useState<"strength" | "p" | "trait">("strength");
   const [page, setPage] = useState(0);
   const [open, setOpen] = useState<string | null>(null);
@@ -69,7 +70,7 @@ export function GwasExplorer({ bulk, onCsv }: { bulk: BulkResult["gwas"]; onCsv:
     const pexp = (p: string) => { const m = p.match(/E-?(\d+)/i); return m ? Number(m[1]) : 0; };
     return bulk.hits
       .filter((h) => (domain === "all" || h.domain === domain) && (!carried || (h.copies ?? 0) > 0) && RANK[h.strength] >= RANK[minStrength])
-      .filter((h) => !needle || h.rsid === needle || h.gene.toLowerCase().includes(needle) || h.trait.toLowerCase().includes(needle))
+      .filter((h) => !needle || h.rsid.toLowerCase() === needle || h.gene.toLowerCase().includes(needle) || h.trait.toLowerCase().includes(needle))
       .sort((a, b) => sort === "trait" ? a.trait.localeCompare(b.trait) : sort === "p" ? pexp(b.p) - pexp(a.p) : RANK[b.strength] - RANK[a.strength] || b.concordantPubs - a.concordantPubs || pexp(b.p) - pexp(a.p));
   }, [bulk.hits, domain, carried, minStrength, q, sort]);
   const pages = Math.max(1, Math.ceil(rows.length / PAGE));

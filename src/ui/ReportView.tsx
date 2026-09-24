@@ -1,15 +1,15 @@
 import { useMemo, useState } from "react";
-import type { EvidenceBundle, EvidenceStrength, Finding, InterventionAssessment, Report, SiteMatch, UserContext } from "../core/types";
-import { DISCLAIMER, toJson, toMarkdown } from "../core/export";
-import { ContextForm } from "./ContextForm";
+import type { EvidenceBundle, EvidenceStrength, Finding, InterventionAssessment, Report, SiteMatch } from "../core/types";
+import { DISCLAIMER } from "../core/export";
 import { FindingCard, InterventionCard } from "./Cards";
 import { EvidenceTable, CoverageTable, LiteraturePanel, SourcesPanel } from "./Tables";
 import { ClinVarScreen, GwasExplorer } from "./Bulk";
-import { PapersProvider } from "./Papers";
 
 interface Props {
   report: Report; bundle: EvidenceBundle; fileName: string;
-  context: UserContext; onContext: (c: UserContext) => void; onDelete: () => void;
+  showSensitive: boolean; onToggleSensitive: () => void;
+  /** Section to open, and a query to pre-fill in the explorer (from Search or Summary links). */
+  initialSection?: string; explorerQuery?: string;
 }
 
 export interface Filters { q: string; section: string; carriedOnly: boolean; minStrength: EvidenceStrength | "any"; showSensitive: boolean }
@@ -34,15 +34,17 @@ export function passes(f: Finding, fl: Filters): boolean {
   return true;
 }
 
-function download(name: string, text: string, type: string) {
+export function download(name: string, text: string, type: string) {
   const url = URL.createObjectURL(new Blob([text], { type }));
   const a = Object.assign(document.createElement("a"), { href: url, download: name });
   a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-export function ReportView({ report, bundle, fileName, context, onContext, onDelete }: Props) {
-  const [fl, setFl] = useState<Filters>({ q: "", section: "all", carriedOnly: false, minStrength: "any", showSensitive: false });
+/** The full technical report ("appendix"): every finding, table, source and audit entry. */
+export function Appendix({ report, bundle, fileName, showSensitive, onToggleSensitive, initialSection, explorerQuery }: Props) {
+  const [flState, setFl] = useState<Filters>({ q: "", section: initialSection ?? "all", carriedOnly: false, minStrength: "any", showSensitive: false });
+  const fl = { ...flState, showSensitive };
   const set = (p: Partial<Filters>) => setFl((f) => ({ ...f, ...p }));
   const show = (s: string) => fl.section === "all" || fl.section === s;
 
@@ -52,14 +54,6 @@ export function ReportView({ report, bundle, fileName, context, onContext, onDel
   const f = <T extends Finding>(xs: T[]) => xs.filter((x) => passes(x, fl));
   const stamp = report.generatedAt.slice(0, 10);
 
-  const toggleSensitive = () => {
-    if (fl.showSensitive) return set({ showSensitive: false });
-    if (window.confirm("Show sensitive results (APOE / Alzheimer disease)?\n\nMany people choose not to learn these. They cannot tell you whether you will develop a disease. Consider genetic counselling first.")) set({ showSensitive: true });
-  };
-  const confirmDelete = () => {
-    if (window.confirm("Delete the loaded genotype data, your context entries and this report from this tab?")) onDelete();
-  };
-
   const stats = report.file.stats;
   const sections = useMemo(() => [
     ["all", "Everything"], ["clinical", "1 · Clinical"], ["disease", "2 · Disease"], ["metabolism", "3 · Metabolism"],
@@ -68,7 +62,7 @@ export function ReportView({ report, bundle, fileName, context, onContext, onDel
 
   const bulk = report.bulk;
   return (
-    <PapersProvider bulkCites={bulk?.clinvar.cites ?? {}} gwasStudies={bulk?.gwas.studies ?? {}}>
+    <>
       <div className="toolbar no-print">
         <div className="wrap">
           <label>Section
@@ -83,19 +77,16 @@ export function ReportView({ report, bundle, fileName, context, onContext, onDel
             </select>
           </label>
           <label><input type="checkbox" checked={fl.carriedOnly} onChange={(e) => set({ carriedOnly: e.target.checked })} /> Only alleles I carry</label>
-          <label><input type="checkbox" checked={fl.showSensitive} onChange={toggleSensitive} /> Sensitive results</label>
+          <label><input type="checkbox" checked={showSensitive} onChange={onToggleSensitive} /> Sensitive results</label>
           <label className="visually-hidden" htmlFor="q">Search</label>
           <input id="q" type="search" placeholder="Search gene, rsID, trait" value={fl.q} onChange={(e) => set({ q: e.target.value })} />
-          <span style={{ flex: 1 }} />
-          <button className="btn secondary small" onClick={() => download(`genotype-report-${stamp}.md`, toMarkdown(report, bundle, { showSensitive: fl.showSensitive }), "text/markdown")}>Markdown</button>
-          <button className="btn secondary small" onClick={() => download(`genotype-report-${stamp}.json`, toJson(report), "application/json")}>JSON</button>
-          <button className="btn secondary small" onClick={() => window.print()}>Print / PDF</button>
-          <button className="btn danger small" onClick={confirmDelete}>Delete my data</button>
         </div>
       </div>
 
       <div className="wrap">
         <section className="block">
+          <div className="section-head"><span className="section-num">A</span><h2 style={{ margin: 0 }}>Appendix: full technical report</h2>
+            <p>Everything behind the summary: every finding with its genotype, alleles, effect sizes, study populations, sources, limitations and the papers for each allele.</p></div>
           <div className="grid-2">
             <div className="panel">
               <h3>Your file</h3>
@@ -134,7 +125,6 @@ export function ReportView({ report, bundle, fileName, context, onContext, onDel
           <div className="notice alert" style={{ marginTop: 18 }}>
             <ul style={{ margin: 0 }}>{DISCLAIMER.map((d) => <li key={d}>{d}</li>)}</ul>
           </div>
-          <ContextForm value={context} onChange={onContext} notes={report.contextNotes} />
           {!fl.showSensitive && hiddenSensitive > 0 && (
             <p className="muted no-print" style={{ marginTop: 12 }}>{hiddenSensitive} sensitive result(s) hidden (APOE / Alzheimer disease). Use "Sensitive results" in the toolbar to show them.</p>
           )}
@@ -187,7 +177,7 @@ export function ReportView({ report, bundle, fileName, context, onContext, onDel
         {show("explorer") && bulk && (
           <Section n="◼" keyName="none" title="Explorer: every GWAS association in your file"
             intro="The curated sections above cover a small set of well-studied traits. This explorer lists every genome-wide significant GWAS Catalog association for variants in your file, with the studies behind each one.">
-            <GwasExplorer bulk={bulk.gwas} onCsv={(csv) => download(`gwas-associations-${stamp}.csv`, csv, "text/csv")} />
+            <GwasExplorer bulk={bulk.gwas} initialQuery={explorerQuery} onCsv={(csv) => download(`gwas-associations-${stamp}.csv`, csv, "text/csv")} />
           </Section>
         )}
         {show("table") && (
@@ -211,7 +201,7 @@ export function ReportView({ report, bundle, fileName, context, onContext, onDel
           </>
         )}
       </div>
-    </PapersProvider>
+    </>
   );
 }
 

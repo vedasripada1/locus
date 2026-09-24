@@ -87,6 +87,11 @@ export function buildInterventions(seed: any[], texts: Map<string, SourceText>, 
         continue;
       }
     }
+    // Plain-language summaries are hand-written, so every number in them must appear in a verified quote.
+    const quoted = [...studies.flatMap((x) => [x.sampleSize, x.population, x.exposure, x.harms, ...x.outcomes]), safety?.upperLimit, ...(safety?.adverseEffects ?? []), ...(safety?.interactions ?? [])]
+      .filter(Boolean).map((q) => (q as Quoted).quote).join(" ");
+    const orphan = numbers(iv.summary).filter((n) => !numbers(quoted).includes(n) && !numbers(iv.name).includes(n));
+    if (orphan.length) throw new Error(`${iv.id}: summary numbers not found in its verified quotes: ${orphan.join(", ")}`);
     const strip = ({ role: _r, ...s }: InterventionStudy & { role: string }) => s;
     out.push({
       id: iv.id, triggers: iv.triggers, triggerNote: iv.triggerNote, name: iv.name, type: iv.type, summary: iv.summary,

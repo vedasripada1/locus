@@ -18,8 +18,16 @@ for (const demo of ["23andme", "ancestrydna"]) {
   page.on("request", (r) => { if (!r.url().startsWith(BASE) && !r.url().startsWith("data:") && !r.url().startsWith("blob:")) requests.push(r.url()); });
   await page.goto(`${BASE}#demo=${demo}`, { waitUntil: "load" });
   try {
-    await page.waitForFunction(() => document.body.innerText.toLowerCase().includes("clinically significant findings"), { timeout: 15000 });
+    await page.waitForFunction(() => /possible action/i.test(document.body.innerText), { timeout: 60000 });
   } catch { problems.push("report did not render within 15s"); }
+  // Summary first.
+  await page.waitForFunction(() => /possible action/i.test(document.body.innerText), { timeout: 60000 }).catch(() => problems.push("summary headline did not render"));
+  // Search tab.
+  await page.evaluate(() => ([...document.querySelectorAll("button.tab")].find((b) => b.textContent === "Search") as HTMLElement).click());
+  await page.type("input.bigsearch-input", "BRCA1");
+  await page.waitForFunction(() => /BRCA1: coverage/.test(document.body.innerText), { timeout: 10000 }).catch(() => problems.push("search did not answer BRCA1 coverage"));
+  // Appendix tab: technical sections.
+  await page.evaluate(() => ([...document.querySelectorAll("button.tab")].find((b) => b.textContent?.startsWith("Appendix")) as HTMLElement).click());
   const t0 = Date.now();
   await page.waitForFunction(() => document.body.innerText.toLowerCase().includes("genome-wide clinvar screen"), { timeout: 60000 }).catch(() => problems.push("genome-wide ClinVar screen did not render"));
   const rendered = Date.now() - t0;
