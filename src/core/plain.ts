@@ -5,6 +5,7 @@
 import type { ClinicalFinding, ClinGenValidity, GwasFinding, InterventionAssessment, Report } from "./types";
 import type { BulkGwasHit } from "./bulk";
 import { classifyClinVar } from "./interpret";
+import { readableGenotype } from "./match";
 
 export type Tone = "confirm" | "action" | "know" | "clear" | "quality";
 export type Category = "diet" | "supplement" | "lifestyle" | "clinician" | "health" | "medication" | "trait" | "clear" | "quality";
@@ -26,6 +27,23 @@ export const SUFFICIENT_RULES: Record<Category, string> = {
 };
 const STRONG_DESIGNS = ["guideline", "meta-analysis", "systematic review", "randomized controlled trial"];
 export type Confidence = "higher" | "moderate" | "low";
+
+/** Trait panels over the genome-wide GWAS tier. Patterns match GWAS Catalog (EFO) trait labels. */
+export const PANELS: { id: string; label: string; pattern: RegExp; intro: string }[] = [
+  { id: "vitamins", label: "Vitamins & minerals", pattern: /vitamin|folate|folic acid|cobalamin|ferritin|serum iron|transferrin|zinc|selenium|magnesium|calcium measurement|carotene|retinol|tocopherol|homocysteine/i, intro: "Blood levels of vitamins and minerals." },
+  { id: "lipids", label: "Blood fats (cholesterol, triglycerides)", pattern: /^(low density lipoprotein cholesterol|high density lipoprotein cholesterol|triglyceride|total cholesterol|apolipoprotein [ab]) measurement$|lipoprotein\(a\)/i, intro: "LDL, HDL, triglycerides and related lipids." },
+  { id: "glucose", label: "Blood sugar & diabetes", pattern: /glucose measurement|hba1c|glycated hemoglobin|insulin measurement|insulin resistance|type 2 diabetes/i, intro: "Blood sugar, HbA1c, insulin and type 2 diabetes." },
+  { id: "body", label: "Weight & body shape", pattern: /body mass index|waist|hip circumference|body fat|obesity|body weight|adiposity/i, intro: "BMI, waist size and body fat." },
+  { id: "intake", label: "Caffeine, alcohol & taste", pattern: /coffee|caffeine|tea consumption|alcohol|taste|bitter|sweet/i, intro: "What you tend to drink and how things taste." },
+  { id: "diet", label: "Diet & appetite", pattern: /diet|dietary|food|intake|appetite|salt|carbohydrate|fruit consumption|vegetable consumption|milk|cheese|meat|fish consumption/i, intro: "Food preferences, intake and appetite." },
+  { id: "heart", label: "Heart & blood pressure", pattern: /blood pressure|coronary artery disease|myocardial infarction|heart rate|atrial fibrillation|stroke|hypertension/i, intro: "Blood pressure and heart conditions." },
+  { id: "fitness", label: "Fitness & performance", pattern: /grip strength|lean mass|physical activity|fitness|walking pace|muscle|vo2|exercise|heart rate recovery/i, intro: "Strength, fitness and activity." },
+  { id: "sleep", label: "Sleep & energy", pattern: /sleep|chronotype|insomnia|morning person|daytime (sleepiness|napping)/i, intro: "Sleep timing, duration and quality." },
+  { id: "liver", label: "Liver", pattern: /alanine aminotransferase|aspartate aminotransferase|gamma-glutamyl|liver fat|fatty liver|bilirubin/i, intro: "Liver enzymes and liver fat." },
+  { id: "kidney", label: "Kidneys & uric acid", pattern: /urate|uric acid|gout|glomerular filtration|creatinine|kidney stone/i, intro: "Kidney function, uric acid and gout." },
+  { id: "immune", label: "Inflammation & immunity", pattern: /c-reactive protein|celiac|inflammatory bowel|crohn|ulcerative colitis|rheumatoid|psoriasis|asthma|allerg/i, intro: "Inflammation markers and immune conditions." },
+  { id: "bone", label: "Bones", pattern: /bone mineral density|osteoporosis|fracture|heel bone/i, intro: "Bone density and fractures." },
+];
 
 export interface SummaryItem {
   id: string;
@@ -142,7 +160,7 @@ export function confirmItem(f: ClinicalFinding, bulk = false): SummaryItem {
   const why = [
     clinvarWhy(f, cond),
     moi ? `ClinGen: ${cond} (${f.match.site.gene}) is inherited as ${MOI_PLAIN[moi]}.` : "Inheritance pattern not established by ClinGen for this gene and condition.",
-    `Your file shows ${f.zygosity} (${f.match.call?.raw ?? "?"}).`,
+    `Your genotype: ${readableGenotype(f.match)}`,
     "Consumer chips often misread rare variants, so this is a lead to check, not a result.",
   ];
   const next = ["Confirm with a clinical-grade genetic test before acting on this.", "Talk to a doctor or genetic counsellor."];
@@ -228,10 +246,10 @@ export function drugItem(f: ClinicalFinding): SummaryItem | null {
   const [, drug, effect] = m;
   return {
     id: `drug-${f.record.id}`, tone: "know", category: "medication", sufficient: f.record.stars >= 3, carried: true,
-    evidenceLabel: `ClinVar ${f.record.stars}★${f.record.stars >= 3 ? " expert panel" : ""}`, whyYou: `Your genotype: ${f.match.call?.raw} (${f.zygosity}).`,
+    evidenceLabel: `ClinVar ${f.record.stars}★${f.record.stars >= 3 ? " expert panel" : ""}`, whyYou: `Your genotype: ${readableGenotype(f.match)}`,
     title: `${cap(drug)}: medication response`,
     plain: `You carry a variant in ${f.match.site.gene} that ClinVar lists as affecting ${effect.toLowerCase()} of ${drug}.`,
-    why: [`ClinVar: "${f.record.classification}" (${f.record.stars}/4 stars: ${f.record.reviewStatus}).`, `Your genotype: ${f.match.call?.raw} (${f.zygosity}).`],
+    why: [`ClinVar: "${f.record.classification}" (${f.record.stars}/4 stars: ${f.record.reviewStatus}).`, `Your genotype: ${readableGenotype(f.match)}`],
     next: [`If you are ever prescribed ${drug}, mention this result to the prescriber. Don't change any medication yourself.`],
     confidence: f.record.stars >= 3 ? "higher" : "moderate", appendix: { section: f.match.site.domain === "clinical" ? "clinical" : f.match.site.domain },
     sources: [{ label: `ClinVar ${f.record.id}`, url: f.record.url }], sensitive: f.match.site.sensitive,
@@ -293,6 +311,24 @@ export function summarize(r: Report, opts: { showSensitive: boolean }): Summary 
     });
   }
 
+  // Trait panels: well-replicated genome-wide associations where you carry the reported allele.
+  const strong = (r.bulk?.gwas.hits ?? []).filter((h) => h.strength === "strong" && (h.copies ?? 0) > 0 && (opts.showSensitive || !/alzheimer/i.test(h.trait)));
+  for (const p of PANELS) {
+    const hs = strong.filter((h) => p.pattern.test(h.trait)).sort((a, b) => b.concordantPubs - a.concordantPubs);
+    if (!hs.length) continue;
+    const tested = (r.bulk?.gwas.hits ?? []).filter((h) => h.strength === "strong" && p.pattern.test(h.trait)).length;
+    items.push({
+      id: `panel-${p.id}`, tone: "know", category: "trait", sufficient: true, carried: true,
+      evidenceLabel: `${hs.length} well-replicated variant${hs.length === 1 ? "" : "s"}`, whyYou: `You carry the reported allele at ${hs.length} of ${tested} well-replicated sites on your chip.`,
+      title: `Panel: ${p.label}`,
+      plain: `${p.intro} You carry the reported allele at ${hs.length} of the ${tested} well-replicated variants for these traits that your chip tested. Each has a small effect on its own; they are listed, not added into a score, because effects differ in size and don't simply add up.`,
+      why: ["Genome-wide scan (GWAS Catalog): only associations where 3 or more publications agree on direction, with no substantial disagreement.", "Odds ratios and effect sizes compare groups. They are not your personal chance or level."],
+      next: [p.id === "vitamins" || p.id === "lipids" || p.id === "glucose" || p.id === "liver" || p.id === "kidney" ? "A routine blood test measures these directly and tells you far more than genotype." : "No specific action is supported by evidence for these results.", "Open the technical details to read the studies behind each variant."],
+      list: hs.slice(0, 15).map(panelLine), confidence: "moderate",
+      appendix: { section: "explorer", query: hs[0].trait }, sources: [],
+    });
+  }
+
   // Checked and not found.
   const clear = r.clinical.filter((c) => c.category === "not-carried" && /pathogenic/i.test(c.record.classification + c.record.rcvs.map((x) => x.classification).join(" ")));
   const untested = r.clinical.filter((c) => c.category === "not-tested");
@@ -323,4 +359,10 @@ export function summarize(r: Report, opts: { showSensitive: boolean }): Summary 
 export function scanLine(h: BulkGwasHit): string {
   const dir = h.value >= 1 ? "higher" : "lower";
   return `${cap(h.trait)}: ${copies(h.copies ?? 0)} of ${h.gene || "a"} ${h.rsid} allele ${h.effectAllele}, ${orAdverb(h.value)} ${dir} odds (OR ${h.value}, ${h.concordantPubs} studies agree)`;
+}
+
+export function panelLine(h: BulkGwasHit): string {
+  const dir = h.kind === "OR" ? (h.value >= 1 ? "higher" : "lower") : h.direction === "increase" ? "higher" : h.direction === "decrease" ? "lower" : "different";
+  const eff = h.kind === "OR" ? `${orAdverb(h.value)} ${dir} odds of ${h.trait} (OR ${h.value})` : `${dir} ${h.trait} (β ${h.value})`;
+  return `${h.gene || "Unnamed gene"} ${h.rsid}: ${copies(h.copies ?? 0)} of ${h.effectForward ?? h.effectAllele}, linked to ${eff}; ${h.concordantPubs} studies agree`;
 }

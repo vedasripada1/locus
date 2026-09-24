@@ -47,7 +47,7 @@ function Row({ pmid }: { pmid: number }) {
  * `groups` receives the paper index (null until loaded), because curated-site citation
  * lists live in that file; counts are shown only once they are known.
  */
-export function PapersList({ groups }: { groups: (f: PapersFile | null) => PaperGroup[] }) {
+export function PapersList({ groups, label = "Papers for this allele" }: { groups: (f: PapersFile | null) => PaperGroup[]; label?: string }) {
   const { file, status, load } = usePapers();
   const [open, setOpen] = useState(false);
   const [all, setAll] = useState<Record<string, boolean>>({});
@@ -56,7 +56,7 @@ export function PapersList({ groups }: { groups: (f: PapersFile | null) => Paper
   useEffect(() => { if (open) load(); }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <details onToggle={(e) => setOpen((e.target as HTMLDetailsElement).open)}>
-      <summary>Papers for this allele{status === "ready" || total ? ` (${total})` : ""}</summary>
+      <summary>{label}{status === "ready" || total ? ` (${total})` : ""}</summary>
       {status === "loading" && <p className="muted">Loading the local paper index…</p>}
       {status === "error" && <p className="muted">The paper index could not be loaded; PMIDs are shown without titles.</p>}
       {status === "ready" && !total && <p className="muted">No papers are linked to this allele in ClinVar, the GWAS Catalog or LitVar.</p>}

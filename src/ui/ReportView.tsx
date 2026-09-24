@@ -4,6 +4,7 @@ import { DISCLAIMER } from "../core/export";
 import { FindingCard, InterventionCard } from "./Cards";
 import { EvidenceTable, CoverageTable, LiteraturePanel, SourcesPanel } from "./Tables";
 import { ClinVarScreen, GwasExplorer } from "./Bulk";
+import { AccuracyPanel, RawDataTable } from "./RawData";
 
 interface Props {
   report: Report; bundle: EvidenceBundle; fileName: string;
@@ -57,7 +58,7 @@ export function Appendix({ report, bundle, fileName, showSensitive, onToggleSens
   const stats = report.file.stats;
   const sections = useMemo(() => [
     ["all", "Everything"], ["clinical", "1 · Clinical"], ["disease", "2 · Disease"], ["metabolism", "3 · Metabolism"],
-    ["performance", "4 · Performance"], ["actions", "5 · Actions"], ["explorer", "Explorer (all GWAS)"], ["table", "Evidence table"], ["literature", "Literature"],
+    ["performance", "4 · Performance"], ["actions", "5 · Actions"], ["explorer", "Explorer (all GWAS)"], ["table", "Evidence table"], ["literature", "Literature"], ["raw", "Your raw data"],
   ], []);
 
   const bulk = report.bulk;
@@ -122,6 +123,7 @@ export function Appendix({ report, bundle, fileName, showSensitive, onToggleSens
               </p>
             </div>
           </div>
+          <AccuracyPanel r={report} />
           <div className="notice alert" style={{ marginTop: 18 }}>
             <ul style={{ margin: 0 }}>{DISCLAIMER.map((d) => <li key={d}>{d}</li>)}</ul>
           </div>
@@ -188,6 +190,11 @@ export function Appendix({ report, bundle, fileName, showSensitive, onToggleSens
         {show("literature") && (
           <Section n="◼" keyName="none" title="Literature review layer" intro="Human studies and reviews about foods, dietary patterns and supplements, retrieved from PubMed. These are auto-screened candidates, not verified claims: design is taken from PubMed publication types, and animal-only or mechanistic records are flagged.">
             <LiteraturePanel bundle={bundle} report={report} showSensitive={fl.showSensitive} />
+          </Section>
+        )}
+        {show("raw") && (
+          <Section n="◼" keyName="none" title="Your raw data" intro="Every row of your file as a table: the ID your file uses, chromosome, position, genotype, what it means in plain words, and whether any evidence refers to it.">
+            <RawDataTable r={report} />
           </Section>
         )}
         {fl.section === "all" && (

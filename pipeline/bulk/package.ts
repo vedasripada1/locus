@@ -60,18 +60,22 @@ async function main() {
   const gw = existsSync(join(ROOT, "pipeline/out/gwas-bulk.json")) ? read("pipeline/out/gwas-bulk.json") : null;
   if (!gw) console.warn("pipeline/out/gwas-bulk.json not built yet: skipping gwas.json.gz");
 
+  // Nutrient–gene expression (CTD), human, curated dietary compounds.
+  const ng = existsSync(join(ROOT, "pipeline/out/nutrigenomics.json")) ? read("pipeline/out/nutrigenomics.json") : null;
+
   // Paper metadata for everything we may display outside the GWAS catalog's own study table.
-  const pmids = [...Object.values(cites).flat(), ...Object.values(curatedCites).flat(), ...Object.values(lit).flat(), ...bundle.gwas.map((a) => Number(a.pmid))];
+  const pmids = [...(ng ? (ng.rows as any[][]).flatMap((r) => r[4] as number[]) : []), ...Object.values(cites).flat(), ...Object.values(curatedCites).flat(), ...Object.values(lit).flat(), ...bundle.gwas.map((a) => Number(a.pmid))];
   console.log(`paper metadata for ${new Set(pmids).size.toLocaleString()} PMIDs…`);
   const papers = await paperMeta(pmids);
 
   console.log("writing public/data:");
   write("clinvar.json.gz", { version: cv.version, retrievedAt: cv.retrievedAt, genes: cv.genes, conditions: cv.conditions, sigs, rows, cites });
   if (gw) write("gwas.json.gz", gw);
+  if (ng) write("nutrigenomics.json.gz", ng);
   write("papers.json.gz", { retrievedAt: new Date().toISOString().slice(0, 10), papers, curatedCites, litvar: lit });
   writeFileSync(join(OUT, "manifest.json"), JSON.stringify({
     builtAt: new Date().toISOString(), clinvar: { version: cv.version, variants: rows.length }, gwas: gw ? { version: gw.version, groups: gw.groups.length, sites: Object.keys(gw.sites).length } : null,
-    papers: Object.keys(papers).length,
+    papers: Object.keys(papers).length, nutrigenomics: ng ? { version: ng.version, pairs: ng.rows.length } : null,
   }, null, 1));
 }
 

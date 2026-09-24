@@ -3,6 +3,7 @@
 // Matching reuses matchSite(); ClinVar interpretation reuses clinicalFinding().
 import { matchSite, countAllele, orientAllele } from "./match";
 import { clinicalFinding } from "./interpret";
+import { recordAudit, type MatchAudit, type PositionCandidate } from "./audit";
 import type { ClinicalFinding, ClinGenValidity, ClinVarRecord, EvidenceStrength, ParsedGenome, ReviewStars, SiteMatch, SourceVersion, VariantSite } from "./types";
 
 // ─── File formats (compact tuples) ─────────────────────────────────────────
@@ -79,7 +80,15 @@ function cvSite(r: CvRow, gene: string, src: SourceVersion): VariantSite {
   return { rsid: `rs${rs}`, aliases: [], gene, chrom, pos37: pos, pos38: null, ref, alts: [alt], mainAlt: alt, kind, domain: "clinical", label: r[11].replace(/^[^(]*\(([^)]+)\):/, "$1 ").slice(0, 80) || `${gene} rs${rs}`, sensitive: false, source: src };
 }
 
-export function screenClinVar(genome: ParsedGenome, f: BulkClinVarFile, clingen: ClinGenValidity[]): BulkResult["clinvar"] {
+/** SNV sites from both bulk files, for position-based linking. */
+export function positionCandidates(cv: BulkClinVarFile | null, gw: BulkGwasFile | null): PositionCandidate[] {
+  const out: PositionCandidate[] = [];
+  for (const r of cv?.rows ?? []) if (r[3].length === 1 && r[4].length === 1) out.push({ rsid: `rs${r[0]}`, chrom: r[1], pos: r[2], alleles: [r[3], r[4]] });
+  for (const [rsid, s] of Object.entries(gw?.sites ?? {})) out.push({ rsid, chrom: s[0], pos: s[1], alleles: [s[2], ...s[4].split(",")] });
+  return out;
+}
+
+export function screenClinVar(genome: ParsedGenome, f: BulkClinVarFile, clingen: ClinGenValidity[], audit?: MatchAudit): BulkResult["clinvar"] {
   const src: SourceVersion = { source: "ClinVar", version: `variant_summary ${f.version}`, retrievedAt: f.retrievedAt, url: "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/" };
   const out: BulkResult["clinvar"] = { version: f.version, tested: 0, notCarried: 0, noCall: 0, carried: [], cites: {}, byGene: {}, byCondition: {} };
   const tally = (m: Record<string, [number, number]>, k: string, hit: boolean) => { const t = (m[k] ??= [0, 0]); t[0]++; if (hit) t[1]++; };
@@ -90,6 +99,7 @@ export function screenClinVar(genome: ParsedGenome, f: BulkClinVarFile, clingen:
     const gene = f.genes[r[7]];
     const site = cvSite(r, gene, src);
     const m = matchSite(genome, site);
+    if (audit) recordAudit(audit, m);
     if (m.status === "no-call") { out.noCall++; continue; }
     if (m.status !== "matched") continue;
     out.tested++;
@@ -120,7 +130,7 @@ export function strengthOf(concordantPubs: number, discordant: number, nAssocs: 
   return concordantPubs >= 3 ? "strong" : concordantPubs === 2 ? "moderate" : concordantPubs === 1 ? "limited" : "insufficient";
 }
 
-export function screenGwas(genome: ParsedGenome, f: BulkGwasFile, exclude: Set<string>): BulkResult["gwas"] {
+export function screenGwas(genome: ParsedGenome, f: BulkGwasFile, exclude: Set<string>, audit?: MatchAudit): BulkResult["gwas"] {
   const src: SourceVersion = { source: "GWAS Catalog", version: `associations download ${f.version}`, retrievedAt: f.retrievedAt, url: "https://www.ebi.ac.uk/gwas/" };
   const reverseAlias = new Map<string, string[]>();
   for (const [old, cur] of Object.entries(f.aliases)) (reverseAlias.get(cur) ?? reverseAlias.set(cur, []).get(cur)!).push(old);
@@ -133,6 +143,7 @@ export function screenGwas(genome: ParsedGenome, f: BulkGwasFile, exclude: Set<s
     if (s && !exclude.has(rsid) && [rsid, ...aliases].some((id) => genome.calls.has(id))) {
       const site: VariantSite = { rsid, aliases, gene: s[5], chrom: s[0], pos37: s[1], pos38: null, ref: s[2], alts: s[4].split(","), mainAlt: s[3], kind: "snv", domain: "disease", label: `${s[5] || "rs"} ${rsid}`, sensitive: false, source: src };
       m = matchSite(genome, site);
+      if (audit) recordAudit(audit, m);
     }
     matches.set(rsid, m);
     return m;

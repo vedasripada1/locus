@@ -1,4 +1,4 @@
-import type { FileFormat, GenomeBuild, GenotypeCall, ParseIssue, ParsedGenome, ParseStats } from "./types";
+import type { FileFormat, GenomeBuild, GenomeTable, GenotypeCall, ParseIssue, ParsedGenome, ParseStats } from "./types";
 
 /** Thrown for files we cannot interpret at all. Message is user-facing. */
 export class ParseError extends Error {
@@ -60,7 +60,7 @@ function normaliseAlleles(tokens: string[]): { alleles: string[]; ok: boolean } 
  * Parse a raw genotype file. Only rsIDs in `keep` are retained in memory;
  * every row still counts toward validation statistics.
  */
-export function parseGenotypeText(text: string, keep: Set<string>): ParsedGenome {
+export function parseGenotypeText(text: string, keep: Set<string>, opts: { fullTable?: boolean } = {}): ParsedGenome {
   if (text.charCodeAt(0) === 0xfeff) text = text.slice(1);
   const lines = text.split(/\r?\n/);
   const header: string[] = [];
@@ -79,6 +79,7 @@ export function parseGenotypeText(text: string, keep: Set<string>): ParsedGenome
     totalRows: 0, calledRows: 0, noCallRows: 0, malformedRows: 0, duplicateRsids: 0, callRate: 0, chromosomes: {},
   };
   const expectedCols = format === "23andme" ? 4 : 5;
+  const t = opts.fullTable ? { id: [] as string[], chrom: [] as string[], pos: [] as number[], geno: [] as string[] } : null;
   let firstMalformed: number | undefined;
 
   for (; i < lines.length; i++) {
@@ -103,6 +104,7 @@ export function parseGenotypeText(text: string, keep: Set<string>): ParsedGenome
       continue;
     }
     stats.chromosomes[chrom] = (stats.chromosomes[chrom] ?? 0) + 1;
+    if (t) { t.id.push(rsid); t.chrom.push(chrom); t.pos.push(pos); t.geno.push(alleles.join("")); }
     if (alleles.length) stats.calledRows++;
     else stats.noCallRows++;
 
@@ -149,5 +151,6 @@ export function parseGenotypeText(text: string, keep: Set<string>): ParsedGenome
     issues.push({ severity: "info", code: "small-file",
       message: `Only ${stats.totalRows.toLocaleString()} rows. Full downloads usually have 600,000+; this may be a partial or test file.` });
   }
-  return { format, build, buildEvidence: evidence, calls, stats, issues };
+  const table: GenomeTable | undefined = t ? { id: t.id, chrom: t.chrom, pos: Int32Array.from(t.pos), geno: t.geno } : undefined;
+  return { format, build, buildEvidence: evidence, calls, stats, issues, table };
 }

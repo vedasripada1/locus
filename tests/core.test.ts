@@ -213,6 +213,10 @@ describe("interpretation", () => {
     expect(md).not.toMatch(/APOE type/);
     expect(toMarkdown(report, BUNDLE, { showSensitive: true })).toMatch(/APOE type ε3\/ε4/);
     expect(toJson(report)).not.toMatch(/rs900000/);
+    const full = parseGenotypeText(file23([["rs2", "10", 200, "TT"]]), KEEP, { fullTable: true });
+    expect(full.table!.id).toContain("rs9000000"); // the table holds every row...
+    const withTable = { ...report, table: full.table, audit: { fileIds: ["rs2"] } as never };
+    expect(toJson(withTable)).not.toMatch(/rs9000000|"fileIds"/); // ...but exports never do
   });
 });
 

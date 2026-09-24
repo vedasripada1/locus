@@ -3,10 +3,12 @@
 // plus bulk hits. Nothing here can reach another origin (CSP connect-src 'self').
 import { unzipSync, strFromU8 } from "fflate";
 import { parseGenotypeText, ParseError } from "../core/parse";
-import { bulkRsids, loadGz, screenClinVar, screenGwas, type BulkClinVarFile, type BulkGwasFile, type BulkResult } from "../core/bulk";
-import type { ClinGenValidity } from "../core/types";
+import { bulkRsids, loadGz, positionCandidates, screenClinVar, screenGwas, type BulkClinVarFile, type BulkGwasFile, type BulkResult } from "../core/bulk";
+import { auditSummary, linkByPosition, newAudit, recordAudit } from "../core/audit";
+import { matchSite } from "../core/match";
+import type { ClinGenValidity, VariantSite } from "../core/types";
 
-export type WorkerIn = { file?: File; text?: string; keep: string[]; exclude: string[]; clingen: ClinGenValidity[]; dataBase: string };
+export type WorkerIn = { file?: File; text?: string; keep: string[]; exclude: string[]; clingen: ClinGenValidity[]; sites: VariantSite[]; dataBase: string };
 
 async function readText(file: File): Promise<string> {
   const buf = new Uint8Array(await file.arrayBuffer());
@@ -29,13 +31,20 @@ self.onmessage = async (e: MessageEvent<WorkerIn>) => {
       loadGz<BulkClinVarFile>(`${dataBase}clinvar.json.gz`).catch(() => null),
       loadGz<BulkGwasFile>(`${dataBase}gwas.json.gz`).catch(() => null),
     ]);
-    post({ progress: "Reading your file…" });
+    post({ progress: "Reading your whole file…" });
     const keep = new Set([...e.data.keep, ...bulkRsids(cv, gw)]);
-    const genome = parseGenotypeText(text, keep);
+    const genome = parseGenotypeText(text, keep, { fullTable: true });
+
+    post({ progress: "Linking every row to the evidence (by rsID, then by position)…" });
+    const curated = e.data.sites.filter((x) => x.kind === "snv").map((x) => ({ rsid: x.rsid, chrom: x.chrom, pos: x.pos37, alleles: [x.ref, ...x.alts] }));
+    const linkedByPosition = linkByPosition(genome, [...curated, ...positionCandidates(cv, gw)]);
+
     post({ progress: "Matching against ClinVar and the GWAS Catalog…" });
+    const audit = newAudit(genome.table?.id.length ?? genome.stats.totalRows);
+    for (const site of e.data.sites) recordAudit(audit, matchSite(genome, site));
     const exclude = new Set(e.data.exclude);
-    const bulk: BulkResult | null = cv && gw ? { clinvar: screenClinVar(genome, cv, e.data.clingen), gwas: screenGwas(genome, gw, exclude) } : null;
-    post({ ok: true, genome, bulk, bulkError: bulk ? null : "Bulk evidence files (public/data) could not be loaded; showing the curated report only." });
+    const bulk: BulkResult | null = cv && gw ? { clinvar: screenClinVar(genome, cv, e.data.clingen, audit), gwas: screenGwas(genome, gw, exclude, audit) } : null;
+    post({ ok: true, genome, bulk, audit: { ...auditSummary(audit), linkedByPosition }, bulkError: bulk ? null : "Bulk evidence files (public/data) could not be loaded; showing the curated report only." });
   } catch (err) {
     const known = err instanceof ParseError;
     post({ ok: false, error: known ? err.message : `Unexpected error while reading the file: ${(err as Error).message}`, code: known ? err.code : "internal" });

@@ -70,7 +70,8 @@ export function toMarkdown(r: Report, bundle: EvidenceBundle, opts: { showSensit
 
 /** JSON export omits nothing about findings but never includes the raw file. */
 export function toJson(r: Report): string {
-  return JSON.stringify(r, (k, v) => (v instanceof Map ? undefined : v), 2);
+  // Never export the raw genotype table or the list of file row IDs.
+  return JSON.stringify(r, (k, v) => (v instanceof Map || k === "table" || k === "fileIds" ? undefined : v), 2);
 }
 
 function bulkMd(r: Report, opts: { showSensitive: boolean }): string {

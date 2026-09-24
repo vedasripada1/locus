@@ -48,7 +48,8 @@ export function matchSite(genome: ParsedGenome, site: VariantSite): SiteMatch {
     return base;
   }
   const m: SiteMatch = { ...base, call };
-  if (call.rsid !== site.rsid) m.notes.push(`Found under merged rsID ${call.rsid}; dbSNP now calls it ${site.rsid}.`);
+  if (call.matchedBy === "position") m.notes.push(`Matched by chromosome and position: your file lists this site as ${call.rsid}. Alleles were checked for consistency.`);
+  else if (call.rsid !== site.rsid) m.notes.push(`Found under merged rsID ${call.rsid}; dbSNP now calls it ${site.rsid}.`);
 
   const expectedPos = genome.build === "GRCh37" ? site.pos37 : genome.build === "GRCh38" ? site.pos38 : null;
   if (expectedPos != null) {
@@ -123,4 +124,31 @@ export function zygosity(m: SiteMatch, copies: number | null) {
   if (copies === 0) return "not carried" as const;
   if (m.forwardAlleles.length === 1) return "hemizygous" as const;
   return copies === 2 ? ("homozygous" as const) : ("heterozygous" as const);
+}
+
+/** Plain description of one allele at a site, e.g. "G", "deletion of CTT", "insertion of C". */
+export function describeAllele(site: Pick<VariantSite, "ref" | "kind">, allele: string): string {
+  if (site.kind === "snv" || allele === site.ref) return allele === site.ref && site.kind !== "snv" ? "no deletion/insertion (reference)" : allele;
+  const ref = site.ref === "-" ? "" : site.ref, alt = allele === "-" ? "" : allele;
+  if (alt.length < ref.length) return `deletion of ${ref.startsWith(alt) ? ref.slice(alt.length) : ref}`;
+  if (alt.length > ref.length) return `insertion of ${alt.startsWith(ref) ? alt.slice(ref.length) : alt}`;
+  return allele;
+}
+
+/** Your genotype in plain words, including what I/D codes mean. */
+export function readableGenotype(m: SiteMatch): string {
+  if (m.status === "not-on-array") return "Not on your chip (not tested).";
+  if (m.status === "no-call") return "On your chip, but the reading failed (no-call).";
+  if (m.status === "allele-mismatch") return `Unreadable against the reference (${m.call?.raw}).`;
+  const a = m.forwardAlleles;
+  if (m.orientation === "indel-coded") {
+    const variant = a.filter((x) => x !== m.site.ref).length;
+    const what = describeAllele(m.site, m.site.alts[0]);
+    const codes = `${m.call!.raw}: your file uses I/D codes (I = insertion, D = deletion)`;
+    if (variant === 0) return `${codes}. Neither copy has the ${what}.`;
+    return `${codes}. ${variant === 2 ? "Both copies have" : "One copy has"} the ${what}${variant === 1 ? "; the other doesn't" : ""}.`;
+  }
+  const flipped = m.orientation === "complemented" ? ` (your file reports the opposite DNA strand: ${m.call!.raw})` : "";
+  if (a.length === 1) return `${a[0]} (a single copy, as expected on X/Y/mitochondrial DNA in some people)${flipped}.`;
+  return a[0] === a[1] ? `${a.join("")}: two copies of ${a[0]}${flipped}.` : `${a.join("")}: one ${a[0]} and one ${a[1]}${flipped}.`;
 }

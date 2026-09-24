@@ -30,7 +30,7 @@ export NCBI_EMAIL=you@example.org       # optional; NCBI asks tools to identify 
 export NCBI_API_KEY=...                 # optional; raises the NCBI limit from 3 to 10 requests/s
 npm run evidence:all                    # curated tier: fetch → literature → build (verify)
 npm run bulk:download                   # genome-wide tier sources (~1.5 GB into pipeline/cache/bulk)
-npm run bulk:all                        # ClinVar screen, GWAS grouping (+Ensembl alleles), paper index, demo files
+npm run bulk:all                        # ClinVar screen, GWAS grouping (+Ensembl alleles), CTD nutrients, paper index, demo files
 ```
 
 Requires Node 20+ (developed on Node 24). `npm run smoke` needs Google Chrome installed (set `CHROME_PATH` if it isn't in `/Applications`).
@@ -77,6 +77,7 @@ Each stage is a separate module with typed inputs and outputs (`src/core/types.t
 | ClinVar FTP (`variant_summary`, `var_citations`) | Genome-wide P/LP screen; papers ClinVar cites per variant | Bulk download | Public domain |
 | GWAS Catalog downloads (associations v1.0.2, trait mappings) | Genome-wide association explorer; study metadata per paper | Bulk download | EMBL-EBI terms |
 | [Ensembl REST](https://grch37.rest.ensembl.org) (GRCh37) | Forward-strand alleles and positions for GWAS-only sites | `POST /variation/homo_sapiens`, 200 ids/call | [Ensembl terms](https://www.ensembl.org/info/about/legal/) |
+| [CTD](https://ctdbase.org/) chemical–gene interactions | Nutrient–gene expression research (human, dietary compounds) | Bulk download | Free with citation, links, and notification of CTD if published ([terms](https://ctdbase.org/about/legal.jsp)) |
 | [LitVar2](https://www.ncbi.nlm.nih.gov/research/litvar2/) (NCBI) | Text-mined papers mentioning curated variants | REST API | Public domain |
 | [FDA consumer update](https://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much) | Caffeine intake guidance | Page fetch | US government work |
 
@@ -104,6 +105,41 @@ The report has two tabs.
 - **Personalize:** optional context at the bottom.
 
 **Technical appendix:** everything, for the curious: full findings, the genome-wide ClinVar screen, the GWAS explorer, evidence table, literature, coverage, sources and audit.
+
+### Accuracy: whole file, every row checked
+
+The whole file is read into a table (every row, not only rows with known evidence), and every row is scanned against the evidence:
+- **Linking rows to evidence:** first by rsID (including merged older rsIDs). Then, for SNVs, by **chromosome + GRCh37 position + allele consistency**. That catches 23andMe's internal "i" IDs and outdated rsIDs. Indels are never linked by position, because vendors write their positions differently.
+- **Accuracy check** (top of the appendix, one line on the results page):
+  - how many rows were linked, and by which method;
+  - position agreement with GRCh37;
+  - how many sites were forward-strand, opposite-strand (flipped), strand-ambiguous (A/T, C/G) or insertion/deletion;
+  - allele mismatches (skipped, never guessed) and no-calls;
+  - a list of every flagged site.
+- **I/D codes explained:** vendors write insertions and deletions as `I` and `D`. The app translates them into the actual DNA change, e.g. "DI: one copy has the deletion of CTT; the other doesn't". Every genotype is also shown in plain words.
+- **Your raw data** (appendix): every row, searchable by rsID, i-ID, chromosome or `chr:pos`, with a flag for rows that carry evidence. Exports never include this table.
+
+### Trait panels
+
+Thirteen panels over the full GWAS Catalog tier:
+
+| Group | Panels |
+|---|---|
+| Diet-related | Vitamins & minerals · Blood fats · Blood sugar & diabetes · Weight & body shape · Caffeine, alcohol & taste · Diet & appetite |
+| Body systems | Heart & blood pressure · Liver · Kidneys & uric acid · Inflammation & immunity · Bones |
+| Performance & sleep | Fitness & performance · Sleep & energy |
+
+Each panel lists only well-replicated associations (≥3 publications agree) where you carry the reported allele, with direction, effect and study count. They are deliberately **not summed into a score**, because effects differ in size and aren't simply additive.
+
+### Nutrients and your genes (lab research)
+
+Built from the [Comparative Toxicogenomics Database](https://ctdbase.org/) (CTD, release 2026-08-28):
+- **What's kept:** human only, about 70 curated dietary compounds, and only simple direct statements ("X results in increased/decreased expression of GENE"). That gives 27,152 nutrient–gene pairs from 2,239 papers.
+- **Which genes are shown:** only genes tied to your health findings or to well-replicated traits where you carry the allele.
+- **Default view:** only consistent findings (2+ papers agree, none disagree).
+- **Labelling:** everything is marked as **research, not recommendations**. These are mostly cell studies at high doses, and none tested people by genotype, so none of it feeds Diet & supplements. Every row links to CTD and its papers.
+
+**CTD terms:** cite CTD and link to its pages (the app does both). If you publish or share the app, you must also notify CTD and give them access (ctdbase.org/help/contact.go).
 
 ### Only sufficient evidence by default
 

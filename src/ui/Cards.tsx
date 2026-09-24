@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { LABELS, PapersList, usePapers } from "./Papers";
 import type { Finding, InterventionAssessment, InterventionStudy, Quoted, SiteMatch } from "../core/types";
+import { describeAllele, readableGenotype } from "../core/match";
 
 const pmUrl = (p: string) => `https://pubmed.ncbi.nlm.nih.gov/${p}/`;
 const pval = (p: string) => { const [m, e] = p.split("e"); return <>{m}×10<sup>{e}</sup></>; };
@@ -41,8 +42,8 @@ export function FindingCard({ f, compact }: { f: Finding; compact?: boolean }) {
         <p className="headline">{f.headline}</p>
         {!compact && (
           <dl className="facts">
-            <dt>Your genotype</dt><dd><Genotype m={f.match} /></dd>
-            <dt>Allele assessed</dt><dd className="mono">{r.altAllele} ({r.title})</dd>
+            <dt>Your genotype</dt><dd><Genotype m={f.match} /><div className="muted">{readableGenotype(f.match)}</div></dd>
+            <dt>Allele assessed</dt><dd>{describeAllele(f.match.site, r.altAllele)} <span className="muted mono">({r.title})</span></dd>
             <dt>Classification</dt><dd>{r.classification}; {r.reviewStatus}{r.lastEvaluated ? `; last evaluated ${r.lastEvaluated}` : ""}</dd>
             <dt>Conditions</dt><dd>{r.conditions.slice(0, 6).join("; ") || "not specified"}{r.conditions.length > 6 ? ` (+${r.conditions.length - 6} more)` : ""}</dd>
             {f.clingen.length > 0 && <><dt>ClinGen validity</dt><dd>{f.clingen.map((g) => <div key={g.disease + g.moi}><a href={g.url} target="_blank" rel="noreferrer">{g.disease}</a>: {g.classification}, {g.moi}</div>)}</dd></>}
@@ -67,7 +68,7 @@ export function FindingCard({ f, compact }: { f: Finding; compact?: boolean }) {
         <h3>{f.topic.label}: {f.match.site.label} <span className="muted mono">{a.rsid}</span></h3>
         <p className="headline">{f.headline}</p>
         <dl className="facts">
-          <dt>Your genotype</dt><dd><Genotype m={f.match} /></dd>
+          <dt>Your genotype</dt><dd><Genotype m={f.match} /><div className="muted">{readableGenotype(f.match)}</div></dd>
           <dt>Effect allele</dt><dd className="mono">{a.effectAllele}{f.effectAlleleForward && f.effectAlleleForward !== a.effectAllele ? ` (forward ${f.effectAlleleForward})` : ""} · copies: {f.effectCopies ?? "not counted"}</dd>
           <dt>Phenotype</dt><dd>{a.reportedTrait}</dd>
           <dt>Effect estimate</dt><dd>{a.orValue != null ? `OR ${a.orValue} per copy` : a.beta ? `β ${a.beta} per copy` : "not reported"}{a.ci ? ` · 95% CI ${a.ci}` : ""} · p = {pval(a.pValue)}</dd>

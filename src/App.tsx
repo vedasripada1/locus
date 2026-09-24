@@ -2,6 +2,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import bundleJson from "./evidence/bundle.json";
 import type { EvidenceBundle, ParsedGenome, UserContext } from "./core/types";
 import type { BulkResult } from "./core/bulk";
+import type { AuditSummary } from "./core/audit";
+
+export type AuditInfo = AuditSummary & { linkedByPosition: number };
 import { buildReport, EMPTY_CONTEXT } from "./core/interpret";
 import { Upload } from "./ui/Upload";
 import { loadDemo } from "./demo";
@@ -14,7 +17,7 @@ const DATA_BASE = new URL(`${import.meta.env.BASE_URL}data/`, location.href).hre
 type State =
   | { phase: "upload"; error?: string }
   | { phase: "parsing"; name: string; progress?: string }
-  | { phase: "report"; name: string; genome: ParsedGenome; bulk: BulkResult | null; bulkError: string | null };
+  | { phase: "report"; name: string; genome: ParsedGenome; bulk: BulkResult | null; bulkError: string | null; audit: AuditInfo | null };
 
 export default function App() {
   const [state, setState] = useState<State>({ phase: "upload" });
@@ -32,11 +35,11 @@ export default function App() {
     w.onmessage = (e) => {
       if (e.data.progress) return setState({ phase: "parsing", name, progress: e.data.progress });
       stopWorker();
-      if (e.data.ok) setState({ phase: "report", name, genome: e.data.genome, bulk: e.data.bulk, bulkError: e.data.bulkError });
+      if (e.data.ok) setState({ phase: "report", name, genome: e.data.genome, bulk: e.data.bulk, bulkError: e.data.bulkError, audit: e.data.audit });
       else setState({ phase: "upload", error: e.data.error });
     };
     w.onerror = (e) => { stopWorker(); setState({ phase: "upload", error: `Could not read the file: ${e.message}` }); };
-    w.postMessage({ ...input, keep: KEEP, exclude: KEEP, clingen: bundle.clingen, dataBase: DATA_BASE });
+    w.postMessage({ ...input, keep: KEEP, exclude: KEEP, clingen: bundle.clingen, sites: bundle.sites, dataBase: DATA_BASE });
   }, []);
 
   // #demo=23andme or #demo=ancestrydna loads a synthetic file (for demos and smoke tests).
@@ -53,7 +56,7 @@ export default function App() {
   }, []);
 
   const report = useMemo(
-    () => (state.phase === "report" ? { ...buildReport(state.genome, bundle, context), bulk: state.bulk, bulkError: state.bulkError } : null),
+    () => (state.phase === "report" ? { ...buildReport(state.genome, bundle, context), bulk: state.bulk, bulkError: state.bulkError, audit: state.audit, table: state.genome.table } : null),
     [state, context],
   );
 

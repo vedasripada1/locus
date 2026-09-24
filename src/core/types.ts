@@ -15,6 +15,16 @@ export interface GenotypeCall {
   /** Alleles as reported (A/C/G/T, or I/D for indels). Empty = no-call. */
   alleles: string[];
   raw: string; // exactly what the file said, for display
+  /** How this call was linked to an evidence site (default: by rsID). */
+  matchedBy?: "rsid" | "position";
+}
+
+/** Every row of the file, column-wise (compact enough for ~700k rows). */
+export interface GenomeTable {
+  id: string[];
+  chrom: string[];
+  pos: Int32Array;
+  geno: string[]; // normalised alleles joined ("AG", "DI", "" for no-call)
 }
 
 export interface ParseIssue {
@@ -38,8 +48,10 @@ export interface ParsedGenome {
   format: FileFormat;
   build: GenomeBuild;
   buildEvidence: string; // header text that told us the build, or why unknown
-  /** Only the calls we have evidence for are retained (keyed by rsid). */
+  /** Calls for sites with evidence (keyed by the evidence site's rsID). */
   calls: Map<string, GenotypeCall>;
+  /** The whole file as a table, when parsed with { fullTable: true }. */
+  table?: GenomeTable;
   stats: ParseStats;
   issues: ParseIssue[];
 }
@@ -395,4 +407,8 @@ export interface Report {
   /** Genome-wide tiers; null when the data files are unavailable. */
   bulk?: import("./bulk").BulkResult | null;
   bulkError?: string | null;
+  /** Accuracy audit over every evidence-bearing row (from the worker). */
+  audit?: (import("./audit").AuditSummary & { linkedByPosition: number }) | null;
+  /** The whole file as a table. */
+  table?: GenomeTable;
 }

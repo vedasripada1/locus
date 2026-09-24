@@ -4,6 +4,8 @@ import { SUFFICIENT_RULES, type Category, type Summary, type SummaryItem } from 
 import { searchReport, type SearchHit } from "../core/search";
 import { DISCLAIMER } from "../core/export";
 import { ContextForm } from "./ContextForm";
+import { NutrientGenes } from "./Nutrigenomics";
+import { accuracyLine } from "./RawData";
 import type { Go } from "./Shell";
 
 const CATS: { id: Category | "all"; label: string }[] = [
@@ -127,6 +129,9 @@ export function ResultsView({ summary, report, fileName, context, onContext, go,
       <section className="block summary-top">
         <p className="muted" style={{ margin: 0 }}>Your results · {fileName} · {report.file.format === "23andme" ? "23andMe" : "AncestryDNA"}</p>
         <h2 className="summary-headline">{summary.headline}</h2>
+        {accuracyLine(report) && (
+          <p className="accuracy-line"><b>✓</b> {accuracyLine(report)} <button className="linklike" onClick={() => go({ tab: "appendix", section: "all" })}>See the check</button> · <button className="linklike" onClick={() => go({ tab: "appendix", section: "raw" })}>Your raw data</button></p>
+        )}
         <p className="muted small-print">
           Only results with sufficient evidence are shown unless you choose otherwise. {DISCLAIMER[0]} {DISCLAIMER[2]}{" "}
           <button className="linklike" onClick={() => go({ tab: "appendix", section: "all" })}>Limits, sources and full technical report</button>
@@ -177,6 +182,8 @@ export function ResultsView({ summary, report, fileName, context, onContext, go,
           </div>
         )}
       </section>
+
+      <NutrientGenes report={report} />
 
       <section className="block">
         <ContextForm value={context} onChange={onContext} notes={report.contextNotes} />

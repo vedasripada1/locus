@@ -5,3 +5,4 @@ pipeline/cache
 .env
 pipeline-*.log
 pipeline/out/*-bulk.json
+pipeline/out/nutrigenomics.json

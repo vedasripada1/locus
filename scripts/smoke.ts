@@ -42,7 +42,10 @@ for (const demo of ["23andme", "ancestrydna"]) {
   await page.waitForFunction(() => document.querySelectorAll("ul.papers li").length > 0, { timeout: 30000 }).catch(() => problems.push("paper list did not load"));
   const papers = await page.$$eval("ul.papers li", (li) => li.length);
   await page.select(".toolbar select", "all");
+  const accuracy = await page.evaluate(() => (document.body.innerText.match(/Accuracy check:[^\n]*/) ?? [""])[0]);
+  if (!accuracy) problems.push("accuracy check missing");
   const text = await page.evaluate(() => document.body.innerText);
+  console.log(`  ${accuracy.slice(0, 220)}`);
   console.log(`  bulk tiers rendered +${rendered} ms; explorer rows ${rows}; papers listed ${papers}`);
   await page.screenshot({ path: `${out}/smoke-${demo}.png`, fullPage: true });
   // Delete control: returns to the upload screen.
