@@ -46,7 +46,8 @@ self.onmessage = async (e: MessageEvent<WorkerIn>) => {
     for (const site of e.data.sites) recordAudit(audit, matchSite(genome, site));
     const exclude = new Set(e.data.exclude);
     const bulk: BulkResult | null = cv && gw ? { clinvar: screenClinVar(genome, cv, e.data.clingen, audit), gwas: screenGwas(genome, gw, exclude, audit) } : null;
-    post({ ok: true, genome, bulk, refs, audit: { ...auditSummary(audit), linkedByPosition }, bulkError: bulk ? null : "Bulk evidence files (public/data) could not be loaded; showing the curated report only." });
+    const curatedFreq = Object.fromEntries(e.data.sites.map((x) => [x.rsid, cv?.freq?.[x.rsid]]).filter(([, v]) => v));
+    post({ ok: true, genome, bulk, refs, curatedFreq, audit: { ...auditSummary(audit), linkedByPosition }, bulkError: bulk ? null : "Bulk evidence files (public/data) could not be loaded; showing the curated report only." });
   } catch (err) {
     const known = err instanceof ParseError;
     post({ ok: false, error: known ? err.message : `Unexpected error while reading the file: ${(err as Error).message}`, code: known ? err.code : "internal" });

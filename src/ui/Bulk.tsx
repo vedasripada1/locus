@@ -16,7 +16,7 @@ export function ClinVarScreen({ bulk, warning, showSensitive }: { bulk: BulkResu
         Your file was checked against <b>every germline ClinVar variant classified Pathogenic or Likely pathogenic</b> (≥1★, with an rsID; ClinVar {bulk.version}).
         {" "}<b>{bulk.tested.toLocaleString()}</b> of them were on your chip and readable ({bulk.noCall.toLocaleString()} no-calls).
         The listed allele was <b>not observed at {bulk.notCarried.toLocaleString()}</b> and <b>observed at {bulk.carried.length}</b>.
-        Variants not on your chip were not tested.
+        Variants not on your chip were not tested. This is the raw list before the safety checks (population frequency, review strength, inheritance, strand); the Your results tab shows which passed.
       </p>
       {warning && (
         <div className="notice alert" style={{ marginBottom: 14 }}>

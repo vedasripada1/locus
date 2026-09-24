@@ -18,7 +18,7 @@ const DATA_BASE = new URL(`${import.meta.env.BASE_URL}data/`, location.href).hre
 type State =
   | { phase: "upload"; error?: string }
   | { phase: "parsing"; name: string; progress?: string }
-  | { phase: "report"; name: string; genome: ParsedGenome; bulk: BulkResult | null; bulkError: string | null; audit: AuditInfo | null; refs: References | null };
+  | { phase: "report"; name: string; genome: ParsedGenome; bulk: BulkResult | null; bulkError: string | null; audit: AuditInfo | null; refs: References | null; curatedFreq: Record<string, [string, number, string]> };
 
 export default function App() {
   const [state, setState] = useState<State>({ phase: "upload" });
@@ -36,7 +36,7 @@ export default function App() {
     w.onmessage = (e) => {
       if (e.data.progress) return setState({ phase: "parsing", name, progress: e.data.progress });
       stopWorker();
-      if (e.data.ok) setState({ phase: "report", name, genome: e.data.genome, bulk: e.data.bulk, bulkError: e.data.bulkError, audit: e.data.audit, refs: e.data.refs });
+      if (e.data.ok) setState({ phase: "report", name, genome: e.data.genome, bulk: e.data.bulk, bulkError: e.data.bulkError, audit: e.data.audit, refs: e.data.refs, curatedFreq: e.data.curatedFreq ?? {} });
       else setState({ phase: "upload", error: e.data.error });
     };
     w.onerror = (e) => { stopWorker(); setState({ phase: "upload", error: `Could not read the file: ${e.message}` }); };
@@ -57,7 +57,7 @@ export default function App() {
   }, []);
 
   const report = useMemo(
-    () => (state.phase === "report" ? { ...buildReport(state.genome, bundle, context), bulk: state.bulk, bulkError: state.bulkError, audit: state.audit, table: state.genome.table, refs: state.refs } : null),
+    () => (state.phase === "report" ? { ...buildReport(state.genome, bundle, context), bulk: state.bulk, bulkError: state.bulkError, audit: state.audit, table: state.genome.table, refs: state.refs, alleleFreq: state.curatedFreq } : null),
     [state, context],
   );
 

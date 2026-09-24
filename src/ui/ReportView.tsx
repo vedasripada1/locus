@@ -134,7 +134,7 @@ export function Appendix({ report, bundle, fileName, showSensitive, onToggleSens
 
         {show("clinical") && (
           <Section n="1" keyName="clinical" title="Clinically significant findings requiring confirmation"
-            intro="Rare variants that ClinVar classifies as pathogenic or likely pathogenic, observed in your file. Each needs confirmation by clinical-grade testing and discussion with a genetics professional before it means anything.">
+            intro="Technical view: every ClinVar pathogenic or likely pathogenic allele observed in your file, before the safety checks (frequency, review strength, inheritance, strand). The Your results tab shows which ones passed and are worth raising; the rest are reviewed and not a concern.">
             {f(actionable).length ? f(actionable).map((x) => <FindingCard key={x.record.id} f={x} />) : (
               <div className="card key-none"><p className="headline">No pathogenic or likely pathogenic allele among the tested curated sites.</p>
                 <p className="muted" style={{ margin: 0 }}>Among the {bundle.sites.filter((s) => s.domain === "clinical").length} curated clinical sites. The genome-wide screen below covers every ClinVar pathogenic variant on your chip. Consumer chips cover a small fraction of disease-causing variants, so neither rules out any condition.</p></div>

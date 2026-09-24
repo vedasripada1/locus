@@ -75,7 +75,11 @@ async function main() {
   const papers = await paperMeta(pmids);
 
   console.log("writing public/data:");
-  write("clinvar.json.gz", { version: cv.version, retrievedAt: cv.retrievedAt, genes: cv.genes, conditions: cv.conditions, sigs, rows, cites });
+  // Allele frequencies (1000 Genomes via Ensembl) for bulk rows and curated ClinVar sites.
+  const fq = existsSync(join(ROOT, "pipeline/out/clinvar-freq.json")) ? read("pipeline/out/clinvar-freq.json") : null;
+  const keepFreq = new Set([...rows.map((r) => `rs${r[0]}`), ...bundle.clinvar.map((r) => r.rsid)]);
+  const freq = fq ? Object.fromEntries(Object.entries(fq.freq).filter(([k]) => keepFreq.has(k))) : {};
+  write("clinvar.json.gz", { version: cv.version, retrievedAt: cv.retrievedAt, genes: cv.genes, conditions: cv.conditions, sigs, rows, cites, freq, freqSource: fq?.source ?? null });
   if (gw) write("gwas.json.gz", gw);
   if (ng) write("nutrigenomics.json.gz", ng);
   if (existsSync(join(ROOT, "pipeline/out/references.json"))) write("references.json.gz", read("pipeline/out/references.json"));

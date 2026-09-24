@@ -30,7 +30,7 @@ export NCBI_EMAIL=you@example.org       # optional; NCBI asks tools to identify 
 export NCBI_API_KEY=...                 # optional; raises the NCBI limit from 3 to 10 requests/s
 npm run evidence:all                    # curated tier: fetch → literature → build (verify)
 npm run bulk:download                   # genome-wide tier sources (~1.5 GB into pipeline/cache/bulk)
-npm run bulk:all                        # ClinVar screen, GWAS grouping (+Ensembl alleles), EFO definitions, CTD nutrients, GeneReviews + MedlinePlus, paper index, demo files
+npm run bulk:all                        # ClinVar screen (+Ensembl frequencies), GWAS grouping (+Ensembl alleles), EFO definitions, CTD nutrients, GeneReviews + MedlinePlus, paper index, demo files
 ```
 
 Requires Node 20+ (developed on Node 24). `npm run smoke` needs Google Chrome installed (set `CHROME_PATH` if it isn't in `/Applications`).
@@ -142,6 +142,20 @@ How the lean is worked out (`traitLean` in `src/core/plain.ts`):
 It is **direction-only** and not a validated risk score: it doesn't weigh effect sizes, and frequencies come from each study's population. Every card says what a lean can mean ("your genetic starting point may be slightly above or below average") and what it can't ("doesn't show you have or will get a condition; no personal level or risk"). For measured traits it points to the blood test.
 
 Each card also includes plain **trait definitions** from the Experimental Factor Ontology (EBI OLS; 805 of 808 traits). The variant list shows your copies next to a typical person's, e.g. "you have 1 copy of C (a typical person has about 1.4)".
+
+### No alarm without verification
+
+A ClinVar "pathogenic" label alone never raises an alarm. Every candidate health finding goes through a checklist, and the card shows it with ✓ (pass), ! (caution), ✗ (fail) or ? (unknown):
+
+1. **Disease-causing allele identified:** the exact allele, chromosome, GRCh37 position and HGVS name from ClinVar.
+2. **Present in your file:** the allele must appear **on the forward strand** at the expected position. Clinical calls never flip strands. Consumer files report the forward strand, so a genotype that fits only after flipping (e.g. "CC" at an A→G site) most likely carries a different, harmless allele. It is treated as not tested. Position-based linking is forward-only for the same reason. Strand-ambiguous (A/T, C/G) sites, position mismatches and I/D calls get a caution.
+3. **Classified disease-causing:** pathogenic or likely pathogenic with at least 2 review stars (or a per-condition call at 2★+) and no conflicts. Single-submitter, conflicting, benign or other labels don't alarm.
+4. **Rare in the population:** the frequency of that exact allele comes from 1000 Genomes via Ensembl. That covers 171,932 of 225,761 ClinVar pathogenic rsIDs; "not seen in 1000 Genomes" counts as rare. Across ClinVar's pathogenic SNVs, none is at 5% or above and 5 are at 1–5% (HBB sickle, HFE C282Y, SERPINA1 S, G6PD, GJB2 V37I), all recessive or low-penetrance, so one copy shows as carrier status. At 5% or more it is treated as unable to cause a rare disease on its own, so no alarm. From 1% to 5% it gets a caution, since such variants are often carrier or low-penetrance variants.
+5. **Could it affect you?** Inheritance comes from ClinGen, or failing that from GeneReviews' genetic-counseling text when it names a single pattern. One copy of a recessive (or X-linked, two-X) variant is **carrier status**, shown calmly in its own "Carrier status" category. Dominant variants, or two copies of a recessive one, can go to "Confirm with a doctor".
+
+If inheritance isn't recorded anywhere and you have one copy, the result is shown as **"Unclear for you"**: worth mentioning to a doctor, not urgent, and not counted as an alarm. Carrier cards leave out the condition's treatment guidance, which is for people who have the condition.
+
+Anything that fails becomes "Reviewed, not a concern", with the reason, and is hidden unless you include weaker evidence. The technical appendix still lists every observed ClinVar allele, labelled as the pre-check list.
 
 ### From a finding to what you can do
 

@@ -4,13 +4,18 @@
 import { matchSite, countAllele, orientAllele } from "./match";
 import { clinicalFinding } from "./interpret";
 import { recordAudit, type MatchAudit, type PositionCandidate } from "./audit";
+import { altFrequency } from "./clinicalcheck";
 import type { ClinicalFinding, ClinGenValidity, ClinVarRecord, EvidenceStrength, ParsedGenome, ReviewStars, SiteMatch, SourceVersion, VariantSite } from "./types";
 
 // ─── File formats (compact tuples) ─────────────────────────────────────────
 
 /** [rsNum, chrom, pos37, ref, alt, sigIdx, stars, geneIdx, condIdx[], variationId, lastEvaluated, name] */
 export type CvRow = [number, string, number, string, string, number, number, number, number[], number, string, string];
-export interface BulkClinVarFile { version: string; retrievedAt: string; genes: string[]; conditions: string[]; sigs: string[]; rows: CvRow[]; cites: Record<string, number[]> }
+export interface BulkClinVarFile {
+  version: string; retrievedAt: string; genes: string[]; conditions: string[]; sigs: string[]; rows: CvRow[]; cites: Record<string, number[]>;
+  /** rsid → [minor allele, global MAF, "REF/ALT..."] (1000 Genomes via Ensembl). */
+  freq?: Record<string, [string, number, string]>;
+}
 
 /** [rsid, traitIdx, leadAllele, leadForward, value, kind(0 OR,1 β), sign, ci, p, leadPmid, sampleIdx, concordantPubs, discordantAssocs, nAssocs, pmids[], how, leadAlleleFrequency] */
 export type GwRow = [string, number, string, string, number, 0 | 1, 1 | -1 | 0, string, string, number, number, number, number, number, number[], string, (number | null)?];
@@ -102,7 +107,7 @@ export function screenClinVar(genome: ParsedGenome, f: BulkClinVarFile, clingen:
     if (!genome.calls.has(`rs${r[0]}`)) continue;
     const gene = f.genes[r[7]];
     const site = cvSite(r, gene, src);
-    const m = matchSite(genome, site);
+    const m = matchSite(genome, site, { forwardOnly: true });
     if (audit) recordAudit(audit, m);
     if (m.status === "no-call") { out.noCall++; continue; }
     if (m.status !== "matched") continue;
@@ -116,6 +121,7 @@ export function screenClinVar(genome: ParsedGenome, f: BulkClinVarFile, clingen:
       reviewStatus: STAR_LABEL[r[6]] ?? "", stars: r[6] as ReviewStars, conflicting: false,
       conditions: r[8].map((i) => f.conditions[i]), rcvs: [], lastEvaluated: r[10] || null,
       url: `https://www.ncbi.nlm.nih.gov/clinvar/variation/${r[9]}/`, source: src,
+      altFrequency: altFrequency(f.freq?.[`rs${r[0]}`], r[3], r[4]),
     };
     const finding = clinicalFinding(m, rec, { clingen: byGene.get(gene) ?? [] } as never);
     finding.limitations.unshift("Genome-wide screen: this very rare variant was reported by a consumer chip. Most such calls are false positives; see the warning above.");

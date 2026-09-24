@@ -195,3 +195,9 @@ ul.papers li { margin: 4px 0; }
 .talk { margin: 8px 0 0; font-size: .9rem; }
 .talk-banner { font-size: .92rem; border-left: 3px solid var(--teak); padding: 8px 12px; background: var(--panel); max-width: 90ch; }
 .why-next li { white-space: pre-line; }
+.checklist { list-style: none; padding: 0; margin: 8px 0; font-size: .92rem; }
+.checklist li { display: grid; grid-template-columns: 22px 1fr; gap: 0 6px; margin: 4px 0; }
+.checklist li b { font-weight: 600; }
+.checklist .mark { font-weight: 700; text-align: center; }
+.chk.pass .mark { color: var(--olive); } .chk.caution .mark { color: #a67c00; } .chk.fail .mark { color: var(--terracotta); } .chk.unknown .mark { color: var(--muted); }
+.chip.type-carrier { background: var(--teak); color: #fff; border-color: var(--teak); }

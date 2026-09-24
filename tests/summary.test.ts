@@ -39,12 +39,13 @@ describe("plain-language summary", () => {
     const n = s.items.filter((i) => i.tone === "action" && i.sufficient).length;
     expect(s.headline).toContain(`${n} diet, supplement or lifestyle step`);
   });
-  it("explains a recessive carrier in plain words, with rationale and next steps", () => {
-    const c = byId("confirm-VCV-rs1")[0];
-    expect(c.plain).toMatch(/carry one copy.*two copies.*carriers without symptoms/);
-    expect(c.why.join(" ")).toMatch(/ClinVar classifies/);
-    expect(c.next.join(" ")).toMatch(/clinical-grade genetic test/);
-    expect(c.next.join(" ")).toMatch(/family planning/);
+  it("reports one copy of a recessive variant as carrier status, not an alarm", () => {
+    const c = s.items.find((i) => i.id === "confirm-VCV-rs1")!;
+    expect(c.category).toBe("carrier");
+    expect(c.tone).not.toBe("confirm");
+    expect(c.plain).toMatch(/carrier of .*Carriers usually have no symptoms.*family planning/);
+    expect(c.checks!.map((x) => x.label)).toContain("Rare in the population");
+    expect((c.more ?? []).some((m) => m.title.startsWith("If a clinical test confirms it"))).toBe(false);
   });
   it("lists each genome-wide rare hit separately, with the false-positive caveat", () => {
     const b = s.items.find((i) => i.id === "confirm-VariationID 51")!;

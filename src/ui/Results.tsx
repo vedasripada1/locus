@@ -15,11 +15,12 @@ const CATS: { id: Category | "all"; label: string }[] = [
   { id: "lifestyle", label: "Lifestyle" },
   { id: "clinician", label: "Ask your doctor" },
   { id: "health", label: "Health findings" },
+  { id: "carrier", label: "Carrier status" },
   { id: "medication", label: "Medications" },
   { id: "trait", label: "Traits & risks" },
   { id: "clear", label: "Checked" },
 ];
-const TYPE_LABEL: Partial<Record<Category, string>> = { diet: "Food", supplement: "Supplement", lifestyle: "Lifestyle", clinician: "Ask your doctor", health: "Health finding", medication: "Medication", trait: "Trait", clear: "Checked", quality: "File" };
+const TYPE_LABEL: Partial<Record<Category, string>> = { diet: "Food", supplement: "Supplement", lifestyle: "Lifestyle", clinician: "Ask your doctor", health: "Health finding", carrier: "Carrier", medication: "Medication", trait: "Trait", clear: "Checked", quality: "File" };
 const RECS: Category[] = ["diet", "supplement", "lifestyle"];
 
 /** Search hits that add something beyond the item list (coverage answers, trait groups, curated site status). */
@@ -88,6 +89,19 @@ function Recommendations({ items, hiddenWeak, go }: { items: SummaryItem[]; hidd
   );
 }
 
+const MARK = { pass: "✓", caution: "!", fail: "✗", unknown: "?" } as const;
+
+/** The verification checklist behind every health finding. */
+function Checklist({ checks }: { checks: NonNullable<SummaryItem["checks"]> }) {
+  return (
+    <ul className="checklist" aria-label="Checks before raising this">
+      {checks.map((c) => (
+        <li key={c.label} className={`chk ${c.status}`}><span className="mark" aria-hidden>{MARK[c.status]}</span><span><b>{c.label}:</b> {c.detail}</span></li>
+      ))}
+    </ul>
+  );
+}
+
 function ItemRow({ item, go, focused }: { item: SummaryItem; go: Go; focused: boolean }) {
   const [open, setOpen] = useState(focused);
   const ref = useRef<HTMLElement>(null);
@@ -102,6 +116,7 @@ function ItemRow({ item, go, focused }: { item: SummaryItem; go: Go; focused: bo
       </div>
       <p className="plain" style={{ margin: "6px 0" }}>{item.plain}</p>
       {item.highlights?.map((h) => <p key={h} className="highlight">{h}</p>)}
+      {item.checks && <Checklist checks={item.checks} />}
       {item.list && <ul className="plain-list">{item.list.map((l) => <li key={l}>{l}</li>)}</ul>}
       <button className="linklike no-print" onClick={() => setOpen(!open)} aria-expanded={open}>{open ? "Hide details" : "Why and what to do"}</button>
       {open && <Details item={item} go={go} />}

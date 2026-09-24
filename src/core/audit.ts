@@ -54,7 +54,6 @@ export type AuditSummary = ReturnType<typeof auditSummary>;
 
 export interface PositionCandidate { rsid: string; chrom: string; pos: number | null; alleles: string[] }
 
-const COMP: Record<string, string> = { A: "T", T: "A", C: "G", G: "C" };
 
 /**
  * Link file rows to evidence sites by chromosome and GRCh37 position when the rsID is not in the
@@ -72,7 +71,9 @@ export function linkByPosition(genome: ParsedGenome, candidates: PositionCandida
     const i = index.get(`${c.chrom}:${c.pos}`);
     if (i == null) continue;
     const obs = t.geno[i].split("");
-    const fits = obs.every((x) => c.alleles.includes(x)) || obs.every((x) => c.alleles.includes(COMP[x]));
+    // Forward strand only: consumer files report the forward strand, and flipping could turn a
+    // different allele into a disease allele.
+    const fits = obs.every((x) => c.alleles.includes(x));
     if (!fits || !c.alleles.every((x) => /^[ACGT]$/.test(x))) continue;
     genome.calls.set(c.rsid, { rsid: t.id[i], chrom: t.chrom[i], pos: t.pos[i], alleles: obs, raw: t.geno[i], matchedBy: "position" });
     n++;

@@ -31,7 +31,7 @@ export async function ensemblSites(rsids: string[]): Promise<Map<string, Ensembl
   mkdirSync(CACHE, { recursive: true });
   const out = new Map<string, EnsemblSite>();
   const sorted = [...new Set(rsids)].sort();
-  const B = 200, CONCURRENCY = 8;
+  const B = 200, CONCURRENCY = Number(process.env.ENSEMBL_CONCURRENCY ?? 8);
   const batches: string[][] = [];
   for (let i = 0; i < sorted.length; i += B) batches.push(sorted.slice(i, i + B));
   let done = 0;

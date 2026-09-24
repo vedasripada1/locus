@@ -40,7 +40,12 @@ export function findCall(genome: ParsedGenome, site: VariantSite): GenotypeCall 
   return undefined;
 }
 
-export function matchSite(genome: ParsedGenome, site: VariantSite): SiteMatch {
+/**
+ * Match one evidence site. `forwardOnly` (used for clinical calls) never flips strands:
+ * consumer files report the forward strand, so a genotype that only fits after flipping more
+ * likely carries a different allele, and must not be turned into a disease allele.
+ */
+export function matchSite(genome: ParsedGenome, site: VariantSite, opts: { forwardOnly?: boolean } = {}): SiteMatch {
   const base: SiteMatch = { site, status: "not-on-array", call: null, forwardAlleles: [], orientation: null, positionCheck: "not-checked", notes: [] };
   const call = findCall(genome, site);
   if (!call) {
@@ -97,13 +102,15 @@ export function matchSite(genome: ParsedGenome, site: VariantSite): SiteMatch {
     }
   } else if (call.alleles.every((a) => known.includes(a))) {
     orientation = "forward";
-  } else if (call.alleles.every((a) => known.includes(complement(a)))) {
+  } else if (!opts.forwardOnly && call.alleles.every((a) => known.includes(complement(a)))) {
     orientation = "complemented";
     forward = call.alleles.map(complement);
     m.notes.push(`Reported on the opposite strand (${call.raw}); complemented to ${forward.join("")}.`);
   } else {
     m.status = "allele-mismatch";
-    m.notes.push(`Observed ${call.raw} does not match the known alleles ${known.join("/")} on either strand. Not interpreted.`);
+    m.notes.push(opts.forwardOnly
+      ? `Observed ${call.raw} does not match this record's alleles ${known.join("/")} on the forward strand (the strand consumer files use). You likely carry a different allele; not interpreted, and never flipped for a clinical call.`
+      : `Observed ${call.raw} does not match the known alleles ${known.join("/")} on either strand. Not interpreted.`);
     return m;
   }
   m.status = "matched";

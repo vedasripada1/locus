@@ -7,10 +7,11 @@ import type { BulkGwasHit } from "./bulk";
 import { classifyClinVar } from "./interpret";
 import { readableGenotype } from "./match";
 import { chapterFor, firstSentences, managementParts, topicsFor, type References } from "./refs";
+import { altFrequency, moiFromText, verifyClinical, type Check } from "./clinicalcheck";
 import type { VerifiedWarning } from "./types";
 
 export type Tone = "confirm" | "action" | "know" | "clear" | "quality";
-export type Category = "diet" | "supplement" | "lifestyle" | "clinician" | "health" | "medication" | "trait" | "clear" | "quality";
+export type Category = "diet" | "supplement" | "lifestyle" | "clinician" | "health" | "carrier" | "medication" | "trait" | "clear" | "quality";
 
 /**
  * What counts as sufficient evidence to show an item by default. Items below the bar are
@@ -21,7 +22,8 @@ export const SUFFICIENT_RULES: Record<Category, string> = {
   supplement: "A human randomized trial, meta-analysis or systematic review supports it, and a verified upper limit exists.",
   lifestyle: "A human randomized trial, meta-analysis, systematic review or clinical guideline supports it.",
   clinician: "A clinical guideline, randomized trial, meta-analysis or systematic review supports it.",
-  health: "ClinVar classifies the variant pathogenic with at least 2 review stars.",
+  health: "The disease-causing allele is present on the forward strand, ClinVar classifies it pathogenic with at least 2 review stars and no conflicts, it is rare in the population (under 5%), and given how the condition is inherited it could affect you.",
+  carrier: "The same checks as health findings, for a recessive (or X-linked) condition where you appear to have one copy: carrier status.",
   medication: "A ClinVar expert panel (3+ review stars) classifies the drug response.",
   trait: "At least 3 publications agree on the direction, with no substantial disagreement.",
   clear: "Always shown (it reports what was tested).",
@@ -79,6 +81,8 @@ export interface SummaryItem {
   highlights?: string[];
   /** Who to talk it over with. */
   talkTo?: string;
+  /** Verification checklist (health findings). */
+  checks?: Check[];
   /** Where the technical detail lives in the appendix. */
   appendix: { section: string; query?: string };
   sources: { label: string; url: string }[];
@@ -154,10 +158,13 @@ function clinvarWhy(f: ClinicalFinding, cond: string): string {
 
 // ─── Item builders ──────────────────────────────────────────────────────────
 
-export function confirmItem(f: ClinicalFinding, bulk = false, refs?: References | null, warnings: VerifiedWarning[] = []): SummaryItem {
+export function confirmItem(f: ClinicalFinding, bulk = false, refs?: References | null, warnings: VerifiedWarning[] = [], freqMap: Report["alleleFreq"] = {}): SummaryItem {
   const r = f.record;
   const cond = mainCondition(f);
-  const moi = inheritance(f, cond);
+  const ch0 = chapterFor(refs, f.match.site.gene, [cond, ...r.conditions]);
+  const moi = inheritance(f, cond) ?? moiFromText(ch0?.counseling);
+  const frequency = r.altFrequency ?? altFrequency(freqMap?.[r.rsid], f.match.site.ref, r.altAllele);
+  const verdict = verifyClinical(f, moi, frequency);
   const two = f.zygosity === "homozygous";
   const lowPen = /low penetrance/i.test(r.classification);
   let plain: string;
@@ -180,7 +187,7 @@ export function confirmItem(f: ClinicalFinding, bulk = false, refs?: References 
   else if (bulk) why.unshift("How likely this is real: consumer chips misread very rare variants often. In one large study only 16% of very rare chip calls were confirmed by sequencing (Weedon et al., BMJ 2021).");
   next.unshift("Don't make health decisions from this result alone: first get it confirmed.");
   next.push("A genetic counsellor can explain what a confirmed result would mean for you and your relatives. In the US, the National Society of Genetic Counselors lists counsellors at findageneticcounselor.nsgc.org; elsewhere, ask your doctor for a referral. Bringing a printout of this page helps.");
-  const ch = chapterFor(refs, f.match.site.gene, [cond, ...r.conditions]);
+  const ch = ch0;
   const more: SummaryItem["more"] = [];
   const highlights: string[] = [];
   if (ch) {
@@ -192,13 +199,52 @@ export function confirmItem(f: ClinicalFinding, bulk = false, refs?: References 
     if (ch.counseling) more.push({ title: "Family (GeneReviews, genetic counseling section)", lines: [firstSentences(ch.counseling, 2)] });
     next.push("If confirmed, specialists plan screening and prevention with you using guidance like the GeneReviews management section below. Decisions are made with your care team, not from this report.");
   }
-  return {
-    id: `confirm-${r.id}`, tone: "confirm", category: "health", sufficient: r.stars >= 2, carried: true,
-    evidenceLabel: `ClinVar ${r.stars}★${bulk ? " · chip call unverified" : ""}`,
-    whyYou: `Your file shows ${f.zygosity === "homozygous" ? "two copies" : "one copy"} of a variant ClinVar lists as pathogenic.`,
-    title: `${f.match.site.gene}: ${cond}`, plain, why, next, more, highlights, talkTo: "a doctor or genetic counsellor",
-    confidence: bulk || r.stars < 2 || f.match.site.kind !== "snv" ? "low" : "moderate",
+  const base = {
+    id: `confirm-${r.id}`, carried: true as const, checks: verdict.checks, more, highlights,
     appendix: { section: "clinical" }, sources: [{ label: `ClinVar ${r.id}`, url: r.url }, ...(ch ? [{ label: `GeneReviews: ${ch.title}`, url: ch.url }] : [])], sensitive: f.match.site.sensitive,
+  };
+  if (verdict.level === "not-a-concern") {
+    return {
+      ...base, tone: "clear", category: "health", sufficient: false, talkTo: "your doctor",
+      evidenceLabel: "Reviewed: not a concern", whyYou: verdict.reason,
+      title: `Reviewed, not a concern: ${f.match.site.gene} (${cond})`,
+      plain: `Your file shows a variant in ${f.match.site.gene} that ClinVar lists for ${cond}, but on checking it isn't a cause for concern: ${verdict.reason}`,
+      why: [`Every possible health finding is checked before it's raised; this one didn't pass.`, ...why],
+      next: ["No action is needed based on this result.", "If this condition runs in your family, a doctor can advise on proper clinical testing regardless of this report."],
+      more: [], highlights: [], confidence: "low",
+    };
+  }
+  if (verdict.level === "carrier") {
+    return {
+      ...base, tone: "know", category: "carrier", sufficient: true, talkTo: "a genetic counsellor or your doctor",
+      evidenceLabel: `Carrier · ClinVar ${r.stars}★${bulk ? " · chip call unverified" : ""}`,
+      whyYou: "You appear to have one copy of a recessive disease variant.",
+      title: `Carrier: ${cond} (${f.match.site.gene})`,
+      // Management guidance is for people who have the condition, not carriers.
+      highlights: highlights.filter((h) => h.startsWith("About this condition")),
+      more: more.filter((m) => !m.title.startsWith("If a clinical test confirms it")),
+      plain: `You appear to be a carrier of ${cond}: one copy of a variant that causes it only when someone has two copies. Carriers usually have no symptoms. It mainly matters for family planning.`,
+      why, next: ["No action is needed for your own health from carrier status.", "If you're planning a family, a genetic counsellor can explain what this means (your partner can be tested too). Confirm with a clinical test first."],
+      confidence: bulk ? "low" : "moderate",
+    };
+  }
+  if (verdict.level === "unclear") {
+    return {
+      ...base, tone: "know", category: "health", sufficient: true, talkTo: "your doctor or a genetic counsellor",
+      evidenceLabel: `Inheritance unclear · ClinVar ${r.stars}★${bulk ? " · chip call unverified" : ""}`,
+      whyYou: "You appear to have one copy, and it isn't recorded how this condition is inherited.",
+      title: `Unclear for you: ${cond} (${f.match.site.gene})`,
+      plain: `Your file shows one copy of a variant ClinVar lists as disease-causing for ${cond}. How this condition is inherited isn't recorded in ClinGen or GeneReviews, so one copy may only make you a carrier. Worth mentioning to a doctor, but not urgent.`,
+      why, next: ["Not urgent. Mention it to a doctor or genetic counsellor, who can say whether one copy matters for this condition.", "Any action would first need a clinical-grade test to confirm it."],
+      confidence: "low",
+    };
+  }
+  return {
+    ...base, tone: "confirm", category: "health", sufficient: true, talkTo: "a doctor or genetic counsellor",
+    evidenceLabel: `ClinVar ${r.stars}★${bulk ? " · chip call unverified" : ""}`,
+    whyYou: `Your file shows ${f.zygosity === "homozygous" ? "two copies" : "one copy"} of a variant ClinVar lists as pathogenic, and it passed every check.`,
+    title: `${f.match.site.gene}: ${cond}`, plain, why, next,
+    confidence: bulk || r.stars < 2 || f.match.site.kind !== "snv" ? "low" : "moderate",
   };
 }
 
@@ -296,9 +342,9 @@ export function summarize(r: Report, opts: { showSensitive: boolean; warnings?: 
   }
 
   // Confirm with a doctor.
-  for (const f of r.clinical.filter((c) => c.category === "pathogenic-carried")) items.push(confirmItem(f, false, refs, warnings));
+  for (const f of r.clinical.filter((c) => c.category === "pathogenic-carried")) items.push(confirmItem(f, false, refs, warnings, r.alleleFreq));
   // Genome-wide scan hits: one item each (filterable), marked as unverified chip calls.
-  for (const f of r.bulk?.clinvar.carried ?? []) items.push(confirmItem(f, true, refs, warnings));
+  for (const f of r.bulk?.clinvar.carried ?? []) items.push(confirmItem(f, true, refs, warnings, r.alleleFreq));
 
   // Things you could do.
   for (const a of r.interventions) items.push(actionItem(a));
@@ -406,11 +452,13 @@ export function summarize(r: Report, opts: { showSensitive: boolean; warnings?: 
   }
 
   const shown = items.filter(visible);
-  const n = (t: Tone) => shown.filter((i) => i.tone === t && i.sufficient).length;
+  const n = (t: Tone) => shown.filter((i) => i.tone === t && i.sufficient && i.category !== "carrier").length;
+  const carriers = shown.filter((i) => i.category === "carrier").length;
   const headline = [
     n("confirm") ? `${n("confirm")} to confirm with a doctor` : "Nothing flagged to confirm with a doctor",
     `${n("action")} diet, supplement or lifestyle step${n("action") === 1 ? "" : "s"}`,
     `${n("know")} good to know`,
+    ...(carriers ? [`${carriers} carrier result${carriers === 1 ? "" : "s"}`] : []),
   ].join(" · ");
   return { headline, items: shown };
 }
