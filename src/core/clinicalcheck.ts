@@ -55,7 +55,7 @@ export function verifyClinical(f: ClinicalFinding, moi: string | null, frequency
   if (!copies) present = { label: "Present in your file", status: "fail", detail: "Your file does not show this allele." };
   else if (m.orientation === "ambiguous-palindromic") present = { label: "Present in your file", status: "caution", detail: `Your file shows ${m.call!.raw}, but at an A/T or C/G site the strand can't be checked from the letters alone.` };
   else if (m.positionCheck === "mismatch") present = { label: "Present in your file", status: "fail", detail: `Your file lists this ID at ${m.call!.chrom}:${m.call!.pos}, but the ClinVar variant is at ${site.chrom}:${site.pos37}. It's probably a different variant, so it isn't counted.` };
-  else if (m.orientation === "indel-coded") present = { label: "Present in your file", status: "caution", detail: `Your file shows ${m.call!.raw} (insertion/deletion code). Consumer chips often misread these.` };
+  else if (m.orientation === "indel-coded") present = indelPresence(f);
   else present = { label: "Present in your file", status: "pass", detail: `Your file shows ${m.call!.raw} on the forward strand at the expected position: ${copies === 2 ? "two copies" : m.forwardAlleles.length === 1 ? "one copy (single-copy region)" : "one copy"}.` };
   checks.push(present);
 
@@ -89,6 +89,9 @@ export function verifyClinical(f: ClinicalFinding, moi: string | null, frequency
   else effect = { label: "Could it affect you?", status: "unknown", detail: "How this condition is inherited isn't recorded in ClinGen or GeneReviews, so whether one copy matters is unclear." };
   checks.push(effect);
 
+  // One of each I/D code can't be tied to this exact change from consumer data: never an alarm.
+  const indelHet = m.orientation === "indel-coded" && present.status === "caution";
+
   const failed = checks.find((c) => c.status === "fail");
   const weakClass = cls.status === "caution";
   if (failed || weakClass) {
@@ -96,5 +99,26 @@ export function verifyClinical(f: ClinicalFinding, moi: string | null, frequency
   }
   // Unknown inheritance with one copy: it may only mean carrier status, so don't alarm.
   if (effect.status === "unknown" && !two) return { checks, level: "unclear", moi, frequency, reason: effect.detail };
+  if (indelHet) return { checks, level: carrier ? "carrier" : "unclear", moi, frequency, reason: present.detail };
   return { checks, level: carrier ? "carrier" : "alarm", moi, frequency, reason: effect.detail };
+}
+
+/**
+ * AncestryDNA and 23andMe write insertions/deletions as I (longer version) and D (shorter version).
+ * Which one is normal depends on the site and isn't stated in the file, and one rsID can cover
+ * several different indels. So:
+ *  - two identical codes (DD / II) are never counted as two copies of a disease variant: for a rare
+ *    disease allele, being homozygous is far less likely than the code meaning the normal version;
+ *  - one of each (DI) can't be tied to this exact change, so it is at most "unclear" or carrier.
+ */
+function indelPresence(f: ClinicalFinding): Check {
+  const raw = f.match.call!.raw;
+  const what = describeAllele(f.match.site, f.record.altAllele);
+  const codes = "Consumer files write insertions and deletions as I (the longer version) and D (the shorter version); which one is normal depends on the site, and the file doesn't say.";
+  if ((f.altCopies ?? 0) === 2) {
+    return { label: "Present in your file", status: "fail",
+      detail: `Your file shows ${raw}. ${codes} This disease change (${what}) is rare, so two copies would be extremely unusual: ${raw} here almost certainly means you have the normal version on both copies. Not counted.` };
+  }
+  return { label: "Present in your file", status: "caution",
+    detail: `Your file shows ${raw}: one copy of each version. ${codes} So it can't be confirmed from this file that you carry this exact change (${what}); only a clinical test can tell.` };
 }

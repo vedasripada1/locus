@@ -96,3 +96,31 @@ describe("frequency and inheritance sources", () => {
     expect(item.tone).toBe("clear");
   });
 });
+
+describe("insertion/deletion (I/D) codes never raise false alarms", () => {
+  const DEL = site({ rsid: "rs800", gene: "GENED", chrom: "7", pos37: 800, ref: "ACTT", alts: ["A"], kind: "deletion", domain: "clinical", label: "GENED del" });
+  const delRec = rec({ rsid: "rs800", altAllele: "A", title: "NM_2(GENED):c.3_5del" });
+  const indel = (geno: string) => {
+    const g = parseGenotypeText(file23([["rs800", "7", 800, geno]]), new Set(["rs800"]));
+    return clinicalFinding(matchSite(g, DEL, { forwardOnly: true }), delRec, { clingen: [] } as never);
+  };
+  it("does not count D D as two copies of a rare disease deletion, and says why", () => {
+    const v = verifyClinical(indel("DD"), "AD", 0);
+    expect(v.level).toBe("not-a-concern");
+    expect(v.checks[1].status).toBe("fail");
+    expect(v.checks[1].detail).toMatch(/I \(the longer version\) and D \(the shorter version\).*almost certainly means you have the normal version on both copies/);
+  });
+  it("never alarms on D I, even for a dominant condition", () => {
+    const v = verifyClinical(indel("DI"), "AD", 0);
+    expect(v.level).toBe("unclear");
+    expect(v.checks[1].detail).toMatch(/can't be confirmed from this file that you carry this exact change \(deletion of CTT\)/);
+  });
+  it("treats D I for a recessive condition as carrier at most", () => {
+    expect(verifyClinical(indel("DI"), "AR", 0).level).toBe("carrier");
+  });
+  it("does not repeat the genotype explanation in the rationale", () => {
+    const item = confirmItem(indel("DI"), true, null, [], {});
+    expect(item.why.some((w) => /^Your genotype/.test(w))).toBe(false);
+    expect(item.checks!.filter((c) => /I \(the longer version\)/.test(c.detail))).toHaveLength(1);
+  });
+});

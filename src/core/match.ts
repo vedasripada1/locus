@@ -85,7 +85,7 @@ export function matchSite(genome: ParsedGenome, site: VariantSite, opts: { forwa
     m.status = "matched";
     m.orientation = "indel-coded";
     m.forwardAlleles = fwd as string[];
-    m.notes.push("Insertion/deletion calls on consumer chips have high error rates. Any result here needs confirmation.");
+    m.notes.push("Insertion/deletion (I/D) calls on consumer chips are error-prone, and the file doesn't say which version is normal. Any result here needs a clinical test.");
     return m;
   }
 
@@ -149,11 +149,11 @@ export function readableGenotype(m: SiteMatch): string {
   if (m.status === "allele-mismatch") return `Unreadable against the reference (${m.call?.raw}).`;
   const a = m.forwardAlleles;
   if (m.orientation === "indel-coded") {
-    const variant = a.filter((x) => x !== m.site.ref).length;
+    const raw = m.call!.raw.replace(/\s/g, "");
     const what = describeAllele(m.site, m.site.alts[0]);
-    const codes = `${m.call!.raw}: your file uses I/D codes (I = insertion, D = deletion)`;
-    if (variant === 0) return `${codes}. Neither copy has the ${what}.`;
-    return `${codes}. ${variant === 2 ? "Both copies have" : "One copy has"} the ${what}${variant === 1 ? "; the other doesn't" : ""}.`;
+    const codes = `${m.call!.raw}: your file uses I/D codes (I = the longer version, D = the shorter version of this stretch of DNA; which one is normal depends on the site)`;
+    if (raw[0] !== raw[1]) return `${codes}. One copy of each version. It can't be confirmed from the file whether either is the ${what}.`;
+    return `${codes}. Both copies are the same version, most likely the usual one: two copies of a rare ${what} would be very unusual.`;
   }
   const flipped = m.orientation === "complemented" ? ` (your file reports the opposite DNA strand: ${m.call!.raw})` : "";
   if (a.length === 1) return `${a[0]} (a single copy, as expected on X/Y/mitochondrial DNA in some people)${flipped}.`;

@@ -175,7 +175,6 @@ export function confirmItem(f: ClinicalFinding, bulk = false, refs?: References 
   const why = [
     clinvarWhy(f, cond),
     moi ? `ClinGen: ${cond} (${f.match.site.gene}) is inherited as ${MOI_PLAIN[moi]}.` : "Inheritance pattern not established by ClinGen for this gene and condition.",
-    `Your genotype: ${readableGenotype(f.match)}`,
     "Consumer chips often misread rare variants, so this is a lead to check, not a result.",
   ];
   const next = ["Confirm with a clinical-grade genetic test before acting on this.", "Talk to a doctor or genetic counsellor."];

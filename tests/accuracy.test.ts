@@ -43,8 +43,8 @@ describe("plain-language genotypes", () => {
   const g = parseGenotypeText(file23([["rs4", "7", 400, "DI"], ["rs1", "6", 100, "AG"], ["rs2", "10", 200, "AG"]]), KEEP);
   it("explains I/D codes as the actual DNA change", () => {
     const t = readableGenotype(matchSite(g, S("rs4")));
-    expect(t).toMatch(/I = insertion, D = deletion/);
-    expect(t).toMatch(/One copy has the deletion of CTT; the other doesn't/);
+    expect(t).toMatch(/I = the longer version, D = the shorter version/);
+    expect(t).toMatch(/One copy of each version\. It can't be confirmed from the file whether either is the deletion of CTT/);
   });
   it("describes SNV and strand-flipped genotypes", () => {
     expect(readableGenotype(matchSite(g, S("rs1")))).toBe("AG: one A and one G.");

@@ -44,7 +44,6 @@ export function clinicalFinding(m: SiteMatch, r: ClinVarRecord, bundle: Evidence
     "Consumer genotyping arrays can mis-call rare variants. A clinical-grade test is needed before any decision.",
   ];
   if (r.stars <= 1) limitations.push(`ClinVar review status is "${r.reviewStatus}" (${r.stars}/4 stars): limited review.`);
-  if (m.site.kind !== "snv") limitations.push("Insertion/deletion variants are especially error-prone on consumer chips.");
   if (m.orientation === "complemented") limitations.push("Your file's alleles only fit this record after flipping strands. Consumer files use the forward strand, so this is treated as not tested rather than risk a false alarm.");
 
   let category: ClinicalFinding["category"];
