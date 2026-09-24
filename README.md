@@ -150,12 +150,23 @@ A ClinVar "pathogenic" label alone never raises an alarm. Every candidate health
 1. **Disease-causing allele identified:** the exact allele, chromosome, GRCh37 position and HGVS name from ClinVar.
 2. **Present in your file:** the allele must appear **on the forward strand** at the expected position. Clinical calls never flip strands. Consumer files report the forward strand, so a genotype that fits only after flipping (e.g. "CC" at an A→G site) most likely carries a different, harmless allele. It is treated as not tested. Position-based linking is forward-only for the same reason. Strand-ambiguous (A/T, C/G) sites, position mismatches and I/D calls get a caution.
 3. **Classified disease-causing:** pathogenic or likely pathogenic with at least 2 review stars (or a per-condition call at 2★+) and no conflicts. Single-submitter, conflicting, benign or other labels don't alarm.
-4. **Rare in the population:** the frequency of that exact allele comes from 1000 Genomes via Ensembl. That covers 171,932 of 225,761 ClinVar pathogenic rsIDs; "not seen in 1000 Genomes" counts as rare. Across ClinVar's pathogenic SNVs, none is at 5% or above and 5 are at 1–5% (HBB sickle, HFE C282Y, SERPINA1 S, G6PD, GJB2 V37I), all recessive or low-penetrance, so one copy shows as carrier status. At 5% or more it is treated as unable to cause a rare disease on its own, so no alarm. From 1% to 5% it gets a caution, since such variants are often carrier or low-penetrance variants.
+4. **Rare in the population:** the exact frequency of that allele comes from the **1000 Genomes phase 3 sites file** (2,504 people, 5 continental groups). Variants are matched by chromosome, GRCh37 position and alleles:
+   - Every allele at a site gets a frequency, because the GRCh37 reference sometimes carries the rarer allele. At Factor V Leiden the reference base *is* the Leiden T (0.6% worldwide, 1.2% in Europeans).
+   - Indels written differently are matched by length change (F508del: TCTT>T vs ATCT>A).
+   - A variant absent from the file is reliably "not observed".
+
+   Of 242,302 ClinVar disease alleles, 2,161 appear in 1000 Genomes, and **none is above 5%**. So the "normal allele labelled as disease" failure does not occur. The global frequency decides "too common"; the highest continental frequency decides plausibility. At 5% or more it is treated as unable to cause a rare disease on its own, so no alarm. From 1% to 5% it gets a caution, since such variants are often carrier or low-penetrance variants.
 5. **Could it affect you?** Inheritance comes from ClinGen, or failing that from GeneReviews' genetic-counseling text when it names a single pattern. One copy of a recessive (or X-linked, two-X) variant is **carrier status**, shown calmly in its own "Carrier status" category. Dominant variants, or two copies of a recessive one, can go to "Confirm with a doctor".
 
 **Insertions and deletions (I/D codes).** AncestryDNA and 23andMe write indels as `I` (the longer version) and `D` (the shorter version). Which one is the normal version depends on the site, and the file doesn't say ([23andMe](https://eu.customercare.23andme.com/hc/en-us/articles/115002090907-Raw-Genotype-Data-Technical-Details), [Ancestry](https://help-redir.ancestry.com/hc/en-us/articles/53933317283603-Downloading-DNA-Data)). One rsID can also cover several different indels. So, for health findings:
 - **Two identical codes (`DD`/`II`)** are never counted as two copies of a disease variant. For a rare disease allele that would be extremely unusual; the code almost certainly means the normal version, and the card says so.
 - **One of each (`DI`)** can't be tied to ClinVar's exact change from consumer data. It is shown as "unclear for you" (or carrier status for recessive conditions), never as "confirm with a doctor".
+
+**Plausibility.** Two further checks catch chip misreads:
+- **Implausible two-copy calls are not counted.** Two copies of an allele carried by under 0.5% of people would be expected in far fewer than 1 in 40,000 people, and often means a severe early-life condition. For example, a file reading `C C` at BRCA1 c.1292T>G (forward A>C, never seen in 1000 Genomes) is treated as a chip error, not Fanconi anemia.
+- **Very rare single-copy calls are set aside.** Anything under 0.1%, never seen, or with no frequency is shown only in one calm note ("N very rare chip calls that can't be trusted") with the Weedon et al. figures (16% confirmed; 4.2% for BRCA1/2). The note says to ask a doctor about clinical testing only with a personal or family history.
+
+Chip-reliable variants that pass every check, such as Factor V Leiden or HFE C282Y, are still raised.
 
 If inheritance isn't recorded anywhere and you have one copy, the result is shown as **"Unclear for you"**: worth mentioning to a doctor, not urgent, and not counted as an alarm. Carrier cards leave out the condition's treatment guidance, which is for people who have the condition.
 

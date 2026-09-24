@@ -7,7 +7,7 @@ import type { BulkGwasHit } from "./bulk";
 import { classifyClinVar } from "./interpret";
 import { readableGenotype } from "./match";
 import { chapterFor, firstSentences, managementParts, topicsFor, type References } from "./refs";
-import { altFrequency, moiFromText, verifyClinical, type Check } from "./clinicalcheck";
+import { freqFor, moiFromText, verifyClinical, type Check } from "./clinicalcheck";
 import type { VerifiedWarning } from "./types";
 
 export type Tone = "confirm" | "action" | "know" | "clear" | "quality";
@@ -163,7 +163,7 @@ export function confirmItem(f: ClinicalFinding, bulk = false, refs?: References 
   const cond = mainCondition(f);
   const ch0 = chapterFor(refs, f.match.site.gene, [cond, ...r.conditions]);
   const moi = inheritance(f, cond) ?? moiFromText(ch0?.counseling);
-  const frequency = r.altFrequency ?? altFrequency(freqMap?.[r.rsid], f.match.site.ref, r.altAllele);
+  const frequency = r.alleleFrequency ?? freqFor(freqMap, r.rsid, r.altAllele, f.match.site.ref);
   const verdict = verifyClinical(f, moi, frequency);
   const two = f.zygosity === "homozygous";
   const lowPen = /low penetrance/i.test(r.classification);
@@ -225,6 +225,16 @@ export function confirmItem(f: ClinicalFinding, bulk = false, refs?: References 
       plain: `You appear to be a carrier of ${cond}: one copy of a variant that causes it only when someone has two copies. Carriers usually have no symptoms. It mainly matters for family planning.`,
       why, next: ["No action is needed for your own health from carrier status.", "If you're planning a family, a genetic counsellor can explain what this means (your partner can be tested too). Confirm with a clinical test first."],
       confidence: bulk ? "low" : "moderate",
+    };
+  }
+  if (verdict.level === "unverified") {
+    return {
+      ...base, tone: "clear", category: "health", sufficient: false, talkTo: "your doctor (only if you have a personal or family history)",
+      evidenceLabel: "Unverified very rare chip call", whyYou: verdict.reason,
+      title: `Unverified rare call: ${f.match.site.gene} (${cond})`,
+      plain: `Your chip reported a very rare variant in ${f.match.site.gene} that ClinVar lists for ${cond}. ${verdict.reason}`,
+      why, next: ["Don't act on this call.", `Only if you or close relatives have had ${cond} or related illness: ask a doctor about a clinical-grade test.`],
+      highlights: [], more: [], confidence: "low",
     };
   }
   if (verdict.level === "unclear") {
@@ -344,6 +354,21 @@ export function summarize(r: Report, opts: { showSensitive: boolean; warnings?: 
   for (const f of r.clinical.filter((c) => c.category === "pathogenic-carried")) items.push(confirmItem(f, false, refs, warnings, r.alleleFreq));
   // Genome-wide scan hits: one item each (filterable), marked as unverified chip calls.
   for (const f of r.bulk?.clinvar.carried ?? []) items.push(confirmItem(f, true, refs, warnings, r.alleleFreq));
+
+  // One calm note for very rare chip calls that can't be trusted (instead of individual alarms).
+  const unverified = items.filter((i) => i.evidenceLabel === "Unverified very rare chip call");
+  if (unverified.length) {
+    items.push({
+      id: "unverified-summary", tone: "know", category: "health", sufficient: true, carried: true, talkTo: "your doctor (only if you have a personal or family history)",
+      evidenceLabel: "Not findings", whyYou: "Your chip reported these, but consumer chips are unreliable for variants this rare.",
+      title: `${unverified.length} very rare chip call${unverified.length === 1 ? "" : "s"} that can't be trusted`,
+      plain: `Your chip reported ${unverified.length} very rare variant${unverified.length === 1 ? "" : "s"} that ClinVar links to disease. In a large study comparing chips with sequencing, only 16% of very rare chip calls were real (4% for BRCA1/2), so these are not shown as findings and you don't need to act on them. If you have a personal or strong family history of one of these conditions, ask a doctor about a clinical-grade test.`,
+      why: ["Weedon et al., BMJ 2021 (PMID 33589468): SNP chips are extremely unreliable for very rare pathogenic variants and should not be used to guide health decisions without validation.", "Each call was checked: allele, position and ClinVar classification, then population frequency. They were set aside because they are too rare for a chip to read reliably."],
+      next: ["No action needed based on these calls.", "Only with a personal or family history: a doctor can order a clinical test that reads the gene properly."],
+      list: unverified.map((u) => u.title.replace(/^Unverified rare call: /, "")),
+      confidence: "low", appendix: { section: "clinical" }, sources: [{ label: "Weedon et al., BMJ 2021", url: "https://pubmed.ncbi.nlm.nih.gov/33589468/" }],
+    });
+  }
 
   // Things you could do.
   for (const a of r.interventions) items.push(actionItem(a));

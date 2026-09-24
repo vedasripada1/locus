@@ -26,7 +26,7 @@ function Notes({ m, limits }: { m?: SiteMatch; limits: string[] }) {
   return <details><summary>Limitations & matching notes ({all.length})</summary><ul className="limits">{all.map((n) => <li key={n}>{n}</li>)}</ul></details>;
 }
 
-export function FindingCard({ f, compact }: { f: Finding; compact?: boolean }) {
+export function FindingCard({ f, compact, raw }: { f: Finding; compact?: boolean; raw?: boolean }) {
   if (f.kind === "clinical") {
     const r = f.record;
     const key = f.category === "pathogenic-carried" ? "clinical" : f.category === "not-tested" || f.category === "not-carried" ? "none" : "disease";
@@ -34,7 +34,7 @@ export function FindingCard({ f, compact }: { f: Finding; compact?: boolean }) {
       <article className={`card key-${key}`}>
         <div className="chips">
           <span className="chip">{f.match.site.gene}</span>
-          <span className={`chip ${f.category === "pathogenic-carried" || f.category === "conflicting" ? "warn" : ""}`}>{f.category.replace(/-/g, " ")}</span>
+          <span className={`chip ${!raw && (f.category === "pathogenic-carried" || f.category === "conflicting") ? "warn" : ""}`}>{raw ? "raw chip call (before checks)" : f.category.replace(/-/g, " ")}</span>
           <span className="chip">ClinVar {r.stars}/4 ★</span>
           {f.match.site.sensitive && <span className="chip">sensitive</span>}
         </div>

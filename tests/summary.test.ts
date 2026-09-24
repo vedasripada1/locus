@@ -26,6 +26,7 @@ function report() {
   ]), new Set([...KEEP, ...bulkRsids(CV, GW)]));
   const r = buildReport(g, BUNDLE);
   r.bulk = { clinvar: screenClinVar(g, CV, []), gwas: screenGwas(g, GW, new Set()) };
+  r.alleleFreq = { rs1: { A: [0.003, 0.004, "EUR"] } };
   return r;
 }
 
@@ -47,14 +48,15 @@ describe("plain-language summary", () => {
     expect(c.checks!.map((x) => x.label)).toContain("Rare in the population");
     expect((c.more ?? []).some((m) => m.title.startsWith("If a clinical test confirms it"))).toBe(false);
   });
-  it("lists each genome-wide rare hit separately, with the false-positive caveat", () => {
-    const b = s.items.find((i) => i.id === "confirm-VariationID 51")!;
-    expect(b.category).toBe("health");
-    expect(b.confidence).toBe("low");
-    expect(b.why[0]).toMatch(/16%/);
-    expect(b.title).toMatch(/CFTR/);
-    expect(b.evidenceLabel).toMatch(/chip call unverified/);
-    expect(b.sufficient).toBe(true); // 3★ classification; the genotype still needs confirmation
+  it("sets aside very rare genome-wide chip calls in one calm note instead of alarms", () => {
+    const b = s.items.find((i) => i.id === "confirm-VariationID 51")!; // CFTR, no population frequency
+    expect(b.title).toMatch(/^Unverified rare call: CFTR/);
+    expect(b.sufficient).toBe(false);
+    const note = s.items.find((i) => i.id === "unverified-summary")!;
+    expect(note.sufficient).toBe(true);
+    expect(note.plain).toMatch(/only 16% of very rare chip calls were real \(4% for BRCA1\/2\)/);
+    expect(note.list!.join(" ")).toMatch(/CFTR/);
+    expect(s.headline).not.toMatch(/^[1-9]\d* to confirm/); // nothing here is an alarm
   });
   it("turns actions into plain items that say whether genes change the advice", () => {
     const a = byId("action-lifestyle")[0];

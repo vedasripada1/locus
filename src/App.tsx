@@ -18,7 +18,7 @@ const DATA_BASE = new URL(`${import.meta.env.BASE_URL}data/`, location.href).hre
 type State =
   | { phase: "upload"; error?: string }
   | { phase: "parsing"; name: string; progress?: string }
-  | { phase: "report"; name: string; genome: ParsedGenome; bulk: BulkResult | null; bulkError: string | null; audit: AuditInfo | null; refs: References | null; curatedFreq: Record<string, [string, number, string]> };
+  | { phase: "report"; name: string; genome: ParsedGenome; bulk: BulkResult | null; bulkError: string | null; audit: AuditInfo | null; refs: References | null; curatedFreq: import("./core/clinicalcheck").FreqTable };
 
 export default function App() {
   const [state, setState] = useState<State>({ phase: "upload" });

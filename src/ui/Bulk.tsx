@@ -33,7 +33,10 @@ export function ClinVarScreen({ bulk, warning, showSensitive }: { bulk: BulkResu
         </label>
         <span className="muted">{shown.length} shown</span>
       </div>
-      {shown.map((f) => <FindingCard key={f.record.id} f={f} />)}
+      <div className="notice" style={{ marginBottom: 12 }}>
+        <b>These are raw chip calls, not findings.</b> Each is checked on the Your results tab: population frequency, whether two copies are believable, review strength, inheritance and strand. Most very rare calls are set aside there as chip errors.
+      </div>
+      {shown.map((f) => <FindingCard key={f.record.id} f={f} raw />)}
       {!shown.length && <div className="card key-none"><p className="headline" style={{ margin: 0 }}>No pathogenic allele observed at this review level among the tested sites.</p></div>}
     </div>
   );

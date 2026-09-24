@@ -7,25 +7,41 @@ import type { ClinicalFinding } from "./types";
 
 export type CheckStatus = "pass" | "caution" | "fail" | "unknown";
 export interface Check { label: string; status: CheckStatus; detail: string }
-export type AlarmLevel = "alarm" | "carrier" | "unclear" | "not-a-concern";
-export interface ClinicalVerdict { checks: Check[]; level: AlarmLevel; reason: string; moi: string | null; frequency: number | null }
-
-/** [minor allele, global minor-allele frequency, "REF/ALT1/ALT2"] from Ensembl (1000 Genomes). */
-export type FreqEntry = [string, number, string];
+export type AlarmLevel = "alarm" | "carrier" | "unclear" | "unverified" | "not-a-concern";
+export interface ClinicalVerdict { checks: Check[]; level: AlarmLevel; reason: string; moi: string | null; frequency: AlleleFreq | null }
 
 export const RARE = 0.01;
 export const TOO_COMMON = 0.05;
+/** Two copies of an allele rarer than this (in every continental group) is implausible (fewer than ~1 in 40,000 people). */
+export const HOM_IMPLAUSIBLE = 0.005;
+/** Below this frequency in every continental group (or never observed), consumer chips are too unreliable for a single-copy call. */
+export const ULTRA_RARE = 0.001;
 
-/** Frequency of the ClinVar (disease) allele itself, when it can be worked out; null otherwise. */
-export function altFrequency(entry: FreqEntry | undefined, ref: string, alt: string): number | null {
-  if (!entry) return null;
-  const [minor, maf, alleles] = entry;
-  const all = alleles.split("/");
-  if (minor === "" && maf === 0) return all.includes(alt) ? 0 : null; // known variant, never seen in 1000 Genomes
-  if (minor === alt) return maf;
-  if (minor === ref && all.length === 2) return 1 - maf; // biallelic: the disease allele is the major one
-  return null; // multi-allelic and the minor allele is a third allele: unknown
+/** Frequency of one allele in 1000 Genomes phase 3: global, and the highest continental group. */
+export interface AlleleFreq { af: number; maxAf: number; pop: string }
+/** rsid → allele → [global AF, max continental AF, continent, REF of that record]; [0, 0, ""] = not observed in 1000 Genomes. */
+export type FreqTable = Record<string, Record<string, [number, number, string, string?]>>;
+
+/**
+ * Frequency of `alt` at `rsid`. Indels can be written differently by different sources
+ * (e.g. F508del is TCTT>T in dbSNP style but ATCT>A in VCF style), so when there is no exact match,
+ * an entry with the same length change is used.
+ */
+export function freqFor(table: FreqTable | undefined, rsid: string, alt: string, ref?: string): AlleleFreq | null {
+  const byAllele = table?.[rsid];
+  if (!byAllele) return null;
+  let e = byAllele[alt];
+  // Indels: an exact entry may only be the "not observed" placeholder because of a different spelling.
+  if ((!e || e[1] === 0) && ref && ref.length !== alt.length) {
+    const len = (x: string) => (x === "-" ? 0 : x.length);
+    const delta = len(alt) - len(ref);
+    const same = Object.entries(byAllele).filter(([a, v]) => a !== alt && v[3] && v[1] > 0 && len(a) - len(v[3]) === delta);
+    if (same.length === 1) e = same[0][1];
+  }
+  return e ? { af: e[0], maxAf: e[1], pop: e[2] } : null;
 }
+
+const POP_NAME: Record<string, string> = { EUR: "European", AFR: "African", EAS: "East Asian", SAS: "South Asian", AMR: "admixed American" };
 
 /** Inheritance stated in GeneReviews' genetic-counseling text, if exactly one pattern is named. */
 export function moiFromText(text: string | undefined): string | null {
@@ -40,8 +56,10 @@ export function moiFromText(text: string | undefined): string | null {
 }
 
 const pct = (x: number) => (x < 0.001 ? "under 0.1%" : `${(100 * x).toFixed(x < 0.01 ? 2 : 1)}%`);
+const describeFreq = (f: AlleleFreq) => f.maxAf === 0 ? "not observed in 1000 Genomes (2,504 people from 26 populations)"
+  : `about ${pct(f.af)} of alleles worldwide${f.pop && f.maxAf > f.af * 1.5 ? `, up to ${pct(f.maxAf)} in ${POP_NAME[f.pop] ?? f.pop} samples` : ""} (1000 Genomes)`;
 
-export function verifyClinical(f: ClinicalFinding, moi: string | null, frequency: number | null): ClinicalVerdict {
+export function verifyClinical(f: ClinicalFinding, moi: string | null, frequency: AlleleFreq | null): ClinicalVerdict {
   const m = f.match, r = f.record, site = m.site;
   const checks: Check[] = [];
 
@@ -56,6 +74,8 @@ export function verifyClinical(f: ClinicalFinding, moi: string | null, frequency
   else if (m.orientation === "ambiguous-palindromic") present = { label: "Present in your file", status: "caution", detail: `Your file shows ${m.call!.raw}, but at an A/T or C/G site the strand can't be checked from the letters alone.` };
   else if (m.positionCheck === "mismatch") present = { label: "Present in your file", status: "fail", detail: `Your file lists this ID at ${m.call!.chrom}:${m.call!.pos}, but the ClinVar variant is at ${site.chrom}:${site.pos37}. It's probably a different variant, so it isn't counted.` };
   else if (m.orientation === "indel-coded") present = indelPresence(f);
+  else if (copies === 2 && (frequency == null || frequency.maxAf < HOM_IMPLAUSIBLE)) present = { label: "Present in your file", status: "fail",
+    detail: `Your file shows ${m.call!.raw}: two copies of the disease allele. For a variant this rare (${frequency ? describeFreq(frequency) : "no population frequency available"}), two copies would be expected in far fewer than 1 in 40,000 people and would usually mean a severe condition from early life. It is almost certainly a chip reading error, so it isn't counted.` };
   else present = { label: "Present in your file", status: "pass", detail: `Your file shows ${m.call!.raw} on the forward strand at the expected position: ${copies === 2 ? "two copies" : m.forwardAlleles.length === 1 ? "one copy (single-copy region)" : "one copy"}.` };
   checks.push(present);
 
@@ -68,16 +88,14 @@ export function verifyClinical(f: ClinicalFinding, moi: string | null, frequency
       : { label: "Classified disease-causing", status: "pass", detail: `"${r.classification}", ${r.stars}★ review (${r.reviewStatus}), no conflicting interpretations.` };
   checks.push(cls);
 
-  // 4. Rare enough to cause disease on its own.
+  // 4. Rare enough to cause disease on its own (global frequency; continental maximum is shown too).
   const freq: Check = frequency == null
     ? { label: "Rare in the population", status: "unknown", detail: "No population frequency available for this allele." }
-    : frequency >= TOO_COMMON
-      ? { label: "Rare in the population", status: "fail", detail: `About ${pct(frequency)} of alleles worldwide are this one (1000 Genomes). An allele this common can't on its own cause a rare disease; ClinVar's label likely reflects a low-impact or mislabelled variant.` }
-      : frequency >= RARE
-        ? { label: "Rare in the population", status: "caution", detail: `About ${pct(frequency)} of alleles worldwide (1000 Genomes): fairly common. Variants this common are often recessive carrier variants or have low penetrance.` }
-        : frequency === 0
-          ? { label: "Rare in the population", status: "pass", detail: "Not seen in 1000 Genomes (2,504 people from 26 populations): rare worldwide, as expected for a disease-causing variant. Some variants are more common within particular communities." }
-          : { label: "Rare in the population", status: "pass", detail: `About ${pct(frequency)} of alleles worldwide (1000 Genomes), as expected for a disease-causing variant.` };
+    : frequency.af >= TOO_COMMON
+      ? { label: "Rare in the population", status: "fail", detail: `${cap(describeFreq(frequency))}. An allele this common can't on its own cause a rare disease; ClinVar's label likely reflects a low-impact or mislabelled variant.` }
+      : frequency.af >= RARE || frequency.maxAf >= TOO_COMMON
+        ? { label: "Rare in the population", status: "caution", detail: `${cap(describeFreq(frequency))}: fairly common. Variants this common are often recessive carrier variants or have low penetrance.` }
+        : { label: "Rare in the population", status: "pass", detail: `${cap(describeFreq(frequency))}, as expected for a disease-causing variant.` };
   checks.push(freq);
 
   // 5. Could it affect you, given inheritance?
@@ -96,6 +114,11 @@ export function verifyClinical(f: ClinicalFinding, moi: string | null, frequency
   const weakClass = cls.status === "caution";
   if (failed || weakClass) {
     return { checks, level: "not-a-concern", moi, frequency, reason: failed ? failed.detail : cls.detail };
+  }
+  // Very rare single-copy calls: consumer chips get most of these wrong (Weedon et al., BMJ 2021).
+  if (frequency == null || frequency.maxAf < ULTRA_RARE) {
+    return { checks, level: "unverified", moi, frequency,
+      reason: `This variant is very rare (${frequency ? describeFreq(frequency) : "no population frequency available"}). Consumer chips get most calls like this wrong, so it can't be treated as a finding without a clinical test.` };
   }
   // Unknown inheritance with one copy: it may only mean carrier status, so don't alarm.
   if (effect.status === "unknown" && !two) return { checks, level: "unclear", moi, frequency, reason: effect.detail };
@@ -122,3 +145,5 @@ function indelPresence(f: ClinicalFinding): Check {
   return { label: "Present in your file", status: "caution",
     detail: `Your file shows ${raw}: one copy of each version. ${codes} So it can't be confirmed from this file that you carry this exact change (${what}); only a clinical test can tell.` };
 }
+
+const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);

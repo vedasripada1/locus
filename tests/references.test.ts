@@ -61,7 +61,7 @@ describe("health findings link to what can be done", () => {
     stars: 3, conflicting: false, conditions: ["Hereditary breast ovarian cancer syndrome"], rcvs: [], lastEvaluated: null, url: "https://example.test", source: BUNDLE.clinvar[0].source };
   const f = clinicalFinding(matchSite(g, s), rec, { clingen: [] } as never);
   const warn: VerifiedWarning = { id: "snp-chip-brca", title: "t", summary: "Most BRCA chip calls were not confirmed.", quotes: [{ value: "", quote: "positive predictive value 4.2%", citation: "BMJ 2021", source: BUNDLE.clinvar[0].source }] };
-  const item = confirmItem(f, true, REFS, [warn]);
+  const item = confirmItem(f, true, REFS, [warn], { rs80357906: { A: [0.002, 0.003, "EUR"] } });
   it("says what the condition is, how likely the result is real, and what specialists do if confirmed", () => {
     expect(item.highlights![0]).toMatch(/About this condition: HBOC is characterized by an increased risk/);
     expect(item.why[0]).toMatch(/How likely this is real: Most BRCA chip calls were not confirmed\. "positive predictive value 4\.2%"/);

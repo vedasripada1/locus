@@ -113,8 +113,8 @@ export interface ClinVarRecord {
   conditions: string[];
   /** Per-condition classifications from the full VCV record. */
   rcvs: RcvClassification[];
-  /** Population frequency of this (disease) allele, when known (1000 Genomes via Ensembl). */
-  altFrequency?: number | null;
+  /** Frequency of this (disease) allele in 1000 Genomes, when known. */
+  alleleFrequency?: import("./clinicalcheck").AlleleFreq | null;
   lastEvaluated: string | null;
   url: string;
   source: SourceVersion;
@@ -413,8 +413,8 @@ export interface Report {
   audit?: (import("./audit").AuditSummary & { linkedByPosition: number }) | null;
   /** The whole file as a table. */
   table?: GenomeTable;
-  /** Population allele frequencies for curated ClinVar sites (rsid → [minor, MAF, alleles]). */
-  alleleFreq?: Record<string, [string, number, string]>;
+  /** 1000 Genomes allele frequencies for curated ClinVar sites. */
+  alleleFreq?: import("./clinicalcheck").FreqTable;
   /** Verbatim reference text (GeneReviews, MedlinePlus). */
   refs?: import("./refs").References | null;
 }
