@@ -40,7 +40,7 @@ export const PANELS: { id: string; label: string; pattern: RegExp; intro: string
   { id: "fitness", label: "Fitness & performance", pattern: /grip strength|lean mass|physical activity|fitness|walking pace|muscle|vo2|exercise|heart rate recovery/i, intro: "Strength, fitness and activity." },
   { id: "sleep", label: "Sleep & energy", pattern: /sleep|chronotype|insomnia|morning person|daytime (sleepiness|napping)/i, intro: "Sleep timing, duration and quality." },
   { id: "liver", label: "Liver", pattern: /alanine aminotransferase|aspartate aminotransferase|gamma-glutamyl|liver fat|fatty liver|bilirubin/i, intro: "Liver enzymes and liver fat." },
-  { id: "kidney", label: "Kidneys & uric acid", pattern: /urate|uric acid|gout|glomerular filtration|creatinine|kidney stone/i, intro: "Kidney function, uric acid and gout." },
+  { id: "kidney", label: "Kidneys & uric acid", pattern: /\burate\b|uric acid|\bgout\b|glomerular filtration|creatinine|kidney stone/i, intro: "Kidney function, uric acid and gout." },
   { id: "immune", label: "Inflammation & immunity", pattern: /c-reactive protein|celiac|inflammatory bowel|crohn|ulcerative colitis|rheumatoid|psoriasis|asthma|allerg/i, intro: "Inflammation markers and immune conditions." },
   { id: "bone", label: "Bones", pattern: /bone mineral density|osteoporosis|fracture|heel bone/i, intro: "Bone density and fractures." },
 ];
@@ -71,6 +71,8 @@ export interface SummaryItem {
   confidence: Confidence;
   /** Optional list of sub-points (e.g. several flagged variants). */
   list?: string[];
+  /** Extra detail sections shown when the card is opened. */
+  more?: { title: string; lines: string[] }[];
   /** Where the technical detail lives in the appendix. */
   appendix: { section: string; query?: string };
   sources: { label: string; url: string }[];
@@ -311,21 +313,49 @@ export function summarize(r: Report, opts: { showSensitive: boolean }): Summary 
     });
   }
 
-  // Trait panels: well-replicated genome-wide associations where you carry the reported allele.
-  const strong = (r.bulk?.gwas.hits ?? []).filter((h) => h.strength === "strong" && (h.copies ?? 0) > 0 && (opts.showSensitive || !/alzheimer/i.test(h.trait)));
+  // Trait panels: for each trait, does your genotype lean higher or lower than a typical person's?
+  const tested = (r.bulk?.gwas.hits ?? []).filter((h) => h.strength === "strong" && (opts.showSensitive || !/alzheimer/i.test(h.trait)));
   for (const p of PANELS) {
-    const hs = strong.filter((h) => p.pattern.test(h.trait)).sort((a, b) => b.concordantPubs - a.concordantPubs);
-    if (!hs.length) continue;
-    const tested = (r.bulk?.gwas.hits ?? []).filter((h) => h.strength === "strong" && p.pattern.test(h.trait)).length;
+    const inPanel = tested.filter((h) => p.pattern.test(h.trait));
+    if (!inPanel.length) continue;
+    const byTrait = new Map<string, BulkGwasHit[]>();
+    for (const h of inPanel) (byTrait.get(h.trait) ?? byTrait.set(h.trait, []).get(h.trait)!).push(h);
+    const leans = [...byTrait.values()].map(traitLean).sort((a, b) => b.n - a.n);
+    const clear = leans.filter((l) => l.lean !== "none");
+    const assessed = leans.filter((l) => l.n >= MIN_LEAN_VARIANTS);
+    if (!assessed.length) continue;
+    const others = assessed.length - clear.length;
+    const tooFew = leans.filter((l) => l.n < MIN_LEAN_VARIANTS).map((l) => plainTrait(l.trait, l.kind));
+    const bottom = [
+      clear.length
+        ? `Your variants lean ${clear.slice(0, 3).map((l) => `slightly ${l.lean === "higher" ? "towards higher" : "towards lower"} ${l.phrase}`).join("; ")}${clear.length > 3 ? `, plus ${clear.length - 3} more` : ""}.`
+        : `For ${assessed.length === 1 ? `${assessed[0].phrase}` : `the ${assessed.length} traits checked here`}, your variants don't lean clearly either way: your genetic starting point looks typical.`,
+      clear.length && others ? `For ${others === 1 ? "one other trait" : `${others} other traits`} there's no clear lean.` : "",
+      tooFew.length ? `Too few independent variants to judge: ${tooFew.slice(0, 4).join(", ")}${tooFew.length > 4 ? ` and ${tooFew.length - 4} more` : ""}.` : "",
+    ].filter(Boolean).join(" ");
     items.push({
-      id: `panel-${p.id}`, tone: "know", category: "trait", sufficient: true, carried: true,
-      evidenceLabel: `${hs.length} well-replicated variant${hs.length === 1 ? "" : "s"}`, whyYou: `You carry the reported allele at ${hs.length} of ${tested} well-replicated sites on your chip.`,
-      title: `Panel: ${p.label}`,
-      plain: `${p.intro} You carry the reported allele at ${hs.length} of the ${tested} well-replicated variants for these traits that your chip tested. Each has a small effect on its own; they are listed, not added into a score, because effects differ in size and don't simply add up.`,
-      why: ["Genome-wide scan (GWAS Catalog): only associations where 3 or more publications agree on direction, with no substantial disagreement.", "Odds ratios and effect sizes compare groups. They are not your personal chance or level."],
-      next: [p.id === "vitamins" || p.id === "lipids" || p.id === "glucose" || p.id === "liver" || p.id === "kidney" ? "A routine blood test measures these directly and tells you far more than genotype." : "No specific action is supported by evidence for these results.", "Open the technical details to read the studies behind each variant."],
-      list: hs.slice(0, 15).map(panelLine), confidence: "moderate",
-      appendix: { section: "explorer", query: hs[0].trait }, sources: [],
+      id: `panel-${p.id}`, tone: "know", category: "trait", sufficient: true, carried: clear.length > 0,
+      evidenceLabel: `${assessed.reduce((n, l) => n + l.n, 0)} independent variants`, whyYou: bottom,
+      title: p.label,
+      plain: bottom,
+      list: assessed.slice(0, 8).map(leanLine),
+      why: [
+        "How this is worked out: for each trait, independent well-replicated variants (at least 3 publications agree; one per 500 kb region, so linked variants aren't double-counted) are compared with a typical person. A typical person carries, on average, 2 × the allele's frequency in the study population. A lean is reported only when at least twice as many variants point one way as the other, by a margin of 2 or more.",
+        "This counts directions only. It does not weigh how big each effect is, and it isn't a validated risk score.",
+        "Allele frequencies come from each study's population, so the comparison is less exact if your ancestry differs.",
+      ],
+      next: [
+        "What a lean can mean: your genetic starting point for that trait may be slightly above or below average. Common variants like these each have small effects and explain only part of why people differ; lifestyle, age, other genes and chance matter too.",
+        "What it can't mean: it doesn't show that you have, or will get, a condition, and it doesn't give a personal level or risk.",
+        p.id === "vitamins" || p.id === "lipids" || p.id === "glucose" || p.id === "liver" || p.id === "kidney" || p.id === "immune"
+          ? "For measured traits (blood levels, markers), a routine blood test tells you your actual value and is far more useful than genotype."
+          : "No specific action is supported by evidence for these results.",
+      ],
+      more: [
+        { title: "What these traits are (from the Experimental Factor Ontology)", lines: assessed.slice(0, 8).filter((l) => l.definition).map((l) => `${cap(l.trait)}: ${l.definition}`) },
+        { title: "Variants behind this (you carry the reported allele; compare with a typical person to see which way each one pushes)", lines: inPanel.filter((h) => (h.copies ?? 0) > 0).sort((a, b) => b.concordantPubs - a.concordantPubs).slice(0, 15).map(panelLine) },
+      ],
+      confidence: "moderate", appendix: { section: "explorer", query: leans[0].trait }, sources: [],
     });
   }
 
@@ -363,6 +393,60 @@ export function scanLine(h: BulkGwasHit): string {
 
 export function panelLine(h: BulkGwasHit): string {
   const dir = h.kind === "OR" ? (h.value >= 1 ? "higher" : "lower") : h.direction === "increase" ? "higher" : h.direction === "decrease" ? "lower" : "different";
-  const eff = h.kind === "OR" ? `${orAdverb(h.value)} ${dir} odds of ${h.trait} (OR ${h.value})` : `${dir} ${h.trait} (β ${h.value})`;
-  return `${h.gene || "Unnamed gene"} ${h.rsid}: ${copies(h.copies ?? 0)} of ${h.effectForward ?? h.effectAllele}, linked to ${eff}; ${h.concordantPubs} studies agree`;
+  const eff = h.kind === "OR" ? `${orAdverb(h.value)} ${dir} ${plainTrait(h.trait, "OR")} (OR ${h.value})` : `${dir} ${plainTrait(h.trait, "beta")} (β ${h.value})`;
+  const typical = h.frequency != null ? ` (a typical person has about ${(2 * h.frequency).toFixed(1)})` : "";
+  return `${h.gene || "Unnamed gene"} ${h.rsid}: you have ${copies(h.copies ?? 0)} of ${h.effectForward ?? h.effectAllele}${typical}, an allele linked to ${eff}; ${h.concordantPubs} studies agree`;
+}
+
+// ─── Trait leans ─────────────────────────────────────────────────────────────
+
+export const MIN_LEAN_VARIANTS = 3;
+const REGION = 500_000;
+
+export interface TraitLean {
+  trait: string; phrase: string; definition: string;
+  /** Independent variants usable for the comparison. */
+  n: number;
+  higher: number; lower: number; typical: number;
+  lean: "higher" | "lower" | "none";
+  kind: "OR" | "beta";
+}
+
+/**
+ * Compare a person's genotype with a typical person's for one trait, using independent,
+ * well-replicated variants with a known allele frequency and direction. Direction-only.
+ */
+export function traitLean(hits: BulkGwasHit[]): TraitLean {
+  const usable = hits
+    .filter((h) => h.strength === "strong" && h.copies != null && h.frequency != null && h.effectForward)
+    .filter((h) => (h.kind === "OR" ? h.value !== 1 : h.direction !== "unclear"))
+    .sort((a, b) => b.concordantPubs - a.concordantPubs);
+  const kept: BulkGwasHit[] = [];
+  for (const h of usable) {
+    if (kept.some((k) => k.chrom === h.chrom && h.pos != null && k.pos != null && Math.abs(k.pos - h.pos) < REGION)) continue;
+    kept.push(h);
+  }
+  let higher = 0, lower = 0, typical = 0;
+  for (const h of kept) {
+    const raises = h.kind === "OR" ? h.value > 1 : h.direction === "increase";
+    const diff = (h.copies as number) - 2 * (h.frequency as number); // more (+) or fewer (−) copies of the reported allele than typical
+    if (Math.abs(diff) < 0.25) { typical++; continue; }
+    if ((diff > 0) === raises) higher++; else lower++;
+  }
+  const n = kept.length;
+  const lean = n >= MIN_LEAN_VARIANTS && higher >= 2 * Math.max(lower, 1) && higher - lower >= 2 ? "higher"
+    : n >= MIN_LEAN_VARIANTS && lower >= 2 * Math.max(higher, 1) && lower - higher >= 2 ? "lower" : "none";
+  const t = hits[0];
+  return { trait: t.trait, phrase: plainTrait(t.trait, t.kind), definition: t.traitDefinition, n, higher, lower, typical, lean, kind: t.kind };
+}
+
+/** "C-reactive protein measurement" → "C-reactive protein"; disease traits read as "odds of X". */
+export function plainTrait(trait: string, kind: "OR" | "beta"): string {
+  const t = trait.replace(/ measurement$/i, "").replace(/^serum | amount$/gi, "").replace(/^([a-z])-/, (m) => m.toUpperCase());
+  return kind === "OR" ? `odds of ${t}` : t;
+}
+
+export function leanLine(l: TraitLean): string {
+  const what = l.lean === "none" ? "no clear lean" : `leans slightly ${l.lean === "higher" ? "higher" : "lower"}`;
+  return `${cap(plainTrait(l.trait, l.kind))}: ${what}. Of ${l.n} independent variant${l.n === 1 ? "" : "s"}, ${l.higher} point higher than typical, ${l.lower} lower, ${l.typical} about typical.`;
 }

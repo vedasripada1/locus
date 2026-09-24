@@ -12,11 +12,11 @@ import type { ClinicalFinding, ClinGenValidity, ClinVarRecord, EvidenceStrength,
 export type CvRow = [number, string, number, string, string, number, number, number, number[], number, string, string];
 export interface BulkClinVarFile { version: string; retrievedAt: string; genes: string[]; conditions: string[]; sigs: string[]; rows: CvRow[]; cites: Record<string, number[]> }
 
-/** [rsid, traitIdx, leadAllele, leadForward, value, kind(0 OR,1 β), sign, ci, p, leadPmid, sampleIdx, concordantPubs, discordantAssocs, nAssocs, pmids[], how] */
-export type GwRow = [string, number, string, string, number, 0 | 1, 1 | -1 | 0, string, string, number, number, number, number, number, number[], string];
+/** [rsid, traitIdx, leadAllele, leadForward, value, kind(0 OR,1 β), sign, ci, p, leadPmid, sampleIdx, concordantPubs, discordantAssocs, nAssocs, pmids[], how, leadAlleleFrequency] */
+export type GwRow = [string, number, string, string, number, 0 | 1, 1 | -1 | 0, string, string, number, number, number, number, number, number[], string, (number | null)?];
 export interface BulkGwasFile {
   version: string; retrievedAt: string;
-  traits: [label: string, uri: string, categories: string, domain: BulkDomain][];
+  traits: [label: string, uri: string, categories: string, domain: BulkDomain, definition?: string][];
   sites: Record<string, [chrom: string, pos37: number | null, ref: string, mainAlt: string, alts: string, gene: string]>;
   samples: string[]; groups: GwRow[];
   studies: Record<string, [firstAuthor: string, year: string, journal: string, title: string]>;
@@ -33,6 +33,10 @@ export interface BulkGwasHit {
   value: number; kind: "OR" | "beta"; direction: "increase" | "decrease" | "unclear"; ci: string; p: string;
   leadPmid: number; sample: string; concordantPubs: number; discordant: number; nAssocs: number; pmids: number[];
   strength: EvidenceStrength; notes: string[];
+  /** Frequency of the reported (effect) allele in the lead study population, if reported. */
+  frequency: number | null;
+  chrom: string; pos: number | null;
+  traitDefinition: string;
 }
 
 export interface BulkResult {
@@ -153,7 +157,7 @@ export function screenGwas(genome: ParsedGenome, f: BulkGwasFile, exclude: Set<s
   for (const g of f.groups) {
     const m = siteMatch(g[0]);
     if (!m || m.status !== "matched") continue;
-    const [label, uri, categories, domain] = f.traits[g[1]];
+    const [label, uri, categories, domain, traitDefinition = ""] = f.traits[g[1]];
     const o = orientAllele(g[2], m.site);
     const ambiguous = o.how === "ambiguous" || m.orientation === "ambiguous-palindromic";
     const copies = ambiguous || !o.allele ? null : countAllele(m, o.allele);
@@ -167,6 +171,7 @@ export function screenGwas(genome: ParsedGenome, f: BulkGwasFile, exclude: Set<s
       effectAllele: g[2], effectForward: o.allele, copies, value: g[4], kind: g[5] === 0 ? "OR" : "beta",
       direction: g[6] === 1 ? "increase" : g[6] === -1 ? "decrease" : "unclear", ci: g[7], p: g[8], leadPmid: g[9], sample: f.samples[g[10]],
       concordantPubs: g[11], discordant: g[12], nAssocs: g[13], pmids: g[14], strength: strengthOf(g[11], g[12], g[13]), notes,
+      frequency: g[16] ?? null, chrom: m.site.chrom, pos: m.site.pos37, traitDefinition,
     });
     for (const p of g[14]) if (f.studies[p]) studies[p] = f.studies[p];
   }

@@ -34,7 +34,7 @@ export function effectKind(ciText: string): { kind: "OR" | "beta"; dir: 1 | -1 |
   return { kind: "OR", dir: 0 };
 }
 
-interface Assoc { gene: string; rsid: string; allele: string; value: number; kind: "OR" | "beta"; dir: 1 | -1 | 0; ci: string; p: string; mlog: number; pmid: number; study: string; sample: string; uri: string; trait: string }
+interface Assoc { freq: number | null; gene: string; rsid: string; allele: string; value: number; kind: "OR" | "beta"; dir: 1 | -1 | 0; ci: string; p: string; mlog: number; pmid: number; study: string; sample: string; uri: string; trait: string }
 
 /** Main alternate allele: Ensembl minor allele if it is an alt, else the alt most often reported as effect allele. */
 export function mainAltFor(s: EnsemblSite, reported: string[]): string {
@@ -96,6 +96,7 @@ async function main() {
       if (current !== snp) aliases[snp] = current;
       const { kind, dir } = effectKind(r["95% CI (TEXT)"]);
       const a: Assoc = {
+        freq: (() => { const f = Number(r["RISK ALLELE FREQUENCY"]); return Number.isFinite(f) && f > 0 && f < 1 ? f : null; })(),
         gene: (r.MAPPED_GENE.split(/[,;]| - /)[0] ?? "").trim().slice(0, 40), rsid: current, allele: m[2], value, kind, dir, ci: r["95% CI (TEXT)"].trim(), p: r["P-VALUE"].trim(), mlog, pmid: Number(r.PUBMEDID),
         study: r["STUDY ACCESSION"], sample: r["INITIAL SAMPLE SIZE"].trim().slice(0, 240), uri: uris[0], trait: r.MAPPED_TRAIT.trim(),
       };
@@ -115,7 +116,7 @@ async function main() {
   const traits: [label: string, uri: string, categories: string, domain: Domain][] = [];
   const sites: Record<string, [chrom: string, pos37: number | null, ref: string, mainAlt: string, alts: string, gene: string]> = {};
   const samples: string[] = []; const sampleIdx = new Map<string, number>();
-  // group row: [rsid, traitIdx, leadAllele, leadForward, value, kind(0=OR,1=beta), dir, ci, p, leadPmid, sampleIdx, concordantPubs, discordantAssocs, nAssocs, pmids, how]
+  // group row: [rsid, traitIdx, leadAllele, leadForward, value, kind(0=OR,1=beta), dir, ci, p, leadPmid, sampleIdx, concordantPubs, discordantAssocs, nAssocs, pmids, how, leadAlleleFrequency]
   const groups: unknown[][] = [];
   let skipped = 0;
   const sign = (a: Assoc): 1 | -1 | 0 => (a.kind === "OR" ? (a.value > 1 ? 1 : a.value < 1 ? -1 : 0) : a.dir);
@@ -147,7 +148,7 @@ async function main() {
     groups.push([
       rsid, traitIdx.get(uri), lead.a.allele, lead.o.allele ?? "", lead.a.value, lead.a.kind === "OR" ? 0 : 1, sign(lead.a), lead.a.ci, lead.a.p,
       lead.a.pmid, sampleIdx.get(lead.a.sample), new Set(conc.map((x) => x.a.pmid)).size, maj === 0 ? 0 : directed.filter((x) => x.d === -maj).length,
-      list.length, pmids, lead.o.how,
+      list.length, pmids, lead.o.how, lead.a.freq,
     ]);
   }
   const usedPmids = new Set(groups.flatMap((g) => g[14] as number[]));

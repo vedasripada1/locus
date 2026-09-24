@@ -59,6 +59,12 @@ async function main() {
   // GWAS bulk passes through (already compact).
   const gw = existsSync(join(ROOT, "pipeline/out/gwas-bulk.json")) ? read("pipeline/out/gwas-bulk.json") : null;
   if (!gw) console.warn("pipeline/out/gwas-bulk.json not built yet: skipping gwas.json.gz");
+  // Trait definitions (EFO) appended to each trait tuple as a 5th element.
+  if (gw && existsSync(join(ROOT, "pipeline/out/efo-defs.json"))) {
+    const defs = read("pipeline/out/efo-defs.json").defs as Record<string, string>;
+    gw.traits = gw.traits.map((t: string[]) => [...t.slice(0, 4), defs[t[1]] ?? ""]);
+    gw.efoRetrievedAt = read("pipeline/out/efo-defs.json").retrievedAt;
+  }
 
   // Nutrient–gene expression (CTD), human, curated dietary compounds.
   const ng = existsSync(join(ROOT, "pipeline/out/nutrigenomics.json")) ? read("pipeline/out/nutrigenomics.json") : null;

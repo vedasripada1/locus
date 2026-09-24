@@ -30,7 +30,7 @@ export NCBI_EMAIL=you@example.org       # optional; NCBI asks tools to identify 
 export NCBI_API_KEY=...                 # optional; raises the NCBI limit from 3 to 10 requests/s
 npm run evidence:all                    # curated tier: fetch → literature → build (verify)
 npm run bulk:download                   # genome-wide tier sources (~1.5 GB into pipeline/cache/bulk)
-npm run bulk:all                        # ClinVar screen, GWAS grouping (+Ensembl alleles), CTD nutrients, paper index, demo files
+npm run bulk:all                        # ClinVar screen, GWAS grouping (+Ensembl alleles), EFO definitions, CTD nutrients, paper index, demo files
 ```
 
 Requires Node 20+ (developed on Node 24). `npm run smoke` needs Google Chrome installed (set `CHROME_PATH` if it isn't in `/Applications`).
@@ -78,6 +78,7 @@ Each stage is a separate module with typed inputs and outputs (`src/core/types.t
 | GWAS Catalog downloads (associations v1.0.2, trait mappings) | Genome-wide association explorer; study metadata per paper | Bulk download | EMBL-EBI terms |
 | [Ensembl REST](https://grch37.rest.ensembl.org) (GRCh37) | Forward-strand alleles and positions for GWAS-only sites | `POST /variation/homo_sapiens`, 200 ids/call | [Ensembl terms](https://www.ensembl.org/info/about/legal/) |
 | [CTD](https://ctdbase.org/) chemical–gene interactions | Nutrient–gene expression research (human, dietary compounds) | Bulk download | Free with citation, links, and notification of CTD if published ([terms](https://ctdbase.org/about/legal.jsp)) |
+| [Experimental Factor Ontology](https://www.ebi.ac.uk/efo/) via [OLS4](https://www.ebi.ac.uk/ols4/) | Plain definitions of GWAS traits | REST API, cached | Apache 2.0 |
 | [LitVar2](https://www.ncbi.nlm.nih.gov/research/litvar2/) (NCBI) | Text-mined papers mentioning curated variants | REST API | Public domain |
 | [FDA consumer update](https://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much) | Caffeine intake guidance | Page fetch | US government work |
 
@@ -129,7 +130,16 @@ Thirteen panels over the full GWAS Catalog tier:
 | Body systems | Heart & blood pressure · Liver · Kidneys & uric acid · Inflammation & immunity · Bones |
 | Performance & sleep | Fitness & performance · Sleep & energy |
 
-Each panel lists only well-replicated associations (≥3 publications agree) where you carry the reported allele, with direction, effect and study count. They are deliberately **not summed into a score**, because effects differ in size and aren't simply additive.
+Each panel says, per trait, whether your genotype **leans higher, lower, or not clearly either way compared with a typical person**, for example "Your variants lean slightly towards higher triglyceride. For 3 other traits there's no clear lean."
+
+How the lean is worked out (`traitLean` in `src/core/plain.ts`):
+1. **Use independent, well-replicated variants only.** At least 3 publications must agree on direction. Only one variant per 500 kb region is used, so variants inherited together aren't double-counted. The effect-allele frequency must be known.
+2. **Compare with a typical person.** A typical person carries 2 × the allele's frequency in the lead study population. Your copies vs that expectation say whether each variant pushes you towards higher or lower.
+3. **Report a lean only with a clear margin:** at least 3 variants, at least twice as many pointing one way, and a difference of 2 or more. Otherwise it says "no clear lean". Traits with too few variants are named, not hidden.
+
+It is **direction-only** and not a validated risk score: it doesn't weigh effect sizes, and frequencies come from each study's population. Every card says what a lean can mean ("your genetic starting point may be slightly above or below average") and what it can't ("doesn't show you have or will get a condition; no personal level or risk"). For measured traits it points to the blood test.
+
+Each card also includes plain **trait definitions** from the Experimental Factor Ontology (EBI OLS; 805 of 808 traits). The variant list shows your copies next to a typical person's, e.g. "you have 1 copy of C (a typical person has about 1.4)".
 
 ### Nutrients and your genes (lab research)
 

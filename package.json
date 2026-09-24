@@ -18,8 +18,9 @@
     "bulk:clinvar": "tsx pipeline/bulk/clinvar.ts",
     "bulk:gwas": "tsx pipeline/bulk/gwas.ts",
     "bulk:package": "tsx pipeline/bulk/package.ts",
-    "bulk:all": "npm run bulk:clinvar && npm run bulk:gwas && npm run bulk:nutrients && npm run bulk:package && npm run demo:make",
-    "bulk:nutrients": "tsx pipeline/bulk/nutrigenomics.ts"
+    "bulk:all": "npm run bulk:clinvar && npm run bulk:gwas && npm run bulk:efo && npm run bulk:nutrients && npm run bulk:package && npm run demo:make",
+    "bulk:nutrients": "tsx pipeline/bulk/nutrigenomics.ts",
+    "bulk:efo": "tsx pipeline/bulk/efo.ts"
   },
   "license": "UNLICENSED",
   "type": "module",

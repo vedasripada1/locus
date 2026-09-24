@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { parseGenotypeText } from "../src/core/parse";
 import { matchSite, describeAllele, readableGenotype } from "../src/core/match";
 import { linkByPosition, newAudit, recordAudit, auditSummary } from "../src/core/audit";
-import { summarize, PANELS } from "../src/core/plain";
+import { summarize, PANELS, traitLean, leanLine, plainTrait } from "../src/core/plain";
 import { buildReport } from "../src/core/interpret";
 import { parseInteraction } from "../pipeline/bulk/nutrigenomics";
 import { BUNDLE, KEEP, SITES, file23, site } from "./fixtures";
@@ -69,21 +69,53 @@ describe("accuracy audit", () => {
   });
 });
 
-describe("trait panels", () => {
-  it("lists well-replicated carried variants per panel without scoring them", () => {
+describe("trait panels and leans", () => {
+  let n = 0;
+  const hit = (p: Partial<BulkGwasHit>): BulkGwasHit => ({
+    rsid: `rs${++n}`, gene: "GENE", trait: "C-reactive protein measurement", traitUri: "crp", categories: "", domain: "metabolism", genotype: "CT", forwardGenotype: "CT", orientation: "forward",
+    effectAllele: "T", effectForward: "T", copies: 2, value: 0.1, kind: "beta", direction: "increase", ci: "", p: "1E-50", leadPmid: 1, sample: "", concordantPubs: 5, discordant: 0, nAssocs: 5, pmids: [1],
+    strength: "strong", notes: [], frequency: 0.3, chrom: "1", pos: n * 1_000_000, traitDefinition: "A measure of inflammation.", ...p,
+  });
+
+  it("compares your copies with a typical person's (2 × allele frequency)", () => {
+    // 2 copies vs typical 0.6 of a raising allele → higher; 0 copies vs 0.6 → lower; 1 copy vs 1.0 (freq .5) → typical.
+    const l = traitLean([hit({}), hit({}), hit({}), hit({ copies: 0 }), hit({ copies: 1, frequency: 0.5 })]);
+    expect(l).toMatchObject({ n: 5, higher: 3, lower: 1, typical: 1, lean: "higher", phrase: "C-reactive protein" });
+    expect(leanLine(l)).toMatch(/C-reactive protein: leans slightly higher\. Of 5 independent variants, 3 point higher than typical, 1 lower, 1 about typical/);
+  });
+  it("counts linked variants (within 500 kb) once and skips variants without a frequency", () => {
+    const l = traitLean([hit({ pos: 1_000 }), hit({ pos: 200_000 }), hit({ pos: 3_000_000 }), hit({ frequency: null })]);
+    expect(l.n).toBe(2);
+  });
+  it("treats a lowering allele the other way round, and reports no lean without a clear margin", () => {
+    const lower = traitLean([hit({ direction: "decrease" }), hit({ direction: "decrease" }), hit({ direction: "decrease" })]);
+    expect(lower.lean).toBe("lower");
+    expect(traitLean([hit({}), hit({}), hit({ copies: 0 }), hit({ copies: 0 })]).lean).toBe("none");
+    expect(traitLean([hit({}), hit({})]).lean).toBe("none"); // fewer than 3 variants
+  });
+  it("disease traits read as odds", () => {
+    expect(plainTrait("asthma", "OR")).toBe("odds of asthma");
+  });
+  it("panel cards lead with a plain bottom line, per-trait leans, definitions and caveats", () => {
     const g = parseGenotypeText(file23([["rs2", "10", 200, "TT"]]), KEEP);
     const r = buildReport(g, BUNDLE);
-    const hit = (trait: string, copies: number, strength: BulkGwasHit["strength"] = "strong"): BulkGwasHit => ({
-      rsid: `rs${trait.length}${copies}`, gene: "APOB", trait, traitUri: trait, categories: "", domain: "metabolism", genotype: "CT", forwardGenotype: "CT", orientation: "forward",
-      effectAllele: "T", effectForward: "T", copies, value: 0.1, kind: "beta", direction: "increase", ci: "", p: "1E-50", leadPmid: 1, sample: "", concordantPubs: 5, discordant: 0, nAssocs: 5, pmids: [1], strength, notes: [],
-    });
     r.bulk = { clinvar: { version: "", tested: 0, notCarried: 0, noCall: 0, carried: [], cites: {}, byGene: {}, byCondition: {} },
-      gwas: { version: "", tested: 3, studies: {}, hits: [hit("low density lipoprotein cholesterol measurement", 1), hit("triglyceride measurement", 0), hit("high density lipoprotein cholesterol measurement", 2, "moderate")] } };
-    const p = summarize(r, { showSensitive: false }).items.find((i) => i.id === "panel-lipids")!;
-    expect(p.list).toHaveLength(1); // not carried and not-strong are excluded
-    expect(p.list![0]).toMatch(/APOB .*1 copy of T, linked to higher low density lipoprotein cholesterol measurement/);
-    expect(p.plain).toMatch(/not added into a score/);
+      gwas: { version: "", tested: 4, studies: {}, hits: [hit({}), hit({}), hit({}), hit({ trait: "asthma", kind: "OR", value: 1.2, copies: 1 })] } };
+    const p = summarize(r, { showSensitive: false }).items.find((i) => i.id === "panel-immune")!;
+    expect(p.plain).toMatch(/lean slightly towards higher C-reactive protein\./);
+    expect(p.plain).toMatch(/Too few independent variants to judge: odds of asthma/);
+    expect(p.plain).not.toMatch(/other 0/);
+    expect(p.more![1].lines[0]).toMatch(/you have 2 copies of T \(a typical person has about 0\.6\)/);
+    expect(p.list![0]).toMatch(/^C-reactive protein: leans slightly higher/);
+    expect(p.why.join(" ")).toMatch(/isn't a validated risk score/);
+    expect(p.next.join(" ")).toMatch(/doesn't show that you have, or will get, a condition/);
+    expect(p.more![0].lines[0]).toMatch(/A measure of inflammation/);
     expect(PANELS.length).toBeGreaterThan(10);
+  });
+  it("panel patterns match whole words (polyunsaturated is not urate)", () => {
+    const kidney = PANELS.find((x) => x.id === "kidney")!.pattern;
+    expect(kidney.test("omega-3 polyunsaturated fatty acid measurement")).toBe(false);
+    expect(kidney.test("urate measurement")).toBe(true);
   });
 });
 

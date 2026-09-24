@@ -39,8 +39,13 @@ function Details({ item, go }: { item: SummaryItem; go: Go }) {
       <div>
         <h4>Why you're seeing this</h4>
         <ul>{item.why.filter(Boolean).map((w) => <li key={w}>{w}</li>)}</ul>
-        {item.list && <ul>{item.list.map((l) => <li key={l}>{l}</li>)}</ul>}
       </div>
+      {item.more?.filter((m) => m.lines.length).map((m) => (
+        <div key={m.title} style={{ gridColumn: "1 / -1" }}>
+          <h4>{m.title}</h4>
+          <ul>{m.lines.map((l) => <li key={l}>{l}</li>)}</ul>
+        </div>
+      ))}
       <div className="card-foot" style={{ gridColumn: "1 / -1" }}>
         {item.sources.slice(0, 4).map((s) => <a key={s.url + s.label} href={s.url} target="_blank" rel="noreferrer">{s.label}</a>)}
         <span style={{ flex: 1 }} />
@@ -95,6 +100,7 @@ function ItemRow({ item, go, focused }: { item: SummaryItem; go: Go; focused: bo
         <span className={`chip ${!item.sufficient ? "conf-low" : /unverified/.test(item.evidenceLabel) ? "conf-moderate" : "conf-higher"}`}>{item.sufficient ? item.evidenceLabel : `Weaker: ${item.evidenceLabel}`}</span>
       </div>
       <p className="plain" style={{ margin: "6px 0" }}>{item.plain}</p>
+      {item.list && <ul className="plain-list">{item.list.map((l) => <li key={l}>{l}</li>)}</ul>}
       <button className="linklike no-print" onClick={() => setOpen(!open)} aria-expanded={open}>{open ? "Hide details" : "Why and what to do"}</button>
       {open && <Details item={item} go={go} />}
     </article>
