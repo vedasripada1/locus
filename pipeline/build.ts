@@ -6,7 +6,7 @@ import { readJson, writeJson } from "./lib/http";
 import { classifyDesign } from "./lib/pubmed";
 import { screen, type SourceText } from "./literature";
 import type {
-  AuditEntry, EvidenceBundle, Intervention, InterventionStudy, LiteratureCandidate, Quoted, SourcedQuote, SourceVersion, TraitTopic,
+  AuditEntry, EvidenceBundle, GeneGuide, Intervention, InterventionStudy, LiteratureCandidate, Quoted, SourcedQuote, SourceVersion, TraitTopic,
 } from "../src/core/types";
 
 type Ref = { pmid?: string; pmcid?: string; url?: string };
@@ -17,7 +17,7 @@ export function norm(s: string): string {
   return s.normalize("NFKC").replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/[–—−]/g, "-").replace(/\s+/g, " ").trim().toLowerCase();
 }
 /** Standalone numbers (not parts of names like B12, D3, rs671), thousands separators removed. */
-const numbers = (s: string) =>
+export const numbers = (s: string) =>
   (norm(s).replace(/(\d)[,\s](?=\d{3}\b)/g, "$1").match(/(?<![a-z\d.])\d+(?:\.\d+)?/g) ?? []).map(Number);
 
 /** A quote must occur in the source; every number in the value must occur in the quote. */
@@ -51,7 +51,7 @@ export function buildInterventions(seed: any[], texts: Map<string, SourceText>, 
         role: s.role, ref: s.ref,
         citation: r ? cite(r) : src.title,
         title: src.title, doi: r?.doi ?? null,
-        design: r ? classifyDesign(r.publicationTypes, r.mesh) : "other",
+        design: r ? classifyDesign(r.publicationTypes, r.mesh, r.title) : "other",
         sampleSize: s.sampleSize, population: s.population, exposure: s.exposure, outcomes: s.outcomes, harms: s.harms,
         humans: cand ? cand.humans || (r!.book && /patients|individuals|women|heterozygotes/i.test(r!.abstract)) : false,
         genotypeInteraction: s.genotypeInteraction, source: src.source,
@@ -146,6 +146,12 @@ function main() {
     schemaVersion: 1, builtAt: new Date().toISOString(), sources, sites: v.sites, clinvar: v.clinvar, clingen: v.clingen, gwas: v.gwas,
     traits, interventions, literature: lit.candidates, audit, warnings,
   };
+  // Gene guide (pipeline/genes.ts), verified separately; its audit joins the bundle audit.
+  try {
+    const g = readJson<{ guide: GeneGuide; audit: AuditEntry[] }>("pipeline/out/genes.json");
+    bundle.geneGuide = g.guide;
+    audit.push(...g.audit);
+  } catch { console.warn("  pipeline/out/genes.json not found: run pipeline/genes.ts for the gene guide"); }
   writeJson("src/evidence/bundle.json", bundle);
   const dropped = audit.filter((a) => a.outcome === "dropped");
   console.log(`bundle: ${bundle.sites.length} sites, ${bundle.clinvar.length} ClinVar, ${bundle.gwas.length} GWAS, ${interventions.length}/${seedIv.length} interventions, ${bundle.literature.length} literature candidates`);

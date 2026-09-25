@@ -11,7 +11,7 @@
     "evidence:fetch": "tsx pipeline/fetch.ts",
     "evidence:literature": "tsx pipeline/literature.ts",
     "evidence:build": "tsx pipeline/build.ts",
-    "evidence:all": "npm run evidence:fetch && npm run evidence:literature && npm run evidence:build",
+    "evidence:all": "npm run evidence:fetch && npm run evidence:genes && npm run evidence:literature && npm run evidence:build",
     "demo:make": "tsx scripts/make-demo.ts",
     "smoke": "tsx scripts/smoke.ts",
     "bulk:download": "bash scripts/bulk-download.sh",
@@ -22,7 +22,8 @@
     "bulk:nutrients": "tsx pipeline/bulk/nutrigenomics.ts",
     "bulk:efo": "tsx pipeline/bulk/efo.ts",
     "bulk:references": "tsx pipeline/bulk/references.ts",
-    "bulk:freq": "tsx pipeline/bulk/kg-freq.ts"
+    "bulk:freq": "tsx pipeline/bulk/kg-freq.ts",
+    "evidence:genes": "tsx pipeline/genes.ts"
   },
   "license": "UNLICENSED",
   "type": "module",

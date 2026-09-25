@@ -50,7 +50,7 @@ export function ReportView({ report, bundle, fileName, context, onContext, onDel
           <button className="btn danger small" onClick={confirmDelete}>Delete my data</button>
         </div>
       </nav>
-      {tab === "summary" && <ResultsView summary={summary} report={report} fileName={fileName} context={context} onContext={onContext} go={go} focus={focus} showSensitive={showSensitive} />}
+      {tab === "summary" && <ResultsView summary={summary} report={report} bundle={bundle} fileName={fileName} context={context} onContext={onContext} go={go} focus={focus} showSensitive={showSensitive} />}
       {tab === "appendix" && (
         <Appendix key={appendix.n} report={report} bundle={bundle} fileName={fileName} showSensitive={showSensitive} onToggleSensitive={toggleSensitive}
           initialSection={appendix.section} explorerQuery={appendix.query} />

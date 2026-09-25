@@ -1,10 +1,11 @@
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
-import type { Report, UserContext } from "../core/types";
+import type { EvidenceBundle, Report, UserContext } from "../core/types";
 import { SUFFICIENT_RULES, type Category, type Summary, type SummaryItem } from "../core/plain";
 import { searchReport, type SearchHit } from "../core/search";
 import { DISCLAIMER } from "../core/export";
 import { ContextForm } from "./ContextForm";
 import { NutrientGenes } from "./Nutrigenomics";
+import { GeneGuideSection } from "./GeneGuide";
 import { accuracyLine } from "./RawData";
 import type { Go } from "./Shell";
 
@@ -124,8 +125,8 @@ function ItemRow({ item, go, focused }: { item: SummaryItem; go: Go; focused: bo
   );
 }
 
-export function ResultsView({ summary, report, fileName, context, onContext, go, focus, showSensitive }: {
-  summary: Summary; report: Report; fileName: string; context: UserContext; onContext: (c: UserContext) => void; go: Go; focus?: string; showSensitive: boolean;
+export function ResultsView({ summary, report, bundle, fileName, context, onContext, go, focus, showSensitive }: {
+  summary: Summary; report: Report; bundle: EvidenceBundle; fileName: string; context: UserContext; onContext: (c: UserContext) => void; go: Go; focus?: string; showSensitive: boolean;
 }) {
   const [cat, setCat] = useState<Category | "all">("all");
   const [weaker, setWeaker] = useState(false);
@@ -164,6 +165,7 @@ export function ResultsView({ summary, report, fileName, context, onContext, go,
 
       {quality.map((i) => <ItemRow key={i.id} item={i} go={go} focused={focus === i.id} />)}
       <Recommendations items={recs.filter((i) => i.sufficient)} hiddenWeak={recs.filter((i) => !i.sufficient).length} go={go} />
+      <GeneGuideSection report={report} bundle={bundle} go={go} showSensitive={showSensitive} focus={focus} />
 
       <section className="block">
         <div className="section-head"><h2 style={{ margin: 0 }}>All your results</h2>
@@ -200,7 +202,7 @@ export function ResultsView({ summary, report, fileName, context, onContext, go,
               <article key={h.title + n} className="card result-row">
                 <div className="rec-head"><span className={`chip type-${h.category}`}>{TYPE_LABEL[h.category]}</span><h3>{h.title}</h3></div>
                 <p className="plain" style={{ margin: "6px 0" }}>{h.plain}</p>
-                <button className="linklike" onClick={() => go(h.target.tab === "summary" ? { tab: "summary", id: h.target.id } : { tab: "appendix", section: h.target.section, query: h.target.query })}>Technical details</button>
+                <button className="linklike" onClick={() => go(h.target.tab === "summary" ? { tab: "summary", id: h.target.id } : { tab: "appendix", section: h.target.section, query: h.target.query })}>{h.target.tab === "summary" ? "Show this gene" : "Technical details"}</button>
               </article>
             ))}
           </div>

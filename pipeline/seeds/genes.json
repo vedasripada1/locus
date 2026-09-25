@@ -1,0 +1,1424 @@
+{
+  "_comment": "Gene guide: well-studied single genes that consumer DNA files can read, grouped by trait, nutrition, fitness and medicines. Curators choose WHICH genes and write plain explanations; pipeline/genes.ts verifies (1) each allele exists at the site in dbSNP, (2) for coding variants, the allele's amino acid against Ensembl VEP (GRCh37), (3) every quote verbatim against its PubMed abstract or web page, and (4) every number in a plain text against the entry's verified quotes. Entries that fail are dropped and logged. Alleles are on the forward (GRCh37 plus) strand, the same strand AncestryDNA and 23andMe report. 'readings' are matched in order; the first whose 'if' holds is shown. 'if' keys are rsIDs (exact copies or [min, max]) or 'total' (sum of copies over all sites). Verdicts: changes-advice = a trial or guideline says what to do differs by genotype; test-instead = the gene nudges something a routine test measures directly; same-advice = studies tested it and the advice is the same for everyone; no-proven-action = the gene affects a level but no study shows acting on it helps; trait = a harmless trait, nothing to do; limited = genotype-specific evidence exists but only for a narrow group.",
+  "genes": [
+    {
+      "id": "earwax",
+      "gene": "ABCC11",
+      "title": "Earwax type",
+      "area": "traits",
+      "what": "ABCC11 makes a transporter protein. One common change in it decides whether earwax is wet or dry.",
+      "sites": [
+        {
+          "rsid": "rs17822931",
+          "allele": "T",
+          "alleleName": "538A (dry type)",
+          "aa": "R"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs17822931": 2
+          },
+          "text": "Two copies of the dry-type version: you most likely have dry, flaky earwax.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs17822931": [
+              0,
+              1
+            ]
+          },
+          "text": "At least one copy of the wet-type version: you most likely have wet, sticky earwax (the wet type is dominant)."
+        }
+      ],
+      "verdict": "trait",
+      "verdictNote": "A harmless trait. Nothing to do.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "16444273"
+          },
+          "value": "One SNP decides earwax type",
+          "quote": "Here we show that a SNP, 538G --> A (rs17822931), in the ABCC11 gene is responsible for determination of earwax type."
+        },
+        {
+          "ref": {
+            "pmid": "16444273"
+          },
+          "value": "AA = dry; GA/GG = wet",
+          "quote": "The AA genotype corresponds to dry earwax, and GA and GG to wet type."
+        },
+        {
+          "ref": {
+            "pmid": "16444273"
+          },
+          "value": "Dry type common in East Asia",
+          "quote": "Dry earwax is frequent in East Asians, whereas wet earwax is common in other populations."
+        }
+      ],
+      "strandNote": "The paper names the dry-type allele A (538G>A). ABCC11 is read from the reverse strand, so on the forward strand in your file that allele is T."
+    },
+    {
+      "id": "bitter",
+      "gene": "TAS2R38",
+      "title": "Bitter taste (PTC)",
+      "area": "traits",
+      "what": "TAS2R38 is a bitter-taste receptor. A few common changes in it decide whether the bitter test chemical PTC tastes strongly bitter or of almost nothing.",
+      "sites": [
+        {
+          "rsid": "rs1726866",
+          "allele": "G",
+          "alleleName": "Ala262 (taster version)",
+          "aa": "A"
+        },
+        {
+          "rsid": "rs10246939",
+          "allele": "C",
+          "alleleName": "Val296 (taster version)",
+          "aa": "V"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs1726866": 2,
+            "rs10246939": 2
+          },
+          "text": "Two copies of the taster version at both sites: you most likely find PTC strongly bitter.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs1726866": 0,
+            "rs10246939": 0
+          },
+          "text": "Two copies of the non-taster version at both sites: PTC most likely tastes weak or of nothing to you.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs1726866": 1,
+            "rs10246939": 1
+          },
+          "text": "One taster and one non-taster version."
+        },
+        {
+          "if": {},
+          "text": "A mixed combination of the two sites. Other taste versions exist, and the exact type needs a third site that consumer files can't read reliably."
+        }
+      ],
+      "verdict": "trait",
+      "verdictNote": "A taste trait. No study here shows that changing diet by TAS2R38 type helps.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "12595690"
+          },
+          "value": "One bitter-taste gene",
+          "quote": "This region contains a single gene that encodes a member of the TAS2R bitter taste receptor family."
+        },
+        {
+          "ref": {
+            "pmid": "12595690"
+          },
+          "value": "Haplotypes explain 55–85% of PTC sensitivity",
+          "quote": "These haplotypes completely explain the bimodal distribution of PTC taste sensitivity, thus accounting for the inheritance of the classically defined taste insensitivity and for 55 to 85% of the variance in PTC sensitivity."
+        }
+      ],
+      "caveat": "The third defining site (rs713598) has DNA letters that look the same on both strands, so it isn't used. The type is read from the other two sites.",
+      "strandNote": "TAS2R38 is read from the reverse strand. Amino acids were checked against Ensembl for each forward-strand letter."
+    },
+    {
+      "id": "eyes",
+      "gene": "HERC2 / OCA2",
+      "title": "Eye colour (blue vs brown)",
+      "area": "traits",
+      "what": "A switch inside the HERC2 gene controls how much the neighbouring OCA2 pigment gene is used in the iris. One change there is the main difference between blue and brown eyes in Europeans.",
+      "sites": [
+        {
+          "rsid": "rs12913832",
+          "allele": "G",
+          "alleleName": "blue-eye version"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs12913832": 2
+          },
+          "text": "Two copies of the version linked to blue eyes.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs12913832": 1
+          },
+          "text": "One copy of the version linked to blue eyes."
+        },
+        {
+          "if": {
+            "rs12913832": 0
+          },
+          "text": "No copies of the version linked to blue eyes."
+        }
+      ],
+      "verdict": "trait",
+      "verdictNote": "A harmless trait. Other genes modify the colour, so this is not a certain prediction.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "18252222"
+          },
+          "value": "One SNP predicts eye colour",
+          "quote": "a single SNP in intron 86 of HERC2, rs12913832, predicted eye color significantly better"
+        },
+        {
+          "ref": {
+            "pmid": "18252222"
+          },
+          "value": "Lowers OCA2 in the iris",
+          "quote": "the C allele at rs12913832 leads to decreased expression of OCA2, particularly within iris melanocytes, which we postulate to be the ultimate cause of blue eye color"
+        },
+        {
+          "ref": {
+            "pmid": "18252222"
+          },
+          "value": "Another gene modifies it",
+          "quote": "We were also able to demonstrate the OCA2 R419Q, rs1800407, coding SNP acts as a penetrance modifier of this new HERC2 SNP for eye color"
+        }
+      ],
+      "strandNote": "The paper names the blue-eye allele C, on the opposite strand. On the forward strand in your file it is G (1000 Genomes: common in European samples, rare in African and East Asian samples, as expected for the blue-eye allele)."
+    },
+    {
+      "id": "mc1r",
+      "gene": "MC1R",
+      "title": "Red hair, fair skin and freckles",
+      "area": "traits",
+      "what": "MC1R switches pigment cells between dark (brown-black) and light (red-yellow) pigment. Some common changes reduce the dark pigment, giving red hair, fair skin that burns easily, and freckles.",
+      "sites": [
+        {
+          "rsid": "rs1805007",
+          "allele": "T",
+          "alleleName": "Arg151Cys",
+          "aa": "C"
+        },
+        {
+          "rsid": "rs1805008",
+          "allele": "T",
+          "alleleName": "Arg160Trp",
+          "aa": "W"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "total": [
+              2,
+              4
+            ]
+          },
+          "text": "Two copies of red-hair-linked versions. In one study, people with two MC1R variants had an 11-fold higher chance of childhood freckles.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "total": 1
+          },
+          "text": "One copy of a red-hair version: carriers are more likely to have fair, sun-sensitive skin and freckles, even without red hair.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "total": 0
+          },
+          "text": "Neither of the two main red-hair versions was found. Other MC1R versions not on the chip can still affect skin."
+        }
+      ],
+      "verdict": "same-advice",
+      "verdictNote": "Sun-protection advice is based on skin type, which you can see. These variants are one reason someone has fair, sun-sensitive skin.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "11179997"
+          },
+          "value": "Three active variants",
+          "quote": "three variant alleles that are active in influencing pigmentation: Arg151Cys, Arg160Trp, and Asp294His"
+        },
+        {
+          "ref": {
+            "pmid": "11179997"
+          },
+          "value": "One copy: fairer, sun-sensitive skin",
+          "quote": "individuals carrying a single MC1R variant allele were more likely to have fair and sun sensitive skin"
+        },
+        {
+          "ref": {
+            "pmid": "11487574"
+          },
+          "value": "Freckles: 3× (one) and 11× (two variants)",
+          "quote": "Carriers of one or two MC1R gene variants had a 3- and 11-fold increased risk of developing ephelides, respectively"
+        },
+        {
+          "ref": {
+            "pmid": "29558558"
+          },
+          "value": "USPSTF: counsel fair-skinned people on UV",
+          "quote": "The USPSTF recommends counseling young adults, adolescents, children, and parents of young children about minimizing exposure to UV radiation for persons aged 6 months to 24 years with fair skin types to reduce their risk of skin cancer."
+        }
+      ],
+      "actions": [
+        "If your skin is fair, the US Preventive Services Task Force supports advice on limiting UV exposure (shade, clothing, sunscreen, no sunbeds)."
+      ]
+    },
+    {
+      "id": "actn3",
+      "gene": "ACTN3",
+      "title": "Sprint muscle protein (ACTN3)",
+      "area": "fitness",
+      "what": "ACTN3 makes alpha-actinin-3, a protein in fast-twitch muscle fibres used for fast, forceful movement. A common change (R577X) stops the protein being made; other proteins cover for it, so it causes no disease.",
+      "sites": [
+        {
+          "rsid": "rs1815739",
+          "allele": "T",
+          "alleleName": "577X (no protein)",
+          "aa": "*"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs1815739": 2
+          },
+          "text": "Two copies of 577X (XX): your fast muscle fibres make no alpha-actinin-3. This is common and harmless.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs1815739": 1
+          },
+          "text": "One copy each (RX): you make alpha-actinin-3."
+        },
+        {
+          "if": {
+            "rs1815739": 0
+          },
+          "text": "Two copies of 577R (RR): you make alpha-actinin-3. This version is more common among elite sprinters."
+        }
+      ],
+      "verdict": "trait",
+      "verdictNote": "Linked to elite sprint performance in studies of athletes. No study here shows that training by ACTN3 type works better.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "12879365"
+          },
+          "value": "XX in 18% of white individuals",
+          "quote": "alpha-actinin-3 is absent in 18% of healthy white individuals because of homozygosity for a common stop-codon polymorphism in the ACTN3 gene, R577X"
+        },
+        {
+          "ref": {
+            "pmid": "12879365"
+          },
+          "value": "No disease",
+          "quote": "The absence of a disease phenotype secondary to alpha-actinin-3 deficiency is likely due to compensation by the homologous protein, alpha-actinin-2."
+        },
+        {
+          "ref": {
+            "pmid": "12879365"
+          },
+          "value": "Sprinters: more 577R",
+          "quote": "Both male and female elite sprint athletes have significantly higher frequencies of the 577R allele than do controls."
+        }
+      ],
+      "strandNote": "On the forward strand the reference genome itself carries the 577X letter (T)."
+    },
+    {
+      "id": "fto",
+      "gene": "FTO",
+      "title": "Weight (FTO) and exercise",
+      "area": "fitness",
+      "what": "FTO holds the strongest known common genetic influence on body weight. Each copy of the risk version nudges the odds of obesity up a little.",
+      "sites": [
+        {
+          "rsid": "rs9939609",
+          "allele": "A",
+          "alleleName": "risk version (A)"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs9939609": [
+              1,
+              2
+            ]
+          },
+          "text": "You carry the risk version. In adults who were physically active its effect on obesity odds was smaller, and in weight-loss trials carriers lost just as much weight as non-carriers.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs9939609": 0
+          },
+          "text": "You don't carry the risk version at this site. Weight also depends on many other genes and on habits."
+        }
+      ],
+      "verdict": "same-advice",
+      "verdictNote": "Tested in large studies: activity and weight-loss programmes work just as well whatever your FTO type.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "22069379"
+          },
+          "value": "Activity reduces the FTO effect by 27%",
+          "quote": "The association of the FTO risk allele with the odds of obesity is attenuated by 27% in physically active adults"
+        },
+        {
+          "ref": {
+            "pmid": "27650503"
+          },
+          "value": "Carriers respond equally to weight-loss programmes",
+          "quote": "individuals carrying the minor allele respond equally well to dietary, physical activity, or drug based weight loss interventions"
+        }
+      ],
+      "interventions": [
+        "fto-weight-loss"
+      ]
+    },
+    {
+      "id": "tcf7l2",
+      "gene": "TCF7L2",
+      "title": "Type 2 diabetes risk (TCF7L2) and lifestyle",
+      "area": "nutrition",
+      "what": "TCF7L2 has the strongest common genetic effect on type 2 diabetes risk. It shifts the odds modestly; weight, activity and diet also matter.",
+      "sites": [
+        {
+          "rsid": "rs7903146",
+          "allele": "T",
+          "alleleName": "risk version (T)"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs7903146": [
+              1,
+              2
+            ]
+          },
+          "text": "You carry the risk version. A large lifestyle trial worked just as well for people with it.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs7903146": 0
+          },
+          "text": "You don't carry the risk version at this site."
+        }
+      ],
+      "verdict": "same-advice",
+      "verdictNote": "Tested: the lifestyle programme that prevents type 2 diabetes works regardless of TCF7L2 type.",
+      "evidence": [],
+      "interventions": [
+        "t2d-lifestyle"
+      ]
+    },
+    {
+      "id": "mthfr",
+      "gene": "MTHFR",
+      "title": "Folate, riboflavin and homocysteine (MTHFR)",
+      "area": "nutrition",
+      "what": "MTHFR turns folate into the form the body uses to convert homocysteine into methionine. It needs riboflavin (vitamin B2) as a helper. The common 677C>T change makes the enzyme less stable.",
+      "sites": [
+        {
+          "rsid": "rs1801133",
+          "allele": "A",
+          "alleleName": "677T",
+          "aa": "V"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs1801133": 2
+          },
+          "text": "Two copies of 677T (TT). This is the one genotype where trials show riboflavin lowering blood pressure, and where homocysteine tends to run higher and folate lower.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs1801133": 1
+          },
+          "text": "One copy of 677T (CT). This is very common; the riboflavin trials were only in people with two copies."
+        },
+        {
+          "if": {
+            "rs1801133": 0
+          },
+          "text": "No copies of 677T (CC): the usual form of the enzyme."
+        }
+      ],
+      "verdict": "changes-advice",
+      "verdictNote": "For people with TT only: trials targeted at this genotype found riboflavin lowered blood pressure. For everyone, homocysteine and folate can be measured with blood tests.",
+      "evidence": [
+        {
+          "ref": {
+            "url": "https://medlineplus.gov/genetics/gene/mthfr/"
+          },
+          "value": "Needed to convert homocysteine",
+          "quote": "This is the primary form of folate found in blood, and is necessary for the multistep process that converts the amino acid homocysteine to another amino acid, methionine."
+        },
+        {
+          "ref": {
+            "pmid": "27170501"
+          },
+          "value": "Riboflavin is MTHFR's co-factor",
+          "quote": "One important role of riboflavin in the form of flavin dinucleotide is as a co-factor for the folate-metabolising enzyme methylenetetrahydrofolate reductase (MTHFR)."
+        },
+        {
+          "ref": {
+            "url": "https://medlineplus.gov/genetics/gene/mthfr/"
+          },
+          "value": "Thermolabile enzyme",
+          "quote": "This common variant results in a form of methylenetetrahydrofolate reductase that has reduced activity at higher temperatures (the enzyme is thermolabile)."
+        },
+        {
+          "ref": {
+            "url": "https://medlineplus.gov/genetics/gene/mthfr/"
+          },
+          "value": "TT: 25% of Hispanics, 10–15% of North American whites",
+          "quote": "MTHFR gene polymorphisms are common worldwide, with an estimated 25 percent of Hispanics and 10 to 15 percent of North American whites having the 677C>T polymorphism in both copies of the gene."
+        },
+        {
+          "ref": {
+            "pmid": "26497154"
+          },
+          "value": "TT: higher homocysteine, lower folate",
+          "quote": "MTHFR TT genotype is associated with increased plasma homocysteine and lowered serum folate and less response to short-term supplementation"
+        },
+        {
+          "ref": {
+            "pmid": "27170501"
+          },
+          "value": "Riboflavin: 5–13 mmHg lower systolic BP in TT",
+          "quote": "riboflavin supplementation can significantly reduce systolic BP by 5-13 mmHg in these genetically at risk adults"
+        }
+      ],
+      "interventions": [
+        "riboflavin-mthfr-tt",
+        "folate-homocysteine"
+      ],
+      "strandNote": "The paper's 677T is on the gene's own (reverse) strand; on the forward strand in your file it is A."
+    },
+    {
+      "id": "lactase",
+      "gene": "LCT / MCM6",
+      "title": "Digesting milk as an adult (lactase)",
+      "area": "nutrition",
+      "what": "Babies make lactase to digest milk sugar. In most people it fades after childhood; a change near the LCT gene keeps it on for life (lactase persistence).",
+      "sites": [
+        {
+          "rsid": "rs4988235",
+          "allele": "A",
+          "alleleName": "−13910T (persistence)"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs4988235": [
+              1,
+              2
+            ]
+          },
+          "text": "At least one copy of the persistence version: you most likely keep making lactase as an adult."
+        },
+        {
+          "if": {
+            "rs4988235": 0
+          },
+          "text": "No copies of this persistence version: you may make less lactase as an adult. Other persistence versions (common in parts of Africa and the Middle East) aren't tested here.",
+          "tone": "notable"
+        }
+      ],
+      "verdict": "changes-advice",
+      "verdictNote": "Only matters if dairy gives you symptoms. Most people with low lactase can still have modest amounts of lactose.",
+      "evidence": [
+        {
+          "ref": {
+            "url": "https://medlineplus.gov/genetics/condition/lactose-intolerance/"
+          },
+          "value": "Most keep some lactase",
+          "quote": "Most people with lactase nonpersistence retain some lactase activity and can include varying amounts of lactose in their diets without experiencing symptoms."
+        },
+        {
+          "ref": {
+            "url": "https://medlineplus.gov/genetics/condition/lactose-intolerance/"
+          },
+          "value": "Only ~5% of Northern Europeans are non-persistent",
+          "quote": "For example, only about 5 percent of people of Northern European descent are lactase nonpersistent."
+        }
+      ],
+      "interventions": [
+        "lactose-tolerable-dose"
+      ],
+      "strandNote": "Papers name the persistence allele −13910T, on the reverse strand; on the forward strand in your file it is A."
+    },
+    {
+      "id": "alcohol",
+      "gene": "ALDH2 / ADH1B",
+      "title": "Alcohol flush",
+      "area": "nutrition",
+      "what": "ALDH2 clears acetaldehyde, the toxic breakdown product of alcohol. The ALDH2*2 version (common in East Asia) works poorly and is the main cause of the alcohol flushing response. ADH1B*2 speeds up the first step of alcohol breakdown.",
+      "sites": [
+        {
+          "rsid": "rs671",
+          "allele": "A",
+          "alleleName": "ALDH2*2 (Glu504Lys)",
+          "aa": "K"
+        },
+        {
+          "rsid": "rs1229984",
+          "allele": "T",
+          "alleleName": "ADH1B*2 (Arg48His)",
+          "aa": "H"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs671": [
+              1,
+              2
+            ]
+          },
+          "text": "You carry ALDH2*2: acetaldehyde clears slowly after drinking. See the alcohol item for what studies found.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs671": 0,
+            "rs1229984": [
+              1,
+              2
+            ]
+          },
+          "text": "You don't carry ALDH2*2, but you carry ADH1B*2, which speeds up the first step of alcohol breakdown."
+        },
+        {
+          "if": {
+            "rs671": 0
+          },
+          "text": "You carry neither version."
+        }
+      ],
+      "verdict": "changes-advice",
+      "verdictNote": "For ALDH2*2 carriers, see the alcohol item: the evidence is specific to this genotype.",
+      "evidence": [],
+      "interventions": [
+        "alcohol-aldh2"
+      ]
+    },
+    {
+      "id": "caffeine",
+      "gene": "CYP1A2",
+      "title": "Caffeine metabolism",
+      "area": "fitness",
+      "what": "CYP1A2 is the liver enzyme that breaks down most caffeine. Studies compare people with and without the A allele at rs762551.",
+      "sites": [
+        {
+          "rsid": "rs762551",
+          "allele": "A",
+          "alleleName": "A"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs762551": 2
+          },
+          "text": "Two copies of A (AA)."
+        },
+        {
+          "if": {
+            "rs762551": 1
+          },
+          "text": "One A and one C (AC)."
+        },
+        {
+          "if": {
+            "rs762551": 0
+          },
+          "text": "Two copies of C (CC): no A allele."
+        }
+      ],
+      "verdict": "limited",
+      "verdictNote": "One pooled analysis found an extra caffeine benefit for cycling time trials in A carriers; not for sprint or jump. The safe upper intake is the same for everyone.",
+      "evidence": [],
+      "interventions": [
+        "caffeine-endurance"
+      ]
+    },
+    {
+      "id": "b12",
+      "gene": "FUT2",
+      "title": "Vitamin B12 levels (FUT2)",
+      "area": "nutrition",
+      "what": "FUT2 decides whether you are a 'secretor' (you put blood-group sugars into saliva and the gut). Non-secretor status is harmless, and has been linked to higher blood B12.",
+      "sites": [
+        {
+          "rsid": "rs492602",
+          "allele": "G",
+          "alleleName": "G (tracks the non-secretor version)"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs492602": 2
+          },
+          "text": "Two copies of G, which tracks the non-secretor version: linked to higher blood B12 in the study.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs492602": [
+              0,
+              1
+            ]
+          },
+          "text": "You have at least one copy of the other version (A). B12 levels also depend on diet and absorption; a blood test measures them."
+        }
+      ],
+      "verdict": "test-instead",
+      "verdictNote": "B12 is measured with a blood test; ask your doctor whether you need one.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "18776911"
+          },
+          "value": "GG: higher B12 (women)",
+          "quote": "Women homozygous for the rs492602[G] allele had higher B(12) levels."
+        },
+        {
+          "ref": {
+            "pmid": "18776911"
+          },
+          "value": "Linked to the non-secretor variant",
+          "quote": "This allele is in strong linkage disequilibrium with the FUT2 nonsecretor variant encoding W143X, suggesting a plausible mechanism for altered B(12) absorption and plasma levels."
+        }
+      ]
+    },
+    {
+      "id": "vitd",
+      "gene": "GC / CYP2R1 / DHCR7",
+      "title": "Vitamin D levels",
+      "area": "nutrition",
+      "what": "These genes make vitamin D (DHCR7), activate it in the liver (CYP2R1) and carry it in the blood (GC). Common changes in them shift blood vitamin D levels a little.",
+      "sites": [
+        {
+          "rsid": "rs2282679",
+          "allele": "G",
+          "alleleName": "G"
+        },
+        {
+          "rsid": "rs10741657",
+          "allele": "A",
+          "alleleName": "A"
+        },
+        {
+          "rsid": "rs12785878",
+          "allele": "G",
+          "alleleName": "G"
+        }
+      ],
+      "readings": [
+        {
+          "if": {},
+          "text": "Your file has these vitamin D sites. Together they shift the odds of a low level; sun exposure and diet also affect vitamin D levels."
+        }
+      ],
+      "verdict": "test-instead",
+      "verdictNote": "A blood 25(OH)D test tells you your actual level. No verified trial here shows that people with these variants benefit differently from supplements.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "20541252"
+          },
+          "value": "Three confirmed loci",
+          "quote": "Variants near genes involved in cholesterol synthesis, hydroxylation, and vitamin D transport affect vitamin D status."
+        },
+        {
+          "ref": {
+            "pmid": "20541252"
+          },
+          "value": "Highest genotype-score quartile: OR 2.47 for <75 nmol/L",
+          "quote": "Participants with a genotype score (combining the three confirmed variants) in the highest quartile were at increased risk of having 25-hydroxyvitamin D concentrations lower than 75 nmol/L (OR 2.47, 95% CI 2.20-2.78, p=2.3x10(-48))"
+        },
+        {
+          "ref": {
+            "pmid": "20541252"
+          },
+          "value": "Sun and diet also matter",
+          "quote": "Determinants of circulating 25-hydroxyvitamin D concentrations include sun exposure and diet, but high heritability suggests that genetic factors could also play a part."
+        }
+      ],
+      "caveat": "Which letter lowers vitamin D isn't stated in the study's summary, so no per-letter reading is given.",
+      "interventions": [
+        "vitamin-d-supplement"
+      ]
+    },
+    {
+      "id": "omega3",
+      "gene": "FADS1 / FADS2",
+      "title": "Omega-3 conversion (FADS)",
+      "area": "nutrition",
+      "what": "FADS1 and FADS2 make the enzymes that turn plant omega-3 (ALA, from flax, walnuts, canola) into the longer omega-3s EPA and DHA found in fish.",
+      "sites": [
+        {
+          "rsid": "rs174546",
+          "allele": "T",
+          "alleleName": "minor version (T)"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs174546": [
+              1,
+              2
+            ]
+          },
+          "text": "You carry the minor version: in the study, people with it had more ALA and less EPA in their blood, suggesting slower conversion.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs174546": 0
+          },
+          "text": "You don't carry the minor version at this site."
+        }
+      ],
+      "verdict": "no-proven-action",
+      "verdictNote": "This changes blood omega-3 levels, but a systematic review found the evidence for tailoring omega-3 intake to genes like this is weak. EPA and DHA eaten directly (for example in oily fish) don't need converting.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "21829377"
+          },
+          "value": "Minor alleles: more ALA, less EPA",
+          "quote": "Minor alleles of SNPs in FADS1 and FADS2 (desaturases) were associated with higher levels of ALA (p = 3 x 10⁻⁶⁴) and lower levels of eicosapentaenoic acid (EPA, p = 5 x 10⁻⁵⁸)"
+        },
+        {
+          "ref": {
+            "pmid": "35193914"
+          },
+          "value": "Most gene–diet evidence for fish-oil fats is weak",
+          "quote": "Most evidence in this area is weak, but two specific nutrigenetic interactions exhibited strong evidence, with generalisability limited to specific populations."
+        }
+      ]
+    },
+    {
+      "id": "carotene",
+      "gene": "BCO1 (BCMO1)",
+      "title": "Beta-carotene and vitamin A",
+      "area": "nutrition",
+      "what": "BCO1 splits beta-carotene (from carrots, sweet potato, greens) into vitamin A. Some reports say certain versions mean you 'can't make vitamin A'.",
+      "sites": [
+        {
+          "rsid": "rs6564851",
+          "allele": "G",
+          "alleleName": "G"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs6564851": [
+              1,
+              2
+            ]
+          },
+          "text": "You carry G, linked to higher blood beta-carotene. In the same study it did not change blood vitamin A (retinol)."
+        },
+        {
+          "if": {
+            "rs6564851": 0
+          },
+          "text": "You don't carry G. In the study this site did not change blood vitamin A (retinol) either way."
+        }
+      ],
+      "verdict": "no-proven-action",
+      "verdictNote": "The best-studied BCO1 site changes beta-carotene levels but not vitamin A itself, so it isn't a reason to take vitamin A supplements.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "19185284"
+          },
+          "value": "G: higher beta-carotene",
+          "quote": "the G allele at rs6564851, near the beta-carotene 15,15'-monooxygenase 1 (BCMO1) gene, was associated with higher beta-carotene (p = 1.6 x 10(-24)) and alpha-carotene (p = 0.0001) levels"
+        },
+        {
+          "ref": {
+            "pmid": "19185284"
+          },
+          "value": "No effect on retinol",
+          "quote": "Interestingly, this genetic variant had no significant effect on plasma retinol (p > 0.05)."
+        }
+      ]
+    },
+    {
+      "id": "vitc",
+      "gene": "SLC23A1",
+      "title": "Vitamin C levels",
+      "area": "nutrition",
+      "what": "SLC23A1 makes the transporter that absorbs vitamin C from food. A less common change lowers blood vitamin C a little.",
+      "sites": [
+        {
+          "rsid": "rs33972313",
+          "allele": "T",
+          "alleleName": "rarer version (T)"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs33972313": [
+              1,
+              2
+            ]
+          },
+          "text": "You carry the rarer version, linked to slightly lower blood vitamin C.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs33972313": 0
+          },
+          "text": "You don't carry the rarer version."
+        }
+      ],
+      "verdict": "no-proven-action",
+      "verdictNote": "A follow-up study found no link between this variant and heart or metabolic health, so there's no reason to change vitamin C intake because of it.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "20519558"
+          },
+          "value": "−5.98 µmol/L per rare allele",
+          "quote": "each additional rare allele was associated with a reduction in circulating concentrations of L-ascorbic acid of -5.98 micromol/L"
+        },
+        {
+          "ref": {
+            "pmid": "25527764"
+          },
+          "value": "No link to cardiometabolic outcomes",
+          "quote": "There was no evidence of a relation between the variation at rs33972313 and any cardiometabolic outcome."
+        }
+      ]
+    },
+    {
+      "id": "iron",
+      "gene": "HFE",
+      "title": "Iron overload (HFE)",
+      "area": "nutrition",
+      "what": "HFE helps control how much iron the gut absorbs. Two copies of C282Y, or one C282Y plus one H63D, can let iron build up over years (hemochromatosis).",
+      "sites": [
+        {
+          "rsid": "rs1800562",
+          "allele": "A",
+          "alleleName": "C282Y",
+          "aa": "Y"
+        },
+        {
+          "rsid": "rs1799945",
+          "allele": "G",
+          "alleleName": "H63D",
+          "aa": "D"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs1800562": 2
+          },
+          "text": "Two copies of C282Y: the genotype guidelines test for. See the iron-panel item.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs1800562": 1,
+            "rs1799945": [
+              1,
+              2
+            ]
+          },
+          "text": "One C282Y and one H63D. See the iron-panel item.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs1800562": 1
+          },
+          "text": "One copy of C282Y (carrier). Guidelines focus on two copies, or C282Y with H63D."
+        },
+        {
+          "if": {
+            "rs1799945": [
+              1,
+              2
+            ]
+          },
+          "text": "H63D without C282Y. Guidelines focus on two copies of C282Y, or C282Y with H63D."
+        },
+        {
+          "if": {},
+          "text": "Neither C282Y nor H63D found."
+        }
+      ],
+      "verdict": "test-instead",
+      "verdictNote": "Blood tests (transferrin saturation and ferritin) show whether iron is actually building up.",
+      "evidence": [],
+      "interventions": [
+        "iron-panel-discussion"
+      ]
+    },
+    {
+      "id": "celiac",
+      "gene": "HLA-DQ",
+      "title": "Gluten and celiac disease (HLA-DQ2.5 / DQ8)",
+      "area": "nutrition",
+      "what": "Celiac disease almost only happens in people who carry the immune types HLA-DQ2 or HLA-DQ8. Carrying them doesn't mean you will get it, but not carrying them makes it very unlikely.",
+      "sites": [
+        {
+          "rsid": "rs2187668",
+          "allele": "T",
+          "alleleName": "DQ2.5 tag"
+        },
+        {
+          "rsid": "rs7454108",
+          "allele": "C",
+          "alleleName": "DQ8 tag"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "total": [
+              1,
+              4
+            ]
+          },
+          "text": "You carry a tag for DQ2.5 or DQ8. This is common and does not mean you have or will get celiac disease; it means celiac disease is possible."
+        },
+        {
+          "if": {
+            "total": 0
+          },
+          "text": "Neither the DQ2.5 nor the DQ8 tag was found. That makes celiac disease less likely, but this file can't rule it out: the related DQ2.2 type isn't checked and tag SNPs are validated mainly in Europeans.",
+          "tone": "notable"
+        }
+      ],
+      "verdict": "test-instead",
+      "verdictNote": "If gluten seems to cause symptoms, ask about the celiac antibody blood test before cutting out gluten: a gluten-free diet can affect the test results.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "18184122"
+          },
+          "value": "Necessary but not sufficient",
+          "quote": "The most important genetic factors identified are HLA-DQ2 and HLA-DQ8, which are necessary but not sufficient to predispose to CD."
+        },
+        {
+          "ref": {
+            "pmid": "18184122"
+          },
+          "value": "Absence: NPV close to 100%",
+          "quote": "Practically all CD patients carry HLA-DQ2 or HLA-DQ8, while the absence of these molecules has a negative predictive value for CD close to 100%."
+        },
+        {
+          "ref": {
+            "pmid": "18509540"
+          },
+          "value": "Tag SNPs: sensitivity >0.991 (six SNPs, Europeans)",
+          "quote": "We determined that for this tagging approach the sensitivity was >0.991, specificity >0.996 and the predictive value >0.948."
+        },
+        {
+          "ref": {
+            "pmid": "36602836"
+          },
+          "value": "Antibody test first",
+          "quote": "Detection of CD-specific antibodies (e.g., tissue transglutaminase) in the serum is very helpful for the initial screening of patients with suspicion of CD."
+        },
+        {
+          "ref": {
+            "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/celiac-disease/diagnosis"
+          },
+          "value": "Don't go gluten-free before testing",
+          "quote": "Doctors don’t recommend starting a gluten-free diet before diagnostic testing because a gluten-free diet can affect test results."
+        }
+      ],
+      "caveat": "The validated method uses six tag SNPs; consumer files reliably have two of them (DQ2.5 and DQ8)."
+    },
+    {
+      "id": "lpa",
+      "gene": "LPA",
+      "title": "Lipoprotein(a), an inherited cholesterol particle",
+      "area": "heart",
+      "what": "Lp(a) is a cholesterol-carrying particle whose level is largely inherited. High Lp(a) raises the risk of heart disease and is linked to aortic valve calcification.",
+      "sites": [
+        {
+          "rsid": "rs10455872",
+          "allele": "G",
+          "alleleName": "G (raises Lp(a))"
+        },
+        {
+          "rsid": "rs3798220",
+          "allele": "C",
+          "alleleName": "C (raises Lp(a))",
+          "aa": "M"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "total": [
+              1,
+              4
+            ]
+          },
+          "text": "You carry a variant linked to higher Lp(a). A one-time blood test shows your actual level.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "total": 0
+          },
+          "text": "Neither variant was found. Most of what sets Lp(a) can't be read from a consumer file, so this doesn't mean your Lp(a) is low."
+        }
+      ],
+      "verdict": "changes-advice",
+      "verdictNote": "The European Atherosclerosis Society advises measuring Lp(a) at least once in every adult; carrying these variants is a reason not to skip it.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "20032323"
+          },
+          "value": "Both variants: higher Lp(a) and coronary risk",
+          "quote": "We identified two LPA variants that were strongly associated with both an increased level of Lp(a) lipoprotein and an increased risk of coronary disease."
+        },
+        {
+          "ref": {
+            "pmid": "20032323"
+          },
+          "value": "Highly heritable",
+          "quote": "An increased level of Lp(a) lipoprotein has been identified as a risk factor for coronary artery disease that is highly heritable."
+        },
+        {
+          "ref": {
+            "pmid": "36036785"
+          },
+          "value": "Test once in adults",
+          "quote": "This panel recommends testing Lp(a) concentration at least once in adults"
+        },
+        {
+          "ref": {
+            "pmid": "36036785"
+          },
+          "value": "Aortic valve calcification",
+          "quote": "High Lp(a) is associated with both microcalcification and macrocalcification of the aortic valve."
+        }
+      ],
+      "interventions": [
+        "lpa-test"
+      ]
+    },
+    {
+      "id": "g6pd",
+      "gene": "G6PD",
+      "title": "G6PD: fava beans and some medicines",
+      "area": "medicines",
+      "what": "G6PD protects red blood cells. In people with G6PD deficiency, infections, certain drugs or fava beans can make red cells break down. The gene is on the X chromosome: males have one copy; females with one altered copy range from no symptoms to deficiency like males.",
+      "sites": [
+        {
+          "rsid": "rs1050828",
+          "allele": "T",
+          "alleleName": "A− (Val68Met)",
+          "aa": "M"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs1050828": [
+              1,
+              2
+            ]
+          },
+          "text": "You carry the G6PD A− variant, which is common in people with African ancestry. In males it usually means G6PD deficiency; in females it varies. A G6PD blood test confirms it.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs1050828": 0
+          },
+          "text": "The A− variant wasn't found. Other G6PD variants (for example the Mediterranean type) aren't covered by this site."
+        }
+      ],
+      "verdict": "changes-advice",
+      "verdictNote": "If a blood test confirms deficiency, a clinical guideline lists which medicines to avoid or use with caution.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "36049896"
+          },
+          "value": "Medicine risk classes",
+          "quote": "In patients with G6PD deficiency, high-risk medications should be avoided, medium-risk medications should be used with caution, and low-to-no risk medications can be used with standard precautions, without regard to G6PD phenotype."
+        },
+        {
+          "ref": {
+            "url": "https://medlineplus.gov/genetics/condition/glucose-6-phosphate-dehydrogenase-deficiency/"
+          },
+          "value": "Fava beans",
+          "quote": "Hemolytic anemia can also occur after eating fava beans or inhaling pollen from fava plants (a reaction called favism)."
+        },
+        {
+          "ref": {
+            "url": "https://medlineplus.gov/genetics/condition/glucose-6-phosphate-dehydrogenase-deficiency/"
+          },
+          "value": "Triggers",
+          "quote": "Factors such as infections, certain drugs, or ingesting fava beans can increase the levels of reactive oxygen species, causing red blood cells to be destroyed faster than the body can replace them."
+        },
+        {
+          "ref": {
+            "url": "https://medlineplus.gov/genetics/condition/glucose-6-phosphate-dehydrogenase-deficiency/"
+          },
+          "value": "Females with one copy vary",
+          "quote": "In females, who have two copies of the X chromosome, one altered copy of the G6PD gene in each cell can lead to less severe features of the condition or may cause no signs or symptoms at all."
+        },
+        {
+          "ref": {
+            "url": "https://medlineplus.gov/genetics/condition/glucose-6-phosphate-dehydrogenase-deficiency/"
+          },
+          "value": "About 1 in 10 African American males",
+          "quote": "It affects about 1 in 10 African American males in the United States."
+        }
+      ],
+      "interventions": [
+        "g6pd-medicines"
+      ],
+      "caveat": "Many male AncestryDNA files write X-chromosome letters twice, so 'two copies' in a male file usually means one."
+    },
+    {
+      "id": "apoe-omega3",
+      "gene": "APOE",
+      "title": "APOE and fish oil (sensitive)",
+      "area": "nutrition",
+      "sensitive": true,
+      "what": "APOE carries fats and cholesterol in the blood. It is sensitive because the ε4 version is also linked to Alzheimer disease; this card only covers fish oil and triglycerides.",
+      "sites": [
+        {
+          "rsid": "rs429358",
+          "allele": "C",
+          "alleleName": "ε4-defining C",
+          "aa": "R"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs429358": [
+              1,
+              2
+            ]
+          },
+          "text": "You carry ε4. A systematic review rated the evidence strong (GRADE moderate quality) that male ε4 carriers have larger triglyceride drops with fish oil.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs429358": 0
+          },
+          "text": "You don't carry ε4, so this finding doesn't apply."
+        }
+      ],
+      "verdict": "limited",
+      "verdictNote": "One of only two gene–diet links rated strong in a GRADE review, and only for men with ε4. Triglycerides are measured in a routine lipid panel.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "35193914"
+          },
+          "value": "Male APOE-E4 carriers: larger triglyceride response",
+          "quote": "there is strong (GRADE rating: moderate quality) evidence to suggest that male APOE-E4 carriers (rs429358, rs7412) exhibit significant triglyceride reductions in response to omega-3-rich fish oil with a dose-response effect"
+        }
+      ]
+    }
+  ],
+  "unsupported": [
+    {
+      "rsid": "rs5751876",
+      "gene": "ADORA2A",
+      "claim": "caffeine and anxiety or sleep"
+    },
+    {
+      "rsid": "rs1801260",
+      "gene": "CLOCK",
+      "claim": "sleep timing and weight"
+    },
+    {
+      "rsid": "rs7946",
+      "gene": "PEMT",
+      "claim": "choline needs"
+    },
+    {
+      "rsid": "rs1801394",
+      "gene": "MTRR",
+      "claim": "vitamin B12 needs"
+    },
+    {
+      "rsid": "rs1801131",
+      "gene": "MTHFR (A1298C)",
+      "claim": "folate or methylfolate needs"
+    },
+    {
+      "rsid": "rs7501331",
+      "gene": "BCO1",
+      "claim": "turning beta-carotene into vitamin A"
+    },
+    {
+      "rsid": "rs4680",
+      "gene": "COMT",
+      "claim": "stress, caffeine or 'methylation' supplements"
+    },
+    {
+      "rsid": "rs1544410",
+      "gene": "VDR (BsmI)",
+      "claim": "vitamin D needs"
+    },
+    {
+      "rsid": "rs731236",
+      "gene": "VDR (TaqI)",
+      "claim": "vitamin D needs"
+    },
+    {
+      "rsid": "rs4880",
+      "gene": "SOD2",
+      "claim": "antioxidant needs"
+    },
+    {
+      "rsid": "rs1695",
+      "gene": "GSTP1",
+      "claim": "detox or antioxidant needs"
+    },
+    {
+      "rsid": "rs8192678",
+      "gene": "PPARGC1A",
+      "claim": "endurance training response"
+    },
+    {
+      "rsid": "rs1042713",
+      "gene": "ADRB2",
+      "claim": "fat burning with exercise"
+    },
+    {
+      "rsid": "rs4343",
+      "gene": "ACE",
+      "claim": "power vs endurance training"
+    },
+    {
+      "rsid": "rs699",
+      "gene": "AGT",
+      "claim": "salt sensitivity"
+    },
+    {
+      "rsid": "rs5082",
+      "gene": "APOA2",
+      "claim": "saturated fat and weight"
+    },
+    {
+      "rsid": "rs5400",
+      "gene": "SLC2A2",
+      "claim": "sugar cravings"
+    },
+    {
+      "rsid": "rs1800795",
+      "gene": "IL6",
+      "claim": "inflammation and recovery"
+    }
+  ],
+  "notes": [
+    {
+      "id": "epigenetics",
+      "title": "About 'epigenetic' diets",
+      "text": "Epigenetic marks (such as DNA methylation) sit on top of your DNA and change with age and cell type. Your AncestryDNA or 23andMe file reads DNA letters only; it measures no epigenetic marks at all. Nutrients that feed methylation (folate, B12, B6, riboflavin, choline) are sometimes sold as 'epigenetic' diets. A systematic review of human trials found limited evidence that diet changes methylation, apart from folic acid in the colon, and pooled human trials of folic acid found no significant change compared with placebo. The closest genotype-specific evidence in this area is MTHFR TT and riboflavin, which lowered blood pressure in trials (see MTHFR).",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "30355391"
+          },
+          "value": "Methylation changes with age and cell type",
+          "quote": "Patterns of DNA methylation change during development and ageing, differ between cell types, are altered in multiple diseases and can be modulated by dietary factors."
+        },
+        {
+          "ref": {
+            "pmid": "30355391"
+          },
+          "value": "Limited evidence beyond folic acid",
+          "quote": "In summary, there is limited evidence from intervention studies of effects of dietary factors, other than folic acid, on DNA methylation patterns in humans."
+        },
+        {
+          "ref": {
+            "pmid": "30355391"
+          },
+          "value": "Folic acid: hypermethylation in colorectal mucosa",
+          "quote": "Meta-analysis of the effect of folic acid on global DNA methylation revealed strong evidence that supplementation caused hypermethylation in colorectal mucosa"
+        },
+        {
+          "ref": {
+            "pmid": "37935134"
+          },
+          "value": "Human trials: no significant change vs placebo",
+          "quote": "However, meta-analysis of human clinical trials showed that folic acid supplementation did not promote significant changes in DNA methylation when compared to placebo."
+        }
+      ]
+    },
+    {
+      "id": "personalised",
+      "title": "Does DNA-based diet advice work better?",
+      "text": "In the largest trial of personalised nutrition (Food4Me, seven European countries), tailored advice improved diets more than generic advice, but adding genetic results did not make it work any better. A GRADE review of gene–diet studies for omega-3 found most of the evidence weak. That is why this guide says, for each gene, whether your genotype actually changes the advice.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "27524815"
+          },
+          "value": "Personalised advice beat conventional advice",
+          "quote": "Among European adults, PN advice via internet-delivered intervention produced larger and more appropriate changes in dietary behaviour than a conventional approach."
+        },
+        {
+          "ref": {
+            "pmid": "27524815"
+          },
+          "value": "Genotype added nothing",
+          "quote": "There was no evidence that including phenotypic and phenotypic plus genotypic information enhanced the effectiveness of the PN advice."
+        },
+        {
+          "ref": {
+            "pmid": "27524815"
+          },
+          "value": "Seven countries",
+          "quote": "Adults from seven European countries were recruited to an internet-delivered intervention (Food4Me)"
+        },
+        {
+          "ref": {
+            "pmid": "35193914"
+          },
+          "value": "Most evidence weak",
+          "quote": "Most evidence in this area is weak"
+        }
+      ]
+    }
+  ]
+}

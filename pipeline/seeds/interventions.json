@@ -721,6 +721,258 @@
           "message": "You listed a B12-related condition. The folic acid upper limit is set because of B12-deficiency risks."
         }
       ]
+    },
+    {
+      "id": "riboflavin-mthfr-tt",
+      "name": "If you have high blood pressure: ask about riboflavin (vitamin B2) for the MTHFR TT genotype",
+      "type": "discuss with clinician",
+      "triggers": [
+        {
+          "site": "rs1801133",
+          "allele": "A",
+          "when": "homozygous"
+        }
+      ],
+      "triggerNote": "Shown because your file shows two copies of MTHFR 677T (written A on the forward strand), the only genotype these trials included. It matters mainly if you have high blood pressure.",
+      "summary": "In a randomized trial of 91 people with high blood pressure and this genotype, riboflavin (1.6 mg a day) for 16 weeks lowered systolic blood pressure by 5.6 mmHg more than placebo, on top of their usual medicines. A review of the trials reports drops of 5-13 mmHg in people with this genotype. It adds to blood pressure treatment; it doesn't replace it.",
+      "studies": [
+        {
+          "ref": {
+            "pmid": "23608654"
+          },
+          "role": "genotype",
+          "genotypeInteraction": "tested-difference",
+          "sampleSize": {
+            "value": "91",
+            "quote": "91 of whom agreed to participate in the trial"
+          },
+          "population": {
+            "value": "Adults with high blood pressure and the TT genotype",
+            "quote": "hypertensive individuals with the TT genotype but without overt cardiovascular disease"
+          },
+          "exposure": {
+            "value": "Riboflavin 1.6 mg/day for 16 weeks",
+            "quote": "randomized to receive placebo or riboflavin (1.6 mg/d) for 16 weeks"
+          },
+          "outcomes": [
+            {
+              "value": "Systolic BP 5.6 mmHg lower than placebo",
+              "quote": "an overall treatment effect of 5.6±2.6 mm Hg (P=0.033) in systolic BP was observed"
+            },
+            {
+              "value": "Diastolic BP: no significant effect",
+              "quote": "whereas the treatment effect in diastolic BP was not significant (P=0.291)"
+            },
+            {
+              "value": "Earlier trial: effect specific to TT",
+              "quote": "Intervention with riboflavin was recently shown to produce genotype-specific lowering of blood pressure (BP) in patients with premature cardiovascular disease homozygous for the 677C→T polymorphism (TT genotype)"
+            }
+          ],
+          "harms": null
+        },
+        {
+          "ref": {
+            "pmid": "27170501"
+          },
+          "role": "genotype",
+          "genotypeInteraction": "tested-difference",
+          "sampleSize": null,
+          "population": {
+            "value": "Adults with MTHFR 677TT",
+            "quote": "riboflavin as an important modulator of blood pressure (BP) specifically in individuals with the MTHFR 677TT genotype"
+          },
+          "exposure": null,
+          "outcomes": [
+            {
+              "value": "5-13 mmHg lower systolic BP across trials",
+              "quote": "riboflavin supplementation can significantly reduce systolic BP by 5-13 mmHg in these genetically at risk adults"
+            },
+            {
+              "value": "More populations still need study",
+              "quote": "Studies are however required to investigate the BP-lowering effect of riboflavin in different populations"
+            }
+          ],
+          "harms": null
+        }
+      ],
+      "safety": null,
+      "limitations": [
+        "Only people with high blood pressure (or heart disease) and the TT genotype were studied.",
+        "The review notes that other populations still need to be studied."
+      ],
+      "contextFlags": [
+        {
+          "field": "medications",
+          "matchAny": [
+            "pril",
+            "sartan",
+            "olol",
+            "dipine",
+            "thiazide",
+            "diuretic",
+            "amlodipine",
+            "blood pressure"
+          ],
+          "message": "Keep taking your blood pressure medicine as prescribed. Riboflavin was added on top of medicines in the trial, not instead of them."
+        }
+      ]
+    },
+    {
+      "id": "lpa-test",
+      "name": "Ask for a one-time Lp(a) blood test",
+      "type": "discuss with clinician",
+      "triggers": [
+        {
+          "site": "rs10455872",
+          "allele": "G",
+          "when": "carried"
+        },
+        {
+          "site": "rs3798220",
+          "allele": "C",
+          "when": "carried"
+        }
+      ],
+      "triggerNote": "Shown because you carry an LPA variant linked to higher Lp(a). The European Atherosclerosis Society advises testing Lp(a) once in every adult; your result is a reason not to skip it.",
+      "summary": "Lp(a) is a cholesterol-carrying particle that is highly heritable and raises the risk of heart disease. The European Atherosclerosis Society recommends testing it at least once in adults, and if it is high, managing other heart risk factors early. A routine cholesterol test doesn't include it; it has to be asked for.",
+      "studies": [
+        {
+          "ref": {
+            "pmid": "36036785"
+          },
+          "role": "general",
+          "genotypeInteraction": "not-tested",
+          "sampleSize": null,
+          "population": {
+            "value": "All adults",
+            "quote": "This panel recommends testing Lp(a) concentration at least once in adults"
+          },
+          "exposure": {
+            "value": "Early risk-factor management if high",
+            "quote": "Without specific Lp(a)-lowering therapies, early intensive risk factor management is recommended, targeted according to global cardiovascular risk and Lp(a) level."
+          },
+          "outcomes": [
+            {
+              "value": "Causal risk factor",
+              "quote": "this statement reinforces evidence for Lp(a) as a causal risk factor for cardiovascular outcomes"
+            }
+          ],
+          "harms": null
+        },
+        {
+          "ref": {
+            "pmid": "20032323"
+          },
+          "role": "genotype",
+          "genotypeInteraction": "not-tested",
+          "sampleSize": {
+            "value": "3145 cases and 3352 controls",
+            "quote": "3145 case subjects with coronary disease and 3352 control subjects"
+          },
+          "population": null,
+          "exposure": null,
+          "outcomes": [
+            {
+              "value": "Both variants: higher Lp(a) and coronary risk",
+              "quote": "We identified two LPA variants that were strongly associated with both an increased level of Lp(a) lipoprotein and an increased risk of coronary disease."
+            },
+            {
+              "value": "Highly heritable",
+              "quote": "An increased level of Lp(a) lipoprotein has been identified as a risk factor for coronary artery disease that is highly heritable."
+            }
+          ],
+          "harms": null
+        }
+      ],
+      "safety": null,
+      "limitations": [
+        "Genotype only hints at Lp(a); the blood test measures it.",
+        "Other differences in the LPA gene that consumer chips can't read also set Lp(a)."
+      ],
+      "contextFlags": []
+    },
+    {
+      "id": "g6pd-medicines",
+      "name": "G6PD A−: ask about a G6PD blood test, and mention it before new medicines",
+      "type": "discuss with clinician",
+      "triggers": [
+        {
+          "site": "rs1050828",
+          "allele": "T",
+          "when": "carried"
+        }
+      ],
+      "triggerNote": "Shown because you carry the G6PD A− variant (Val68Met; T on the forward strand). G6PD is on the X chromosome: in males one copy usually means deficiency; in females it varies. A blood test confirms it.",
+      "summary": "In G6PD deficiency, infections, certain drugs or fava beans can make red blood cells break down (haemolytic anaemia). A clinical guideline sorts medicines by risk: high-risk ones should be avoided and medium-risk ones used with caution in people with the deficiency. A G6PD blood test shows whether you have it.",
+      "studies": [
+        {
+          "ref": {
+            "pmid": "36049896"
+          },
+          "role": "general",
+          "genotypeInteraction": "not-tested",
+          "sampleSize": null,
+          "population": {
+            "value": "People with G6PD deficiency",
+            "quote": "In patients with G6PD deficiency, high-risk medications should be avoided"
+          },
+          "exposure": {
+            "value": "Medicines classified by risk",
+            "quote": "We classify these medications as high, medium, or low to no risk based on a systematic review of the published evidence of the gene-drug associations and regulatory warnings."
+          },
+          "outcomes": [
+            {
+              "value": "Avoid high-risk, caution with medium-risk",
+              "quote": "In patients with G6PD deficiency, high-risk medications should be avoided, medium-risk medications should be used with caution, and low-to-no risk medications can be used with standard precautions, without regard to G6PD phenotype."
+            },
+            {
+              "value": "Genotype used in diagnosis",
+              "quote": "This guideline provides information on using G6PD genotype as part of the diagnosis of G6PD deficiency"
+            }
+          ],
+          "harms": null
+        },
+        {
+          "ref": {
+            "url": "https://medlineplus.gov/genetics/condition/glucose-6-phosphate-dehydrogenase-deficiency/"
+          },
+          "role": "general",
+          "genotypeInteraction": "not-tested",
+          "sampleSize": null,
+          "population": null,
+          "exposure": {
+            "value": "Fava beans",
+            "quote": "Hemolytic anemia can also occur after eating fava beans or inhaling pollen from fava plants (a reaction called favism)."
+          },
+          "outcomes": [
+            {
+              "value": "Triggers: infections, drugs, fava beans",
+              "quote": "Factors such as infections, certain drugs, or ingesting fava beans can increase the levels of reactive oxygen species, causing red blood cells to be destroyed faster than the body can replace them."
+            }
+          ],
+          "harms": null
+        }
+      ],
+      "safety": null,
+      "limitations": [
+        "This site covers the A− variant only; other G6PD variants (for example the Mediterranean type) aren't tested here.",
+        "Genotype doesn't measure enzyme activity; the blood test does."
+      ],
+      "contextFlags": [
+        {
+          "field": "medications",
+          "matchAny": [
+            "primaquine",
+            "tafenoquine",
+            "dapsone",
+            "rasburicase",
+            "methylene blue",
+            "nitrofurantoin",
+            "sulfamethoxazole"
+          ],
+          "message": "You listed a medicine that the G6PD guideline reviews. Tell the prescriber about this result; don't stop a medicine on your own."
+        }
+      ]
     }
   ]
 }

@@ -14,7 +14,7 @@ const audit: AuditEntry[] = [];
 const sources: SourceVersion[] = [];
 
 // ─── dbSNP ─────────────────────────────────────────────────────────────────
-async function fetchSite(seed: SeedSite): Promise<VariantSite | null> {
+export async function fetchSite(seed: SeedSite): Promise<VariantSite | null> {
   const id = seed.rsid.slice(2);
   const url = `https://api.ncbi.nlm.nih.gov/variation/v0/refsnp/${id}`;
   const c = await get<any>(url);
@@ -258,4 +258,4 @@ async function main() {
   console.log(`wrote pipeline/out/variants.json: ${sites.length} sites, ${clinvar.length} ClinVar, ${clingen.length} ClinGen, ${gwas.length} GWAS`);
 }
 
-main().catch((e) => { console.error(e); process.exit(1); });
+if (process.argv[1]?.endsWith("fetch.ts")) main().catch((e) => { console.error(e); process.exit(1); });

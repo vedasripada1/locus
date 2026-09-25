@@ -2,6 +2,7 @@
 // bundle, optional user context) to a Report. No network, no randomness, no
 // free text beyond fixed templates filled with verified values.
 import { countAllele, isPalindromic, matchSite, orientAllele, zygosity } from "./match";
+import { geneResults } from "./genes";
 import type {
   ClinicalFinding, ClinVarRecord, CompositeFinding, EvidenceBundle, EvidenceStrength, Finding, GwasAssociation, GwasFinding,
   Intervention, InterventionAssessment, NoEvidenceFinding, ParsedGenome, Report, SiteMatch, TraitTopic, UserContext,
@@ -165,10 +166,18 @@ export function apoeFinding(topic: TraitTopic, m429: SiteMatch, m7412: SiteMatch
 
 const STRONG_DESIGNS = ["meta-analysis", "systematic review", "guideline"];
 
-export function assessIntervention(iv: Intervention, findings: Finding[], clinical: ClinicalFinding[], ctx: UserContext): InterventionAssessment | null {
+export function assessIntervention(iv: Intervention, findings: Finding[], clinical: ClinicalFinding[], ctx: UserContext, siteMatches: Map<string, SiteMatch> = new Map()): InterventionAssessment | null {
   const reasons: string[] = [];
   for (const t of iv.triggers) {
-    if ("topic" in t) {
+    if ("site" in t) {
+      const m = siteMatches.get(t.site);
+      const c = m ? countAllele(m, t.allele) : null;
+      if (c == null) continue; // not tested or unreadable: never a trigger either way
+      const label = `${m!.site.label} (${t.site})`;
+      if (t.when === "carried" && c > 0) reasons.push(`Carries ${t.allele} at ${label}`);
+      if (t.when === "homozygous" && c === 2) reasons.push(`Two copies of ${t.allele} at ${label}`);
+      if (t.when === "not-carried" && c === 0) reasons.push(`No copies of ${t.allele} at ${label}`);
+    } else if ("topic" in t) {
       const fs = findings.filter((f): f is Exclude<Finding, ClinicalFinding> => f.kind !== "clinical" && f.topic.id === t.topic);
       if (t.when === "effect-allele-carried" && fs.some((f) => f.kind === "gwas" && (f.effectCopies ?? 0) > 0)) reasons.push(`Carries an allele associated with ${fs[0].topic.phrase}`);
       if (t.when === "tested" && fs.some((f) => (f.kind === "gwas" ? [f.match] : f.matches).some((m) => m.status === "matched"))) reasons.push(`${fs[0].topic.label} variants tested`);
@@ -272,10 +281,11 @@ export function buildReport(genome: ParsedGenome, bundle: EvidenceBundle, ctx: U
   const domainOf = (f: Finding) => (f.kind === "clinical" ? f.match.site.domain : f.topic.domain);
   const pick = (d: string) => [...topicFindings, ...annotations].filter((f) => domainOf(f) === d);
 
+  const genes = geneResults(genome, bundle);
   const interventions = bundle.interventions
-    .map((iv) => assessIntervention(iv, topicFindings, clinicalAll, ctx))
+    .map((iv) => assessIntervention(iv, topicFindings, clinicalAll, ctx, genes.matches))
     .filter((a): a is InterventionAssessment => !!a);
-  const triggeredTopics = new Set(interventions.flatMap((a) => a.intervention.triggers.flatMap((t) => ("topic" in t ? [t.topic] : "clinvarAll" in t ? t.clinvarAll : [t.clinvar]))));
+  const triggeredTopics = new Set(interventions.flatMap((a) => a.intervention.triggers.flatMap((t) => ("site" in t ? [t.site] : "topic" in t ? [t.topic] : "clinvarAll" in t ? t.clinvarAll : [t.clinvar]))));
   const topicsWithoutAction = bundle.traits
     .filter((t) => !t.rsids.some((r) => triggeredTopics.has(r)) && !triggeredTopics.has(t.id))
     .filter((t) => t.rsids.some((r) => bySite.get(r)?.status === "matched"))
@@ -290,5 +300,7 @@ export function buildReport(genome: ParsedGenome, bundle: EvidenceBundle, ctx: U
     clinical: clinicalSection,
     disease: pick("disease"), metabolism: pick("metabolism"), performance: pick("performance"),
     interventions, topicsWithoutAction, contextNotes: contextNotes(ctx), evidenceSources: bundle.sources,
+    genes: genes.results,
+    genesUnsupported: (bundle.geneGuide?.unsupported ?? []).map((u) => ({ rsid: u.rsid, match: genes.matches.get(u.rsid)! })),
   };
 }

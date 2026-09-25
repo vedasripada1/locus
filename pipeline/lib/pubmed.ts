@@ -109,12 +109,13 @@ export function stripTags(s: string) {
     .replace(/&nbsp;/g, " ").replace(/&rsquo;/g, "’").replace(/&lsquo;/g, "‘").replace(/&mdash;/g, "—").replace(/&ndash;/g, "–")).replace(/\s+/g, " ");
 }
 
-export function classifyDesign(pubTypes: string[], mesh: string[]): StudyDesign {
+export function classifyDesign(pubTypes: string[], mesh: string[], title = ""): StudyDesign {
   const t = pubTypes.map((x) => x.toLowerCase());
   if (t.includes("meta-analysis")) return "meta-analysis";
   if (t.includes("systematic review")) return "systematic review";
   if (t.includes("randomized controlled trial")) return "randomized controlled trial";
-  if (t.some((x) => x.includes("guideline"))) return "guideline";
+  // Consensus statements and guidelines whose PubMed record lacks the "Practice Guideline" type (e.g. CPIC).
+  if (t.some((x) => x.includes("guideline") || x === "consensus statement") || /\bguidelines?\b/i.test(title)) return "guideline";
   if (t.includes("review")) return "review";
   if (t.includes("observational study") || mesh.some((m) => /Cohort Studies|Case-Control Studies|Cross-Sectional Studies|Prospective Studies/.test(m))) return "observational";
   return "other";

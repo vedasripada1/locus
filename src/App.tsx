@@ -7,12 +7,17 @@ import type { References } from "./core/refs";
 
 export type AuditInfo = AuditSummary & { linkedByPosition: number };
 import { buildReport, EMPTY_CONTEXT } from "./core/interpret";
+import { guideSites } from "./core/genes";
 import { Upload } from "./ui/Upload";
 import { loadDemo } from "./demo";
 import { ReportView } from "./ui/Shell";
 
 const bundle = bundleJson as unknown as EvidenceBundle;
-const KEEP = [...new Set(bundle.sites.flatMap((s) => [s.rsid, ...s.aliases]))];
+const CURATED = [...new Set(bundle.sites.flatMap((s) => [s.rsid, ...s.aliases]))];
+// Gene guide sites are read too (and audited, and linked by position), but stay in the genome-wide GWAS screen.
+const GUIDE = guideSites(bundle).filter((s) => !CURATED.includes(s.rsid));
+const KEEP = [...CURATED, ...GUIDE.flatMap((s) => [s.rsid, ...s.aliases])];
+const WORKER_SITES = [...bundle.sites, ...GUIDE];
 const DATA_BASE = new URL(`${import.meta.env.BASE_URL}data/`, location.href).href;
 
 type State =
@@ -40,7 +45,7 @@ export default function App() {
       else setState({ phase: "upload", error: e.data.error });
     };
     w.onerror = (e) => { stopWorker(); setState({ phase: "upload", error: `Could not read the file: ${e.message}` }); };
-    w.postMessage({ ...input, keep: KEEP, exclude: KEEP, clingen: bundle.clingen, sites: bundle.sites, dataBase: DATA_BASE });
+    w.postMessage({ ...input, keep: KEEP, exclude: CURATED, clingen: bundle.clingen, sites: WORKER_SITES, dataBase: DATA_BASE });
   }, []);
 
   // #demo=23andme or #demo=ancestrydna loads a synthetic file (for demos and smoke tests).

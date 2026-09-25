@@ -201,3 +201,17 @@ ul.papers li { margin: 4px 0; }
 .checklist .mark { font-weight: 700; text-align: center; }
 .chk.pass .mark { color: var(--olive); } .chk.caution .mark { color: #a67c00; } .chk.fail .mark { color: var(--terracotta); } .chk.unknown .mark { color: var(--muted); }
 .chip.type-carrier { background: var(--teak); color: #fff; border-color: var(--teak); }
+
+/* ── Traits & genes ─────────────────────────────────────────────── */
+.gene-grid { display: grid; gap: 12px; }
+.gene-card.notable::before { background: var(--mustard); }
+.gene-card.focused { outline: 3px solid var(--mustard); outline-offset: 2px; }
+.gene-reading { font-size: 1.02rem; margin: 8px 0 4px; }
+.gene-sites { font-size: .8rem; color: var(--muted); margin: 0 0 8px; overflow-wrap: anywhere; }
+.gene-verdict { font-size: .92rem; margin: 6px 0; max-width: 80ch; }
+.gene-actions { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 6px 0; }
+.gene-more { border-top: 1px solid color-mix(in srgb, var(--rule) 30%, transparent); margin-top: 10px; padding-top: 10px; }
+.plain-list.quotes li { font-size: .9rem; margin: 6px 0; }
+.plain-list.small li { font-size: .85rem; color: var(--muted); }
+.filter-row label { max-width: 100%; flex-wrap: wrap; }
+.filter-row select { max-width: 100%; min-width: 0; }

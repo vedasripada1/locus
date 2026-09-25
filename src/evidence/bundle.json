@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "builtAt": "2026-09-24T19:11:49.353Z",
+ "builtAt": "2026-09-25T13:46:36.433Z",
  "sources": [
   {
    "source": "dbSNP",
@@ -28,8 +28,8 @@
   },
   {
    "source": "PubMed",
-   "version": "E-utilities; 190 candidate records, 15 curated abstracts",
-   "retrievedAt": "2026-09-24",
+   "version": "E-utilities; 190 candidate records, 20 curated abstracts",
+   "retrievedAt": "2026-09-25",
    "url": "https://pubmed.ncbi.nlm.nih.gov/"
   },
   {
@@ -43,6 +43,12 @@
    "version": "PMC3046611 full text",
    "retrievedAt": "2026-09-23",
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3046611/"
+  },
+  {
+   "source": "Web",
+   "version": "undated page",
+   "retrievedAt": "2026-09-25",
+   "url": "https://medlineplus.gov/genetics/condition/glucose-6-phosphate-dehydrogenase-deficiency/"
   }
  ],
  "sites": [
@@ -65649,7 +65655,7 @@
      "source": {
       "source": "PubMed",
       "version": "PMID 20404262",
-      "retrievedAt": "2026-09-23",
+      "retrievedAt": "2026-09-25",
       "url": "https://pubmed.ncbi.nlm.nih.gov/20404262/"
      }
     }
@@ -65732,7 +65738,7 @@
      "source": {
       "source": "PubMed",
       "version": "PMID 35662478",
-      "retrievedAt": "2026-09-23",
+      "retrievedAt": "2026-09-25",
       "url": "https://pubmed.ncbi.nlm.nih.gov/35662478/"
      }
     },
@@ -65762,7 +65768,7 @@
      "source": {
       "source": "PubMed",
       "version": "PMID 31335359",
-      "retrievedAt": "2026-09-23",
+      "retrievedAt": "2026-09-25",
       "url": "https://pubmed.ncbi.nlm.nih.gov/31335359/"
      }
     }
@@ -65792,7 +65798,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 17344278",
-       "retrievedAt": "2026-09-23",
+       "retrievedAt": "2026-09-25",
        "url": "https://pubmed.ncbi.nlm.nih.gov/17344278/"
       },
       "citation": "Hutchinson et al., Gut 2007"
@@ -65847,7 +65853,7 @@
      "source": {
       "source": "PubMed",
       "version": "PMID 20301542",
-      "retrievedAt": "2026-09-23",
+      "retrievedAt": "2026-09-25",
       "url": "https://pubmed.ncbi.nlm.nih.gov/20301542/"
      }
     }
@@ -65933,7 +65939,7 @@
      "source": {
       "source": "PubMed",
       "version": "PMID 11832527",
-      "retrievedAt": "2026-09-23",
+      "retrievedAt": "2026-09-25",
       "url": "https://pubmed.ncbi.nlm.nih.gov/11832527/"
      }
     }
@@ -65968,7 +65974,7 @@
      "source": {
       "source": "PubMed",
       "version": "PMID 16855264",
-      "retrievedAt": "2026-09-23",
+      "retrievedAt": "2026-09-25",
       "url": "https://pubmed.ncbi.nlm.nih.gov/16855264/"
      }
     }
@@ -66036,7 +66042,7 @@
      "source": {
       "source": "PubMed",
       "version": "PMID 27650503",
-      "retrievedAt": "2026-09-23",
+      "retrievedAt": "2026-09-25",
       "url": "https://pubmed.ncbi.nlm.nih.gov/27650503/"
      }
     }
@@ -66101,7 +66107,7 @@
      "source": {
       "source": "PubMed",
       "version": "PMID 38158179",
-      "retrievedAt": "2026-09-23",
+      "retrievedAt": "2026-09-25",
       "url": "https://pubmed.ncbi.nlm.nih.gov/38158179/"
      }
     }
@@ -66200,7 +66206,7 @@
      "source": {
       "source": "PubMed",
       "version": "PMID 19320537",
-      "retrievedAt": "2026-09-23",
+      "retrievedAt": "2026-09-25",
       "url": "https://pubmed.ncbi.nlm.nih.gov/19320537/"
      }
     }
@@ -66242,7 +66248,7 @@
      "source": {
       "source": "PubMed",
       "version": "PMID 29707772",
-      "retrievedAt": "2026-09-23",
+      "retrievedAt": "2026-09-25",
       "url": "https://pubmed.ncbi.nlm.nih.gov/29707772/"
      }
     }
@@ -66311,7 +66317,7 @@
      "source": {
       "source": "PubMed",
       "version": "PMID 30415629",
-      "retrievedAt": "2026-09-23",
+      "retrievedAt": "2026-09-25",
       "url": "https://pubmed.ncbi.nlm.nih.gov/30415629/"
      }
     }
@@ -66422,7 +66428,7 @@
      "source": {
       "source": "PubMed",
       "version": "PMID 29371246",
-      "retrievedAt": "2026-09-23",
+      "retrievedAt": "2026-09-25",
       "url": "https://pubmed.ncbi.nlm.nih.gov/29371246/"
      }
     }
@@ -66434,7 +66440,7 @@
      "source": {
       "source": "PubMed",
       "version": "PMID 37965303",
-      "retrievedAt": "2026-09-23",
+      "retrievedAt": "2026-09-25",
       "url": "https://pubmed.ncbi.nlm.nih.gov/37965303/"
      },
      "citation": "EFSA Panel on Nutrition, Novel Foods and Food Allergens (NDA Panel) et al., EFSA J 2023"
@@ -66446,7 +66452,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 37965303",
-       "retrievedAt": "2026-09-23",
+       "retrievedAt": "2026-09-25",
        "url": "https://pubmed.ncbi.nlm.nih.gov/37965303/"
       },
       "citation": "EFSA Panel on Nutrition, Novel Foods and Food Allergens (NDA Panel) et al., EFSA J 2023"
@@ -66478,6 +66484,322 @@
       "cobalamin"
      ],
      "message": "You listed a B12-related condition. The folic acid upper limit is set because of B12-deficiency risks."
+    }
+   ]
+  },
+  {
+   "id": "riboflavin-mthfr-tt",
+   "triggers": [
+    {
+     "site": "rs1801133",
+     "allele": "A",
+     "when": "homozygous"
+    }
+   ],
+   "triggerNote": "Shown because your file shows two copies of MTHFR 677T (written A on the forward strand), the only genotype these trials included. It matters mainly if you have high blood pressure.",
+   "name": "If you have high blood pressure: ask about riboflavin (vitamin B2) for the MTHFR TT genotype",
+   "type": "discuss with clinician",
+   "summary": "In a randomized trial of 91 people with high blood pressure and this genotype, riboflavin (1.6 mg a day) for 16 weeks lowered systolic blood pressure by 5.6 mmHg more than placebo, on top of their usual medicines. A review of the trials reports drops of 5-13 mmHg in people with this genotype. It adds to blood pressure treatment; it doesn't replace it.",
+   "generalEvidence": [],
+   "genotypeEvidence": [
+    {
+     "ref": {
+      "pmid": "23608654"
+     },
+     "citation": "Wilson et al., Hypertension 2013",
+     "title": "Blood pressure in treated hypertensive individuals with the MTHFR 677TT genotype is responsive to intervention with riboflavin: findings of a targeted randomized trial.",
+     "doi": "10.1161/HYPERTENSIONAHA.111.01047",
+     "design": "randomized controlled trial",
+     "sampleSize": {
+      "value": "91",
+      "quote": "91 of whom agreed to participate in the trial"
+     },
+     "population": {
+      "value": "Adults with high blood pressure and the TT genotype",
+      "quote": "hypertensive individuals with the TT genotype but without overt cardiovascular disease"
+     },
+     "exposure": {
+      "value": "Riboflavin 1.6 mg/day for 16 weeks",
+      "quote": "randomized to receive placebo or riboflavin (1.6 mg/d) for 16 weeks"
+     },
+     "outcomes": [
+      {
+       "value": "Systolic BP 5.6 mmHg lower than placebo",
+       "quote": "an overall treatment effect of 5.6±2.6 mm Hg (P=0.033) in systolic BP was observed"
+      },
+      {
+       "value": "Diastolic BP: no significant effect",
+       "quote": "whereas the treatment effect in diastolic BP was not significant (P=0.291)"
+      },
+      {
+       "value": "Earlier trial: effect specific to TT",
+       "quote": "Intervention with riboflavin was recently shown to produce genotype-specific lowering of blood pressure (BP) in patients with premature cardiovascular disease homozygous for the 677C→T polymorphism (TT genotype)"
+      }
+     ],
+     "harms": null,
+     "humans": true,
+     "genotypeInteraction": "tested-difference",
+     "source": {
+      "source": "PubMed",
+      "version": "PMID 23608654",
+      "retrievedAt": "2026-09-25",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23608654/"
+     }
+    },
+    {
+     "ref": {
+      "pmid": "27170501"
+     },
+     "citation": "McAuley et al., Proc Nutr Soc 2016",
+     "title": "Riboflavin status, MTHFR genotype and blood pressure: current evidence and implications for personalised nutrition.",
+     "doi": "10.1017/S0029665116000197",
+     "design": "review",
+     "sampleSize": null,
+     "population": {
+      "value": "Adults with MTHFR 677TT",
+      "quote": "riboflavin as an important modulator of blood pressure (BP) specifically in individuals with the MTHFR 677TT genotype"
+     },
+     "exposure": null,
+     "outcomes": [
+      {
+       "value": "5-13 mmHg lower systolic BP across trials",
+       "quote": "riboflavin supplementation can significantly reduce systolic BP by 5-13 mmHg in these genetically at risk adults"
+      },
+      {
+       "value": "More populations still need study",
+       "quote": "Studies are however required to investigate the BP-lowering effect of riboflavin in different populations"
+      }
+     ],
+     "harms": null,
+     "humans": true,
+     "genotypeInteraction": "tested-difference",
+     "source": {
+      "source": "PubMed",
+      "version": "PMID 27170501",
+      "retrievedAt": "2026-09-25",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27170501/"
+     }
+    }
+   ],
+   "safety": null,
+   "limitations": [
+    "Only people with high blood pressure (or heart disease) and the TT genotype were studied.",
+    "The review notes that other populations still need to be studied."
+   ],
+   "contextFlags": [
+    {
+     "field": "medications",
+     "matchAny": [
+      "pril",
+      "sartan",
+      "olol",
+      "dipine",
+      "thiazide",
+      "diuretic",
+      "amlodipine",
+      "blood pressure"
+     ],
+     "message": "Keep taking your blood pressure medicine as prescribed. Riboflavin was added on top of medicines in the trial, not instead of them."
+    }
+   ]
+  },
+  {
+   "id": "lpa-test",
+   "triggers": [
+    {
+     "site": "rs10455872",
+     "allele": "G",
+     "when": "carried"
+    },
+    {
+     "site": "rs3798220",
+     "allele": "C",
+     "when": "carried"
+    }
+   ],
+   "triggerNote": "Shown because you carry an LPA variant linked to higher Lp(a). The European Atherosclerosis Society advises testing Lp(a) once in every adult; your result is a reason not to skip it.",
+   "name": "Ask for a one-time Lp(a) blood test",
+   "type": "discuss with clinician",
+   "summary": "Lp(a) is a cholesterol-carrying particle that is highly heritable and raises the risk of heart disease. The European Atherosclerosis Society recommends testing it at least once in adults, and if it is high, managing other heart risk factors early. A routine cholesterol test doesn't include it; it has to be asked for.",
+   "generalEvidence": [
+    {
+     "ref": {
+      "pmid": "36036785"
+     },
+     "citation": "Kronenberg et al., Eur Heart J 2022",
+     "title": "Lipoprotein(a) in atherosclerotic cardiovascular disease and aortic stenosis: a European Atherosclerosis Society consensus statement.",
+     "doi": "10.1093/eurheartj/ehac361",
+     "design": "guideline",
+     "sampleSize": null,
+     "population": {
+      "value": "All adults",
+      "quote": "This panel recommends testing Lp(a) concentration at least once in adults"
+     },
+     "exposure": {
+      "value": "Early risk-factor management if high",
+      "quote": "Without specific Lp(a)-lowering therapies, early intensive risk factor management is recommended, targeted according to global cardiovascular risk and Lp(a) level."
+     },
+     "outcomes": [
+      {
+       "value": "Causal risk factor",
+       "quote": "this statement reinforces evidence for Lp(a) as a causal risk factor for cardiovascular outcomes"
+      }
+     ],
+     "harms": null,
+     "humans": true,
+     "genotypeInteraction": "not-tested",
+     "source": {
+      "source": "PubMed",
+      "version": "PMID 36036785",
+      "retrievedAt": "2026-09-25",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36036785/"
+     }
+    }
+   ],
+   "genotypeEvidence": [
+    {
+     "ref": {
+      "pmid": "20032323"
+     },
+     "citation": "Clarke et al., N Engl J Med 2009",
+     "title": "Genetic variants associated with Lp(a) lipoprotein level and coronary disease.",
+     "doi": "10.1056/NEJMoa0902604",
+     "design": "observational",
+     "sampleSize": {
+      "value": "3145 cases and 3352 controls",
+      "quote": "3145 case subjects with coronary disease and 3352 control subjects"
+     },
+     "population": null,
+     "exposure": null,
+     "outcomes": [
+      {
+       "value": "Both variants: higher Lp(a) and coronary risk",
+       "quote": "We identified two LPA variants that were strongly associated with both an increased level of Lp(a) lipoprotein and an increased risk of coronary disease."
+      },
+      {
+       "value": "Highly heritable",
+       "quote": "An increased level of Lp(a) lipoprotein has been identified as a risk factor for coronary artery disease that is highly heritable."
+      }
+     ],
+     "harms": null,
+     "humans": true,
+     "genotypeInteraction": "not-tested",
+     "source": {
+      "source": "PubMed",
+      "version": "PMID 20032323",
+      "retrievedAt": "2026-09-25",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20032323/"
+     }
+    }
+   ],
+   "safety": null,
+   "limitations": [
+    "Genotype only hints at Lp(a); the blood test measures it.",
+    "Other differences in the LPA gene that consumer chips can't read also set Lp(a)."
+   ],
+   "contextFlags": []
+  },
+  {
+   "id": "g6pd-medicines",
+   "triggers": [
+    {
+     "site": "rs1050828",
+     "allele": "T",
+     "when": "carried"
+    }
+   ],
+   "triggerNote": "Shown because you carry the G6PD A− variant (Val68Met; T on the forward strand). G6PD is on the X chromosome: in males one copy usually means deficiency; in females it varies. A blood test confirms it.",
+   "name": "G6PD A−: ask about a G6PD blood test, and mention it before new medicines",
+   "type": "discuss with clinician",
+   "summary": "In G6PD deficiency, infections, certain drugs or fava beans can make red blood cells break down (haemolytic anaemia). A clinical guideline sorts medicines by risk: high-risk ones should be avoided and medium-risk ones used with caution in people with the deficiency. A G6PD blood test shows whether you have it.",
+   "generalEvidence": [
+    {
+     "ref": {
+      "pmid": "36049896"
+     },
+     "citation": "Gammal et al., Clin Pharmacol Ther 2023",
+     "title": "Expanded Clinical Pharmacogenetics Implementation Consortium Guideline for Medication Use in the Context of G6PD Genotype.",
+     "doi": "10.1002/cpt.2735",
+     "design": "guideline",
+     "sampleSize": null,
+     "population": {
+      "value": "People with G6PD deficiency",
+      "quote": "In patients with G6PD deficiency, high-risk medications should be avoided"
+     },
+     "exposure": {
+      "value": "Medicines classified by risk",
+      "quote": "We classify these medications as high, medium, or low to no risk based on a systematic review of the published evidence of the gene-drug associations and regulatory warnings."
+     },
+     "outcomes": [
+      {
+       "value": "Avoid high-risk, caution with medium-risk",
+       "quote": "In patients with G6PD deficiency, high-risk medications should be avoided, medium-risk medications should be used with caution, and low-to-no risk medications can be used with standard precautions, without regard to G6PD phenotype."
+      },
+      {
+       "value": "Genotype used in diagnosis",
+       "quote": "This guideline provides information on using G6PD genotype as part of the diagnosis of G6PD deficiency"
+      }
+     ],
+     "harms": null,
+     "humans": true,
+     "genotypeInteraction": "not-tested",
+     "source": {
+      "source": "PubMed",
+      "version": "PMID 36049896",
+      "retrievedAt": "2026-09-25",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36049896/"
+     }
+    },
+    {
+     "ref": {
+      "url": "https://medlineplus.gov/genetics/condition/glucose-6-phosphate-dehydrogenase-deficiency/"
+     },
+     "citation": "Glucose-6-phosphate dehydrogenase deficiency: MedlinePlus Genetics",
+     "title": "Glucose-6-phosphate dehydrogenase deficiency: MedlinePlus Genetics",
+     "doi": null,
+     "design": "other",
+     "sampleSize": null,
+     "population": null,
+     "exposure": {
+      "value": "Fava beans",
+      "quote": "Hemolytic anemia can also occur after eating fava beans or inhaling pollen from fava plants (a reaction called favism)."
+     },
+     "outcomes": [
+      {
+       "value": "Triggers: infections, drugs, fava beans",
+       "quote": "Factors such as infections, certain drugs, or ingesting fava beans can increase the levels of reactive oxygen species, causing red blood cells to be destroyed faster than the body can replace them."
+      }
+     ],
+     "harms": null,
+     "humans": false,
+     "genotypeInteraction": "not-tested",
+     "source": {
+      "source": "Web",
+      "version": "undated page",
+      "retrievedAt": "2026-09-25",
+      "url": "https://medlineplus.gov/genetics/condition/glucose-6-phosphate-dehydrogenase-deficiency/"
+     }
+    }
+   ],
+   "genotypeEvidence": [],
+   "safety": null,
+   "limitations": [
+    "This site covers the A− variant only; other G6PD variants (for example the Mediterranean type) aren't tested here.",
+    "Genotype doesn't measure enzyme activity; the blood test does."
+   ],
+   "contextFlags": [
+    {
+     "field": "medications",
+     "matchAny": [
+      "primaquine",
+      "tafenoquine",
+      "dapsone",
+      "rasburicase",
+      "methylene blue",
+      "nitrofurantoin",
+      "sulfamethoxazole"
+     ],
+     "message": "You listed a medicine that the G6PD guideline reviews. Tell the prescriber about this result; don't stop a medicine on your own."
     }
    ]
   }
@@ -71861,6 +72183,168 @@
    "subject": "folate-homocysteine / pmid:29371246",
    "outcome": "ok",
    "detail": "5 quoted field(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "riboflavin-mthfr-tt / pmid:23608654",
+   "outcome": "ok",
+   "detail": "6 quoted field(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "riboflavin-mthfr-tt / pmid:27170501",
+   "outcome": "ok",
+   "detail": "3 quoted field(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "lpa-test / pmid:36036785",
+   "outcome": "ok",
+   "detail": "3 quoted field(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "lpa-test / pmid:20032323",
+   "outcome": "ok",
+   "detail": "3 quoted field(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "g6pd-medicines / pmid:36049896",
+   "outcome": "ok",
+   "detail": "4 quoted field(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "g6pd-medicines / url:https://medlineplus.gov/genetics/condition/glucose-6-phosphate-dehydrogenase-deficiency/",
+   "outcome": "ok",
+   "detail": "2 quoted field(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide earwax",
+   "outcome": "ok",
+   "detail": "3 quote(s), 1 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide bitter",
+   "outcome": "ok",
+   "detail": "2 quote(s), 2 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide eyes",
+   "outcome": "ok",
+   "detail": "3 quote(s), 1 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide mc1r",
+   "outcome": "ok",
+   "detail": "4 quote(s), 2 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide actn3",
+   "outcome": "ok",
+   "detail": "3 quote(s), 1 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide fto",
+   "outcome": "ok",
+   "detail": "2 quote(s), 1 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide tcf7l2",
+   "outcome": "ok",
+   "detail": "0 quote(s), 1 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide mthfr",
+   "outcome": "ok",
+   "detail": "6 quote(s), 1 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide lactase",
+   "outcome": "ok",
+   "detail": "2 quote(s), 1 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide alcohol",
+   "outcome": "ok",
+   "detail": "0 quote(s), 2 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide caffeine",
+   "outcome": "ok",
+   "detail": "0 quote(s), 1 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide b12",
+   "outcome": "ok",
+   "detail": "2 quote(s), 1 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide vitd",
+   "outcome": "ok",
+   "detail": "3 quote(s), 3 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide omega3",
+   "outcome": "ok",
+   "detail": "2 quote(s), 1 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide carotene",
+   "outcome": "ok",
+   "detail": "2 quote(s), 1 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide vitc",
+   "outcome": "ok",
+   "detail": "2 quote(s), 1 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide iron",
+   "outcome": "ok",
+   "detail": "0 quote(s), 2 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide celiac",
+   "outcome": "ok",
+   "detail": "5 quote(s), 2 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide lpa",
+   "outcome": "ok",
+   "detail": "4 quote(s), 2 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide g6pd",
+   "outcome": "ok",
+   "detail": "5 quote(s), 1 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide apoe-omega3",
+   "outcome": "ok",
+   "detail": "1 quote(s), 1 site(s) verified."
   }
  ],
  "warnings": [
@@ -71875,7 +72359,7 @@
      "source": {
       "source": "PubMed",
       "version": "PMID 33589468",
-      "retrievedAt": "2026-09-23",
+      "retrievedAt": "2026-09-25",
       "url": "https://pubmed.ncbi.nlm.nih.gov/33589468/"
      },
      "citation": "Mn et al., BMJ 2021"
@@ -71886,7 +72370,7 @@
      "source": {
       "source": "PubMed",
       "version": "PMID 33589468",
-      "retrievedAt": "2026-09-23",
+      "retrievedAt": "2026-09-25",
       "url": "https://pubmed.ncbi.nlm.nih.gov/33589468/"
      },
      "citation": "Mn et al., BMJ 2021"
@@ -71897,7 +72381,7 @@
      "source": {
       "source": "PubMed",
       "version": "PMID 33589468",
-      "retrievedAt": "2026-09-23",
+      "retrievedAt": "2026-09-25",
       "url": "https://pubmed.ncbi.nlm.nih.gov/33589468/"
      },
      "citation": "Mn et al., BMJ 2021"
@@ -71915,7 +72399,7 @@
      "source": {
       "source": "PubMed",
       "version": "PMID 33589468",
-      "retrievedAt": "2026-09-23",
+      "retrievedAt": "2026-09-25",
       "url": "https://pubmed.ncbi.nlm.nih.gov/33589468/"
      },
      "citation": "Mn et al., BMJ 2021"
@@ -71926,12 +72410,3511 @@
      "source": {
       "source": "PubMed",
       "version": "PMID 33589468",
-      "retrievedAt": "2026-09-23",
+      "retrievedAt": "2026-09-25",
       "url": "https://pubmed.ncbi.nlm.nih.gov/33589468/"
      },
      "citation": "Mn et al., BMJ 2021"
     }
    ]
   }
- ]
+ ],
+ "geneGuide": {
+  "builtAt": "2026-09-25",
+  "gwasAvailable": true,
+  "entries": [
+   {
+    "id": "earwax",
+    "gene": "ABCC11",
+    "title": "Earwax type",
+    "area": "traits",
+    "what": "ABCC11 makes a transporter protein. One common change in it decides whether earwax is wet or dry.",
+    "sites": [
+     {
+      "rsid": "rs17822931",
+      "allele": "T",
+      "alleleName": "538A (dry type)",
+      "aa": "R",
+      "site": {
+       "rsid": "rs17822931",
+       "aliases": [
+        "rs52813591",
+        "rs58140753"
+       ],
+       "gene": "ABCC11",
+       "label": "ABCC11 538A (dry type)",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "16",
+       "pos37": 48258198,
+       "pos38": 48224287,
+       "ref": "C",
+       "alts": [
+        "A",
+        "G",
+        "T"
+       ],
+       "mainAlt": "T",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-25",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs17822931"
+       }
+      },
+      "freq": {
+       "ALL": 0.300919,
+       "AFR": 0.0121,
+       "AMR": 0.1398,
+       "EAS": 0.7798,
+       "EUR": 0.1362,
+       "SAS": 0.4816
+      },
+      "gwasPubs": 1,
+      "gwasTraits": [
+       "breast fibrocystic disease"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs17822931": 2
+      },
+      "text": "Two copies of the dry-type version: you most likely have dry, flaky earwax.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs17822931": [
+        0,
+        1
+       ]
+      },
+      "text": "At least one copy of the wet-type version: you most likely have wet, sticky earwax (the wet type is dominant)."
+     }
+    ],
+    "verdict": "trait",
+    "verdictNote": "A harmless trait. Nothing to do.",
+    "evidence": [
+     {
+      "value": "One SNP decides earwax type",
+      "quote": "Here we show that a SNP, 538G --> A (rs17822931), in the ABCC11 gene is responsible for determination of earwax type.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 16444273",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/16444273/"
+      },
+      "citation": "Yoshiura et al., Nat Genet 2006"
+     },
+     {
+      "value": "AA = dry; GA/GG = wet",
+      "quote": "The AA genotype corresponds to dry earwax, and GA and GG to wet type.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 16444273",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/16444273/"
+      },
+      "citation": "Yoshiura et al., Nat Genet 2006"
+     },
+     {
+      "value": "Dry type common in East Asia",
+      "quote": "Dry earwax is frequent in East Asians, whereas wet earwax is common in other populations.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 16444273",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/16444273/"
+      },
+      "citation": "Yoshiura et al., Nat Genet 2006"
+     }
+    ],
+    "strandNote": "The paper names the dry-type allele A (538G>A). ABCC11 is read from the reverse strand, so on the forward strand in your file that allele is T."
+   },
+   {
+    "id": "bitter",
+    "gene": "TAS2R38",
+    "title": "Bitter taste (PTC)",
+    "area": "traits",
+    "what": "TAS2R38 is a bitter-taste receptor. A few common changes in it decide whether the bitter test chemical PTC tastes strongly bitter or of almost nothing.",
+    "sites": [
+     {
+      "rsid": "rs1726866",
+      "allele": "G",
+      "alleleName": "Ala262 (taster version)",
+      "aa": "A",
+      "site": {
+       "rsid": "rs1726866",
+       "aliases": [
+        "rs17712758",
+        "rs61111288"
+       ],
+       "gene": "TAS2R38",
+       "label": "TAS2R38 Ala262 (taster version)",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "7",
+       "pos37": 141672705,
+       "pos38": 141972905,
+       "ref": "G",
+       "alts": [
+        "A",
+        "C",
+        "T"
+       ],
+       "mainAlt": "A",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-25",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs1726866"
+       }
+      },
+      "freq": {
+       "ALL": 0.574481,
+       "AFR": 0.6672,
+       "AMR": 0.7147,
+       "EAS": 0.6756,
+       "EUR": 0.46120000000000005,
+       "SAS": 0.362
+      },
+      "gwasPubs": 4,
+      "gwasTraits": [
+       "sensory perception of bitter taste",
+       "diet measurement",
+       "taste liking measurement"
+      ]
+     },
+     {
+      "rsid": "rs10246939",
+      "allele": "C",
+      "alleleName": "Val296 (taster version)",
+      "aa": "V",
+      "site": {
+       "rsid": "rs10246939",
+       "aliases": [
+        "rs17712734",
+        "rs52837199",
+        "rs57237947",
+        "rs386511381"
+       ],
+       "gene": "TAS2R38",
+       "label": "TAS2R38 Val296 (taster version)",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "7",
+       "pos37": 141672604,
+       "pos38": 141972804,
+       "ref": "T",
+       "alts": [
+        "C"
+       ],
+       "mainAlt": "C",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-25",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs10246939"
+       }
+      },
+      "freq": {
+       "ALL": 0.520567,
+       "AFR": 0.4766,
+       "AMR": 0.6873,
+       "EAS": 0.6766,
+       "EUR": 0.4612,
+       "SAS": 0.362
+      },
+      "gwasPubs": 4,
+      "gwasTraits": [
+       "sensory perception of bitter taste",
+       "taste liking measurement",
+       "smoking initiation"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs1726866": 2,
+       "rs10246939": 2
+      },
+      "text": "Two copies of the taster version at both sites: you most likely find PTC strongly bitter.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs1726866": 0,
+       "rs10246939": 0
+      },
+      "text": "Two copies of the non-taster version at both sites: PTC most likely tastes weak or of nothing to you.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs1726866": 1,
+       "rs10246939": 1
+      },
+      "text": "One taster and one non-taster version."
+     },
+     {
+      "if": {},
+      "text": "A mixed combination of the two sites. Other taste versions exist, and the exact type needs a third site that consumer files can't read reliably."
+     }
+    ],
+    "verdict": "trait",
+    "verdictNote": "A taste trait. No study here shows that changing diet by TAS2R38 type helps.",
+    "evidence": [
+     {
+      "value": "One bitter-taste gene",
+      "quote": "This region contains a single gene that encodes a member of the TAS2R bitter taste receptor family.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 12595690",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/12595690/"
+      },
+      "citation": "Kim et al., Science 2003"
+     },
+     {
+      "value": "Haplotypes explain 55–85% of PTC sensitivity",
+      "quote": "These haplotypes completely explain the bimodal distribution of PTC taste sensitivity, thus accounting for the inheritance of the classically defined taste insensitivity and for 55 to 85% of the variance in PTC sensitivity.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 12595690",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/12595690/"
+      },
+      "citation": "Kim et al., Science 2003"
+     }
+    ],
+    "caveat": "The third defining site (rs713598) has DNA letters that look the same on both strands, so it isn't used. The type is read from the other two sites.",
+    "strandNote": "TAS2R38 is read from the reverse strand. Amino acids were checked against Ensembl for each forward-strand letter."
+   },
+   {
+    "id": "eyes",
+    "gene": "HERC2 / OCA2",
+    "title": "Eye colour (blue vs brown)",
+    "area": "traits",
+    "what": "A switch inside the HERC2 gene controls how much the neighbouring OCA2 pigment gene is used in the iris. One change there is the main difference between blue and brown eyes in Europeans.",
+    "sites": [
+     {
+      "rsid": "rs12913832",
+      "allele": "G",
+      "alleleName": "blue-eye version",
+      "site": {
+       "rsid": "rs12913832",
+       "aliases": [
+        "rs60078917"
+       ],
+       "gene": "HERC2 / OCA2",
+       "label": "HERC2 / OCA2 blue-eye version",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "15",
+       "pos37": 28365618,
+       "pos38": 28120472,
+       "ref": "A",
+       "alts": [
+        "C",
+        "G"
+       ],
+       "mainAlt": "G",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-25",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs12913832"
+       }
+      },
+      "freq": {
+       "ALL": 0.177316,
+       "AFR": 0.028,
+       "AMR": 0.2017,
+       "EAS": 0.002,
+       "EUR": 0.6362,
+       "SAS": 0.0706
+      },
+      "gwasPubs": 30,
+      "gwasTraits": [
+       "eye measurement",
+       "hair color",
+       "skin cancer",
+       "skin pigmentation"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs12913832": 2
+      },
+      "text": "Two copies of the version linked to blue eyes.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs12913832": 1
+      },
+      "text": "One copy of the version linked to blue eyes."
+     },
+     {
+      "if": {
+       "rs12913832": 0
+      },
+      "text": "No copies of the version linked to blue eyes."
+     }
+    ],
+    "verdict": "trait",
+    "verdictNote": "A harmless trait. Other genes modify the colour, so this is not a certain prediction.",
+    "evidence": [
+     {
+      "value": "One SNP predicts eye colour",
+      "quote": "a single SNP in intron 86 of HERC2, rs12913832, predicted eye color significantly better",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 18252222",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/18252222/"
+      },
+      "citation": "Sturm et al., Am J Hum Genet 2008"
+     },
+     {
+      "value": "Lowers OCA2 in the iris",
+      "quote": "the C allele at rs12913832 leads to decreased expression of OCA2, particularly within iris melanocytes, which we postulate to be the ultimate cause of blue eye color",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 18252222",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/18252222/"
+      },
+      "citation": "Sturm et al., Am J Hum Genet 2008"
+     },
+     {
+      "value": "Another gene modifies it",
+      "quote": "We were also able to demonstrate the OCA2 R419Q, rs1800407, coding SNP acts as a penetrance modifier of this new HERC2 SNP for eye color",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 18252222",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/18252222/"
+      },
+      "citation": "Sturm et al., Am J Hum Genet 2008"
+     }
+    ],
+    "strandNote": "The paper names the blue-eye allele C, on the opposite strand. On the forward strand in your file it is G (1000 Genomes: common in European samples, rare in African and East Asian samples, as expected for the blue-eye allele)."
+   },
+   {
+    "id": "mc1r",
+    "gene": "MC1R",
+    "title": "Red hair, fair skin and freckles",
+    "area": "traits",
+    "what": "MC1R switches pigment cells between dark (brown-black) and light (red-yellow) pigment. Some common changes reduce the dark pigment, giving red hair, fair skin that burns easily, and freckles.",
+    "sites": [
+     {
+      "rsid": "rs1805007",
+      "allele": "T",
+      "alleleName": "Arg151Cys",
+      "aa": "C",
+      "site": {
+       "rsid": "rs1805007",
+       "aliases": [
+        "rs3212380",
+        "rs17719568",
+        "rs56569770",
+        "rs386505388"
+       ],
+       "gene": "MC1R",
+       "label": "MC1R Arg151Cys",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "16",
+       "pos37": 89986117,
+       "pos38": 89919709,
+       "ref": "C",
+       "alts": [
+        "A",
+        "G",
+        "T"
+       ],
+       "mainAlt": "T",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-25",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs1805007"
+       }
+      },
+      "freq": {
+       "ALL": 0.0185703,
+       "AFR": 0.003,
+       "AMR": 0.0159,
+       "EAS": 0.001,
+       "EUR": 0.0716,
+       "SAS": 0.0051
+      },
+      "gwasPubs": 25,
+      "gwasTraits": [
+       "hair color",
+       "skin cancer",
+       "family history of cancer",
+       "cutaneous melanoma"
+      ]
+     },
+     {
+      "rsid": "rs1805008",
+      "allele": "T",
+      "alleleName": "Arg160Trp",
+      "aa": "W",
+      "site": {
+       "rsid": "rs1805008",
+       "aliases": [
+        "rs3212382",
+        "rs386545682"
+       ],
+       "gene": "MC1R",
+       "label": "MC1R Arg160Trp",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "16",
+       "pos37": 89986144,
+       "pos38": 89919736,
+       "ref": "C",
+       "alts": [
+        "A",
+        "T"
+       ],
+       "mainAlt": "T",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-25",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs1805008"
+       }
+      },
+      "freq": {
+       "ALL": 0.0145767,
+       "AFR": 0.0038,
+       "AMR": 0.0029,
+       "EAS": 0,
+       "EUR": 0.0616,
+       "SAS": 0.0041
+      },
+      "gwasPubs": 12,
+      "gwasTraits": [
+       "hair color",
+       "white matter microstructure measurement",
+       "Abnormal skin pigmentation",
+       "melanoma"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "total": [
+        2,
+        4
+       ]
+      },
+      "text": "Two copies of red-hair-linked versions. In one study, people with two MC1R variants had an 11-fold higher chance of childhood freckles.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "total": 1
+      },
+      "text": "One copy of a red-hair version: carriers are more likely to have fair, sun-sensitive skin and freckles, even without red hair.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "total": 0
+      },
+      "text": "Neither of the two main red-hair versions was found. Other MC1R versions not on the chip can still affect skin."
+     }
+    ],
+    "verdict": "same-advice",
+    "verdictNote": "Sun-protection advice is based on skin type, which you can see. These variants are one reason someone has fair, sun-sensitive skin.",
+    "evidence": [
+     {
+      "value": "Three active variants",
+      "quote": "three variant alleles that are active in influencing pigmentation: Arg151Cys, Arg160Trp, and Asp294His",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 11179997",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/11179997/"
+      },
+      "citation": "Box et al., J Invest Dermatol 2001"
+     },
+     {
+      "value": "One copy: fairer, sun-sensitive skin",
+      "quote": "individuals carrying a single MC1R variant allele were more likely to have fair and sun sensitive skin",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 11179997",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/11179997/"
+      },
+      "citation": "Box et al., J Invest Dermatol 2001"
+     },
+     {
+      "value": "Freckles: 3× (one) and 11× (two variants)",
+      "quote": "Carriers of one or two MC1R gene variants had a 3- and 11-fold increased risk of developing ephelides, respectively",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 11487574",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/11487574/"
+      },
+      "citation": "Bastiaens et al., Hum Mol Genet 2001"
+     },
+     {
+      "value": "USPSTF: counsel fair-skinned people on UV",
+      "quote": "The USPSTF recommends counseling young adults, adolescents, children, and parents of young children about minimizing exposure to UV radiation for persons aged 6 months to 24 years with fair skin types to reduce their risk of skin cancer.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 29558558",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/29558558/"
+      },
+      "citation": "US Preventive Services Task Force et al., JAMA 2018"
+     }
+    ],
+    "actions": [
+     "If your skin is fair, the US Preventive Services Task Force supports advice on limiting UV exposure (shade, clothing, sunscreen, no sunbeds)."
+    ]
+   },
+   {
+    "id": "actn3",
+    "gene": "ACTN3",
+    "title": "Sprint muscle protein (ACTN3)",
+    "area": "fitness",
+    "what": "ACTN3 makes alpha-actinin-3, a protein in fast-twitch muscle fibres used for fast, forceful movement. A common change (R577X) stops the protein being made; other proteins cover for it, so it causes no disease.",
+    "sites": [
+     {
+      "rsid": "rs1815739",
+      "allele": "T",
+      "alleleName": "577X (no protein)",
+      "aa": "*",
+      "site": {
+       "rsid": "rs1815739",
+       "aliases": [
+        "rs2228325",
+        "rs2305536",
+        "rs58342030",
+        "rs113388097"
+       ],
+       "gene": "ACTN3",
+       "label": "ACTN3 577X (no protein)",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "11",
+       "pos37": 66328095,
+       "pos38": 66560624,
+       "ref": "C",
+       "alts": [
+        "A",
+        "T"
+       ],
+       "mainAlt": "T",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-23",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs1815739"
+       }
+      },
+      "freq": {
+       "ALL": 0.400759,
+       "AFR": 0.11499999999999999,
+       "AMR": 0.5720000000000001,
+       "EAS": 0.4435,
+       "EUR": 0.4344,
+       "SAS": 0.5869
+      },
+      "gwasPubs": 8,
+      "gwasTraits": [
+       "MSTN/RGMA protein level ratio in blood",
+       "level of myosin-binding protein C, fast-type in blood",
+       "growth/differentiation factor 8 measurement",
+       "amount of growth/differentiation factor 8 (human) in blood"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs1815739": 2
+      },
+      "text": "Two copies of 577X (XX): your fast muscle fibres make no alpha-actinin-3. This is common and harmless.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs1815739": 1
+      },
+      "text": "One copy each (RX): you make alpha-actinin-3."
+     },
+     {
+      "if": {
+       "rs1815739": 0
+      },
+      "text": "Two copies of 577R (RR): you make alpha-actinin-3. This version is more common among elite sprinters."
+     }
+    ],
+    "verdict": "trait",
+    "verdictNote": "Linked to elite sprint performance in studies of athletes. No study here shows that training by ACTN3 type works better.",
+    "evidence": [
+     {
+      "value": "XX in 18% of white individuals",
+      "quote": "alpha-actinin-3 is absent in 18% of healthy white individuals because of homozygosity for a common stop-codon polymorphism in the ACTN3 gene, R577X",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 12879365",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/12879365/"
+      },
+      "citation": "Yang et al., Am J Hum Genet 2003"
+     },
+     {
+      "value": "No disease",
+      "quote": "The absence of a disease phenotype secondary to alpha-actinin-3 deficiency is likely due to compensation by the homologous protein, alpha-actinin-2.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 12879365",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/12879365/"
+      },
+      "citation": "Yang et al., Am J Hum Genet 2003"
+     },
+     {
+      "value": "Sprinters: more 577R",
+      "quote": "Both male and female elite sprint athletes have significantly higher frequencies of the 577R allele than do controls.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 12879365",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/12879365/"
+      },
+      "citation": "Yang et al., Am J Hum Genet 2003"
+     }
+    ],
+    "strandNote": "On the forward strand the reference genome itself carries the 577X letter (T)."
+   },
+   {
+    "id": "fto",
+    "gene": "FTO",
+    "title": "Weight (FTO) and exercise",
+    "area": "fitness",
+    "what": "FTO holds the strongest known common genetic influence on body weight. Each copy of the risk version nudges the odds of obesity up a little.",
+    "sites": [
+     {
+      "rsid": "rs9939609",
+      "allele": "A",
+      "alleleName": "risk version (A)",
+      "site": {
+       "rsid": "rs9939609",
+       "aliases": [
+        "rs17817682",
+        "rs58374961",
+        "rs61046791"
+       ],
+       "gene": "FTO",
+       "label": "FTO risk version (A)",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "16",
+       "pos37": 53820527,
+       "pos38": 53786615,
+       "ref": "T",
+       "alts": [
+        "A"
+       ],
+       "mainAlt": "A",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-23",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs9939609"
+       }
+      },
+      "freq": {
+       "ALL": 0.340056,
+       "AFR": 0.4939,
+       "AMR": 0.2622,
+       "EAS": 0.1687,
+       "EUR": 0.4135,
+       "SAS": 0.2883
+      },
+      "gwasPubs": 8,
+      "gwasTraits": [
+       "body mass index",
+       "metabolic syndrome",
+       "saturated fatty acids to total fatty acids percentage",
+       "total cholesterol measurement, hematocrit, ventricular rate measurement, body mass index, coronary artery disorder, high density lipoprotein cholesterol measurement, diastolic blood pressure, triglyceride measurement, systolic blood pressure, diabetes mellitus, stroke disorder, atrial fibrillation, glucose measurement, mortality, cancer, heart failure"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs9939609": [
+        1,
+        2
+       ]
+      },
+      "text": "You carry the risk version. In adults who were physically active its effect on obesity odds was smaller, and in weight-loss trials carriers lost just as much weight as non-carriers.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs9939609": 0
+      },
+      "text": "You don't carry the risk version at this site. Weight also depends on many other genes and on habits."
+     }
+    ],
+    "verdict": "same-advice",
+    "verdictNote": "Tested in large studies: activity and weight-loss programmes work just as well whatever your FTO type.",
+    "evidence": [
+     {
+      "value": "Activity reduces the FTO effect by 27%",
+      "quote": "The association of the FTO risk allele with the odds of obesity is attenuated by 27% in physically active adults",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 22069379",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/22069379/"
+      },
+      "citation": "Kilpeläinen et al., PLoS Med 2011"
+     },
+     {
+      "value": "Carriers respond equally to weight-loss programmes",
+      "quote": "individuals carrying the minor allele respond equally well to dietary, physical activity, or drug based weight loss interventions",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 27650503",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/27650503/"
+      },
+      "citation": "Livingstone et al., BMJ 2016"
+     }
+    ],
+    "interventions": [
+     "fto-weight-loss"
+    ]
+   },
+   {
+    "id": "tcf7l2",
+    "gene": "TCF7L2",
+    "title": "Type 2 diabetes risk (TCF7L2) and lifestyle",
+    "area": "nutrition",
+    "what": "TCF7L2 has the strongest common genetic effect on type 2 diabetes risk. It shifts the odds modestly; weight, activity and diet also matter.",
+    "sites": [
+     {
+      "rsid": "rs7903146",
+      "allele": "T",
+      "alleleName": "risk version (T)",
+      "site": {
+       "rsid": "rs7903146",
+       "aliases": [
+        "rs60693287"
+       ],
+       "gene": "TCF7L2",
+       "label": "TCF7L2 risk version (T)",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "10",
+       "pos37": 114758349,
+       "pos38": 112998590,
+       "ref": "C",
+       "alts": [
+        "G",
+        "T"
+       ],
+       "mainAlt": "T",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-23",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs7903146"
+       }
+      },
+      "freq": {
+       "ALL": 0.227835,
+       "AFR": 0.2602,
+       "AMR": 0.2349,
+       "EAS": 0.0228,
+       "EUR": 0.3171,
+       "SAS": 0.2986
+      },
+      "gwasPubs": 91,
+      "gwasTraits": [
+       "type 2 diabetes mellitus",
+       "body mass index",
+       "glucose measurement",
+       "HbA1c measurement"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs7903146": [
+        1,
+        2
+       ]
+      },
+      "text": "You carry the risk version. A large lifestyle trial worked just as well for people with it.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs7903146": 0
+      },
+      "text": "You don't carry the risk version at this site."
+     }
+    ],
+    "verdict": "same-advice",
+    "verdictNote": "Tested: the lifestyle programme that prevents type 2 diabetes works regardless of TCF7L2 type.",
+    "evidence": [],
+    "interventions": [
+     "t2d-lifestyle"
+    ]
+   },
+   {
+    "id": "mthfr",
+    "gene": "MTHFR",
+    "title": "Folate, riboflavin and homocysteine (MTHFR)",
+    "area": "nutrition",
+    "what": "MTHFR turns folate into the form the body uses to convert homocysteine into methionine. It needs riboflavin (vitamin B2) as a helper. The common 677C>T change makes the enzyme less stable.",
+    "sites": [
+     {
+      "rsid": "rs1801133",
+      "allele": "A",
+      "alleleName": "677T",
+      "aa": "V",
+      "site": {
+       "rsid": "rs1801133",
+       "aliases": [
+        "rs4134713",
+        "rs59514310",
+        "rs386545618"
+       ],
+       "gene": "MTHFR",
+       "label": "MTHFR 677T",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "1",
+       "pos37": 11856378,
+       "pos38": 11796321,
+       "ref": "G",
+       "alts": [
+        "A",
+        "C",
+        "T"
+       ],
+       "mainAlt": "A",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-23",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs1801133"
+       }
+      },
+      "freq": {
+       "ALL": 0.245407,
+       "AFR": 0.09,
+       "AMR": 0.4741,
+       "EAS": 0.2956,
+       "EUR": 0.3648,
+       "SAS": 0.1186
+      },
+      "gwasPubs": 31,
+      "gwasTraits": [
+       "homocysteine measurement",
+       "erythrocyte volume",
+       "mean corpuscular hemoglobin",
+       "folic acid level"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs1801133": 2
+      },
+      "text": "Two copies of 677T (TT). This is the one genotype where trials show riboflavin lowering blood pressure, and where homocysteine tends to run higher and folate lower.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs1801133": 1
+      },
+      "text": "One copy of 677T (CT). This is very common; the riboflavin trials were only in people with two copies."
+     },
+     {
+      "if": {
+       "rs1801133": 0
+      },
+      "text": "No copies of 677T (CC): the usual form of the enzyme."
+     }
+    ],
+    "verdict": "changes-advice",
+    "verdictNote": "For people with TT only: trials targeted at this genotype found riboflavin lowered blood pressure. For everyone, homocysteine and folate can be measured with blood tests.",
+    "evidence": [
+     {
+      "value": "Needed to convert homocysteine",
+      "quote": "This is the primary form of folate found in blood, and is necessary for the multistep process that converts the amino acid homocysteine to another amino acid, methionine.",
+      "source": {
+       "source": "Web",
+       "version": "page",
+       "retrievedAt": "2026-09-25",
+       "url": "https://medlineplus.gov/genetics/gene/mthfr/"
+      },
+      "citation": "MTHFR gene (MedlinePlus)"
+     },
+     {
+      "value": "Riboflavin is MTHFR's co-factor",
+      "quote": "One important role of riboflavin in the form of flavin dinucleotide is as a co-factor for the folate-metabolising enzyme methylenetetrahydrofolate reductase (MTHFR).",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 27170501",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/27170501/"
+      },
+      "citation": "McAuley et al., Proc Nutr Soc 2016"
+     },
+     {
+      "value": "Thermolabile enzyme",
+      "quote": "This common variant results in a form of methylenetetrahydrofolate reductase that has reduced activity at higher temperatures (the enzyme is thermolabile).",
+      "source": {
+       "source": "Web",
+       "version": "page",
+       "retrievedAt": "2026-09-25",
+       "url": "https://medlineplus.gov/genetics/gene/mthfr/"
+      },
+      "citation": "MTHFR gene (MedlinePlus)"
+     },
+     {
+      "value": "TT: 25% of Hispanics, 10–15% of North American whites",
+      "quote": "MTHFR gene polymorphisms are common worldwide, with an estimated 25 percent of Hispanics and 10 to 15 percent of North American whites having the 677C>T polymorphism in both copies of the gene.",
+      "source": {
+       "source": "Web",
+       "version": "page",
+       "retrievedAt": "2026-09-25",
+       "url": "https://medlineplus.gov/genetics/gene/mthfr/"
+      },
+      "citation": "MTHFR gene (MedlinePlus)"
+     },
+     {
+      "value": "TT: higher homocysteine, lower folate",
+      "quote": "MTHFR TT genotype is associated with increased plasma homocysteine and lowered serum folate and less response to short-term supplementation",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 26497154",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/26497154/"
+      },
+      "citation": "Colson et al., Eur J Nutr 2017"
+     },
+     {
+      "value": "Riboflavin: 5–13 mmHg lower systolic BP in TT",
+      "quote": "riboflavin supplementation can significantly reduce systolic BP by 5-13 mmHg in these genetically at risk adults",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 27170501",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/27170501/"
+      },
+      "citation": "McAuley et al., Proc Nutr Soc 2016"
+     }
+    ],
+    "interventions": [
+     "riboflavin-mthfr-tt",
+     "folate-homocysteine"
+    ],
+    "strandNote": "The paper's 677T is on the gene's own (reverse) strand; on the forward strand in your file it is A."
+   },
+   {
+    "id": "lactase",
+    "gene": "LCT / MCM6",
+    "title": "Digesting milk as an adult (lactase)",
+    "area": "nutrition",
+    "what": "Babies make lactase to digest milk sugar. In most people it fades after childhood; a change near the LCT gene keeps it on for life (lactase persistence).",
+    "sites": [
+     {
+      "rsid": "rs4988235",
+      "allele": "A",
+      "alleleName": "−13910T (persistence)",
+      "site": {
+       "rsid": "rs4988235",
+       "aliases": [],
+       "gene": "LCT / MCM6",
+       "label": "LCT / MCM6 −13910T (persistence)",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "2",
+       "pos37": 136608646,
+       "pos38": 135851076,
+       "ref": "G",
+       "alts": [
+        "A",
+        "C",
+        "T"
+       ],
+       "mainAlt": "A",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-23",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs4988235"
+       }
+      },
+      "freq": {
+       "ALL": 0.161342,
+       "AFR": 0.0272,
+       "AMR": 0.2161,
+       "EAS": 0,
+       "EUR": 0.508,
+       "SAS": 0.1135
+      },
+      "gwasPubs": 24,
+      "gwasTraits": [
+       "gut microbiome measurement",
+       "body mass index",
+       "body weight",
+       "1,5 anhydroglucitol measurement"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs4988235": [
+        1,
+        2
+       ]
+      },
+      "text": "At least one copy of the persistence version: you most likely keep making lactase as an adult."
+     },
+     {
+      "if": {
+       "rs4988235": 0
+      },
+      "text": "No copies of this persistence version: you may make less lactase as an adult. Other persistence versions (common in parts of Africa and the Middle East) aren't tested here.",
+      "tone": "notable"
+     }
+    ],
+    "verdict": "changes-advice",
+    "verdictNote": "Only matters if dairy gives you symptoms. Most people with low lactase can still have modest amounts of lactose.",
+    "evidence": [
+     {
+      "value": "Most keep some lactase",
+      "quote": "Most people with lactase nonpersistence retain some lactase activity and can include varying amounts of lactose in their diets without experiencing symptoms.",
+      "source": {
+       "source": "Web",
+       "version": "page",
+       "retrievedAt": "2026-09-25",
+       "url": "https://medlineplus.gov/genetics/condition/lactose-intolerance/"
+      },
+      "citation": "Lactose intolerance (MedlinePlus)"
+     },
+     {
+      "value": "Only ~5% of Northern Europeans are non-persistent",
+      "quote": "For example, only about 5 percent of people of Northern European descent are lactase nonpersistent.",
+      "source": {
+       "source": "Web",
+       "version": "page",
+       "retrievedAt": "2026-09-25",
+       "url": "https://medlineplus.gov/genetics/condition/lactose-intolerance/"
+      },
+      "citation": "Lactose intolerance (MedlinePlus)"
+     }
+    ],
+    "interventions": [
+     "lactose-tolerable-dose"
+    ],
+    "strandNote": "Papers name the persistence allele −13910T, on the reverse strand; on the forward strand in your file it is A."
+   },
+   {
+    "id": "alcohol",
+    "gene": "ALDH2 / ADH1B",
+    "title": "Alcohol flush",
+    "area": "nutrition",
+    "what": "ALDH2 clears acetaldehyde, the toxic breakdown product of alcohol. The ALDH2*2 version (common in East Asia) works poorly and is the main cause of the alcohol flushing response. ADH1B*2 speeds up the first step of alcohol breakdown.",
+    "sites": [
+     {
+      "rsid": "rs671",
+      "allele": "A",
+      "alleleName": "ALDH2*2 (Glu504Lys)",
+      "aa": "K",
+      "site": {
+       "rsid": "rs671",
+       "aliases": [
+        "rs2230021",
+        "rs4134524",
+        "rs4986830",
+        "rs60823674"
+       ],
+       "gene": "ALDH2 / ADH1B",
+       "label": "ALDH2 / ADH1B ALDH2*2 (Glu504Lys)",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "12",
+       "pos37": 112241766,
+       "pos38": 111803962,
+       "ref": "G",
+       "alts": [
+        "A"
+       ],
+       "mainAlt": "A",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-23",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs671"
+       }
+      },
+      "freq": {
+       "ALL": 0.0357428,
+       "AFR": 0.0015,
+       "AMR": 0.0029,
+       "EAS": 0.1736,
+       "EUR": 0,
+       "SAS": 0
+      },
+      "gwasPubs": 51,
+      "gwasTraits": [
+       "uric acid measurement",
+       "diastolic blood pressure",
+       "hypertensive disorder",
+       "alcohol consumption quality"
+      ]
+     },
+     {
+      "rsid": "rs1229984",
+      "allele": "T",
+      "alleleName": "ADH1B*2 (Arg48His)",
+      "aa": "H",
+      "site": {
+       "rsid": "rs1229984",
+       "aliases": [
+        "rs1789884",
+        "rs11537716",
+        "rs17028836",
+        "rs17856968",
+        "rs52797169",
+        "rs57624638"
+       ],
+       "gene": "ALDH2 / ADH1B",
+       "label": "ALDH2 / ADH1B ADH1B*2 (Arg48His)",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "4",
+       "pos37": 100239319,
+       "pos38": 99318162,
+       "ref": "T",
+       "alts": [
+        "A",
+        "C",
+        "G"
+       ],
+       "mainAlt": "C",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-23",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs1229984"
+       }
+      },
+      "freq": {
+       "ALL": 0.15854599999999996,
+       "AFR": 0.0014999999999999458,
+       "AMR": 0.057599999999999985,
+       "EAS": 0.6974,
+       "EUR": 0.028800000000000048,
+       "SAS": 0.020399999999999974
+      },
+      "gwasPubs": 90,
+      "gwasTraits": [
+       "alcohol consumption quality",
+       "fatty acid amount",
+       "saturated fatty acids to total fatty acids percentage",
+       "systolic blood pressure"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs671": [
+        1,
+        2
+       ]
+      },
+      "text": "You carry ALDH2*2: acetaldehyde clears slowly after drinking. See the alcohol item for what studies found.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs671": 0,
+       "rs1229984": [
+        1,
+        2
+       ]
+      },
+      "text": "You don't carry ALDH2*2, but you carry ADH1B*2, which speeds up the first step of alcohol breakdown."
+     },
+     {
+      "if": {
+       "rs671": 0
+      },
+      "text": "You carry neither version."
+     }
+    ],
+    "verdict": "changes-advice",
+    "verdictNote": "For ALDH2*2 carriers, see the alcohol item: the evidence is specific to this genotype.",
+    "evidence": [],
+    "interventions": [
+     "alcohol-aldh2"
+    ]
+   },
+   {
+    "id": "caffeine",
+    "gene": "CYP1A2",
+    "title": "Caffeine metabolism",
+    "area": "fitness",
+    "what": "CYP1A2 is the liver enzyme that breaks down most caffeine. Studies compare people with and without the A allele at rs762551.",
+    "sites": [
+     {
+      "rsid": "rs762551",
+      "allele": "A",
+      "alleleName": "A",
+      "site": {
+       "rsid": "rs762551",
+       "aliases": [
+        "rs17861151",
+        "rs57172993"
+       ],
+       "gene": "CYP1A2",
+       "label": "CYP1A2 A",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "15",
+       "pos37": 75041917,
+       "pos38": 74749576,
+       "ref": "C",
+       "alts": [
+        "A",
+        "G"
+       ],
+       "mainAlt": "A",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-23",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs762551"
+       }
+      },
+      "freq": {
+       "ALL": 0.629792,
+       "AFR": 0.562,
+       "AMR": 0.7579,
+       "EAS": 0.6726,
+       "EUR": 0.6799,
+       "SAS": 0.5348
+      },
+      "gwasPubs": 1,
+      "gwasTraits": [
+       "cholesterol to total lipids in very large VLDL percentage"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs762551": 2
+      },
+      "text": "Two copies of A (AA)."
+     },
+     {
+      "if": {
+       "rs762551": 1
+      },
+      "text": "One A and one C (AC)."
+     },
+     {
+      "if": {
+       "rs762551": 0
+      },
+      "text": "Two copies of C (CC): no A allele."
+     }
+    ],
+    "verdict": "limited",
+    "verdictNote": "One pooled analysis found an extra caffeine benefit for cycling time trials in A carriers; not for sprint or jump. The safe upper intake is the same for everyone.",
+    "evidence": [],
+    "interventions": [
+     "caffeine-endurance"
+    ]
+   },
+   {
+    "id": "b12",
+    "gene": "FUT2",
+    "title": "Vitamin B12 levels (FUT2)",
+    "area": "nutrition",
+    "what": "FUT2 decides whether you are a 'secretor' (you put blood-group sugars into saliva and the gut). Non-secretor status is harmless, and has been linked to higher blood B12.",
+    "sites": [
+     {
+      "rsid": "rs492602",
+      "allele": "G",
+      "alleleName": "G (tracks the non-secretor version)",
+      "site": {
+       "rsid": "rs492602",
+       "aliases": [
+        "rs16982247",
+        "rs17849548",
+        "rs59109937"
+       ],
+       "gene": "FUT2",
+       "label": "FUT2 G (tracks the non-secretor version)",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "19",
+       "pos37": 49206417,
+       "pos38": 48703160,
+       "ref": "A",
+       "alts": [
+        "C",
+        "G",
+        "T"
+       ],
+       "mainAlt": "G",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-25",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs492602"
+       }
+      },
+      "freq": {
+       "ALL": 0.321685,
+       "AFR": 0.4909,
+       "AMR": 0.3415,
+       "EAS": 0.004,
+       "EUR": 0.4414,
+       "SAS": 0.2832
+      },
+      "gwasPubs": 31,
+      "gwasTraits": [
+       "milk amount",
+       "protein measurement",
+       "total cholesterol measurement",
+       "systemic lupus erythematosus, COVID-19"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs492602": 2
+      },
+      "text": "Two copies of G, which tracks the non-secretor version: linked to higher blood B12 in the study.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs492602": [
+        0,
+        1
+       ]
+      },
+      "text": "You have at least one copy of the other version (A). B12 levels also depend on diet and absorption; a blood test measures them."
+     }
+    ],
+    "verdict": "test-instead",
+    "verdictNote": "B12 is measured with a blood test; ask your doctor whether you need one.",
+    "evidence": [
+     {
+      "value": "GG: higher B12 (women)",
+      "quote": "Women homozygous for the rs492602[G] allele had higher B(12) levels.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 18776911",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/18776911/"
+      },
+      "citation": "Hazra et al., Nat Genet 2008"
+     },
+     {
+      "value": "Linked to the non-secretor variant",
+      "quote": "This allele is in strong linkage disequilibrium with the FUT2 nonsecretor variant encoding W143X, suggesting a plausible mechanism for altered B(12) absorption and plasma levels.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 18776911",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/18776911/"
+      },
+      "citation": "Hazra et al., Nat Genet 2008"
+     }
+    ]
+   },
+   {
+    "id": "vitd",
+    "gene": "GC / CYP2R1 / DHCR7",
+    "title": "Vitamin D levels",
+    "area": "nutrition",
+    "what": "These genes make vitamin D (DHCR7), activate it in the liver (CYP2R1) and carry it in the blood (GC). Common changes in them shift blood vitamin D levels a little.",
+    "sites": [
+     {
+      "rsid": "rs2282679",
+      "allele": "G",
+      "alleleName": "G",
+      "site": {
+       "rsid": "rs2282679",
+       "aliases": [
+        "rs60434403",
+        "rs116893012"
+       ],
+       "gene": "GC / CYP2R1 / DHCR7",
+       "label": "GC / CYP2R1 / DHCR7 G",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "4",
+       "pos37": 72608383,
+       "pos38": 71742666,
+       "ref": "T",
+       "alts": [
+        "A",
+        "C",
+        "G"
+       ],
+       "mainAlt": "G",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-23",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs2282679"
+       }
+      },
+      "freq": {
+       "ALL": 0.202077,
+       "AFR": 0.0499,
+       "AMR": 0.2089,
+       "EAS": 0.2609,
+       "EUR": 0.2465,
+       "SAS": 0.2965
+      },
+      "gwasPubs": 10,
+      "gwasTraits": [
+       "vitamin D level",
+       "vitamin D deficiency",
+       "neutrophil count",
+       "vitamin D level, vitamin D dietary intake measurement"
+      ]
+     },
+     {
+      "rsid": "rs10741657",
+      "allele": "A",
+      "alleleName": "A",
+      "site": {
+       "rsid": "rs10741657",
+       "aliases": [
+        "rs17488643",
+        "rs61548184"
+       ],
+       "gene": "GC / CYP2R1 / DHCR7",
+       "label": "GC / CYP2R1 / DHCR7 A",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "11",
+       "pos37": 14914878,
+       "pos38": 14893332,
+       "ref": "A",
+       "alts": [
+        "C",
+        "G"
+       ],
+       "mainAlt": "G",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-25",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs10741657"
+       }
+      },
+      "freq": {
+       "ALL": 0.307708,
+       "AFR": 0.21860000000000002,
+       "AMR": 0.28390000000000004,
+       "EAS": 0.3194,
+       "EUR": 0.38070000000000004,
+       "SAS": 0.3579
+      },
+      "gwasPubs": 3,
+      "gwasTraits": [
+       "vitamin D level",
+       "vitamin D level, vitamin D dietary intake measurement",
+       "vitamin D deficiency"
+      ]
+     },
+     {
+      "rsid": "rs12785878",
+      "allele": "G",
+      "alleleName": "G",
+      "site": {
+       "rsid": "rs12785878",
+       "aliases": [
+        "rs56554767"
+       ],
+       "gene": "GC / CYP2R1 / DHCR7",
+       "label": "GC / CYP2R1 / DHCR7 G",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "11",
+       "pos37": 71167449,
+       "pos38": 71456403,
+       "ref": "G",
+       "alts": [
+        "A",
+        "T"
+       ],
+       "mainAlt": "T",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-25",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs12785878"
+       }
+      },
+      "freq": {
+       "ALL": 0.645966,
+       "AFR": 0.8298,
+       "AMR": 0.5504,
+       "EAS": 0.62,
+       "EUR": 0.2992,
+       "SAS": 0.8487
+      },
+      "gwasPubs": 2,
+      "gwasTraits": [
+       "vitamin D level",
+       "vitamin D deficiency"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {},
+      "text": "Your file has these vitamin D sites. Together they shift the odds of a low level; sun exposure and diet also affect vitamin D levels."
+     }
+    ],
+    "verdict": "test-instead",
+    "verdictNote": "A blood 25(OH)D test tells you your actual level. No verified trial here shows that people with these variants benefit differently from supplements.",
+    "evidence": [
+     {
+      "value": "Three confirmed loci",
+      "quote": "Variants near genes involved in cholesterol synthesis, hydroxylation, and vitamin D transport affect vitamin D status.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 20541252",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/20541252/"
+      },
+      "citation": "Wang et al., Lancet 2010"
+     },
+     {
+      "value": "Highest genotype-score quartile: OR 2.47 for <75 nmol/L",
+      "quote": "Participants with a genotype score (combining the three confirmed variants) in the highest quartile were at increased risk of having 25-hydroxyvitamin D concentrations lower than 75 nmol/L (OR 2.47, 95% CI 2.20-2.78, p=2.3x10(-48))",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 20541252",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/20541252/"
+      },
+      "citation": "Wang et al., Lancet 2010"
+     },
+     {
+      "value": "Sun and diet also matter",
+      "quote": "Determinants of circulating 25-hydroxyvitamin D concentrations include sun exposure and diet, but high heritability suggests that genetic factors could also play a part.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 20541252",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/20541252/"
+      },
+      "citation": "Wang et al., Lancet 2010"
+     }
+    ],
+    "caveat": "Which letter lowers vitamin D isn't stated in the study's summary, so no per-letter reading is given.",
+    "interventions": [
+     "vitamin-d-supplement"
+    ]
+   },
+   {
+    "id": "omega3",
+    "gene": "FADS1 / FADS2",
+    "title": "Omega-3 conversion (FADS)",
+    "area": "nutrition",
+    "what": "FADS1 and FADS2 make the enzymes that turn plant omega-3 (ALA, from flax, walnuts, canola) into the longer omega-3s EPA and DHA found in fish.",
+    "sites": [
+     {
+      "rsid": "rs174546",
+      "allele": "T",
+      "alleleName": "minor version (T)",
+      "site": {
+       "rsid": "rs174546",
+       "aliases": [
+        "rs520174",
+        "rs59070584"
+       ],
+       "gene": "FADS1 / FADS2",
+       "label": "FADS1 / FADS2 minor version (T)",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "11",
+       "pos37": 61569830,
+       "pos38": 61802358,
+       "ref": "C",
+       "alts": [
+        "T"
+       ],
+       "mainAlt": "T",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-25",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs174546"
+       }
+      },
+      "freq": {
+       "ALL": 0.297524,
+       "AFR": 0.0219,
+       "AMR": 0.5865,
+       "EAS": 0.5665,
+       "EUR": 0.3469,
+       "SAS": 0.137
+      },
+      "gwasPubs": 30,
+      "gwasTraits": [
+       "triglyceride measurement",
+       "level of phosphatidylcholine",
+       "level of phosphatidylethanolamine",
+       "level of phosphatidylinositol"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs174546": [
+        1,
+        2
+       ]
+      },
+      "text": "You carry the minor version: in the study, people with it had more ALA and less EPA in their blood, suggesting slower conversion.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs174546": 0
+      },
+      "text": "You don't carry the minor version at this site."
+     }
+    ],
+    "verdict": "no-proven-action",
+    "verdictNote": "This changes blood omega-3 levels, but a systematic review found the evidence for tailoring omega-3 intake to genes like this is weak. EPA and DHA eaten directly (for example in oily fish) don't need converting.",
+    "evidence": [
+     {
+      "value": "Minor alleles: more ALA, less EPA",
+      "quote": "Minor alleles of SNPs in FADS1 and FADS2 (desaturases) were associated with higher levels of ALA (p = 3 x 10⁻⁶⁴) and lower levels of eicosapentaenoic acid (EPA, p = 5 x 10⁻⁵⁸)",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 21829377",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/21829377/"
+      },
+      "citation": "Lemaitre et al., PLoS Genet 2011"
+     },
+     {
+      "value": "Most gene–diet evidence for fish-oil fats is weak",
+      "quote": "Most evidence in this area is weak, but two specific nutrigenetic interactions exhibited strong evidence, with generalisability limited to specific populations.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 35193914",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/35193914/"
+      },
+      "citation": "Keathley et al., BMJ Open 2022"
+     }
+    ]
+   },
+   {
+    "id": "carotene",
+    "gene": "BCO1 (BCMO1)",
+    "title": "Beta-carotene and vitamin A",
+    "area": "nutrition",
+    "what": "BCO1 splits beta-carotene (from carrots, sweet potato, greens) into vitamin A. Some reports say certain versions mean you 'can't make vitamin A'.",
+    "sites": [
+     {
+      "rsid": "rs6564851",
+      "allele": "G",
+      "alleleName": "G",
+      "site": {
+       "rsid": "rs6564851",
+       "aliases": [
+        "rs59599186"
+       ],
+       "gene": "BCO1 (BCMO1)",
+       "label": "BCO1 (BCMO1) G",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "16",
+       "pos37": 81264597,
+       "pos38": 81230992,
+       "ref": "T",
+       "alts": [
+        "A",
+        "C",
+        "G"
+       ],
+       "mainAlt": "G",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-25",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs6564851"
+       }
+      },
+      "freq": {
+       "ALL": 0.523762,
+       "AFR": 0.3411,
+       "AMR": 0.5346,
+       "EAS": 0.8145,
+       "EUR": 0.495,
+       "SAS": 0.4928
+      },
+      "gwasPubs": 1,
+      "gwasTraits": [
+       "carotenoid measurement"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs6564851": [
+        1,
+        2
+       ]
+      },
+      "text": "You carry G, linked to higher blood beta-carotene. In the same study it did not change blood vitamin A (retinol)."
+     },
+     {
+      "if": {
+       "rs6564851": 0
+      },
+      "text": "You don't carry G. In the study this site did not change blood vitamin A (retinol) either way."
+     }
+    ],
+    "verdict": "no-proven-action",
+    "verdictNote": "The best-studied BCO1 site changes beta-carotene levels but not vitamin A itself, so it isn't a reason to take vitamin A supplements.",
+    "evidence": [
+     {
+      "value": "G: higher beta-carotene",
+      "quote": "the G allele at rs6564851, near the beta-carotene 15,15'-monooxygenase 1 (BCMO1) gene, was associated with higher beta-carotene (p = 1.6 x 10(-24)) and alpha-carotene (p = 0.0001) levels",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 19185284",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/19185284/"
+      },
+      "citation": "Ferrucci et al., Am J Hum Genet 2009"
+     },
+     {
+      "value": "No effect on retinol",
+      "quote": "Interestingly, this genetic variant had no significant effect on plasma retinol (p > 0.05).",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 19185284",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/19185284/"
+      },
+      "citation": "Ferrucci et al., Am J Hum Genet 2009"
+     }
+    ]
+   },
+   {
+    "id": "vitc",
+    "gene": "SLC23A1",
+    "title": "Vitamin C levels",
+    "area": "nutrition",
+    "what": "SLC23A1 makes the transporter that absorbs vitamin C from food. A less common change lowers blood vitamin C a little.",
+    "sites": [
+     {
+      "rsid": "rs33972313",
+      "allele": "T",
+      "alleleName": "rarer version (T)",
+      "site": {
+       "rsid": "rs33972313",
+       "aliases": [],
+       "gene": "SLC23A1",
+       "label": "SLC23A1 rarer version (T)",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "5",
+       "pos37": 138715502,
+       "pos38": 139379813,
+       "ref": "C",
+       "alts": [
+        "A",
+        "G",
+        "T"
+       ],
+       "mainAlt": "T",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-25",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs33972313"
+       }
+      },
+      "freq": {
+       "ALL": 0.0353435,
+       "AFR": 0.0749,
+       "AMR": 0.0216,
+       "EAS": 0.0139,
+       "EUR": 0.0348,
+       "SAS": 0.0143
+      },
+      "gwasPubs": 4,
+      "gwasTraits": [
+       "vitamin C measurement",
+       "serum creatinine amount",
+       "glomerular filtration rate",
+       "oxalate measurement"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs33972313": [
+        1,
+        2
+       ]
+      },
+      "text": "You carry the rarer version, linked to slightly lower blood vitamin C.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs33972313": 0
+      },
+      "text": "You don't carry the rarer version."
+     }
+    ],
+    "verdict": "no-proven-action",
+    "verdictNote": "A follow-up study found no link between this variant and heart or metabolic health, so there's no reason to change vitamin C intake because of it.",
+    "evidence": [
+     {
+      "value": "−5.98 µmol/L per rare allele",
+      "quote": "each additional rare allele was associated with a reduction in circulating concentrations of L-ascorbic acid of -5.98 micromol/L",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 20519558",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/20519558/"
+      },
+      "citation": "Timpson et al., Am J Clin Nutr 2010"
+     },
+     {
+      "value": "No link to cardiometabolic outcomes",
+      "quote": "There was no evidence of a relation between the variation at rs33972313 and any cardiometabolic outcome.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 25527764",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/25527764/"
+      },
+      "citation": "Wade et al., Am J Clin Nutr 2015"
+     }
+    ]
+   },
+   {
+    "id": "iron",
+    "gene": "HFE",
+    "title": "Iron overload (HFE)",
+    "area": "nutrition",
+    "what": "HFE helps control how much iron the gut absorbs. Two copies of C282Y, or one C282Y plus one H63D, can let iron build up over years (hemochromatosis).",
+    "sites": [
+     {
+      "rsid": "rs1800562",
+      "allele": "A",
+      "alleleName": "C282Y",
+      "aa": "Y",
+      "site": {
+       "rsid": "rs1800562",
+       "aliases": [
+        "rs4134660",
+        "rs17530654",
+        "rs58044250",
+        "rs111535158"
+       ],
+       "gene": "HFE",
+       "label": "HFE C282Y",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "6",
+       "pos37": 26093141,
+       "pos38": 26092913,
+       "ref": "G",
+       "alts": [
+        "A",
+        "T"
+       ],
+       "mainAlt": "A",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-23",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs1800562"
+       }
+      },
+      "freq": {
+       "ALL": 0.0125799,
+       "AFR": 0.0023,
+       "AMR": 0.0216,
+       "EAS": 0,
+       "EUR": 0.0427,
+       "SAS": 0.002
+      },
+      "gwasPubs": 53,
+      "gwasTraits": [
+       "hemoglobin measurement",
+       "hematocrit",
+       "serum iron amount",
+       "amount of iron in brain"
+      ]
+     },
+     {
+      "rsid": "rs1799945",
+      "allele": "G",
+      "alleleName": "H63D",
+      "aa": "D",
+      "site": {
+       "rsid": "rs1799945",
+       "aliases": [
+        "rs17515604",
+        "rs60366842",
+        "rs112961043"
+       ],
+       "gene": "HFE",
+       "label": "HFE H63D",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "6",
+       "pos37": 26091179,
+       "pos38": 26090951,
+       "ref": "C",
+       "alts": [
+        "G",
+        "T"
+       ],
+       "mainAlt": "G",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-23",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs1799945"
+       }
+      },
+      "freq": {
+       "ALL": 0.0730831,
+       "AFR": 0.0113,
+       "AMR": 0.1153,
+       "EAS": 0.0288,
+       "EUR": 0.172,
+       "SAS": 0.0706
+      },
+      "gwasPubs": 27,
+      "gwasTraits": [
+       "diastolic blood pressure",
+       "mean corpuscular hemoglobin concentration",
+       "mean corpuscular hemoglobin",
+       "systolic blood pressure"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs1800562": 2
+      },
+      "text": "Two copies of C282Y: the genotype guidelines test for. See the iron-panel item.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs1800562": 1,
+       "rs1799945": [
+        1,
+        2
+       ]
+      },
+      "text": "One C282Y and one H63D. See the iron-panel item.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs1800562": 1
+      },
+      "text": "One copy of C282Y (carrier). Guidelines focus on two copies, or C282Y with H63D."
+     },
+     {
+      "if": {
+       "rs1799945": [
+        1,
+        2
+       ]
+      },
+      "text": "H63D without C282Y. Guidelines focus on two copies of C282Y, or C282Y with H63D."
+     },
+     {
+      "if": {},
+      "text": "Neither C282Y nor H63D found."
+     }
+    ],
+    "verdict": "test-instead",
+    "verdictNote": "Blood tests (transferrin saturation and ferritin) show whether iron is actually building up.",
+    "evidence": [],
+    "interventions": [
+     "iron-panel-discussion"
+    ]
+   },
+   {
+    "id": "celiac",
+    "gene": "HLA-DQ",
+    "title": "Gluten and celiac disease (HLA-DQ2.5 / DQ8)",
+    "area": "nutrition",
+    "what": "Celiac disease almost only happens in people who carry the immune types HLA-DQ2 or HLA-DQ8. Carrying them doesn't mean you will get it, but not carrying them makes it very unlikely.",
+    "sites": [
+     {
+      "rsid": "rs2187668",
+      "allele": "T",
+      "alleleName": "DQ2.5 tag",
+      "site": {
+       "rsid": "rs2187668",
+       "aliases": [
+        "rs3948779",
+        "rs9272481",
+        "rs35922537",
+        "rs36182703",
+        "rs56581219",
+        "rs57194924",
+        "rs74942078",
+        "rs77691257",
+        "rs111767434",
+        "rs386499469"
+       ],
+       "gene": "HLA-DQ",
+       "label": "HLA-DQ DQ2.5 tag",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "6",
+       "pos37": 32605884,
+       "pos38": 32638107,
+       "ref": "C",
+       "alts": [
+        "A",
+        "G",
+        "T"
+       ],
+       "mainAlt": "T",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-25",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs2187668"
+       }
+      },
+      "freq": {
+       "ALL": 0.0776757,
+       "AFR": 0.0537,
+       "AMR": 0.1182,
+       "EAS": 0.0516,
+       "EUR": 0.1064,
+       "SAS": 0.0787
+      },
+      "gwasPubs": 13,
+      "gwasTraits": [
+       "systemic lupus erythematosus",
+       "celiac disease",
+       "level of phospholipase A2 group XV in blood",
+       "collagenous colitis"
+      ]
+     },
+     {
+      "rsid": "rs7454108",
+      "allele": "C",
+      "alleleName": "DQ8 tag",
+      "site": {
+       "rsid": "rs7454108",
+       "aliases": [
+        "rs17212951",
+        "rs112332968",
+        "rs114197256",
+        "rs117263000"
+       ],
+       "gene": "HLA-DQ",
+       "label": "HLA-DQ DQ8 tag",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "6",
+       "pos37": 32681483,
+       "pos38": 32713706,
+       "ref": "T",
+       "alts": [
+        "C"
+       ],
+       "mainAlt": "C",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-25",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs7454108"
+       }
+      },
+      "freq": null,
+      "gwasPubs": 3,
+      "gwasTraits": [
+       "type 2 diabetes mellitus",
+       "anti-neutrophil antibody associated vasculitis",
+       "pemphigus vulgaris"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "total": [
+        1,
+        4
+       ]
+      },
+      "text": "You carry a tag for DQ2.5 or DQ8. This is common and does not mean you have or will get celiac disease; it means celiac disease is possible."
+     },
+     {
+      "if": {
+       "total": 0
+      },
+      "text": "Neither the DQ2.5 nor the DQ8 tag was found. That makes celiac disease less likely, but this file can't rule it out: the related DQ2.2 type isn't checked and tag SNPs are validated mainly in Europeans.",
+      "tone": "notable"
+     }
+    ],
+    "verdict": "test-instead",
+    "verdictNote": "If gluten seems to cause symptoms, ask about the celiac antibody blood test before cutting out gluten: a gluten-free diet can affect the test results.",
+    "evidence": [
+     {
+      "value": "Necessary but not sufficient",
+      "quote": "The most important genetic factors identified are HLA-DQ2 and HLA-DQ8, which are necessary but not sufficient to predispose to CD.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 18184122",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/18184122/"
+      },
+      "citation": "Wolters et al., Am J Gastroenterol 2008"
+     },
+     {
+      "value": "Absence: NPV close to 100%",
+      "quote": "Practically all CD patients carry HLA-DQ2 or HLA-DQ8, while the absence of these molecules has a negative predictive value for CD close to 100%.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 18184122",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/18184122/"
+      },
+      "citation": "Wolters et al., Am J Gastroenterol 2008"
+     },
+     {
+      "value": "Tag SNPs: sensitivity >0.991 (six SNPs, Europeans)",
+      "quote": "We determined that for this tagging approach the sensitivity was >0.991, specificity >0.996 and the predictive value >0.948.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 18509540",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/18509540/"
+      },
+      "citation": "Monsuur et al., PLoS One 2008"
+     },
+     {
+      "value": "Antibody test first",
+      "quote": "Detection of CD-specific antibodies (e.g., tissue transglutaminase) in the serum is very helpful for the initial screening of patients with suspicion of CD.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 36602836",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/36602836/"
+      },
+      "citation": "Rubio-Tapia et al., Am J Gastroenterol 2023"
+     },
+     {
+      "value": "Don't go gluten-free before testing",
+      "quote": "Doctors don’t recommend starting a gluten-free diet before diagnostic testing because a gluten-free diet can affect test results.",
+      "source": {
+       "source": "Web",
+       "version": "page",
+       "retrievedAt": "2026-09-25",
+       "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/celiac-disease/diagnosis"
+      },
+      "citation": "Diagnosis of Celiac Disease - NIDDK"
+     }
+    ],
+    "caveat": "The validated method uses six tag SNPs; consumer files reliably have two of them (DQ2.5 and DQ8)."
+   },
+   {
+    "id": "lpa",
+    "gene": "LPA",
+    "title": "Lipoprotein(a), an inherited cholesterol particle",
+    "area": "heart",
+    "what": "Lp(a) is a cholesterol-carrying particle whose level is largely inherited. High Lp(a) raises the risk of heart disease and is linked to aortic valve calcification.",
+    "sites": [
+     {
+      "rsid": "rs10455872",
+      "allele": "G",
+      "alleleName": "G (raises Lp(a))",
+      "site": {
+       "rsid": "rs10455872",
+       "aliases": [],
+       "gene": "LPA",
+       "label": "LPA G (raises Lp(a))",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "6",
+       "pos37": 161010118,
+       "pos38": 160589086,
+       "ref": "A",
+       "alts": [
+        "G"
+       ],
+       "mainAlt": "G",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-25",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs10455872"
+       }
+      },
+      "freq": {
+       "ALL": 0.0221645,
+       "AFR": 0.0023,
+       "AMR": 0.0331,
+       "EAS": 0.005,
+       "EUR": 0.0736,
+       "SAS": 0.0061
+      },
+      "gwasPubs": 63,
+      "gwasTraits": [
+       "fatty acid amount",
+       "free cholesterol measurement",
+       "low density lipoprotein cholesterol measurement",
+       "total cholesterol measurement"
+      ]
+     },
+     {
+      "rsid": "rs3798220",
+      "allele": "C",
+      "alleleName": "C (raises Lp(a))",
+      "aa": "M",
+      "site": {
+       "rsid": "rs3798220",
+       "aliases": [
+        "rs52832866"
+       ],
+       "gene": "LPA",
+       "label": "LPA C (raises Lp(a))",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "6",
+       "pos37": 160961137,
+       "pos38": 160540105,
+       "ref": "T",
+       "alts": [
+        "C"
+       ],
+       "mainAlt": "C",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-25",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs3798220"
+       }
+      },
+      "freq": {
+       "ALL": 0.0513179,
+       "AFR": 0.0045,
+       "AMR": 0.2161,
+       "EAS": 0.0883,
+       "EUR": 0.0099,
+       "SAS": 0.002
+      },
+      "gwasPubs": 4,
+      "gwasTraits": [
+       "CRKL/MGLL protein level ratio in blood",
+       "cholesteryl ester measurement, blood VLDL cholesterol amount",
+       "coronary artery disorder",
+       "apolipoprotein B measurement"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "total": [
+        1,
+        4
+       ]
+      },
+      "text": "You carry a variant linked to higher Lp(a). A one-time blood test shows your actual level.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "total": 0
+      },
+      "text": "Neither variant was found. Most of what sets Lp(a) can't be read from a consumer file, so this doesn't mean your Lp(a) is low."
+     }
+    ],
+    "verdict": "changes-advice",
+    "verdictNote": "The European Atherosclerosis Society advises measuring Lp(a) at least once in every adult; carrying these variants is a reason not to skip it.",
+    "evidence": [
+     {
+      "value": "Both variants: higher Lp(a) and coronary risk",
+      "quote": "We identified two LPA variants that were strongly associated with both an increased level of Lp(a) lipoprotein and an increased risk of coronary disease.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 20032323",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/20032323/"
+      },
+      "citation": "Clarke et al., N Engl J Med 2009"
+     },
+     {
+      "value": "Highly heritable",
+      "quote": "An increased level of Lp(a) lipoprotein has been identified as a risk factor for coronary artery disease that is highly heritable.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 20032323",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/20032323/"
+      },
+      "citation": "Clarke et al., N Engl J Med 2009"
+     },
+     {
+      "value": "Test once in adults",
+      "quote": "This panel recommends testing Lp(a) concentration at least once in adults",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 36036785",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/36036785/"
+      },
+      "citation": "Kronenberg et al., Eur Heart J 2022"
+     },
+     {
+      "value": "Aortic valve calcification",
+      "quote": "High Lp(a) is associated with both microcalcification and macrocalcification of the aortic valve.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 36036785",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/36036785/"
+      },
+      "citation": "Kronenberg et al., Eur Heart J 2022"
+     }
+    ],
+    "interventions": [
+     "lpa-test"
+    ]
+   },
+   {
+    "id": "g6pd",
+    "gene": "G6PD",
+    "title": "G6PD: fava beans and some medicines",
+    "area": "medicines",
+    "what": "G6PD protects red blood cells. In people with G6PD deficiency, infections, certain drugs or fava beans can make red cells break down. The gene is on the X chromosome: males have one copy; females with one altered copy range from no symptoms to deficiency like males.",
+    "sites": [
+     {
+      "rsid": "rs1050828",
+      "allele": "T",
+      "alleleName": "A− (Val68Met)",
+      "aa": "M",
+      "site": {
+       "rsid": "rs1050828",
+       "aliases": [
+        "rs1894404",
+        "rs2230034",
+        "rs3191188"
+       ],
+       "gene": "G6PD",
+       "label": "G6PD A− (Val68Met)",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "X",
+       "pos37": 153764217,
+       "pos38": 154536002,
+       "ref": "C",
+       "alts": [
+        "T"
+       ],
+       "mainAlt": "T",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-25",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs1050828"
+       }
+      },
+      "freq": {
+       "ALL": 0.0376159,
+       "AFR": 0.1346,
+       "AMR": 0.0134,
+       "EAS": 0,
+       "EUR": 0,
+       "SAS": 0
+      },
+      "gwasPubs": 16,
+      "gwasTraits": [
+       "HbA1c measurement",
+       "erythrocyte volume",
+       "erythrocyte count",
+       "Red cell distribution width"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs1050828": [
+        1,
+        2
+       ]
+      },
+      "text": "You carry the G6PD A− variant, which is common in people with African ancestry. In males it usually means G6PD deficiency; in females it varies. A G6PD blood test confirms it.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs1050828": 0
+      },
+      "text": "The A− variant wasn't found. Other G6PD variants (for example the Mediterranean type) aren't covered by this site."
+     }
+    ],
+    "verdict": "changes-advice",
+    "verdictNote": "If a blood test confirms deficiency, a clinical guideline lists which medicines to avoid or use with caution.",
+    "evidence": [
+     {
+      "value": "Medicine risk classes",
+      "quote": "In patients with G6PD deficiency, high-risk medications should be avoided, medium-risk medications should be used with caution, and low-to-no risk medications can be used with standard precautions, without regard to G6PD phenotype.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 36049896",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/36049896/"
+      },
+      "citation": "Gammal et al., Clin Pharmacol Ther 2023"
+     },
+     {
+      "value": "Fava beans",
+      "quote": "Hemolytic anemia can also occur after eating fava beans or inhaling pollen from fava plants (a reaction called favism).",
+      "source": {
+       "source": "Web",
+       "version": "page",
+       "retrievedAt": "2026-09-25",
+       "url": "https://medlineplus.gov/genetics/condition/glucose-6-phosphate-dehydrogenase-deficiency/"
+      },
+      "citation": "Glucose-6-phosphate dehydrogenase deficiency (MedlinePlus)"
+     },
+     {
+      "value": "Triggers",
+      "quote": "Factors such as infections, certain drugs, or ingesting fava beans can increase the levels of reactive oxygen species, causing red blood cells to be destroyed faster than the body can replace them.",
+      "source": {
+       "source": "Web",
+       "version": "page",
+       "retrievedAt": "2026-09-25",
+       "url": "https://medlineplus.gov/genetics/condition/glucose-6-phosphate-dehydrogenase-deficiency/"
+      },
+      "citation": "Glucose-6-phosphate dehydrogenase deficiency (MedlinePlus)"
+     },
+     {
+      "value": "Females with one copy vary",
+      "quote": "In females, who have two copies of the X chromosome, one altered copy of the G6PD gene in each cell can lead to less severe features of the condition or may cause no signs or symptoms at all.",
+      "source": {
+       "source": "Web",
+       "version": "page",
+       "retrievedAt": "2026-09-25",
+       "url": "https://medlineplus.gov/genetics/condition/glucose-6-phosphate-dehydrogenase-deficiency/"
+      },
+      "citation": "Glucose-6-phosphate dehydrogenase deficiency (MedlinePlus)"
+     },
+     {
+      "value": "About 1 in 10 African American males",
+      "quote": "It affects about 1 in 10 African American males in the United States.",
+      "source": {
+       "source": "Web",
+       "version": "page",
+       "retrievedAt": "2026-09-25",
+       "url": "https://medlineplus.gov/genetics/condition/glucose-6-phosphate-dehydrogenase-deficiency/"
+      },
+      "citation": "Glucose-6-phosphate dehydrogenase deficiency (MedlinePlus)"
+     }
+    ],
+    "interventions": [
+     "g6pd-medicines"
+    ],
+    "caveat": "Many male AncestryDNA files write X-chromosome letters twice, so 'two copies' in a male file usually means one."
+   },
+   {
+    "id": "apoe-omega3",
+    "gene": "APOE",
+    "title": "APOE and fish oil (sensitive)",
+    "area": "nutrition",
+    "sensitive": true,
+    "what": "APOE carries fats and cholesterol in the blood. It is sensitive because the ε4 version is also linked to Alzheimer disease; this card only covers fish oil and triglycerides.",
+    "sites": [
+     {
+      "rsid": "rs429358",
+      "allele": "C",
+      "alleleName": "ε4-defining C",
+      "aa": "R",
+      "site": {
+       "rsid": "rs429358",
+       "aliases": [
+        "rs630496",
+        "rs61228756"
+       ],
+       "gene": "APOE",
+       "label": "APOE ε4-defining C",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "19",
+       "pos37": 45411941,
+       "pos38": 44908684,
+       "ref": "T",
+       "alts": [
+        "C"
+       ],
+       "mainAlt": "C",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-09-23",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs429358"
+       }
+      },
+      "freq": {
+       "ALL": 0.150559,
+       "AFR": 0.2678,
+       "AMR": 0.1037,
+       "EAS": 0.0863,
+       "EUR": 0.1551,
+       "SAS": 0.0869
+      },
+      "gwasPubs": 232,
+      "gwasTraits": [
+       "protein measurement",
+       "Alzheimer disease",
+       "high density lipoprotein cholesterol measurement",
+       "memory performance"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs429358": [
+        1,
+        2
+       ]
+      },
+      "text": "You carry ε4. A systematic review rated the evidence strong (GRADE moderate quality) that male ε4 carriers have larger triglyceride drops with fish oil.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs429358": 0
+      },
+      "text": "You don't carry ε4, so this finding doesn't apply."
+     }
+    ],
+    "verdict": "limited",
+    "verdictNote": "One of only two gene–diet links rated strong in a GRADE review, and only for men with ε4. Triglycerides are measured in a routine lipid panel.",
+    "evidence": [
+     {
+      "value": "Male APOE-E4 carriers: larger triglyceride response",
+      "quote": "there is strong (GRADE rating: moderate quality) evidence to suggest that male APOE-E4 carriers (rs429358, rs7412) exhibit significant triglyceride reductions in response to omega-3-rich fish oil with a dose-response effect",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 35193914",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/35193914/"
+      },
+      "citation": "Keathley et al., BMJ Open 2022"
+     }
+    ]
+   }
+  ],
+  "unsupported": [
+   {
+    "rsid": "rs5751876",
+    "gene": "ADORA2A",
+    "claim": "caffeine and anxiety or sleep",
+    "site": {
+     "rsid": "rs5751876",
+     "aliases": [
+      "rs17851062"
+     ],
+     "gene": "ADORA2A",
+     "label": "rs5751876",
+     "domain": "metabolism",
+     "sensitive": false,
+     "chrom": "22",
+     "pos37": 24837301,
+     "pos38": 24441333,
+     "ref": "T",
+     "alts": [
+      "C"
+     ],
+     "mainAlt": "C",
+     "kind": "snv",
+     "source": {
+      "source": "dbSNP",
+      "version": "build 157",
+      "retrievedAt": "2026-09-25",
+      "url": "https://www.ncbi.nlm.nih.gov/snp/rs5751876"
+     }
+    },
+    "gwasPubs": 0,
+    "gwasTraits": []
+   },
+   {
+    "rsid": "rs1801260",
+    "gene": "CLOCK",
+    "claim": "sleep timing and weight",
+    "site": {
+     "rsid": "rs1801260",
+     "aliases": [
+      "rs3792602",
+      "rs17720939",
+      "rs60881643",
+      "rs386545625"
+     ],
+     "gene": "CLOCK",
+     "label": "rs1801260",
+     "domain": "metabolism",
+     "sensitive": false,
+     "chrom": "4",
+     "pos37": 56301369,
+     "pos38": 55435202,
+     "ref": "A",
+     "alts": [
+      "C",
+      "G",
+      "T"
+     ],
+     "mainAlt": "G",
+     "kind": "snv",
+     "source": {
+      "source": "dbSNP",
+      "version": "build 157",
+      "retrievedAt": "2026-09-25",
+      "url": "https://www.ncbi.nlm.nih.gov/snp/rs1801260"
+     }
+    },
+    "gwasPubs": 0,
+    "gwasTraits": []
+   },
+   {
+    "rsid": "rs7946",
+    "gene": "PEMT",
+    "claim": "choline needs",
+    "site": {
+     "rsid": "rs7946",
+     "aliases": [
+      "rs1128207",
+      "rs1918248",
+      "rs3184881",
+      "rs11554364",
+      "rs57409990"
+     ],
+     "gene": "PEMT",
+     "label": "rs7946",
+     "domain": "metabolism",
+     "sensitive": false,
+     "chrom": "17",
+     "pos37": 17409560,
+     "pos38": 17506246,
+     "ref": "C",
+     "alts": [
+      "T"
+     ],
+     "mainAlt": "T",
+     "kind": "snv",
+     "source": {
+      "source": "dbSNP",
+      "version": "build 157",
+      "retrievedAt": "2026-09-25",
+      "url": "https://www.ncbi.nlm.nih.gov/snp/rs7946"
+     }
+    },
+    "gwasPubs": 3,
+    "gwasTraits": [
+     "triglyceride measurement",
+     "lean body mass",
+     "degree of unsaturation measurement",
+     "fatty acid amount"
+    ]
+   },
+   {
+    "rsid": "rs1801394",
+    "gene": "MTRR",
+    "claim": "vitamin B12 needs",
+    "site": {
+     "rsid": "rs1801394",
+     "aliases": [
+      "rs52813630"
+     ],
+     "gene": "MTRR",
+     "label": "rs1801394",
+     "domain": "metabolism",
+     "sensitive": false,
+     "chrom": "5",
+     "pos37": 7870973,
+     "pos38": 7870860,
+     "ref": "A",
+     "alts": [
+      "G"
+     ],
+     "mainAlt": "G",
+     "kind": "snv",
+     "source": {
+      "source": "dbSNP",
+      "version": "build 157",
+      "retrievedAt": "2026-09-25",
+      "url": "https://www.ncbi.nlm.nih.gov/snp/rs1801394"
+     }
+    },
+    "gwasPubs": 0,
+    "gwasTraits": []
+   },
+   {
+    "rsid": "rs1801131",
+    "gene": "MTHFR (A1298C)",
+    "claim": "folate or methylfolate needs",
+    "site": {
+     "rsid": "rs1801131",
+     "aliases": [
+      "rs4134712",
+      "rs17367365",
+      "rs17857426"
+     ],
+     "gene": "MTHFR (A1298C)",
+     "label": "rs1801131",
+     "domain": "metabolism",
+     "sensitive": false,
+     "chrom": "1",
+     "pos37": 11854476,
+     "pos38": 11794419,
+     "ref": "T",
+     "alts": [
+      "A",
+      "C",
+      "G"
+     ],
+     "mainAlt": "G",
+     "kind": "snv",
+     "source": {
+      "source": "dbSNP",
+      "version": "build 157",
+      "retrievedAt": "2026-09-25",
+      "url": "https://www.ncbi.nlm.nih.gov/snp/rs1801131"
+     }
+    },
+    "gwasPubs": 1,
+    "gwasTraits": [
+     "BMI-adjusted hip circumference"
+    ]
+   },
+   {
+    "rsid": "rs7501331",
+    "gene": "BCO1",
+    "claim": "turning beta-carotene into vitamin A",
+    "site": {
+     "rsid": "rs7501331",
+     "aliases": [
+      "rs52800470"
+     ],
+     "gene": "BCO1",
+     "label": "rs7501331",
+     "domain": "metabolism",
+     "sensitive": false,
+     "chrom": "16",
+     "pos37": 81314496,
+     "pos38": 81280891,
+     "ref": "C",
+     "alts": [
+      "T"
+     ],
+     "mainAlt": "T",
+     "kind": "snv",
+     "source": {
+      "source": "dbSNP",
+      "version": "build 157",
+      "retrievedAt": "2026-09-25",
+      "url": "https://www.ncbi.nlm.nih.gov/snp/rs7501331"
+     }
+    },
+    "gwasPubs": 0,
+    "gwasTraits": []
+   },
+   {
+    "rsid": "rs4680",
+    "gene": "COMT",
+    "claim": "stress, caffeine or 'methylation' supplements",
+    "site": {
+     "rsid": "rs4680",
+     "aliases": [
+      "rs165688",
+      "rs1131157",
+      "rs2070104",
+      "rs3177905",
+      "rs3190784",
+      "rs3747070",
+      "rs11544671",
+      "rs17295216",
+      "rs17349704",
+      "rs17818178",
+      "rs17849308",
+      "rs17850006",
+      "rs58002978"
+     ],
+     "gene": "COMT",
+     "label": "rs4680",
+     "domain": "metabolism",
+     "sensitive": false,
+     "chrom": "22",
+     "pos37": 19951271,
+     "pos38": 19963748,
+     "ref": "G",
+     "alts": [
+      "A"
+     ],
+     "mainAlt": "A",
+     "kind": "snv",
+     "source": {
+      "source": "dbSNP",
+      "version": "build 157",
+      "retrievedAt": "2026-09-25",
+      "url": "https://www.ncbi.nlm.nih.gov/snp/rs4680"
+     }
+    },
+    "gwasPubs": 16,
+    "gwasTraits": [
+     "2-O-methylascorbic acid measurement",
+     "metabolite measurement",
+     "urinary metabolite measurement",
+     "glucuronide of piperine metabolite C17H21NO3 (4) measurement"
+    ]
+   },
+   {
+    "rsid": "rs1544410",
+    "gene": "VDR (BsmI)",
+    "claim": "vitamin D needs",
+    "site": {
+     "rsid": "rs1544410",
+     "aliases": [
+      "rs56495123",
+      "rs56911380",
+      "rs386536760"
+     ],
+     "gene": "VDR (BsmI)",
+     "label": "rs1544410",
+     "domain": "metabolism",
+     "sensitive": false,
+     "chrom": "12",
+     "pos37": 48239835,
+     "pos38": 47846052,
+     "ref": "C",
+     "alts": [
+      "A",
+      "G",
+      "T"
+     ],
+     "mainAlt": "T",
+     "kind": "snv",
+     "source": {
+      "source": "dbSNP",
+      "version": "build 157",
+      "retrievedAt": "2026-09-25",
+      "url": "https://www.ncbi.nlm.nih.gov/snp/rs1544410"
+     }
+    },
+    "gwasPubs": 0,
+    "gwasTraits": []
+   },
+   {
+    "rsid": "rs731236",
+    "gene": "VDR (TaqI)",
+    "claim": "vitamin D needs",
+    "site": {
+     "rsid": "rs731236",
+     "aliases": [
+      "rs2228571",
+      "rs17777794",
+      "rs17880019",
+      "rs59730659",
+      "rs118037316",
+      "rs386609145"
+     ],
+     "gene": "VDR (TaqI)",
+     "label": "rs731236",
+     "domain": "metabolism",
+     "sensitive": false,
+     "chrom": "12",
+     "pos37": 48238757,
+     "pos38": 47844974,
+     "ref": "A",
+     "alts": [
+      "C",
+      "G",
+      "T"
+     ],
+     "mainAlt": "G",
+     "kind": "snv",
+     "source": {
+      "source": "dbSNP",
+      "version": "build 157",
+      "retrievedAt": "2026-09-25",
+      "url": "https://www.ncbi.nlm.nih.gov/snp/rs731236"
+     }
+    },
+    "gwasPubs": 1,
+    "gwasTraits": [
+     "interleukin 18 measurement"
+    ]
+   },
+   {
+    "rsid": "rs4880",
+    "gene": "SOD2",
+    "claim": "antioxidant needs",
+    "site": {
+     "rsid": "rs4880",
+     "aliases": [
+      "rs1141717",
+      "rs1799725",
+      "rs3205539",
+      "rs11551083",
+      "rs17362379",
+      "rs17405198",
+      "rs17856520",
+      "rs116851270",
+      "rs386596107"
+     ],
+     "gene": "SOD2",
+     "label": "rs4880",
+     "domain": "metabolism",
+     "sensitive": false,
+     "chrom": "6",
+     "pos37": 160113872,
+     "pos38": 159692840,
+     "ref": "A",
+     "alts": [
+      "C",
+      "G",
+      "T"
+     ],
+     "mainAlt": "G",
+     "kind": "snv",
+     "source": {
+      "source": "dbSNP",
+      "version": "build 157",
+      "retrievedAt": "2026-09-25",
+      "url": "https://www.ncbi.nlm.nih.gov/snp/rs4880"
+     }
+    },
+    "gwasPubs": 0,
+    "gwasTraits": []
+   },
+   {
+    "rsid": "rs1695",
+    "gene": "GSTP1",
+    "claim": "detox or antioxidant needs",
+    "site": {
+     "rsid": "rs1695",
+     "aliases": [
+      "rs4609",
+      "rs947894",
+      "rs1138257",
+      "rs2230827",
+      "rs11553891",
+      "rs17353321",
+      "rs17856342",
+      "rs56971933"
+     ],
+     "gene": "GSTP1",
+     "label": "rs1695",
+     "domain": "metabolism",
+     "sensitive": false,
+     "chrom": "11",
+     "pos37": 67352689,
+     "pos38": 67585218,
+     "ref": "A",
+     "alts": [
+      "G",
+      "T"
+     ],
+     "mainAlt": "G",
+     "kind": "snv",
+     "source": {
+      "source": "dbSNP",
+      "version": "build 157",
+      "retrievedAt": "2026-09-25",
+      "url": "https://www.ncbi.nlm.nih.gov/snp/rs1695"
+     }
+    },
+    "gwasPubs": 5,
+    "gwasTraits": [
+     "metabolite measurement",
+     "glutathione s-transferase p measurement",
+     "protein measurement",
+     "N-acetylphenylalanine measurement"
+    ]
+   },
+   {
+    "rsid": "rs8192678",
+    "gene": "PPARGC1A",
+    "claim": "endurance training response",
+    "site": {
+     "rsid": "rs8192678",
+     "aliases": [
+      "rs17847358",
+      "rs52829424",
+      "rs56570248",
+      "rs56707915"
+     ],
+     "gene": "PPARGC1A",
+     "label": "rs8192678",
+     "domain": "metabolism",
+     "sensitive": false,
+     "chrom": "4",
+     "pos37": 23815662,
+     "pos38": 23814039,
+     "ref": "C",
+     "alts": [
+      "A",
+      "G",
+      "T"
+     ],
+     "mainAlt": "T",
+     "kind": "snv",
+     "source": {
+      "source": "dbSNP",
+      "version": "build 157",
+      "retrievedAt": "2026-09-25",
+      "url": "https://www.ncbi.nlm.nih.gov/snp/rs8192678"
+     }
+    },
+    "gwasPubs": 0,
+    "gwasTraits": []
+   },
+   {
+    "rsid": "rs1042713",
+    "gene": "ADRB2",
+    "claim": "fat burning with exercise",
+    "site": {
+     "rsid": "rs1042713",
+     "aliases": [
+      "rs3182174",
+      "rs3729940",
+      "rs17287432",
+      "rs17334179",
+      "rs17334242",
+      "rs17721693",
+      "rs17839749",
+      "rs17846639",
+      "rs17859732",
+      "rs52812686",
+      "rs56964295"
+     ],
+     "gene": "ADRB2",
+     "label": "rs1042713",
+     "domain": "metabolism",
+     "sensitive": false,
+     "chrom": "5",
+     "pos37": 148206440,
+     "pos38": 148826877,
+     "ref": "G",
+     "alts": [
+      "A",
+      "C"
+     ],
+     "mainAlt": "A",
+     "kind": "snv",
+     "source": {
+      "source": "dbSNP",
+      "version": "build 157",
+      "retrievedAt": "2026-09-25",
+      "url": "https://www.ncbi.nlm.nih.gov/snp/rs1042713"
+     }
+    },
+    "gwasPubs": 1,
+    "gwasTraits": [
+     "creatine kinase measurement"
+    ]
+   },
+   {
+    "rsid": "rs4343",
+    "gene": "ACE",
+    "claim": "power vs endurance training",
+    "site": {
+     "rsid": "rs4343",
+     "aliases": [
+      "rs4974",
+      "rs2228582",
+      "rs3730035",
+      "rs16946944",
+      "rs17853605",
+      "rs56513988",
+      "rs58890782"
+     ],
+     "gene": "ACE",
+     "label": "rs4343",
+     "domain": "metabolism",
+     "sensitive": false,
+     "chrom": "17",
+     "pos37": 61566031,
+     "pos38": 63488670,
+     "ref": "G",
+     "alts": [
+      "A",
+      "T"
+     ],
+     "mainAlt": "A",
+     "kind": "snv",
+     "source": {
+      "source": "dbSNP",
+      "version": "build 157",
+      "retrievedAt": "2026-09-25",
+      "url": "https://www.ncbi.nlm.nih.gov/snp/rs4343"
+     }
+    },
+    "gwasPubs": 7,
+    "gwasTraits": [
+     "serum metabolite level",
+     "level of Gly-Trp in blood",
+     "glycylphenylalanine measurement",
+     "angiotensin converting enzyme activity attribute"
+    ]
+   },
+   {
+    "rsid": "rs699",
+    "gene": "AGT",
+    "claim": "salt sensitivity",
+    "site": {
+     "rsid": "rs699",
+     "aliases": [
+      "rs4714",
+      "rs3182295",
+      "rs17856353",
+      "rs61617185",
+      "rs386606420"
+     ],
+     "gene": "AGT",
+     "label": "rs699",
+     "domain": "metabolism",
+     "sensitive": false,
+     "chrom": "1",
+     "pos37": 230845794,
+     "pos38": 230710048,
+     "ref": "A",
+     "alts": [
+      "C",
+      "G",
+      "T"
+     ],
+     "mainAlt": "G",
+     "kind": "snv",
+     "source": {
+      "source": "dbSNP",
+      "version": "build 157",
+      "retrievedAt": "2026-09-25",
+      "url": "https://www.ncbi.nlm.nih.gov/snp/rs699"
+     }
+    },
+    "gwasPubs": 12,
+    "gwasTraits": [
+     "systolic blood pressure",
+     "diastolic blood pressure",
+     "coronary artery disorder",
+     "pulse pressure measurement"
+    ]
+   },
+   {
+    "rsid": "rs5082",
+    "gene": "APOA2",
+    "claim": "saturated fat and weight",
+    "site": {
+     "rsid": "rs5082",
+     "aliases": [
+      "rs3813626",
+      "rs17244495",
+      "rs17393523",
+      "rs59715439"
+     ],
+     "gene": "APOA2",
+     "label": "rs5082",
+     "domain": "metabolism",
+     "sensitive": false,
+     "chrom": "1",
+     "pos37": 161193683,
+     "pos38": 161223893,
+     "ref": "G",
+     "alts": [
+      "A",
+      "C",
+      "T"
+     ],
+     "mainAlt": "A",
+     "kind": "snv",
+     "source": {
+      "source": "dbSNP",
+      "version": "build 157",
+      "retrievedAt": "2026-09-25",
+      "url": "https://www.ncbi.nlm.nih.gov/snp/rs5082"
+     }
+    },
+    "gwasPubs": 5,
+    "gwasTraits": [
+     "phospholipids:total lipids ratio",
+     "high density lipoprotein cholesterol measurement",
+     "triglyceride measurement, high density lipoprotein cholesterol measurement",
+     "free cholesterol:total lipids ratio, high density lipoprotein cholesterol measurement"
+    ]
+   },
+   {
+    "rsid": "rs5400",
+    "gene": "SLC2A2",
+    "claim": "sugar cravings",
+    "site": {
+     "rsid": "rs5400",
+     "aliases": [
+      "rs52828515",
+      "rs61638260"
+     ],
+     "gene": "SLC2A2",
+     "label": "rs5400",
+     "domain": "metabolism",
+     "sensitive": false,
+     "chrom": "3",
+     "pos37": 170732300,
+     "pos38": 171014511,
+     "ref": "G",
+     "alts": [
+      "A",
+      "C",
+      "T"
+     ],
+     "mainAlt": "A",
+     "kind": "snv",
+     "source": {
+      "source": "dbSNP",
+      "version": "build 157",
+      "retrievedAt": "2026-09-25",
+      "url": "https://www.ncbi.nlm.nih.gov/snp/rs5400"
+     }
+    },
+    "gwasPubs": 3,
+    "gwasTraits": [
+     "diabetic ketoacidosis",
+     "blood glucose amount",
+     "HbA1c measurement",
+     "triglyceride measurement"
+    ]
+   },
+   {
+    "rsid": "rs1800795",
+    "gene": "IL6",
+    "claim": "inflammation and recovery",
+    "site": {
+     "rsid": "rs1800795",
+     "aliases": [
+      "rs17777058",
+      "rs36215460",
+      "rs56588968",
+      "rs58302852"
+     ],
+     "gene": "IL6",
+     "label": "rs1800795",
+     "domain": "metabolism",
+     "sensitive": false,
+     "chrom": "7",
+     "pos37": 22766645,
+     "pos38": 22727026,
+     "ref": "C",
+     "alts": [
+      "G",
+      "T"
+     ],
+     "mainAlt": "G",
+     "kind": "snv",
+     "source": {
+      "source": "dbSNP",
+      "version": "build 157",
+      "retrievedAt": "2026-09-25",
+      "url": "https://www.ncbi.nlm.nih.gov/snp/rs1800795"
+     }
+    },
+    "gwasPubs": 3,
+    "gwasTraits": [
+     "pulse pressure measurement",
+     "systolic blood pressure"
+    ]
+   }
+  ],
+  "notes": [
+   {
+    "id": "epigenetics",
+    "title": "About 'epigenetic' diets",
+    "text": "Epigenetic marks (such as DNA methylation) sit on top of your DNA and change with age and cell type. Your AncestryDNA or 23andMe file reads DNA letters only; it measures no epigenetic marks at all. Nutrients that feed methylation (folate, B12, B6, riboflavin, choline) are sometimes sold as 'epigenetic' diets. A systematic review of human trials found limited evidence that diet changes methylation, apart from folic acid in the colon, and pooled human trials of folic acid found no significant change compared with placebo. The closest genotype-specific evidence in this area is MTHFR TT and riboflavin, which lowered blood pressure in trials (see MTHFR).",
+    "evidence": [
+     {
+      "value": "Methylation changes with age and cell type",
+      "quote": "Patterns of DNA methylation change during development and ageing, differ between cell types, are altered in multiple diseases and can be modulated by dietary factors.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 30355391",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/30355391/"
+      },
+      "citation": "ElGendy et al., Br J Nutr 2018"
+     },
+     {
+      "value": "Limited evidence beyond folic acid",
+      "quote": "In summary, there is limited evidence from intervention studies of effects of dietary factors, other than folic acid, on DNA methylation patterns in humans.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 30355391",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/30355391/"
+      },
+      "citation": "ElGendy et al., Br J Nutr 2018"
+     },
+     {
+      "value": "Folic acid: hypermethylation in colorectal mucosa",
+      "quote": "Meta-analysis of the effect of folic acid on global DNA methylation revealed strong evidence that supplementation caused hypermethylation in colorectal mucosa",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 30355391",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/30355391/"
+      },
+      "citation": "ElGendy et al., Br J Nutr 2018"
+     },
+     {
+      "value": "Human trials: no significant change vs placebo",
+      "quote": "However, meta-analysis of human clinical trials showed that folic acid supplementation did not promote significant changes in DNA methylation when compared to placebo.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 37935134",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/37935134/"
+      },
+      "citation": "da Mota et al., Lifestyle Genom 2023"
+     }
+    ]
+   },
+   {
+    "id": "personalised",
+    "title": "Does DNA-based diet advice work better?",
+    "text": "In the largest trial of personalised nutrition (Food4Me, seven European countries), tailored advice improved diets more than generic advice, but adding genetic results did not make it work any better. A GRADE review of gene–diet studies for omega-3 found most of the evidence weak. That is why this guide says, for each gene, whether your genotype actually changes the advice.",
+    "evidence": [
+     {
+      "value": "Personalised advice beat conventional advice",
+      "quote": "Among European adults, PN advice via internet-delivered intervention produced larger and more appropriate changes in dietary behaviour than a conventional approach.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 27524815",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/27524815/"
+      },
+      "citation": "Celis-Morales et al., Int J Epidemiol 2017"
+     },
+     {
+      "value": "Genotype added nothing",
+      "quote": "There was no evidence that including phenotypic and phenotypic plus genotypic information enhanced the effectiveness of the PN advice.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 27524815",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/27524815/"
+      },
+      "citation": "Celis-Morales et al., Int J Epidemiol 2017"
+     },
+     {
+      "value": "Seven countries",
+      "quote": "Adults from seven European countries were recruited to an internet-delivered intervention (Food4Me)",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 27524815",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/27524815/"
+      },
+      "citation": "Celis-Morales et al., Int J Epidemiol 2017"
+     },
+     {
+      "value": "Most evidence weak",
+      "quote": "Most evidence in this area is weak",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 35193914",
+       "retrievedAt": "2026-09-25",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/35193914/"
+      },
+      "citation": "Keathley et al., BMJ Open 2022"
+     }
+    ]
+   }
+  ]
+ }
 }

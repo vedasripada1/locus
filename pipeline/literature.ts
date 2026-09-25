@@ -37,7 +37,7 @@ export function screen(r: PubmedRecord, topic: string, query: string): Literatur
   const sampleSize = n ? { value: n[1].replace(/\s/g, ""), snippet: text.slice(Math.max(0, n.index! - 60), n.index! + n[0].length + 40).replace(/\s+/g, " ") } : null;
   return {
     pmid: r.pmid, doi: r.doi, title: r.title, journal: r.journal, year: r.year, publicationTypes: r.publicationTypes,
-    design: classifyDesign(r.publicationTypes, r.mesh), humans, animalOnly,
+    design: classifyDesign(r.publicationTypes, r.mesh, r.title), humans, animalOnly,
     mentionsGeneInteraction: GXE.test(r.abstract) && /(genotype|allele|polymorphism|variant|rs\d+)/i.test(r.abstract),
     sampleSize, flags, topic, query, url: `https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/`, source: r.source,
   };

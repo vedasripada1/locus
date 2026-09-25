@@ -210,6 +210,7 @@ export interface InterventionStudy {
 
 export type Trigger =
   | { topic: string; when: "effect-allele-carried" | "tested" }
+  | { site: string; allele: string; when: "carried" | "homozygous" | "not-carried" } // a gene-guide site, forward-strand allele
   | { clinvar: string; when: "pathogenic-carried" | "alt-carried" | "alt-homozygous" | "alt-not-carried" }
   | { clinvarAll: string[]; when: "alt-carried" }; // every listed site carries its ClinVar allele
 
@@ -264,6 +265,8 @@ export interface EvidenceBundle {
   audit: AuditEntry[];
   /** Report-level warnings, each backed by verified quotes. */
   warnings?: VerifiedWarning[];
+  /** Verified gene guide (traits, nutrition, fitness); see pipeline/genes.ts. */
+  geneGuide?: GeneGuide;
 }
 
 export interface VerifiedWarning { id: string; title: string; summary: string; quotes: SourcedQuote[] }
@@ -417,4 +420,68 @@ export interface Report {
   alleleFreq?: import("./clinicalcheck").FreqTable;
   /** Verbatim reference text (GeneReviews, MedlinePlus). */
   refs?: import("./refs").References | null;
+  /** Gene guide results for this file. */
+  genes?: GeneResult[];
+  /** Your genotype at sites often used in DNA diet reports (gene guide "unsupported" list). */
+  genesUnsupported?: { rsid: string; match: SiteMatch }[];
 }
+
+// ─── Gene guide ────────────────────────────────────────────────────────────
+
+export type GeneArea = "traits" | "nutrition" | "fitness" | "heart" | "medicines";
+/** Does your genotype change what to do? */
+export type GeneVerdict = "changes-advice" | "test-instead" | "same-advice" | "no-proven-action" | "trait" | "limited";
+
+export interface GeneGuideSite {
+  rsid: string;
+  /** Forward-strand (GRCh37 plus) allele the readings count. */
+  allele: string;
+  alleleName: string;
+  /** Amino acid of `allele`, verified against Ensembl VEP (coding variants only). */
+  aa?: string;
+  site: VariantSite;
+  /** 1000 Genomes phase 3 frequency of `allele` by population (ALL, AFR, AMR, EAS, EUR, SAS). */
+  freq: Record<string, number> | null;
+  /** Distinct GWAS Catalog papers with p < 5e-8 at this site (null if the bulk download was unavailable). */
+  gwasPubs: number | null;
+  gwasTraits: string[];
+}
+
+export interface GeneReading { if: Record<string, number | [number, number]>; text: string; tone?: "notable" }
+
+export interface GeneGuideEntry {
+  id: string;
+  gene: string;
+  title: string;
+  area: GeneArea;
+  what: string;
+  sites: GeneGuideSite[];
+  readings: GeneReading[];
+  verdict: GeneVerdict;
+  verdictNote: string;
+  actions?: string[];
+  evidence: SourcedQuote[];
+  interventions?: string[];
+  caveat?: string;
+  strandNote?: string;
+  sensitive?: boolean;
+}
+
+export interface GeneGuide {
+  builtAt: string;
+  gwasAvailable: boolean;
+  entries: GeneGuideEntry[];
+  /** Sites often used for diet or fitness advice, with how much genome-wide evidence exists for them. */
+  unsupported: { rsid: string; gene: string; claim: string; site: VariantSite; gwasPubs: number | null; gwasTraits: string[] }[];
+  notes: { id: string; title: string; text: string; evidence: SourcedQuote[] }[];
+}
+
+export interface GeneSiteResult { rsid: string; match: SiteMatch; copies: number | null }
+export interface GeneResult {
+  entry: GeneGuideEntry;
+  sites: GeneSiteResult[];
+  /** The reading that applies, or null when a needed site wasn't tested or readable. */
+  reading: GeneReading | null;
+  status: "read" | "partial" | "not-tested";
+}
+

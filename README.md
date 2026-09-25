@@ -217,6 +217,41 @@ Summary wording comes from fixed templates filled with values already in the rep
 
 The Markdown export puts the summary first and the technical appendix after it.
 
+## Traits & genes (gene guide)
+
+Right after Diet & supplements, the results page has one card per well-studied gene that AncestryDNA and 23andMe files can read. There are 21 genes, grouped as traits, food & nutrients, fitness & weight, heart and medicines. Each card shows:
+
+- your genotype;
+- a fixed plain-language reading;
+- a verdict that answers **"does your DNA change what to do?"**:
+
+  | Verdict | Genes |
+  |---|---|
+  | Changes the advice | MTHFR TT → riboflavin; lactase; ALDH2; Lp(a) → one-time test; G6PD |
+  | Some genotype-specific evidence | caffeine/CYP1A2; APOE ε4 + fish oil (sensitive, hidden by default) |
+  | A blood test answers it better | vitamin D, B12/FUT2, HFE, celiac HLA-DQ |
+  | Same advice for everyone | FTO, TCF7L2, MC1R sun protection |
+  | Affects a level, no proven action | FADS omega-3, BCO1 beta-carotene, SLC23A1 vitamin C |
+  | Just a trait | earwax, bitter taste, eye colour, ACTN3 |
+
+The section also has:
+
+- **"About 'epigenetic' diets":** the file measures no epigenetic marks. Human trials show little effect of diet on DNA methylation beyond folic acid.
+- **"Does DNA-based diet advice work better?":** Food4Me found that adding genotype didn't help, and a GRADE review rated most gene–diet evidence weak.
+- **Genes often used in DNA diet reports:** 18 sites (ADORA2A, COMT, VDR, MTRR, PEMT, CLOCK and others), with your genotype and how many genome-wide significant GWAS papers exist at each. Many have none. None of them produce advice.
+- **What these files can and can't tell you.**
+
+`pipeline/genes.ts` (`npm run evidence:genes`) verifies `pipeline/seeds/genes.json` before anything ships:
+
+1. The allele is a forward-strand allele in dbSNP.
+2. For coding variants, the allele's amino acid matches Ensembl VEP on GRCh37. This catches strand mix-ups, for example ABCC11 dry earwax "A" in the paper is T in your file, and HERC2 blue-eye "C" is G.
+3. Every quote is found verbatim in its PubMed abstract or NIH page.
+4. Every number in the plain text appears in a verified quote.
+
+It also adds exact 1000 Genomes allele frequencies (from the local sites VCF) and GWAS Catalog paper counts.
+
+Readings never treat an untested site as "not carried". A test checks that every possible genotype of every gene gets a reading. Chip coverage was checked against Illumina's public GSA v3 (basis of 23andMe v5) and OmniExpress (basis of AncestryDNA) manifests. Both vendors add custom content, so the app always checks the actual file.
+
 ## What the report contains
 
 1. **Clinically significant findings requiring confirmation:** a ClinVar Pathogenic/Likely pathogenic allele observed in your file. That means either the aggregate classification, or a per-condition classification with ≥2★ review status, and never when the aggregate is "conflicting". Inheritance comes from ClinGen (e.g. "autosomal recessive; one copy usually indicates carrier status"). Conflicting, uncertain, not-carried and **not-tested** sites are listed separately.

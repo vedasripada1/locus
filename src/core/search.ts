@@ -5,7 +5,7 @@ import type { Report } from "./types";
 import type { BulkGwasHit } from "./bulk";
 import { orAdverb, scanLine, type Summary } from "./plain";
 
-export type SearchGroup = "Your summary" | "Curated results" | "Actions" | "Rare disease variants" | "Trait associations";
+export type SearchGroup = "Your summary" | "Traits & genes" | "Curated results" | "Actions" | "Rare disease variants" | "Trait associations";
 
 export interface SearchHit {
   group: SearchGroup;
@@ -43,6 +43,15 @@ export function searchReport(r: Report, summary: Summary, q: string, opts: { sho
   for (const i of summary.items) {
     const s = best(query, i.title, i.plain, ...(i.list ?? []), ...i.why);
     if (s) hits.push({ group: "Your summary", title: i.title, plain: i.plain, target: { tab: "summary", id: i.id }, score: s + 10 });
+  }
+
+  // Gene guide: one hit per gene, with your reading.
+  for (const g of r.genes ?? []) {
+    if (!opts.showSensitive && g.entry.sensitive) continue;
+    const s = best(query, g.entry.title, g.entry.gene, g.entry.what, ...g.entry.sites.map((x) => x.rsid));
+    if (!s) continue;
+    const reading = g.status === "not-tested" ? "Not on your chip, so not tested." : g.reading?.text ?? "Only partly readable from your file.";
+    hits.push({ group: "Traits & genes", title: `${g.entry.title} (${g.entry.gene})`, plain: reading, target: { tab: "summary", id: `gene-${g.entry.id}` }, score: s + 5 });
   }
 
   // Curated sites: status of every curated variant, carried or not.

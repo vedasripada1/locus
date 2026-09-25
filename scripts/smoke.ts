@@ -23,7 +23,13 @@ for (const demo of ["23andme", "ancestrydna"]) {
   // Summary first.
   await page.waitForFunction(() => /confirm with a doctor/i.test(document.body.innerText), { timeout: 60000 }).catch(() => problems.push("summary headline did not render"));
   // Structured search from the filter bar.
-  await page.type(".filter-row input[type=search]", "BRCA1");
+  // Traits & genes: section renders, and its own search finds a gene card.
+  await page.waitForFunction(() => /Traits & genes/i.test(document.body.innerText) && document.querySelectorAll("article.gene-card").length > 10, { timeout: 10000 }).catch(() => problems.push("gene guide did not render"));
+  await page.type('input[aria-label="Search genes"]', "earwax");
+  await page.waitForFunction(() => document.querySelectorAll("article.gene-card").length === 1 && /earwax/i.test(document.querySelector("article.gene-card")!.textContent ?? ""), { timeout: 5000 }).catch(() => problems.push("gene search did not narrow to the earwax card"));
+  const earwax = await page.evaluate(() => document.querySelector("article.gene-card .gene-reading")?.textContent ?? "");
+  console.log(`  gene guide: earwax → ${earwax}`);
+  await page.type(".filter-row input[aria-label='Search results']", "BRCA1");
   await page.waitForFunction(() => /BRCA1: coverage/.test(document.body.innerText), { timeout: 10000 }).catch(() => problems.push("search did not answer BRCA1 coverage"));
   // Category filter.
   await page.evaluate(() => ([...document.querySelectorAll("button.seg-btn")].find((b) => b.textContent?.startsWith("Health findings")) as HTMLElement).click());

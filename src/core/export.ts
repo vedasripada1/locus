@@ -1,3 +1,4 @@
+import { siteLine } from "./genes";
 // Stage 4 — narrative / export. Renders a Report with fixed templates only.
 // No generated prose: every sentence is either a template or a verified value.
 import type { EvidenceBundle, Finding, Report } from "./types";
@@ -62,10 +63,31 @@ export function toMarkdown(r: Report, bundle: EvidenceBundle, opts: { showSensit
       const studies = [...iv.generalEvidence, ...iv.genotypeEvidence];
       return `### ${iv.name}\n- **Type:** ${iv.type}; **why shown:** ${a.triggeredBy.join("; ")}\n- ${iv.triggerNote}\n- **Summary:** ${iv.summary}\n- **Best evidence that it helps at all:** ${a.bestDesign}; **genotype-specific evidence:** ${a.genotypeSpecific.replace(/-/g, " ")}\n${studies.map((s) => `- ${s.citation}, ${s.design}${s.sampleSize ? `, n=${s.sampleSize.value}` : ""}${s.ref.pmid ? `, PMID ${s.ref.pmid}` : ""}${s.doi ? `, doi:${s.doi}` : ""}: genotype interaction ${s.genotypeInteraction}`).join("\n")}${iv.safety?.upperLimit ? `\n- **Upper limit:** ${iv.safety.upperLimit.value} (${iv.safety.upperLimit.citation})` : ""}${a.contextWarnings.map((w) => `\n- **Note:** ${w}`).join("")}\n- **Limitations:** ${iv.limitations.join(" ")}\n`;
     }).join("\n") || "_No evidence-based personalized action._\n"}${(() => { const t = r.topicsWithoutAction.filter((x) => opts.showSensitive || !/alzheimer/i.test(x)); return t.length ? `\n**No evidence-based personalized action for:** ${t.join(", ")}.\n` : ""; })()}`,
+    ...(r.genes?.length ? [genesMd(r, opts)] : []),
     ...(r.bulk ? [bulkMd(r, opts)] : []),
     `## Sources\n${r.evidenceSources.map((s) => `- ${s.source}: ${s.version} (retrieved ${s.retrievedAt}) ${s.url}`).join("\n")}`,
   ];
   return out.join("\n\n");
+}
+
+const VERDICT_MD: Record<string, string> = {
+  "changes-advice": "Your DNA can change the advice", limited: "Some genotype-specific evidence", "test-instead": "A blood test answers this better",
+  "same-advice": "Same advice whatever your DNA", "no-proven-action": "Affects a level; no proven action", trait: "Just a trait",
+};
+
+/** Gene guide: reading, verdict and verified quotes per gene. */
+export function genesMd(r: Report, opts: { showSensitive: boolean }): string {
+  const rows = (r.genes ?? []).filter((g) => opts.showSensitive || !g.entry.sensitive).map((g) => {
+    const e = g.entry;
+    return [`### ${e.title} (${e.gene})`,
+      `- **Your DNA:** ${g.sites.map((s, i) => siteLine(s, e.sites[i].alleleName, e.sites[i].allele)).join("; ")}`,
+      `- **Reading:** ${g.status === "not-tested" ? "Not on your chip (not tested)." : g.reading?.text ?? "Only partly readable."}`,
+      `- **Does your DNA change what to do?** ${VERDICT_MD[e.verdict]}. ${e.verdictNote}`,
+      ...e.evidence.map((q) => `- ${q.value}: "${q.quote}" (${q.citation}${q.source.url ? `, ${q.source.url}` : ""})`),
+      ...(e.caveat ? [`- **Limits:** ${e.caveat}`] : []),
+    ].join("\n");
+  });
+  return `## 6. Traits and genes\n\nEach reading is fixed text checked against its sources; alleles are on the forward strand.\n\n${rows.join("\n\n")}`;
 }
 
 /** JSON export omits nothing about findings but never includes the raw file. */
