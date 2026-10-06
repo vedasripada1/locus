@@ -17,7 +17,7 @@ Every statement in the report is either a fixed template or a value copied from 
 ```bash
 npm install
 npm run dev            # http://127.0.0.1:5173. Click "Demo 23andMe" / "Demo AncestryDNA", or open /#demo=23andme
-npm test               # 41 unit tests: parsing, matching, interpretation, claim verification, genome-wide tiers
+npm test               # 110 unit tests: parsing, matching, interpretation, claim verification, genome-wide tiers
 npm run build          # typecheck + production build (adds a strict CSP, see Privacy)
 npm run preview -- --port 4317 --strictPort &   # serve the build
 npm run smoke          # headless-Chrome check of the build: renders, no errors, no network, delete works
@@ -292,3 +292,7 @@ A supplement is included only with **(a)** a verified human RCT, meta-analysis o
 - **Other literature APIs** (Europe PMC, Semantic Scholar, OpenAlex). These would plug into `pipeline/literature.ts`.
 - **An optional LLM summariser.** The pipeline is designed so one could summarise *verified bundle records only* (never genotypes), but none is included.
 - **Localisation, accessibility audit, and saved sessions** (deliberately none: nothing is retained).
+
+## About
+
+Built by Veda Sripada with [Claude Code](https://claude.com/claude-code). Design, scope and validation by me.
