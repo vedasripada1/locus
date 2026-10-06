@@ -1,5 +1,9 @@
 # Locus (WIP)
 
+> **🚧 Work in progress.** Locus is under active development and is not yet deployed. Coming next:
+> - **Evidence-mined nutraceutical and supplement guidance:** what the literature says, how strong it is, and why it may or may not apply to your genotype
+> - **Broader disease coverage:** metabolic, chronic and cancer-related conditions
+
 A local-first web app that reads an **AncestryDNA** or **23andMe** raw data file and produces a transparent, evidence-linked report. It covers clinically relevant variants (ClinVar/ClinGen), common-variant associations (NHGRI-EBI GWAS Catalog), metabolism and performance traits, and a literature-backed list of "possible actions to discuss".
 
 Coverage comes in two tiers:
