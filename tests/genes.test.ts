@@ -87,6 +87,22 @@ describe("verified gene guide in the bundle", () => {
     }
   });
 
+  it("reads the metabolic genes from a synthetic file, and keeps the FH note", () => {
+    const at = (rsid: string) => guide.entries.flatMap((e) => e.sites).find((s) => s.rsid === rsid)!.site;
+    const rows: [string, string][] = [["rs738409", "GG"], ["rs58542926", "CC"], ["rs2231142", "GT"], ["rs662799", "AG"]];
+    const text = file23(rows.map(([rs, g]) => [rs, at(rs).chrom, at(rs).pos37!, g]));
+    const keep = new Set([...real.sites, ...guideSites(real)].flatMap((s) => [s.rsid, ...s.aliases]));
+    const r = buildReport(parseGenotypeText(text, keep), real);
+    const g = (id: string) => r.genes!.find((x) => x.entry.id === id)!;
+    expect(g("pnpla3").reading?.text).toMatch(/^Two copies of the 148M/);
+    expect(g("pnpla3").entry.verdict).toBe("limited");
+    expect(g("tm6sf2").reading?.text).toMatch(/don't carry/);
+    expect(g("abcg2").reading?.text).toMatch(/^One copy of the 141K/);
+    expect(g("apoa5").reading?.text).toMatch(/^One copy of the -1131C/);
+    expect(guide.entries.filter((e) => e.area === "metabolic").map((e) => e.id)).toEqual(expect.arrayContaining(["tcf7l2", "pnpla3", "tm6sf2", "abcg2", "apoa5"]));
+    expect(guide.notes.find((n) => n.id === "fh")?.evidence.length).toBe(3);
+  });
+
   it("reads a synthetic file end to end and exports it", () => {
     const at = (rsid: string) => guide.entries.flatMap((e) => e.sites).find((s) => s.rsid === rsid)!.site;
     const earwax = at("rs17822931"), mthfr = at("rs1801133");

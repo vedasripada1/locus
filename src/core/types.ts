@@ -430,7 +430,7 @@ export interface Report {
 
 // ─── Gene guide ────────────────────────────────────────────────────────────
 
-export type GeneArea = "traits" | "nutrition" | "fitness" | "heart" | "medicines";
+export type GeneArea = "traits" | "nutrition" | "metabolic" | "fitness" | "heart" | "medicines";
 /** Does your genotype change what to do? */
 export type GeneVerdict = "changes-advice" | "test-instead" | "same-advice" | "no-proven-action" | "trait" | "limited";
 

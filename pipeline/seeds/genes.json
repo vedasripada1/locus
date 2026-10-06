@@ -391,7 +391,7 @@
       "id": "tcf7l2",
       "gene": "TCF7L2",
       "title": "Type 2 diabetes risk (TCF7L2) and lifestyle",
-      "area": "nutrition",
+      "area": "metabolic",
       "what": "TCF7L2 has the strongest common genetic effect on type 2 diabetes risk. It shifts the odds modestly; weight, activity and diet also matter.",
       "sites": [
         {
@@ -424,6 +424,266 @@
       "interventions": [
         "t2d-lifestyle"
       ]
+    },
+    {
+      "id": "pnpla3",
+      "gene": "PNPLA3",
+      "title": "Fatty liver (PNPLA3)",
+      "area": "metabolic",
+      "what": "PNPLA3 works on fat inside liver cells. A common version (148M) is the strongest known genetic factor for fat building up in the liver (fatty liver disease, NAFLD).",
+      "sites": [
+        {
+          "rsid": "rs738409",
+          "allele": "G",
+          "alleleName": "G (148M, more liver fat)",
+          "aa": "M"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs738409": 2
+          },
+          "text": "Two copies of the 148M version. In the original study, people with two copies had more than twice the liver fat of non-carriers, and in a trial analysis they also lost the most liver fat with lifestyle change.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs738409": 1
+          },
+          "text": "One copy of the 148M version, linked to more liver fat. In a trial analysis, carriers lost more liver fat with lifestyle change than non-carriers.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs738409": 0
+          },
+          "text": "You don't carry the 148M version."
+        }
+      ],
+      "verdict": "limited",
+      "verdictNote": "Lifestyle change (diet, activity and weight loss) is the main treatment for fatty liver whatever your genotype. In one trial analysis, people with the G version lost more liver fat with it, not less, so carrying it is a reason to stick with it. Liver blood tests or a scan measure liver fat directly.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "18820647"
+          },
+          "value": "More liver fat and inflammation",
+          "quote": "An allele in PNPLA3 (rs738409[G], encoding I148M) was strongly associated with increased hepatic fat levels (P = 5.9 x 10(-10)) and with hepatic inflammation (P = 3.7 x 10(-4))."
+        },
+        {
+          "ref": {
+            "pmid": "18820647"
+          },
+          "value": "Over twice the liver fat with two copies",
+          "quote": "hepatic fat content was more than twofold higher in PNPLA3 rs738409[G] homozygotes than in noncarriers"
+        },
+        {
+          "ref": {
+            "pmid": "25040896"
+          },
+          "value": "Liver fat fell 3.7% (CC), 6.5% (CG) and 11.3% (GG) with lifestyle change",
+          "quote": "The presence of G allele was associated with greater reduction in IHTG (CC: 3.7 ± 5.2%, CG: 6.5 ± 3.6%), and GG: 11.3 ± 8.8%"
+        },
+        {
+          "ref": {
+            "pmid": "25040896"
+          },
+          "value": "A post-hoc analysis of one trial",
+          "quote": "This was a post-hoc analysis of a randomized controlled trial on a lifestyle modification program in community NAFLD patients."
+        }
+      ],
+      "caveat": "The lifestyle finding comes from a post-hoc analysis of a single trial and needs confirming in other studies."
+    },
+    {
+      "id": "tm6sf2",
+      "gene": "TM6SF2",
+      "title": "Liver fat and blood fats (TM6SF2)",
+      "area": "metabolic",
+      "what": "TM6SF2 helps the liver send fat out into the blood. A version that works less well (167K) keeps more fat in the liver but lowers some blood fats.",
+      "sites": [
+        {
+          "rsid": "rs58542926",
+          "allele": "T",
+          "alleleName": "T (167K)",
+          "aa": "K"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs58542926": [
+              1,
+              2
+            ]
+          },
+          "text": "You carry the 167K version: linked to more liver fat and a liver-injury marker (ALT), but lower LDL cholesterol and triglycerides.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs58542926": 0
+          },
+          "text": "You don't carry the 167K version."
+        }
+      ],
+      "verdict": "no-proven-action",
+      "verdictNote": "It moves liver fat and blood fats in opposite directions, and no trial shows that changing what you do by TM6SF2 type helps. Liver and cholesterol blood tests measure what matters directly.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "24531328"
+          },
+          "value": "More liver fat",
+          "quote": "Three variants were associated with higher liver fat levels at the exome-wide significance level of 3.6 × 10(-7): two in PNPLA3, an established locus for NAFLD, and one (encoding p.Glu167Lys) in TM6SF2"
+        },
+        {
+          "ref": {
+            "pmid": "24531328"
+          },
+          "value": "Higher ALT; lower LDL and triglycerides (n > 80,000)",
+          "quote": "The TM6SF2 variant encoding p.Glu167Lys was also associated with higher circulating levels of alanine transaminase, a marker of liver injury, and with lower levels of low-density lipoprotein-cholesterol (LDL-C), triglycerides and alkaline phosphatase in 3 independent populations (n > 80,000)."
+        }
+      ]
+    },
+    {
+      "id": "abcg2",
+      "gene": "ABCG2",
+      "title": "Urate and gout (ABCG2)",
+      "area": "metabolic",
+      "what": "ABCG2 helps the kidneys and gut clear urate (uric acid). High urate can form crystals in joints, which causes gout.",
+      "sites": [
+        {
+          "rsid": "rs2231142",
+          "allele": "T",
+          "alleleName": "T (141K)",
+          "aa": "K"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs2231142": 2
+          },
+          "text": "Two copies of the 141K version, which clears urate less well and is linked to higher urate levels and gout.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs2231142": 1
+          },
+          "text": "One copy of the 141K version, which clears urate less well and is linked to higher urate levels and gout.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs2231142": 0
+          },
+          "text": "You don't carry the 141K version."
+        }
+      ],
+      "verdict": "test-instead",
+      "verdictNote": "A uric acid (urate) blood test shows your actual level. If you are ever treated for gout, this version was linked to a weaker response to allopurinol, the usual first medicine; treatment is adjusted to reach a target urate level on blood tests.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "19506252"
+          },
+          "value": "53% less urate transport in lab tests",
+          "quote": "Introduction of the mutation Q141K encoded by the common SNP rs2231142 by site-directed mutagenesis resulted in 53% reduced urate transport rates compared to wild-type ABCG2 (P < 0.001)."
+        },
+        {
+          "ref": {
+            "pmid": "19506252"
+          },
+          "value": "Gout odds 1.68× per copy",
+          "quote": "gout (adjusted odds ratio 1.68 per risk allele, both races)"
+        },
+        {
+          "ref": {
+            "pmid": "19506252"
+          },
+          "value": "At least 10% of gout cases in white people",
+          "quote": "Our data indicate that at least 10% of all gout cases in whites are attributable to this causal variant."
+        },
+        {
+          "ref": {
+            "pmid": "25676789"
+          },
+          "value": "Allopurinol often misses the urate target",
+          "quote": "The allopurinol response is highly variable, with many users failing to achieve target serum uric acid (SUA) levels."
+        },
+        {
+          "ref": {
+            "pmid": "25676789"
+          },
+          "value": "Weaker allopurinol response",
+          "quote": "Collectively, this first GWAS of allopurinol response demonstrates that ABCG2 is a key determinant of response to the drug."
+        }
+      ]
+    },
+    {
+      "id": "apoa5",
+      "gene": "APOA5",
+      "title": "Triglycerides (APOA5)",
+      "area": "metabolic",
+      "what": "APOA5 helps clear triglycerides (a blood fat) from the blood. A common version near the gene (-1131C) is linked to higher triglycerides.",
+      "sites": [
+        {
+          "rsid": "rs662799",
+          "allele": "G",
+          "alleleName": "G (-1131C in papers)"
+        }
+      ],
+      "readings": [
+        {
+          "if": {
+            "rs662799": 2
+          },
+          "text": "Two copies of the -1131C version. In a study of Hong Kong adults, triglycerides were 36.1% higher with two copies than with none.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs662799": 1
+          },
+          "text": "One copy of the -1131C version, linked to higher triglycerides.",
+          "tone": "notable"
+        },
+        {
+          "if": {
+            "rs662799": 0
+          },
+          "text": "You don't carry the -1131C version."
+        }
+      ],
+      "verdict": "test-instead",
+      "verdictNote": "A standard cholesterol panel measures your triglycerides directly, which tells you much more than this one variant.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "20571505"
+          },
+          "value": "Strongly linked to triglycerides",
+          "quote": "Among the five SNPs, rs662799 (-1131T>C) was strongly related to log-transformed triglyceride levels among Hong Kong subjects"
+        },
+        {
+          "ref": {
+            "pmid": "20571505"
+          },
+          "value": "36.1% higher triglycerides with two copies",
+          "quote": "Plasma triglyceride level was 36.1% higher in CC compared to TT genotype."
+        },
+        {
+          "ref": {
+            "pmid": "26309253"
+          },
+          "value": "Linked to coronary heart disease (21,378 cases)",
+          "quote": "An additional meta-analysis using 21378 cases and 28428 controls established that rs662799 is significantly associated with CHD (P < 0.00001)."
+        }
+      ],
+      "strandNote": "Papers name this site on the gene's own strand (-1131T>C). On the forward strand that consumer files use, the paper's C is G and T is A.",
+      "caveat": "The strongest data come from Chinese populations, where this version is more common."
     },
     {
       "id": "mthfr",
@@ -1417,6 +1677,34 @@
           },
           "value": "Most evidence weak",
           "quote": "Most evidence in this area is weak"
+        }
+      ]
+    },
+    {
+      "id": "fh",
+      "title": "Familial hypercholesterolemia: why a DNA file can't rule it out",
+      "text": "Familial hypercholesterolemia (FH) is an inherited condition that causes very high LDL cholesterol from birth and early heart disease. A meta-analysis found it affects about 1 in 311 people, yet in most countries fewer than 1% of people with it have been diagnosed. Hundreds of different variants cause FH and a consumer file reads only a few of them, so a clear result here doesn't rule it out. A cholesterol (LDL) blood test is the screen. The European Atherosclerosis Society recommends screening if you or a relative has very high cholesterol, early heart disease, fatty lumps on the tendons (tendon xanthomas) or a sudden early cardiac death.",
+      "evidence": [
+        {
+          "ref": {
+            "pmid": "32468833"
+          },
+          "value": "About 1 in 311 people",
+          "quote": "With an overall prevalence of 1:311, FH is among the commonest genetic disorders in the GP, similarly present across different regions of the world, and is more frequent among those with ASCVD."
+        },
+        {
+          "ref": {
+            "pmid": "23956253"
+          },
+          "value": "Fewer than 1% diagnosed",
+          "quote": "Of the theoretical estimated prevalence of 1/500 for heterozygous FH, <1% are diagnosed in most countries."
+        },
+        {
+          "ref": {
+            "pmid": "23956253"
+          },
+          "value": "When to screen",
+          "quote": "We recommend that children, adults, and families should be screened for FH if a person or family member presents with FH, a plasma cholesterol level in an adult ≥8 mmol/L(≥310 mg/dL) or a child ≥6 mmol/L(≥230 mg/dL), premature CHD, tendon xanthomas, or sudden premature cardiac death."
         }
       ]
     }

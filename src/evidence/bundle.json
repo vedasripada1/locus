@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "builtAt": "2026-10-06T16:27:00.266Z",
+ "builtAt": "2026-10-06T17:07:50.465Z",
  "sources": [
   {
    "source": "dbSNP",
@@ -72264,6 +72264,30 @@
   },
   {
    "stage": "verify",
+   "subject": "gene guide pnpla3",
+   "outcome": "ok",
+   "detail": "4 quote(s), 1 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide tm6sf2",
+   "outcome": "ok",
+   "detail": "2 quote(s), 1 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide abcg2",
+   "outcome": "ok",
+   "detail": "5 quote(s), 1 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "gene guide apoa5",
+   "outcome": "ok",
+   "detail": "3 quote(s), 1 site(s) verified."
+  },
+  {
+   "stage": "verify",
    "subject": "gene guide mthfr",
    "outcome": "ok",
    "detail": "6 quote(s), 1 site(s) verified."
@@ -72491,7 +72515,7 @@
   }
  ],
  "geneGuide": {
-  "builtAt": "2026-09-25",
+  "builtAt": "2026-10-06",
   "gwasAvailable": true,
   "entries": [
    {
@@ -72575,7 +72599,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 16444273",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/16444273/"
       },
       "citation": "Yoshiura et al., Nat Genet 2006"
@@ -72586,7 +72610,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 16444273",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/16444273/"
       },
       "citation": "Yoshiura et al., Nat Genet 2006"
@@ -72597,7 +72621,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 16444273",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/16444273/"
       },
       "citation": "Yoshiura et al., Nat Genet 2006"
@@ -72747,7 +72771,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 12595690",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/12595690/"
       },
       "citation": "Kim et al., Science 2003"
@@ -72758,7 +72782,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 12595690",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/12595690/"
       },
       "citation": "Kim et al., Science 2003"
@@ -72851,7 +72875,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 18252222",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/18252222/"
       },
       "citation": "Sturm et al., Am J Hum Genet 2008"
@@ -72862,7 +72886,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 18252222",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/18252222/"
       },
       "citation": "Sturm et al., Am J Hum Genet 2008"
@@ -72873,7 +72897,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 18252222",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/18252222/"
       },
       "citation": "Sturm et al., Am J Hum Genet 2008"
@@ -73022,7 +73046,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 11179997",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/11179997/"
       },
       "citation": "Box et al., J Invest Dermatol 2001"
@@ -73033,7 +73057,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 11179997",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/11179997/"
       },
       "citation": "Box et al., J Invest Dermatol 2001"
@@ -73044,7 +73068,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 11487574",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/11487574/"
       },
       "citation": "Bastiaens et al., Hum Mol Genet 2001"
@@ -73055,7 +73079,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 29558558",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/29558558/"
       },
       "citation": "US Preventive Services Task Force et al., JAMA 2018"
@@ -73153,7 +73177,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 12879365",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/12879365/"
       },
       "citation": "Yang et al., Am J Hum Genet 2003"
@@ -73164,7 +73188,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 12879365",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/12879365/"
       },
       "citation": "Yang et al., Am J Hum Genet 2003"
@@ -73175,7 +73199,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 12879365",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/12879365/"
       },
       "citation": "Yang et al., Am J Hum Genet 2003"
@@ -73265,7 +73289,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 22069379",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/22069379/"
       },
       "citation": "Kilpeläinen et al., PLoS Med 2011"
@@ -73276,7 +73300,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 27650503",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/27650503/"
       },
       "citation": "Livingstone et al., BMJ 2016"
@@ -73290,7 +73314,7 @@
     "id": "tcf7l2",
     "gene": "TCF7L2",
     "title": "Type 2 diabetes risk (TCF7L2) and lifestyle",
-    "area": "nutrition",
+    "area": "metabolic",
     "what": "TCF7L2 has the strongest common genetic effect on type 2 diabetes risk. It shifts the odds modestly; weight, activity and diet also matter.",
     "sites": [
      {
@@ -73364,6 +73388,492 @@
     "interventions": [
      "t2d-lifestyle"
     ]
+   },
+   {
+    "id": "pnpla3",
+    "gene": "PNPLA3",
+    "title": "Fatty liver (PNPLA3)",
+    "area": "metabolic",
+    "what": "PNPLA3 works on fat inside liver cells. A common version (148M) is the strongest known genetic factor for fat building up in the liver (fatty liver disease, NAFLD).",
+    "sites": [
+     {
+      "rsid": "rs738409",
+      "allele": "G",
+      "alleleName": "G (148M, more liver fat)",
+      "aa": "M",
+      "site": {
+       "rsid": "rs738409",
+       "aliases": [
+        "rs3747205",
+        "rs17855952"
+       ],
+       "gene": "PNPLA3",
+       "label": "PNPLA3 G (148M, more liver fat)",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "22",
+       "pos37": 44324727,
+       "pos38": 43928847,
+       "ref": "C",
+       "alts": [
+        "A",
+        "G",
+        "T"
+       ],
+       "mainAlt": "G",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-10-06",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs738409"
+       }
+      },
+      "freq": {
+       "ALL": 0.262181,
+       "AFR": 0.118,
+       "AMR": 0.4841,
+       "EAS": 0.3502,
+       "EUR": 0.2256,
+       "SAS": 0.2464
+      },
+      "gwasPubs": 78,
+      "gwasTraits": [
+       "triglyceride measurement",
+       "serum alanine aminotransferase amount",
+       "metabolic dysfunction-associated steatotic liver disease",
+       "aspartate aminotransferase measurement"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs738409": 2
+      },
+      "text": "Two copies of the 148M version. In the original study, people with two copies had more than twice the liver fat of non-carriers, and in a trial analysis they also lost the most liver fat with lifestyle change.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs738409": 1
+      },
+      "text": "One copy of the 148M version, linked to more liver fat. In a trial analysis, carriers lost more liver fat with lifestyle change than non-carriers.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs738409": 0
+      },
+      "text": "You don't carry the 148M version."
+     }
+    ],
+    "verdict": "limited",
+    "verdictNote": "Lifestyle change (diet, activity and weight loss) is the main treatment for fatty liver whatever your genotype. In one trial analysis, people with the G version lost more liver fat with it, not less, so carrying it is a reason to stick with it. Liver blood tests or a scan measure liver fat directly.",
+    "evidence": [
+     {
+      "value": "More liver fat and inflammation",
+      "quote": "An allele in PNPLA3 (rs738409[G], encoding I148M) was strongly associated with increased hepatic fat levels (P = 5.9 x 10(-10)) and with hepatic inflammation (P = 3.7 x 10(-4)).",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 18820647",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/18820647/"
+      },
+      "citation": "Romeo et al., Nat Genet 2008"
+     },
+     {
+      "value": "Over twice the liver fat with two copies",
+      "quote": "hepatic fat content was more than twofold higher in PNPLA3 rs738409[G] homozygotes than in noncarriers",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 18820647",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/18820647/"
+      },
+      "citation": "Romeo et al., Nat Genet 2008"
+     },
+     {
+      "value": "Liver fat fell 3.7% (CC), 6.5% (CG) and 11.3% (GG) with lifestyle change",
+      "quote": "The presence of G allele was associated with greater reduction in IHTG (CC: 3.7 ± 5.2%, CG: 6.5 ± 3.6%), and GG: 11.3 ± 8.8%",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 25040896",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/25040896/"
+      },
+      "citation": "Shen et al., J Gastroenterol Hepatol 2015"
+     },
+     {
+      "value": "A post-hoc analysis of one trial",
+      "quote": "This was a post-hoc analysis of a randomized controlled trial on a lifestyle modification program in community NAFLD patients.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 25040896",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/25040896/"
+      },
+      "citation": "Shen et al., J Gastroenterol Hepatol 2015"
+     }
+    ],
+    "caveat": "The lifestyle finding comes from a post-hoc analysis of a single trial and needs confirming in other studies."
+   },
+   {
+    "id": "tm6sf2",
+    "gene": "TM6SF2",
+    "title": "Liver fat and blood fats (TM6SF2)",
+    "area": "metabolic",
+    "what": "TM6SF2 helps the liver send fat out into the blood. A version that works less well (167K) keeps more fat in the liver but lowers some blood fats.",
+    "sites": [
+     {
+      "rsid": "rs58542926",
+      "allele": "T",
+      "alleleName": "T (167K)",
+      "aa": "K",
+      "site": {
+       "rsid": "rs58542926",
+       "aliases": [],
+       "gene": "TM6SF2",
+       "label": "TM6SF2 T (167K)",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "19",
+       "pos37": 19379549,
+       "pos38": 19268740,
+       "ref": "C",
+       "alts": [
+        "A",
+        "T"
+       ],
+       "mainAlt": "T",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-10-06",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs58542926"
+       }
+      },
+      "freq": {
+       "ALL": 0.0666933,
+       "AFR": 0.0227,
+       "AMR": 0.0634,
+       "EAS": 0.0863,
+       "EUR": 0.0676,
+       "SAS": 0.1074
+      },
+      "gwasPubs": 81,
+      "gwasTraits": [
+       "fatty acid amount",
+       "low density lipoprotein cholesterol measurement",
+       "triglyceride measurement",
+       "total cholesterol measurement"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs58542926": [
+        1,
+        2
+       ]
+      },
+      "text": "You carry the 167K version: linked to more liver fat and a liver-injury marker (ALT), but lower LDL cholesterol and triglycerides.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs58542926": 0
+      },
+      "text": "You don't carry the 167K version."
+     }
+    ],
+    "verdict": "no-proven-action",
+    "verdictNote": "It moves liver fat and blood fats in opposite directions, and no trial shows that changing what you do by TM6SF2 type helps. Liver and cholesterol blood tests measure what matters directly.",
+    "evidence": [
+     {
+      "value": "More liver fat",
+      "quote": "Three variants were associated with higher liver fat levels at the exome-wide significance level of 3.6 × 10(-7): two in PNPLA3, an established locus for NAFLD, and one (encoding p.Glu167Lys) in TM6SF2",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 24531328",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/24531328/"
+      },
+      "citation": "Kozlitina et al., Nat Genet 2014"
+     },
+     {
+      "value": "Higher ALT; lower LDL and triglycerides (n > 80,000)",
+      "quote": "The TM6SF2 variant encoding p.Glu167Lys was also associated with higher circulating levels of alanine transaminase, a marker of liver injury, and with lower levels of low-density lipoprotein-cholesterol (LDL-C), triglycerides and alkaline phosphatase in 3 independent populations (n > 80,000).",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 24531328",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/24531328/"
+      },
+      "citation": "Kozlitina et al., Nat Genet 2014"
+     }
+    ]
+   },
+   {
+    "id": "abcg2",
+    "gene": "ABCG2",
+    "title": "Urate and gout (ABCG2)",
+    "area": "metabolic",
+    "what": "ABCG2 helps the kidneys and gut clear urate (uric acid). High urate can form crystals in joints, which causes gout.",
+    "sites": [
+     {
+      "rsid": "rs2231142",
+      "allele": "T",
+      "alleleName": "T (141K)",
+      "aa": "K",
+      "site": {
+       "rsid": "rs2231142",
+       "aliases": [
+        "rs3736117",
+        "rs12721641",
+        "rs28365035",
+        "rs52809243",
+        "rs58973676"
+       ],
+       "gene": "ABCG2",
+       "label": "ABCG2 T (141K)",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "4",
+       "pos37": 89052323,
+       "pos38": 88131171,
+       "ref": "G",
+       "alts": [
+        "A",
+        "C",
+        "T"
+       ],
+       "mainAlt": "T",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-10-06",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs2231142"
+       }
+      },
+      "freq": {
+       "ALL": 0.119409,
+       "AFR": 0.0129,
+       "AMR": 0.1412,
+       "EAS": 0.2907,
+       "EUR": 0.0944,
+       "SAS": 0.0971
+      },
+      "gwasPubs": 34,
+      "gwasTraits": [
+       "gout",
+       "urate measurement",
+       "uric acid measurement",
+       "metabolite measurement"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs2231142": 2
+      },
+      "text": "Two copies of the 141K version, which clears urate less well and is linked to higher urate levels and gout.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs2231142": 1
+      },
+      "text": "One copy of the 141K version, which clears urate less well and is linked to higher urate levels and gout.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs2231142": 0
+      },
+      "text": "You don't carry the 141K version."
+     }
+    ],
+    "verdict": "test-instead",
+    "verdictNote": "A uric acid (urate) blood test shows your actual level. If you are ever treated for gout, this version was linked to a weaker response to allopurinol, the usual first medicine; treatment is adjusted to reach a target urate level on blood tests.",
+    "evidence": [
+     {
+      "value": "53% less urate transport in lab tests",
+      "quote": "Introduction of the mutation Q141K encoded by the common SNP rs2231142 by site-directed mutagenesis resulted in 53% reduced urate transport rates compared to wild-type ABCG2 (P < 0.001).",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 19506252",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/19506252/"
+      },
+      "citation": "Woodward et al., Proc Natl Acad Sci U S A 2009"
+     },
+     {
+      "value": "Gout odds 1.68× per copy",
+      "quote": "gout (adjusted odds ratio 1.68 per risk allele, both races)",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 19506252",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/19506252/"
+      },
+      "citation": "Woodward et al., Proc Natl Acad Sci U S A 2009"
+     },
+     {
+      "value": "At least 10% of gout cases in white people",
+      "quote": "Our data indicate that at least 10% of all gout cases in whites are attributable to this causal variant.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 19506252",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/19506252/"
+      },
+      "citation": "Woodward et al., Proc Natl Acad Sci U S A 2009"
+     },
+     {
+      "value": "Allopurinol often misses the urate target",
+      "quote": "The allopurinol response is highly variable, with many users failing to achieve target serum uric acid (SUA) levels.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 25676789",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/25676789/"
+      },
+      "citation": "Wen et al., Clin Pharmacol Ther 2015"
+     },
+     {
+      "value": "Weaker allopurinol response",
+      "quote": "Collectively, this first GWAS of allopurinol response demonstrates that ABCG2 is a key determinant of response to the drug.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 25676789",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/25676789/"
+      },
+      "citation": "Wen et al., Clin Pharmacol Ther 2015"
+     }
+    ]
+   },
+   {
+    "id": "apoa5",
+    "gene": "APOA5",
+    "title": "Triglycerides (APOA5)",
+    "area": "metabolic",
+    "what": "APOA5 helps clear triglycerides (a blood fat) from the blood. A common version near the gene (-1131C) is linked to higher triglycerides.",
+    "sites": [
+     {
+      "rsid": "rs662799",
+      "allele": "G",
+      "alleleName": "G (-1131C in papers)",
+      "site": {
+       "rsid": "rs662799",
+       "aliases": [
+        "rs3809039",
+        "rs60708336"
+       ],
+       "gene": "APOA5",
+       "label": "APOA5 G (-1131C in papers)",
+       "domain": "metabolism",
+       "sensitive": false,
+       "chrom": "11",
+       "pos37": 116663707,
+       "pos38": 116792991,
+       "ref": "G",
+       "alts": [
+        "A",
+        "C"
+       ],
+       "mainAlt": "A",
+       "kind": "snv",
+       "source": {
+        "source": "dbSNP",
+        "version": "build 157",
+        "retrievedAt": "2026-10-06",
+        "url": "https://www.ncbi.nlm.nih.gov/snp/rs662799"
+       }
+      },
+      "freq": {
+       "ALL": 0.16293899999999994,
+       "AFR": 0.11570000000000003,
+       "AMR": 0.14700000000000002,
+       "EAS": 0.28769999999999996,
+       "EUR": 0.08350000000000002,
+       "SAS": 0.19120000000000004
+      },
+      "gwasPubs": 38,
+      "gwasTraits": [
+       "triglyceride measurement",
+       "high density lipoprotein cholesterol measurement",
+       "sphingomyelin measurement",
+       "metabolic syndrome"
+      ]
+     }
+    ],
+    "readings": [
+     {
+      "if": {
+       "rs662799": 2
+      },
+      "text": "Two copies of the -1131C version. In a study of Hong Kong adults, triglycerides were 36.1% higher with two copies than with none.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs662799": 1
+      },
+      "text": "One copy of the -1131C version, linked to higher triglycerides.",
+      "tone": "notable"
+     },
+     {
+      "if": {
+       "rs662799": 0
+      },
+      "text": "You don't carry the -1131C version."
+     }
+    ],
+    "verdict": "test-instead",
+    "verdictNote": "A standard cholesterol panel measures your triglycerides directly, which tells you much more than this one variant.",
+    "evidence": [
+     {
+      "value": "Strongly linked to triglycerides",
+      "quote": "Among the five SNPs, rs662799 (-1131T>C) was strongly related to log-transformed triglyceride levels among Hong Kong subjects",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 20571505",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/20571505/"
+      },
+      "citation": "Jiang et al., Eur J Hum Genet 2010"
+     },
+     {
+      "value": "36.1% higher triglycerides with two copies",
+      "quote": "Plasma triglyceride level was 36.1% higher in CC compared to TT genotype.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 20571505",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/20571505/"
+      },
+      "citation": "Jiang et al., Eur J Hum Genet 2010"
+     },
+     {
+      "value": "Linked to coronary heart disease (21,378 cases)",
+      "quote": "An additional meta-analysis using 21378 cases and 28428 controls established that rs662799 is significantly associated with CHD (P < 0.00001).",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 26309253",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/26309253/"
+      },
+      "citation": "Ye et al., PLoS One 2015"
+     }
+    ],
+    "strandNote": "Papers name this site on the gene's own strand (-1131T>C). On the forward strand that consumer files use, the paper's C is G and T is A.",
+    "caveat": "The strongest data come from Chinese populations, where this version is more common."
    },
    {
     "id": "mthfr",
@@ -73464,7 +73974,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 27170501",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/27170501/"
       },
       "citation": "McAuley et al., Proc Nutr Soc 2016"
@@ -73497,7 +74007,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 26497154",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/26497154/"
       },
       "citation": "Colson et al., Eur J Nutr 2017"
@@ -73508,7 +74018,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 27170501",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/27170501/"
       },
       "citation": "McAuley et al., Proc Nutr Soc 2016"
@@ -73930,7 +74440,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 18776911",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/18776911/"
       },
       "citation": "Hazra et al., Nat Genet 2008"
@@ -73941,7 +74451,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 18776911",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/18776911/"
       },
       "citation": "Hazra et al., Nat Genet 2008"
@@ -74109,7 +74619,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 20541252",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/20541252/"
       },
       "citation": "Wang et al., Lancet 2010"
@@ -74120,7 +74630,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 20541252",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/20541252/"
       },
       "citation": "Wang et al., Lancet 2010"
@@ -74131,7 +74641,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 20541252",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/20541252/"
       },
       "citation": "Wang et al., Lancet 2010"
@@ -74223,7 +74733,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 21829377",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/21829377/"
       },
       "citation": "Lemaitre et al., PLoS Genet 2011"
@@ -74234,7 +74744,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 35193914",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/35193914/"
       },
       "citation": "Keathley et al., BMJ Open 2022"
@@ -74319,7 +74829,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 19185284",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/19185284/"
       },
       "citation": "Ferrucci et al., Am J Hum Genet 2009"
@@ -74330,7 +74840,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 19185284",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/19185284/"
       },
       "citation": "Ferrucci et al., Am J Hum Genet 2009"
@@ -74417,7 +74927,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 20519558",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/20519558/"
       },
       "citation": "Timpson et al., Am J Clin Nutr 2010"
@@ -74428,7 +74938,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 25527764",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/25527764/"
       },
       "citation": "Wade et al., Am J Clin Nutr 2015"
@@ -74719,7 +75229,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 18184122",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/18184122/"
       },
       "citation": "Wolters et al., Am J Gastroenterol 2008"
@@ -74730,7 +75240,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 18184122",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/18184122/"
       },
       "citation": "Wolters et al., Am J Gastroenterol 2008"
@@ -74741,7 +75251,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 18509540",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/18509540/"
       },
       "citation": "Monsuur et al., PLoS One 2008"
@@ -74752,7 +75262,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 36602836",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/36602836/"
       },
       "citation": "Rubio-Tapia et al., Am J Gastroenterol 2023"
@@ -74895,7 +75405,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 20032323",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/20032323/"
       },
       "citation": "Clarke et al., N Engl J Med 2009"
@@ -74906,7 +75416,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 20032323",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/20032323/"
       },
       "citation": "Clarke et al., N Engl J Med 2009"
@@ -74917,7 +75427,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 36036785",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/36036785/"
       },
       "citation": "Kronenberg et al., Eur Heart J 2022"
@@ -74928,7 +75438,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 36036785",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/36036785/"
       },
       "citation": "Kronenberg et al., Eur Heart J 2022"
@@ -75021,7 +75531,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 36049896",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/36049896/"
       },
       "citation": "Gammal et al., Clin Pharmacol Ther 2023"
@@ -75159,7 +75669,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 35193914",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/35193914/"
       },
       "citation": "Keathley et al., BMJ Open 2022"
@@ -75896,7 +76406,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 30355391",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/30355391/"
       },
       "citation": "ElGendy et al., Br J Nutr 2018"
@@ -75907,7 +76417,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 30355391",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/30355391/"
       },
       "citation": "ElGendy et al., Br J Nutr 2018"
@@ -75918,7 +76428,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 30355391",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/30355391/"
       },
       "citation": "ElGendy et al., Br J Nutr 2018"
@@ -75929,7 +76439,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 37935134",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/37935134/"
       },
       "citation": "da Mota et al., Lifestyle Genom 2023"
@@ -75947,7 +76457,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 27524815",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/27524815/"
       },
       "citation": "Celis-Morales et al., Int J Epidemiol 2017"
@@ -75958,7 +76468,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 27524815",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/27524815/"
       },
       "citation": "Celis-Morales et al., Int J Epidemiol 2017"
@@ -75969,7 +76479,7 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 27524815",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/27524815/"
       },
       "citation": "Celis-Morales et al., Int J Epidemiol 2017"
@@ -75980,10 +76490,50 @@
       "source": {
        "source": "PubMed",
        "version": "PMID 35193914",
-       "retrievedAt": "2026-09-25",
+       "retrievedAt": "2026-10-06",
        "url": "https://pubmed.ncbi.nlm.nih.gov/35193914/"
       },
       "citation": "Keathley et al., BMJ Open 2022"
+     }
+    ]
+   },
+   {
+    "id": "fh",
+    "title": "Familial hypercholesterolemia: why a DNA file can't rule it out",
+    "text": "Familial hypercholesterolemia (FH) is an inherited condition that causes very high LDL cholesterol from birth and early heart disease. A meta-analysis found it affects about 1 in 311 people, yet in most countries fewer than 1% of people with it have been diagnosed. Hundreds of different variants cause FH and a consumer file reads only a few of them, so a clear result here doesn't rule it out. A cholesterol (LDL) blood test is the screen. The European Atherosclerosis Society recommends screening if you or a relative has very high cholesterol, early heart disease, fatty lumps on the tendons (tendon xanthomas) or a sudden early cardiac death.",
+    "evidence": [
+     {
+      "value": "About 1 in 311 people",
+      "quote": "With an overall prevalence of 1:311, FH is among the commonest genetic disorders in the GP, similarly present across different regions of the world, and is more frequent among those with ASCVD.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 32468833",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/32468833/"
+      },
+      "citation": "Hu et al., Circulation 2020"
+     },
+     {
+      "value": "Fewer than 1% diagnosed",
+      "quote": "Of the theoretical estimated prevalence of 1/500 for heterozygous FH, <1% are diagnosed in most countries.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 23956253",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/23956253/"
+      },
+      "citation": "Nordestgaard et al., Eur Heart J 2013"
+     },
+     {
+      "value": "When to screen",
+      "quote": "We recommend that children, adults, and families should be screened for FH if a person or family member presents with FH, a plasma cholesterol level in an adult ≥8 mmol/L(≥310 mg/dL) or a child ≥6 mmol/L(≥230 mg/dL), premature CHD, tendon xanthomas, or sudden premature cardiac death.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 23956253",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/23956253/"
+      },
+      "citation": "Nordestgaard et al., Eur Heart J 2013"
      }
     ]
    }

@@ -8,6 +8,7 @@ const AREAS: { id: GeneArea | "all"; label: string }[] = [
   { id: "traits", label: "Traits" },
   { id: "nutrition", label: "Food & nutrients" },
   { id: "fitness", label: "Fitness & weight" },
+  { id: "metabolic", label: "Metabolic" },
   { id: "heart", label: "Heart" },
   { id: "medicines", label: "Medicines" },
 ];

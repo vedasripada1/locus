@@ -2,7 +2,8 @@
 
 > **🚧 Work in progress.** Locus is under active development and is not yet deployed.
 > - **New:** [Supplements & your DNA](#supplements--your-dna), with evidence-graded cards for 12 common supplements and a PubMed literature map
-> - **Coming next:** broader disease coverage (metabolic, chronic and cancer-related conditions)
+> - **New:** metabolic genes in the [gene guide](#traits--genes-gene-guide): fatty liver (PNPLA3, TM6SF2), urate and gout (ABCG2), triglycerides (APOA5), type 2 diabetes (TCF7L2), and a familial hypercholesterolemia note
+> - **Coming next:** chronic conditions, then cancer-related conditions
 
 A local-first web app that reads an **AncestryDNA** or **23andMe** raw data file and produces a transparent, evidence-linked report. It covers clinically relevant variants (ClinVar/ClinGen), common-variant associations (NHGRI-EBI GWAS Catalog), metabolism and performance traits, and a literature-backed list of "possible actions to discuss".
 
@@ -21,7 +22,7 @@ Every statement in the report is either a fixed template or a value copied from 
 ```bash
 npm install
 npm run dev            # http://127.0.0.1:5173. Click "Demo 23andMe" / "Demo AncestryDNA", or open /#demo=23andme
-npm test               # 124 unit tests: parsing, matching, interpretation, claim verification, genome-wide tiers
+npm test               # 125 unit tests: parsing, matching, interpretation, claim verification, genome-wide tiers
 npm run build          # typecheck + production build (adds a strict CSP, see Privacy)
 npm run preview -- --port 4317 --strictPort &   # serve the build
 npm run smoke          # headless-Chrome check of the build: renders, no errors, no network, delete works
@@ -223,7 +224,7 @@ The Markdown export puts the summary first and the technical appendix after it.
 
 ## Traits & genes (gene guide)
 
-Right after Diet & supplements, the results page has one card per well-studied gene that AncestryDNA and 23andMe files can read. There are 21 genes, grouped as traits, food & nutrients, fitness & weight, heart and medicines. Each card shows:
+Right after Diet & supplements, the results page has one card per well-studied gene that AncestryDNA and 23andMe files can read. There are 25 genes, grouped as traits, food & nutrients, metabolic, fitness & weight, heart and medicines. Each card shows:
 
 - your genotype;
 - a fixed plain-language reading;
@@ -232,15 +233,16 @@ Right after Diet & supplements, the results page has one card per well-studied g
   | Verdict | Genes |
   |---|---|
   | Changes the advice | MTHFR TT → riboflavin; lactase; ALDH2; Lp(a) → one-time test; G6PD |
-  | Some genotype-specific evidence | caffeine/CYP1A2; APOE ε4 + fish oil (sensitive, hidden by default) |
-  | A blood test answers it better | vitamin D, B12/FUT2, HFE, celiac HLA-DQ |
+  | Some genotype-specific evidence | caffeine/CYP1A2; PNPLA3 fatty liver (carriers lost more liver fat with lifestyle change in one trial analysis); APOE ε4 + fish oil (sensitive, hidden by default) |
+  | A blood test answers it better | vitamin D, B12/FUT2, HFE, celiac HLA-DQ, ABCG2 urate and gout, APOA5 triglycerides |
   | Same advice for everyone | FTO, TCF7L2, MC1R sun protection |
-  | Affects a level, no proven action | FADS omega-3, BCO1 beta-carotene, SLC23A1 vitamin C |
+  | Affects a level, no proven action | FADS omega-3, BCO1 beta-carotene, SLC23A1 vitamin C, TM6SF2 liver fat |
   | Just a trait | earwax, bitter taste, eye colour, ACTN3 |
 
 The section also has:
 
 - **"About 'epigenetic' diets":** the file measures no epigenetic marks. Human trials show little effect of diet on DNA methylation beyond folic acid.
+- **"Familial hypercholesterolemia: why a DNA file can't rule it out":** FH affects about 1 in 311 people and fewer than 1% are diagnosed in most countries. A consumer file reads only a few of the many FH variants, so the screen is an LDL cholesterol test.
 - **"Does DNA-based diet advice work better?":** Food4Me found that adding genotype didn't help, and a GRADE review rated most gene–diet evidence weak.
 - **Genes often used in DNA diet reports:** 18 sites (ADORA2A, COMT, VDR, MTRR, PEMT, CLOCK and others), with your genotype and how many genome-wide significant GWAS papers exist at each. Many have none. None of them produce advice.
 - **What these files can and can't tell you.**
