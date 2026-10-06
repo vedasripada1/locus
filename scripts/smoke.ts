@@ -29,6 +29,13 @@ for (const demo of ["23andme", "ancestrydna"]) {
   await page.waitForFunction(() => document.querySelectorAll("article.gene-card").length === 1 && /earwax/i.test(document.querySelector("article.gene-card")!.textContent ?? ""), { timeout: 5000 }).catch(() => problems.push("gene search did not narrow to the earwax card"));
   const earwax = await page.evaluate(() => document.querySelector("article.gene-card .gene-reading")?.textContent ?? "");
   console.log(`  gene guide: earwax → ${earwax}`);
+  // Supplements & your DNA: every card renders, and its own search finds a card by alias.
+  await page.waitForFunction(() => document.querySelectorAll("article.supp-card").length >= 12, { timeout: 10000 }).catch(() => problems.push("supplement cards did not render"));
+  await page.type('input[aria-label="Search supplements"]', "fish oil");
+  await page.waitForFunction(() => document.querySelectorAll("article.supp-card").length === 1 && /omega-3/i.test(document.querySelector("article.supp-card")!.textContent ?? ""), { timeout: 5000 }).catch(() => problems.push("supplement search did not narrow to the omega-3 card"));
+  const omega = await page.evaluate(() => document.querySelector("article.supp-card .supp-verdict")?.textContent ?? "");
+  console.log(`  supplements: omega-3 → ${omega}`);
+  await page.click('input[aria-label="Search supplements"]', { count: 3 }); await page.keyboard.press("Backspace");
   await page.type(".filter-row input[aria-label='Search results']", "BRCA1");
   await page.waitForFunction(() => /BRCA1: coverage/.test(document.body.innerText), { timeout: 10000 }).catch(() => problems.push("search did not answer BRCA1 coverage"));
   // Category filter.

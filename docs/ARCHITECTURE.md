@@ -22,7 +22,9 @@ EvidenceBundle ─┬─ sites: VariantSite[]          dbSNP: forward-strand ref
                 ├─ interventions: Intervention[] studies split into generalEvidence / genotypeEvidence, safety, context flags
                 ├─ literature: LiteratureCandidate[]
                 ├─ sources: SourceVersion[]      source, version, retrievedAt, url
-                └─ audit: AuditEntry[]           every drop/warning with reason
+                ├─ audit: AuditEntry[]           every drop/warning with reason
+                ├─ geneGuide: GeneGuide          verified gene cards (pipeline/genes.ts)
+                └─ supplements: SupplementGuide  verified supplement cards + PubMed literature map (pipeline/supplements.ts)
 ParsedGenome → SiteMatch[] → Finding (clinical | gwas | composite | no-evidence) → InterventionAssessment → Report
 ```
 
@@ -34,6 +36,13 @@ Every record carries a `SourceVersion`. Adding sites, topics or interventions me
 - **ClinVar:** only single-variant records whose dbSNP cross-reference is the exact rsID are kept. SNV alleles come from canonical SPDI; indels are matched by net length change. Reference-allele records (e.g. `c.1601=`) are dropped with an audit entry. Per-condition RCV classifications come from the VCV XML.
 - **GWAS:** only associations with p < 5×10⁻⁸ that match the topic's EFO regex, and optionally its reported-trait regex, are kept. Multi-SNP haplotype and interaction associations are excluded. Study metadata (sample, ancestry) is fetched for the strongest 6 per site/topic.
 - **Literature candidates:** two PubMed queries per topic, one design-filtered (MA/SR/RCT/guideline) and one gene–diet. Each record is classified by publication type and MeSH (`Humans` / `Animals`), with a text fallback flagged "not yet MeSH-indexed". It gets an in-vitro/mechanistic flag, a genotype × intervention keyword screen, and a regex-extracted sample size shown with its snippet.
+
+## Supplements (`pipeline/supplements.ts`, `src/core/supplements.ts`)
+
+- **Seed:** one entry per supplement with general-evidence quotes, an upper limit and cautions, links to gene guide entries, marketed sites and interventions, and the terms and genes to mine.
+- **Verification:** `verifySupplement` is pure (no network) and reuses the gene guide's `verifyQuotes` and `orphanNumbers`. Safety quotes are verified one at a time, so one failing caution doesn't drop the card. Unknown cross-references throw.
+- **Literature map:** per gene, three PubMed counts (all records about supplement × gene × variant terms, trials, reviews), and the top trials screened with the same `screen` used for literature candidates. Reading list only.
+- **Runtime:** `supplementResult` derives a verdict from the file's gene guide results and applied interventions using fixed rules, and `verdictLine` renders it from templates. Sensitive gene entries are excluded unless the person opts in.
 
 ## Verification (`pipeline/build.ts`)
 
@@ -73,7 +82,8 @@ Palindromy is judged on **ref vs the main alternate allele** (highest dbSNP alle
 ## Tests
 
 - `tests/core.test.ts` (28 tests) and `tests/bulk.test.ts` (13 tests, genome-wide tiers): both input formats, CRLF/BOM, VCF/CSV/empty/corrupt rejection, low call rate, discordant duplicates, forward/complement/palindromic/multi-allelic/mismatch/indel/merged/position cases, the ClinVar category ladder, GWAS strand and majority logic, contradictory sources, APOE, no-evidence topics, context flags, "no evidence-based personalized action", sensitive-result hiding, JSON export excluding raw data, and verification dropping fabricated quotes, animal-only supplements and missing sources.
-- `scripts/smoke.ts`: headless Chrome against the production build. It checks that the report renders for both demos, that there are no console errors and zero external requests, and that delete works.
+- `tests/supplements.test.ts` (14 tests): supplement verification (fabricated quotes, unsourced numbers, failing safety quotes, unknown links), the verdict ladder, sensitive-gene exclusion, bundle integrity, and a synthetic file end to end.
+- `scripts/smoke.ts`: headless Chrome against the production build. It checks that the report renders for both demos, that every supplement card renders and its search works, that there are no console errors and zero external requests, and that delete works.
 
 ## Genome-wide tier (`pipeline/bulk/`, `src/core/bulk.ts`)
 

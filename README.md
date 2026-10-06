@@ -1,8 +1,8 @@
 # Locus (WIP)
 
-> **🚧 Work in progress.** Locus is under active development and is not yet deployed. Coming next:
-> - **Evidence-mined nutraceutical and supplement guidance:** what the literature says, how strong it is, and why it may or may not apply to your genotype
-> - **Broader disease coverage:** metabolic, chronic and cancer-related conditions
+> **🚧 Work in progress.** Locus is under active development and is not yet deployed.
+> - **New:** [Supplements & your DNA](#supplements--your-dna), with evidence-graded cards for 12 common supplements and a PubMed literature map
+> - **Coming next:** broader disease coverage (metabolic, chronic and cancer-related conditions)
 
 A local-first web app that reads an **AncestryDNA** or **23andMe** raw data file and produces a transparent, evidence-linked report. It covers clinically relevant variants (ClinVar/ClinGen), common-variant associations (NHGRI-EBI GWAS Catalog), metabolism and performance traits, and a literature-backed list of "possible actions to discuss".
 
@@ -21,7 +21,7 @@ Every statement in the report is either a fixed template or a value copied from 
 ```bash
 npm install
 npm run dev            # http://127.0.0.1:5173. Click "Demo 23andMe" / "Demo AncestryDNA", or open /#demo=23andme
-npm test               # 110 unit tests: parsing, matching, interpretation, claim verification, genome-wide tiers
+npm test               # 124 unit tests: parsing, matching, interpretation, claim verification, genome-wide tiers
 npm run build          # typecheck + production build (adds a strict CSP, see Privacy)
 npm run preview -- --port 4317 --strictPort &   # serve the build
 npm run smoke          # headless-Chrome check of the build: renders, no errors, no network, delete works
@@ -255,6 +255,27 @@ The section also has:
 It also adds exact 1000 Genomes allele frequencies (from the local sites VCF) and GWAS Catalog paper counts.
 
 Readings never treat an untested site as "not carried". A test checks that every possible genotype of every gene gets a reading. Chip coverage was checked against Illumina's public GSA v3 (basis of 23andMe v5) and OmniExpress (basis of AncestryDNA) manifests. Both vendors add custom content, so the app always checks the actual file.
+
+## Supplements & your DNA
+
+After the gene guide, the results page has one card per common supplement: omega-3, vitamin D, folic acid, B12, iron, vitamin A and beta-carotene, caffeine, choline, magnesium, calcium, zinc and vitamin C. Each card answers three questions:
+
+| Question | Where the answer comes from |
+|---|---|
+| **Does it work for anyone?** | Verbatim quotes from human meta-analyses, trials and systematic reviews (mostly Cochrane), restated in a plain paragraph |
+| **Does your DNA change that?** | Your gene guide results for the genes that bear on it, the curated actions that apply to you, and your genotype at sites marketed for it that have no trial support |
+| **Is it safe?** | Upper limits and cautions quoted from EFSA opinions, the FDA and the same reviews. Where no source the pipeline can fetch states a limit (B12, choline, vitamin C), the card says so instead of guessing |
+
+A one-line verdict comes from fixed rules over the gene guide (`src/core/supplements.ts`), in priority order: **your DNA may change the advice** (a notable reading at a gene whose verdict is "changes the advice" or "limited"), **a blood test answers this better**, **same advice for you**, **not on your chip**, or **same advice for everyone**. Nothing new is claimed; the verdict only reuses verified gene guide verdicts. Sensitive genes (APOE) stay out of the verdict unless you choose to show sensitive results.
+
+Each card also has a **literature map**: for every supplement × gene pair, how many PubMed records mention the supplement, the gene and a genetic variant, how many are trials and reviews, and how many of the top trials compare genotypes in their abstract. For example, vitamin D × VDR has 3,231 papers and 113 trials, yet no verified trial shows that dosing by VDR genotype helps. The map is labelled as an automatic, unverified reading list and feeds none of the advice.
+
+`pipeline/supplements.ts` (`npm run evidence:supplements`) verifies `pipeline/seeds/supplements.json`:
+
+1. Every quote is found verbatim in its PubMed abstract or web page. A failing safety quote is dropped on its own; a card without verified general evidence is dropped.
+2. Every number in the plain text appears in one of the card's verified quotes.
+3. Every linked gene guide entry, marketed site and action exists, or the build fails.
+4. It then runs the PubMed searches for the literature map.
 
 ## What the report contains
 

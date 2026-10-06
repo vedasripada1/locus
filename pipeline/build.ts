@@ -6,7 +6,7 @@ import { readJson, writeJson } from "./lib/http";
 import { classifyDesign } from "./lib/pubmed";
 import { screen, type SourceText } from "./literature";
 import type {
-  AuditEntry, EvidenceBundle, GeneGuide, Intervention, InterventionStudy, LiteratureCandidate, Quoted, SourcedQuote, SourceVersion, TraitTopic,
+  AuditEntry, EvidenceBundle, GeneGuide, Intervention, InterventionStudy, LiteratureCandidate, Quoted, SourcedQuote, SourceVersion, SupplementGuide, TraitTopic,
 } from "../src/core/types";
 
 type Ref = { pmid?: string; pmcid?: string; url?: string };
@@ -152,6 +152,12 @@ function main() {
     bundle.geneGuide = g.guide;
     audit.push(...g.audit);
   } catch { console.warn("  pipeline/out/genes.json not found: run pipeline/genes.ts for the gene guide"); }
+  // Supplement guide (pipeline/supplements.ts), verified separately; its audit joins the bundle audit.
+  try {
+    const s = readJson<{ guide: SupplementGuide; audit: AuditEntry[] }>("pipeline/out/supplements.json");
+    bundle.supplements = s.guide;
+    audit.push(...s.audit);
+  } catch { console.warn("  pipeline/out/supplements.json not found: run pipeline/supplements.ts for the supplement guide"); }
   writeJson("src/evidence/bundle.json", bundle);
   const dropped = audit.filter((a) => a.outcome === "dropped");
   console.log(`bundle: ${bundle.sites.length} sites, ${bundle.clinvar.length} ClinVar, ${bundle.gwas.length} GWAS, ${interventions.length}/${seedIv.length} interventions, ${bundle.literature.length} literature candidates`);

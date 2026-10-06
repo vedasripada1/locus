@@ -1,0 +1,652 @@
+{
+  "_comment": "Supplements & your DNA. One card per common supplement, answering three questions: does it work for anyone (general: verbatim quotes from human meta-analyses, trials or reviews), does your DNA change that (genes: gene guide entries; marketed: gene guide 'unsupported' sites; interventions: curated actions), and is it safe (upper limit and cautions, verbatim). pipeline/supplements.ts verifies every quote against its PubMed abstract or web page and every number in 'what' and 'generalNote' against the entry's verified quotes; failures are dropped and logged. 'mine' drives the literature map: for each gene, PubMed records about the supplement, the gene and genetic variants are counted (all, trials, reviews) and the top trials are screened. The map is a reading list with counts; nothing in the app is derived from it. upperLimit is null where no source this pipeline can fetch states one; the app then says so.",
+  "variantTerms": "(polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])",
+  "trialFilter": "(randomized controlled trial[pt] OR clinical trial[pt])",
+  "reviewFilter": "(meta-analysis[pt] OR systematic review[pt])",
+  "screenTop": 8,
+  "supplements": [
+    {
+      "id": "omega3",
+      "name": "Omega-3 (fish oil)",
+      "aliases": [
+        "fish oil",
+        "EPA",
+        "DHA",
+        "omega-3 fatty acids",
+        "flaxseed oil"
+      ],
+      "what": "Long-chain omega-3 fats (EPA and DHA) come from oily fish and fish-oil supplements. The plant omega-3 ALA comes from flax, walnuts and canola.",
+      "general": [
+        {
+          "ref": {
+            "pmid": "32114706"
+          },
+          "value": "86 trials, 162,796 people",
+          "quote": "We included 86 RCTs (162,796 participants) in this review update"
+        },
+        {
+          "ref": {
+            "pmid": "32114706"
+          },
+          "value": "Little or no effect on deaths from any cause",
+          "quote": "Meta-analysis and sensitivity analyses suggested little or no effect of increasing LCn3 on all-cause mortality"
+        },
+        {
+          "ref": {
+            "pmid": "32114706"
+          },
+          "value": "Slightly fewer heart-disease deaths and events; lower triglycerides",
+          "quote": "Moderate- and low-certainty evidence suggests that increasing LCn3 slightly reduces risk of coronary heart disease mortality and events, and reduces serum triglycerides (evidence mainly from supplement trials)."
+        }
+      ],
+      "generalNote": "In 86 trials with 162,796 people, fish-oil omega-3 made little or no difference to deaths from any cause. It slightly lowered the risk of heart-disease deaths and events, and lowered triglycerides (a blood fat).",
+      "safety": {
+        "upperLimit": {
+          "ref": {
+            "pmid": "42016086"
+          },
+          "value": "No upper limit set; up to 5 g a day of EPA and DHA raises no safety concerns for adults",
+          "quote": "Supplemental intakes of EPA and DHA combined at doses up to 5 g/day, and supplemental intakes of EPA alone up to 1.8 g/day, do not raise safety concerns for adults."
+        },
+        "cautions": [
+          {
+            "ref": {
+              "pmid": "42016086"
+            },
+            "value": "High doses can raise LDL cholesterol by about 3%",
+            "quote": "induce an increase in LDL-cholesterol concentrations of about 3 % which may not have an adverse effect on cardiovascular disease risk"
+          }
+        ]
+      },
+      "genes": [
+        "omega3",
+        "apoe-omega3"
+      ],
+      "marketed": [],
+      "interventions": [],
+      "mine": {
+        "terms": "omega-3 OR fish oil OR n-3 fatty acids OR eicosapentaenoic OR docosahexaenoic",
+        "genes": [
+          "FADS1",
+          "FADS2",
+          "APOE"
+        ]
+      }
+    },
+    {
+      "id": "vitd",
+      "name": "Vitamin D",
+      "aliases": [
+        "vitamin D3",
+        "cholecalciferol",
+        "vitamin D2",
+        "ergocalciferol"
+      ],
+      "what": "Vitamin D helps the body absorb calcium. Skin makes it in sunlight, and it is also in oily fish, fortified foods and supplements.",
+      "general": [
+        {
+          "ref": {
+            "pmid": "30415629"
+          },
+          "value": "No lower risk of cancer or heart disease in a large trial",
+          "quote": "Supplementation with vitamin D was not associated with a lower risk of either of the primary end points."
+        },
+        {
+          "ref": {
+            "pmid": "24414552"
+          },
+          "value": "Vitamin D3 seemed to lower deaths in older people",
+          "quote": "Vitamin D3 seemed to decrease mortality in elderly people living independently or in institutional care."
+        }
+      ],
+      "generalNote": "In a large trial, vitamin D supplements did not lower the risk of cancer or heart disease. A review of trials found vitamin D3 seemed to lower deaths in older people living independently or in care.",
+      "safety": {
+        "upperLimit": {
+          "ref": {
+            "pmid": "37560437"
+          },
+          "value": "100 μg a day for adults and teens aged 11–17",
+          "quote": "A UL of 100 μg vitamin D equivalents (VDE)/day is established for adults (including pregnant and lactating women) and for adolescents aged 11-17 years"
+        },
+        "cautions": [
+          {
+            "ref": {
+              "pmid": "24414552"
+            },
+            "value": "Taken with calcium, raised kidney-stone risk",
+            "quote": "Vitamin D3 combined with calcium increased nephrolithiasis."
+          }
+        ]
+      },
+      "genes": [
+        "vitd"
+      ],
+      "marketed": [
+        "rs1544410",
+        "rs731236"
+      ],
+      "interventions": [
+        "vitamin-d-supplement"
+      ],
+      "mine": {
+        "terms": "vitamin D OR cholecalciferol OR ergocalciferol",
+        "genes": [
+          "GC",
+          "VDR",
+          "CYP2R1"
+        ]
+      }
+    },
+    {
+      "id": "folate",
+      "name": "Folic acid (folate)",
+      "aliases": [
+        "folate",
+        "methylfolate",
+        "5-MTHF",
+        "L-methylfolate"
+      ],
+      "what": "Folate is a B vitamin in leafy greens and beans. Folic acid is the form used in supplements and fortified foods.",
+      "general": [
+        {
+          "ref": {
+            "pmid": "26662928"
+          },
+          "value": "Prevents neural tube defects when taken around conception",
+          "quote": "Folic acid, alone or in combination with vitamins and minerals, prevents NTDs, but does not have a clear effect on other birth defects."
+        },
+        {
+          "ref": {
+            "pmid": "26662928"
+          },
+          "value": "The benefit held at 400 µg a day or more",
+          "quote": "Subgroup analyses suggest that the positive effect of folic acid on NTD incidence and recurrence is not affected by the explored daily folic acid dosage (400 µg (0.4 mg) or higher)"
+        }
+      ],
+      "generalNote": "Taken around conception, folic acid prevents neural tube defects (serious birth defects of the brain and spine), and the benefit held at 400 µg a day or more. It did not have a clear effect on other birth defects.",
+      "safety": {
+        "upperLimit": {
+          "ref": {
+            "pmid": "37965303"
+          },
+          "value": "1,000 μg a day of folic acid for adults",
+          "quote": "1000 μg/day for adults, including pregnant and lactating women"
+        },
+        "cautions": [
+          {
+            "ref": {
+              "pmid": "37965303"
+            },
+            "value": "High doses can let B12 deficiency harm the nerves unnoticed",
+            "quote": "The risk of progression of neurological symptoms in cobalamin-deficient patients is considered as the critical effect to establish an UL for folic acid."
+          }
+        ]
+      },
+      "genes": [
+        "mthfr"
+      ],
+      "marketed": [
+        "rs1801131"
+      ],
+      "interventions": [
+        "folate-homocysteine",
+        "riboflavin-mthfr-tt"
+      ],
+      "mine": {
+        "terms": "folic acid OR folate OR methylfolate OR methyltetrahydrofolate",
+        "genes": [
+          "MTHFR",
+          "MTRR"
+        ]
+      }
+    },
+    {
+      "id": "b12",
+      "name": "Vitamin B12",
+      "aliases": [
+        "cobalamin",
+        "cyanocobalamin",
+        "methylcobalamin"
+      ],
+      "what": "Vitamin B12 comes from animal foods and fortified foods. Deficiency is common, and becomes more common with age.",
+      "general": [
+        {
+          "ref": {
+            "pmid": "29543316"
+          },
+          "value": "Deficiency is common and rises with age",
+          "quote": "Vitamin B12 deficiency is common, and the incidence increases with age."
+        },
+        {
+          "ref": {
+            "pmid": "29543316"
+          },
+          "value": "For people who are deficient, tablets work about as well as injections",
+          "quote": "Low quality evidence shows oral and IM vitamin B12 having similar effects in terms of normalising serum vitamin B12 levels, but oral treatment costs less."
+        }
+      ],
+      "generalNote": "For people with a deficiency, B12 tablets brought blood levels back to normal about as well as injections, though the evidence is low quality. Whether you are low is something a blood test shows.",
+      "safety": {
+        "upperLimit": null,
+        "cautions": []
+      },
+      "genes": [
+        "b12"
+      ],
+      "marketed": [
+        "rs1801394"
+      ],
+      "interventions": [],
+      "mine": {
+        "terms": "vitamin B12 OR cobalamin OR cyanocobalamin OR methylcobalamin",
+        "genes": [
+          "FUT2",
+          "MTRR",
+          "TCN2"
+        ]
+      }
+    },
+    {
+      "id": "iron",
+      "name": "Iron",
+      "aliases": [
+        "ferrous sulfate",
+        "iron supplement"
+      ],
+      "what": "Iron carries oxygen in red blood cells. It is in meat, beans and fortified cereals, and in supplements.",
+      "general": [
+        {
+          "ref": {
+            "pmid": "27087396"
+          },
+          "value": "In menstruating women: less anaemia and less tiredness",
+          "quote": "Daily iron supplementation effectively reduces the prevalence of anaemia and iron deficiency, raises haemoglobin and iron stores, improves exercise performance and reduces symptomatic fatigue."
+        },
+        {
+          "ref": {
+            "pmid": "27087396"
+          },
+          "value": "More stomach side effects",
+          "quote": "These benefits come at the expense of increased gastrointestinal symptomatic side effects."
+        }
+      ],
+      "generalNote": "In menstruating women, daily iron reduced anaemia and iron deficiency, improved exercise performance and reduced tiredness, at the cost of more stomach side effects.",
+      "safety": {
+        "upperLimit": {
+          "ref": {
+            "pmid": "38868106"
+          },
+          "value": "No upper limit could be set; 40 mg a day is a safe level for adults",
+          "quote": "a safe level of intake for iron of 40 mg/day for adults (including pregnant and lactating women) was established"
+        },
+        "cautions": [
+          {
+            "ref": {
+              "pmid": "38868106"
+            },
+            "value": "Iron overload damages organs",
+            "quote": "It is established that systemic iron overload leads to organ toxicity, but no UL could be established."
+          }
+        ]
+      },
+      "genes": [
+        "iron"
+      ],
+      "marketed": [],
+      "interventions": [
+        "iron-panel-discussion"
+      ],
+      "mine": {
+        "terms": "iron supplementation OR ferrous OR iron supplement OR iron intake",
+        "genes": [
+          "HFE",
+          "TMPRSS6"
+        ]
+      }
+    },
+    {
+      "id": "vita",
+      "name": "Vitamin A and beta-carotene",
+      "aliases": [
+        "beta-carotene",
+        "retinol",
+        "vitamin A"
+      ],
+      "what": "Preformed vitamin A (retinol) comes from liver, dairy and supplements. Beta-carotene comes from orange and green vegetables, and the body turns some of it into vitamin A.",
+      "general": [
+        {
+          "ref": {
+            "pmid": "22419320"
+          },
+          "value": "No support for antioxidant supplements to prevent disease",
+          "quote": "We found no evidence to support antioxidant supplements for primary or secondary prevention."
+        },
+        {
+          "ref": {
+            "pmid": "22419320"
+          },
+          "value": "Beta-carotene supplements seemed to increase deaths",
+          "quote": "Beta-carotene and vitamin E seem to increase mortality, and so may higher doses of vitamin A."
+        }
+      ],
+      "generalNote": "A review of trials found no evidence that antioxidant supplements prevent disease. Beta-carotene supplements seemed to increase deaths, and so may higher doses of vitamin A.",
+      "safety": {
+        "upperLimit": {
+          "ref": {
+            "pmid": "38846679"
+          },
+          "value": "3,000 μg a day of preformed vitamin A for adults",
+          "quote": "The Panel proposes to retain the UL for preformed vitamin A of 3000 μg RE/day for adults."
+        },
+        "cautions": [
+          {
+            "ref": {
+              "pmid": "38846679"
+            },
+            "value": "Too much preformed vitamin A can harm an unborn baby",
+            "quote": "Teratogenicity was selected as the critical effect on which to base the UL for preformed vitamin A."
+          }
+        ]
+      },
+      "genes": [
+        "carotene"
+      ],
+      "marketed": [
+        "rs7501331"
+      ],
+      "interventions": [],
+      "mine": {
+        "terms": "beta-carotene OR vitamin A OR retinol",
+        "genes": [
+          "BCO1",
+          "BCMO1"
+        ]
+      }
+    },
+    {
+      "id": "caffeine",
+      "name": "Caffeine",
+      "aliases": [
+        "coffee",
+        "pre-workout"
+      ],
+      "what": "Caffeine is a stimulant in coffee, tea, energy drinks and many pre-workout supplements.",
+      "general": [
+        {
+          "ref": {
+            "pmid": "33388079"
+          },
+          "value": "Improves exercise performance at 3–6 mg per kg",
+          "quote": "Caffeine has consistently been shown to improve exercise performance when consumed in doses of 3-6 mg/kg body mass."
+        },
+        {
+          "ref": {
+            "pmid": "33388079"
+          },
+          "value": "Genes may explain some differences between people",
+          "quote": "Inter-individual differences in sport and exercise performance as well as adverse effects on sleep or feelings of anxiety following caffeine ingestion may be attributed to genetic variation associated with caffeine metabolism, and physical and psychological response."
+        }
+      ],
+      "generalNote": "Caffeine consistently improves exercise performance at 3–6 mg per kg of body weight. Some differences between people, including effects on sleep and anxiety, may come from genes that affect how caffeine is processed.",
+      "safety": {
+        "upperLimit": {
+          "ref": {
+            "url": "https://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much"
+          },
+          "value": "400 mg a day for most adults (FDA)",
+          "quote": "For most adults, the FDA has cited 400 milligrams* a day — that's about two to three 12-fluid-ounce cups of coffee — as an amount not generally associated with negative effects."
+        },
+        "cautions": [
+          {
+            "ref": {
+              "pmid": "33388079"
+            },
+            "value": "Very high doses bring more side effects without more benefit",
+            "quote": "are associated with a high incidence of side-effects and do not seem to be required to elicit an ergogenic effect"
+          }
+        ]
+      },
+      "genes": [
+        "caffeine"
+      ],
+      "marketed": [
+        "rs5751876"
+      ],
+      "interventions": [
+        "caffeine-endurance"
+      ],
+      "mine": {
+        "terms": "caffeine OR coffee",
+        "genes": [
+          "CYP1A2",
+          "ADORA2A"
+        ]
+      }
+    },
+    {
+      "id": "choline",
+      "name": "Choline",
+      "aliases": [
+        "phosphatidylcholine",
+        "lecithin",
+        "citicoline"
+      ],
+      "what": "Choline is a nutrient found in eggs, meat, fish and soy.",
+      "general": [
+        {
+          "ref": {
+            "pmid": "26108618"
+          },
+          "value": "In adults, possible benefits for thinking, but no high-quality trials",
+          "quote": "In adults, choline may have beneficial effects on cognition, but high-quality (intervention) studies are lacking."
+        },
+        {
+          "ref": {
+            "pmid": "26108618"
+          },
+          "value": "Evidence is scarce",
+          "quote": "Evidence to confirm the suggested effects of choline on health in different stages of life is scarce."
+        }
+      ],
+      "generalNote": "A systematic review found choline may help thinking in adults, but high-quality trials are lacking and the evidence overall is scarce.",
+      "safety": {
+        "upperLimit": null,
+        "cautions": [
+          {
+            "ref": {
+              "pmid": "26108618"
+            },
+            "value": "Possible harm to heart and metabolic health needs study",
+            "quote": "Possible harmful effects on cardiometabolic health need careful evaluation."
+          }
+        ]
+      },
+      "genes": [],
+      "marketed": [
+        "rs7946"
+      ],
+      "interventions": [],
+      "mine": {
+        "terms": "choline OR phosphatidylcholine",
+        "genes": [
+          "PEMT",
+          "CHDH"
+        ]
+      }
+    },
+    {
+      "id": "magnesium",
+      "name": "Magnesium",
+      "aliases": [
+        "magnesium citrate",
+        "magnesium glycinate"
+      ],
+      "what": "Magnesium is a mineral in nuts, seeds, whole grains and leafy greens.",
+      "general": [
+        {
+          "ref": {
+            "pmid": "27402922"
+          },
+          "value": "Lowered blood pressure slightly",
+          "quote": "Mg supplementation at a median dose of 368 mg/d for a median duration of 3 months significantly reduced systolic BP by 2.00 mm Hg (95% confidence interval, 0.43-3.58) and diastolic BP by 1.78 mm Hg (95% confidence interval, 0.73-2.82)"
+        }
+      ],
+      "generalNote": "In placebo-controlled trials, a median of 368 mg of magnesium a day for 3 months lowered blood pressure slightly: by 2.00 mm Hg (systolic) and 1.78 mm Hg (diastolic).",
+      "safety": {
+        "upperLimit": {
+          "ref": {
+            "pmid": "32625777"
+          },
+          "value": "250 mg a day from supplements and added magnesium",
+          "quote": "the existing tolerable upper intake level for magnesium in nutritional supplements, water, or added to food and beverages (250 mg/day)"
+        },
+        "cautions": []
+      },
+      "genes": [],
+      "marketed": [],
+      "interventions": [],
+      "mine": {
+        "terms": "magnesium",
+        "genes": [
+          "TRPM6",
+          "TRPM7"
+        ]
+      }
+    },
+    {
+      "id": "calcium",
+      "name": "Calcium",
+      "aliases": [
+        "calcium carbonate",
+        "calcium citrate"
+      ],
+      "what": "Calcium is a mineral in dairy, fortified plant milks, tofu and leafy greens.",
+      "general": [
+        {
+          "ref": {
+            "pmid": "26420598"
+          },
+          "value": "Small bone-density gains, unlikely to prevent fractures",
+          "quote": "Increasing calcium intake from dietary sources or by taking calcium supplements produces small non-progressive increases in BMD, which are unlikely to lead to a clinically significant reduction in risk of fracture."
+        },
+        {
+          "ref": {
+            "pmid": "26420387"
+          },
+          "value": "Weak, inconsistent evidence on fractures",
+          "quote": "Evidence that calcium supplements prevent fractures is weak and inconsistent."
+        }
+      ],
+      "generalNote": "Calcium from food or supplements gives small increases in bone density that are unlikely to meaningfully lower fracture risk, and evidence that supplements prevent fractures is weak and inconsistent.",
+      "safety": {
+        "upperLimit": {
+          "ref": {
+            "pmid": "42016128"
+          },
+          "value": "2,500 mg a day for adults",
+          "quote": "No new data have become available which would require a revision of the UL for calcium for adults, including pregnant and lactating women, of 2,500 mg."
+        },
+        "cautions": [
+          {
+            "ref": {
+              "pmid": "24414552"
+            },
+            "value": "Taken with vitamin D3, raised kidney-stone risk",
+            "quote": "Vitamin D3 combined with calcium increased nephrolithiasis."
+          }
+        ]
+      },
+      "genes": [],
+      "marketed": [],
+      "interventions": [],
+      "mine": {
+        "terms": "calcium supplementation OR calcium supplement OR calcium intake",
+        "genes": [
+          "VDR",
+          "CASR"
+        ]
+      }
+    },
+    {
+      "id": "zinc",
+      "name": "Zinc",
+      "aliases": [
+        "zinc lozenges",
+        "zinc gluconate"
+      ],
+      "what": "Zinc is a mineral in meat, shellfish, beans and nuts, often sold as lozenges for colds.",
+      "general": [
+        {
+          "ref": {
+            "pmid": "38719213"
+          },
+          "value": "Little or no effect on preventing colds; may shorten them",
+          "quote": "The findings suggest that zinc supplementation may have little or no effect on the prevention of colds but may reduce the duration of ongoing colds, with an increase in non-serious adverse events."
+        }
+      ],
+      "generalNote": "Zinc may have little or no effect on preventing colds, but may shorten colds you already have, with more minor side effects.",
+      "safety": {
+        "upperLimit": {
+          "ref": {
+            "pmid": "38999082"
+          },
+          "value": "25 mg a day in Europe (EFSA); 40 mg a day in the US (FDA)",
+          "quote": "The European Food Safety Authority (EFSA) defines the tolerable upper intake level (UL) as 25 mg per day, whereas the Food and Drug Administration (FDA) allows 40 mg per day."
+        },
+        "cautions": []
+      },
+      "genes": [],
+      "marketed": [],
+      "interventions": [],
+      "mine": {
+        "terms": "zinc",
+        "genes": [
+          "SLC30A8",
+          "SLC39A4"
+        ]
+      }
+    },
+    {
+      "id": "vitc",
+      "name": "Vitamin C",
+      "aliases": [
+        "ascorbic acid",
+        "ascorbate"
+      ],
+      "what": "Vitamin C is in citrus fruit, berries, peppers and many vegetables.",
+      "general": [
+        {
+          "ref": {
+            "pmid": "23440782"
+          },
+          "value": "Doesn't prevent colds in the general population",
+          "quote": "The failure of vitamin C supplementation to reduce the incidence of colds in the general population indicates that routine vitamin C supplementation is not justified, yet vitamin C may be useful for people exposed to brief periods of severe physical exercise."
+        },
+        {
+          "ref": {
+            "pmid": "23440782"
+          },
+          "value": "Regular use shortened colds by 8% in adults",
+          "quote": "In adults the duration of colds was reduced by 8% (3% to 12%) and in children by 14% (7% to 21%)."
+        }
+      ],
+      "generalNote": "Taking vitamin C regularly did not reduce how often people caught colds, but it shortened colds by 8% in adults and 14% in children. It may help people exposed to brief periods of severe physical exercise.",
+      "safety": {
+        "upperLimit": null,
+        "cautions": []
+      },
+      "genes": [
+        "vitc"
+      ],
+      "marketed": [],
+      "interventions": [],
+      "mine": {
+        "terms": "vitamin C OR ascorbic acid OR ascorbate",
+        "genes": [
+          "SLC23A1",
+          "SLC23A2"
+        ]
+      }
+    }
+  ]
+}

@@ -17,8 +17,8 @@ import { fetchSite } from "./fetch";
 import { cite, numbers, verifyQuoted } from "./build";
 import type { AuditEntry, GeneGuide, GeneGuideEntry, GeneGuideSite, SourceVersion, SourcedQuote, VariantSite } from "../src/core/types";
 
-type Ref = { pmid?: string; url?: string };
-interface SeedQuote { ref: Ref; value: string; quote: string }
+export type Ref = { pmid?: string; url?: string };
+export interface SeedQuote { ref: Ref; value: string; quote: string }
 interface SeedSite { rsid: string; allele: string; alleleName: string; aa?: string }
 interface SeedEntry extends Omit<GeneGuideEntry, "sites" | "evidence"> { sites: SeedSite[]; evidence: SeedQuote[] }
 interface Seed { genes: SeedEntry[]; unsupported: { rsid: string; gene: string; claim: string }[]; notes: { id: string; title: string; text: string; evidence: SeedQuote[] }[] }
@@ -110,7 +110,7 @@ async function kgFrequencies(sites: VariantSite[]): Promise<Map<string, Record<s
   return out;
 }
 
-async function sourceTexts(refs: Ref[]): Promise<Map<string, { text: string; source: SourceVersion; citation: string }>> {
+export async function sourceTexts(refs: Ref[]): Promise<Map<string, { text: string; source: SourceVersion; citation: string }>> {
   const out = new Map<string, { text: string; source: SourceVersion; citation: string }>();
   const pmids = [...new Set(refs.filter((r) => r.pmid).map((r) => r.pmid!))];
   for (const r of await fetchRecords(pmids)) out.set(`pmid:${r.pmid}`, { text: `${r.title}\n${r.abstract}`, source: r.source, citation: cite(r) });
@@ -125,7 +125,7 @@ async function sourceTexts(refs: Ref[]): Promise<Map<string, { text: string; sou
   return out;
 }
 
-function verifyQuotes(subject: string, qs: SeedQuote[], texts: Awaited<ReturnType<typeof sourceTexts>>, audit: AuditEntry[]): SourcedQuote[] | null {
+export function verifyQuotes(subject: string, qs: SeedQuote[], texts: Awaited<ReturnType<typeof sourceTexts>>, audit: AuditEntry[]): SourcedQuote[] | null {
   const out: SourcedQuote[] = [];
   for (const q of qs) {
     const src = texts.get(refKey(q.ref));

@@ -267,6 +267,8 @@ export interface EvidenceBundle {
   warnings?: VerifiedWarning[];
   /** Verified gene guide (traits, nutrition, fitness); see pipeline/genes.ts. */
   geneGuide?: GeneGuide;
+  /** Verified supplement guide; see pipeline/supplements.ts. */
+  supplements?: SupplementGuide;
 }
 
 export interface VerifiedWarning { id: string; title: string; summary: string; quotes: SourcedQuote[] }
@@ -485,3 +487,57 @@ export interface GeneResult {
   status: "read" | "partial" | "not-tested";
 }
 
+
+// ─── Supplements & your DNA ────────────────────────────────────────────────
+
+/** How much PubMed literature tests a supplement against one gene (auto-screened, unverified). */
+export interface SupplementGenePair {
+  gene: string;
+  /** PubMed records matching supplement × gene × genetic-variant terms. */
+  total: number;
+  /** Of those, records tagged as clinical or randomized controlled trials. */
+  trials: number;
+  /** Of those, records tagged as meta-analyses or systematic reviews. */
+  reviews: number;
+  /** Top trial records, screened like every literature candidate. */
+  screened: LiteratureCandidate[];
+  /** How many screened trials are in humans and mention a genotype-by-intervention result in the abstract. */
+  humanInteraction: number;
+  query: string;
+}
+
+export interface SupplementEntry {
+  id: string;
+  name: string;
+  /** Other names people search for (e.g. "fish oil", "cholecalciferol"). */
+  aliases: string[];
+  /** Plain explanation of what it is; no claims. */
+  what: string;
+  /** Does it work for anyone? Verified quotes from human meta-analyses, trials or reviews. */
+  general: SourcedQuote[];
+  /** Plain one-paragraph answer that only restates the general quotes. */
+  generalNote: string;
+  safety: { upperLimit: SourcedQuote | null; cautions: SourcedQuote[] };
+  /** Gene guide entries whose result bears on this supplement. */
+  genes: string[];
+  /** Gene guide "unsupported" sites marketed for this supplement. */
+  marketed: string[];
+  /** Curated interventions about this supplement. */
+  interventions: string[];
+  /** Literature map: supplement × gene. */
+  map: SupplementGenePair[];
+}
+
+export interface SupplementGuide { builtAt: string; entries: SupplementEntry[] }
+
+/** What your genotype means for one supplement; text comes from fixed templates. */
+export type SupplementVerdict = "dna-changes" | "test-first" | "same" | "not-read" | "no-genes";
+export interface SupplementResult {
+  entry: SupplementEntry;
+  verdict: SupplementVerdict;
+  /** The gene guide result that decided the verdict, if any. */
+  decidedBy: GeneResult | null;
+  genes: GeneResult[];
+  /** Curated interventions about this supplement that apply to your file. */
+  actions: InterventionAssessment[];
+}

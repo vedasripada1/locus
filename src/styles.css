@@ -204,6 +204,7 @@ ul.papers li { margin: 4px 0; }
 
 /* ── Traits & genes ─────────────────────────────────────────────── */
 .gene-grid { display: grid; gap: 12px; }
+.gene-grid > * { min-width: 0; }
 .gene-card.notable::before { background: var(--mustard); }
 .gene-card.focused { outline: 3px solid var(--mustard); outline-offset: 2px; }
 .gene-reading { font-size: 1.02rem; margin: 8px 0 4px; }
@@ -215,3 +216,17 @@ ul.papers li { margin: 4px 0; }
 .plain-list.small li { font-size: .85rem; color: var(--muted); }
 .filter-row label { max-width: 100%; flex-wrap: wrap; }
 .filter-row select { max-width: 100%; min-width: 0; }
+
+/* Supplements & your DNA */
+.supp-verdict { font-weight: 600; margin: 8px 0 12px; }
+.supp-qa { display: grid; grid-template-columns: minmax(150px, 210px) minmax(0, 1fr); gap: 0 20px; margin: 0 0 12px; }
+.supp-qa dt, .supp-qa dd { padding: 12px 0; border-top: 1px solid var(--rule); }
+.supp-qa dt { font: 600 .78rem var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.supp-qa dd { margin: 0; max-width: 80ch; }
+.supp-gene { margin: 0 0 6px; }
+.supp-map { margin-top: 16px; }
+.supp-mapline { margin: 10px 0 0; }
+@media (max-width: 640px) {
+  .supp-qa { grid-template-columns: minmax(0, 1fr); }
+  .supp-qa dd { border-top: 0; padding-top: 0; }
+}

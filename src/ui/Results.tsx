@@ -6,6 +6,7 @@ import { DISCLAIMER } from "../core/export";
 import { ContextForm } from "./ContextForm";
 import { NutrientGenes } from "./Nutrigenomics";
 import { GeneGuideSection } from "./GeneGuide";
+import { SupplementsSection } from "./Supplements";
 import { accuracyLine } from "./RawData";
 import type { Go } from "./Shell";
 
@@ -166,6 +167,7 @@ export function ResultsView({ summary, report, bundle, fileName, context, onCont
       {quality.map((i) => <ItemRow key={i.id} item={i} go={go} focused={focus === i.id} />)}
       <Recommendations items={recs.filter((i) => i.sufficient)} hiddenWeak={recs.filter((i) => !i.sufficient).length} go={go} />
       <GeneGuideSection report={report} bundle={bundle} go={go} showSensitive={showSensitive} focus={focus} />
+      <SupplementsSection report={report} bundle={bundle} go={go} showSensitive={showSensitive} focus={focus} />
 
       <section className="block">
         <div className="section-head"><h2 style={{ margin: 0 }}>All your results</h2>

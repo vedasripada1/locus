@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "builtAt": "2026-09-25T13:46:36.433Z",
+ "builtAt": "2026-10-06T16:27:00.266Z",
  "sources": [
   {
    "source": "dbSNP",
@@ -29,7 +29,7 @@
   {
    "source": "PubMed",
    "version": "E-utilities; 190 candidate records, 20 curated abstracts",
-   "retrievedAt": "2026-09-25",
+   "retrievedAt": "2026-10-06",
    "url": "https://pubmed.ncbi.nlm.nih.gov/"
   },
   {
@@ -72345,6 +72345,78 @@
    "subject": "gene guide apoe-omega3",
    "outcome": "ok",
    "detail": "1 quote(s), 1 site(s) verified."
+  },
+  {
+   "stage": "verify",
+   "subject": "supplement omega3",
+   "outcome": "ok",
+   "detail": "3 general quote(s), upper limit, 1 caution(s) verified; 3 gene(s) mapped."
+  },
+  {
+   "stage": "verify",
+   "subject": "supplement vitd",
+   "outcome": "ok",
+   "detail": "2 general quote(s), upper limit, 1 caution(s) verified; 3 gene(s) mapped."
+  },
+  {
+   "stage": "verify",
+   "subject": "supplement folate",
+   "outcome": "ok",
+   "detail": "2 general quote(s), upper limit, 1 caution(s) verified; 2 gene(s) mapped."
+  },
+  {
+   "stage": "verify",
+   "subject": "supplement b12",
+   "outcome": "ok",
+   "detail": "2 general quote(s), no upper limit, 0 caution(s) verified; 3 gene(s) mapped."
+  },
+  {
+   "stage": "verify",
+   "subject": "supplement iron",
+   "outcome": "ok",
+   "detail": "2 general quote(s), upper limit, 1 caution(s) verified; 2 gene(s) mapped."
+  },
+  {
+   "stage": "verify",
+   "subject": "supplement vita",
+   "outcome": "ok",
+   "detail": "2 general quote(s), upper limit, 1 caution(s) verified; 2 gene(s) mapped."
+  },
+  {
+   "stage": "verify",
+   "subject": "supplement caffeine",
+   "outcome": "ok",
+   "detail": "2 general quote(s), upper limit, 1 caution(s) verified; 2 gene(s) mapped."
+  },
+  {
+   "stage": "verify",
+   "subject": "supplement choline",
+   "outcome": "ok",
+   "detail": "2 general quote(s), no upper limit, 1 caution(s) verified; 2 gene(s) mapped."
+  },
+  {
+   "stage": "verify",
+   "subject": "supplement magnesium",
+   "outcome": "ok",
+   "detail": "1 general quote(s), upper limit, 0 caution(s) verified; 2 gene(s) mapped."
+  },
+  {
+   "stage": "verify",
+   "subject": "supplement calcium",
+   "outcome": "ok",
+   "detail": "2 general quote(s), upper limit, 1 caution(s) verified; 2 gene(s) mapped."
+  },
+  {
+   "stage": "verify",
+   "subject": "supplement zinc",
+   "outcome": "ok",
+   "detail": "1 general quote(s), upper limit, 0 caution(s) verified; 2 gene(s) mapped."
+  },
+  {
+   "stage": "verify",
+   "subject": "supplement vitc",
+   "outcome": "ok",
+   "detail": "2 general quote(s), no upper limit, 0 caution(s) verified; 2 gene(s) mapped."
   }
  ],
  "warnings": [
@@ -75912,6 +75984,4307 @@
        "url": "https://pubmed.ncbi.nlm.nih.gov/35193914/"
       },
       "citation": "Keathley et al., BMJ Open 2022"
+     }
+    ]
+   }
+  ]
+ },
+ "supplements": {
+  "builtAt": "2026-10-06",
+  "entries": [
+   {
+    "id": "omega3",
+    "name": "Omega-3 (fish oil)",
+    "aliases": [
+     "fish oil",
+     "EPA",
+     "DHA",
+     "omega-3 fatty acids",
+     "flaxseed oil"
+    ],
+    "what": "Long-chain omega-3 fats (EPA and DHA) come from oily fish and fish-oil supplements. The plant omega-3 ALA comes from flax, walnuts and canola.",
+    "general": [
+     {
+      "value": "86 trials, 162,796 people",
+      "quote": "We included 86 RCTs (162,796 participants) in this review update",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 32114706",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/32114706/"
+      },
+      "citation": "Abdelhamid et al., Cochrane Database Syst Rev 2020"
+     },
+     {
+      "value": "Little or no effect on deaths from any cause",
+      "quote": "Meta-analysis and sensitivity analyses suggested little or no effect of increasing LCn3 on all-cause mortality",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 32114706",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/32114706/"
+      },
+      "citation": "Abdelhamid et al., Cochrane Database Syst Rev 2020"
+     },
+     {
+      "value": "Slightly fewer heart-disease deaths and events; lower triglycerides",
+      "quote": "Moderate- and low-certainty evidence suggests that increasing LCn3 slightly reduces risk of coronary heart disease mortality and events, and reduces serum triglycerides (evidence mainly from supplement trials).",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 32114706",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/32114706/"
+      },
+      "citation": "Abdelhamid et al., Cochrane Database Syst Rev 2020"
+     }
+    ],
+    "generalNote": "In 86 trials with 162,796 people, fish-oil omega-3 made little or no difference to deaths from any cause. It slightly lowered the risk of heart-disease deaths and events, and lowered triglycerides (a blood fat).",
+    "safety": {
+     "upperLimit": {
+      "value": "No upper limit set; up to 5 g a day of EPA and DHA raises no safety concerns for adults",
+      "quote": "Supplemental intakes of EPA and DHA combined at doses up to 5 g/day, and supplemental intakes of EPA alone up to 1.8 g/day, do not raise safety concerns for adults.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 42016086",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/42016086/"
+      },
+      "citation": "EFSA Panel on Dietetic Products, Nutrition and Allergies (NDA) et al., EFSA J 2012"
+     },
+     "cautions": [
+      {
+       "value": "High doses can raise LDL cholesterol by about 3%",
+       "quote": "induce an increase in LDL-cholesterol concentrations of about 3 % which may not have an adverse effect on cardiovascular disease risk",
+       "source": {
+        "source": "PubMed",
+        "version": "PMID 42016086",
+        "retrievedAt": "2026-10-06",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42016086/"
+       },
+       "citation": "EFSA Panel on Dietetic Products, Nutrition and Allergies (NDA) et al., EFSA J 2012"
+      }
+     ]
+    },
+    "genes": [
+     "omega3",
+     "apoe-omega3"
+    ],
+    "marketed": [],
+    "interventions": [],
+    "map": [
+     {
+      "gene": "FADS1",
+      "total": 147,
+      "trials": 22,
+      "reviews": 6,
+      "screened": [
+       {
+        "pmid": "38714425",
+        "doi": "10.1016/j.atherosclerosis.2024.117562",
+        "title": "Dietary n-3 alpha-linolenic and n-6 linoleic acids modestly lower serum lipoprotein(a) concentration but differentially influence other atherogenic lipoprotein traits: A randomized trial.",
+        "journal": "Atherosclerosis",
+        "year": "2024",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "118",
+         "snippet": "METHODS: A genotype-based randomized trial was performed in 118 men homozygous for FADS1 rs174550 SNP (TT o"
+        },
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × FADS1",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38714425/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 38714425",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/38714425/"
+        }
+       },
+       {
+        "pmid": "30640206",
+        "doi": "10.1097/CEJ.0000000000000455",
+        "title": "Effects of fish oil supplementation on eicosanoid production in patients at higher risk for colorectal cancer.",
+        "journal": "Eur J Cancer Prev",
+        "year": "2019",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, N.I.H., Extramural"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "141",
+         "snippet": "which affects tissue levels of arachidonic acid. A total of 141 participants were randomized. Urinary prostaglandin "
+        },
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × FADS1",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30640206/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 30640206",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/30640206/"
+        }
+       },
+       {
+        "pmid": "30407633",
+        "doi": "10.1002/lipd.12096",
+        "title": "Triacylglycerol-Lowering Effect of Docosahexaenoic Acid Is Not Influenced by Single-Nucleotide Polymorphisms Involved in Lipid Metabolism in Humans.",
+        "journal": "Lipids",
+        "year": "2018",
+        "publicationTypes": [
+         "Journal Article",
+         "Multicenter Study",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "129",
+         "snippet": "HOCO). In a randomized, crossover-controlled feeding trial, 129 subjects with metabolic syndrome received high-o"
+        },
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × FADS1",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30407633/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 30407633",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/30407633/"
+        }
+       },
+       {
+        "pmid": "27276431",
+        "doi": "10.1097/MPG.0000000000001283",
+        "title": "Reduction of Arachidonate Is Associated With Increase in B-Cell Activation Marker in Infants: A Randomized Trial.",
+        "journal": "J Pediatr Gastroenterol Nutr",
+        "year": "2017",
+        "publicationTypes": [
+         "Comparative Study",
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "89",
+         "snippet": "cells in term infants fed infant formula. METHODS: Infants (N = 89) were enrolled in this prospective, dou"
+        },
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × FADS1",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27276431/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 27276431",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/27276431/"
+        }
+       },
+       {
+        "pmid": "32622152",
+        "doi": "10.1016/j.plefa.2020.102155",
+        "title": "Metabolic syndrome in postmenopausal women is associated with lower erythrocyte PUFA/MUFA and n-3/n-6 ratio: A case-control study.",
+        "journal": "Prostaglandins Leukot Essent Fatty Acids",
+        "year": "2020",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "131",
+         "snippet": "menopausal women with or without metabolic syndrome (MetS). 131 women were recruited to a case-control study "
+        },
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × FADS1",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32622152/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 32622152",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/32622152/"
+        }
+       },
+       {
+        "pmid": "32397743",
+        "doi": "10.1161/CIRCGEN.119.002710",
+        "title": "FADS1 (Fatty Acid Desaturase 1) Genotype Associates With Aortic Valve FADS mRNA Expression, Fatty Acid Content and Calcification.",
+        "journal": "Circ Genom Precis Med",
+        "year": "2020",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "58",
+         "snippet": "rays in calcified and noncalcified aortic valve tissue from 58 patients with AS (mean age, 74.2; SD, 5.9). Fatt"
+        },
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × FADS1",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32397743/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 32397743",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/32397743/"
+        }
+       },
+       {
+        "pmid": "27273350",
+        "doi": "10.1007/s12603-016-0720-3",
+        "title": "Genetic Variants of the FADS Gene Cluster Are Associated with Erythrocyte Membrane LC PUFA Levels in Patients with Mild Cognitive Impairment.",
+        "journal": "J Nutr Health Aging",
+        "year": "2016",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × FADS1",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27273350/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 27273350",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/27273350/"
+        }
+       },
+       {
+        "pmid": "33396458",
+        "doi": "10.3390/nu13010131",
+        "title": "Long-Chain Polyunsaturated Fatty Acids, Homocysteine at Birth and Fatty Acid Desaturase Gene Cluster Polymorphisms are Associated with Children's Processing Speed up to Age 9 Years.",
+        "journal": "Nutrients",
+        "year": "2020",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "143",
+         "snippet": "ol age. This study was conducted in NUHEAL children at 7.5 (n = 143) and 9 years of age (n = 127). Processi"
+        },
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × FADS1",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33396458/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 33396458",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/33396458/"
+        }
+       }
+      ],
+      "humanInteraction": 5,
+      "query": "(omega-3 OR fish oil OR n-3 fatty acids OR eicosapentaenoic OR docosahexaenoic) AND (FADS1[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     },
+     {
+      "gene": "FADS2",
+      "total": 119,
+      "trials": 13,
+      "reviews": 5,
+      "screened": [
+       {
+        "pmid": "30407633",
+        "doi": "10.1002/lipd.12096",
+        "title": "Triacylglycerol-Lowering Effect of Docosahexaenoic Acid Is Not Influenced by Single-Nucleotide Polymorphisms Involved in Lipid Metabolism in Humans.",
+        "journal": "Lipids",
+        "year": "2018",
+        "publicationTypes": [
+         "Journal Article",
+         "Multicenter Study",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "129",
+         "snippet": "HOCO). In a randomized, crossover-controlled feeding trial, 129 subjects with metabolic syndrome received high-o"
+        },
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × FADS2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30407633/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 30407633",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/30407633/"
+        }
+       },
+       {
+        "pmid": "27276431",
+        "doi": "10.1097/MPG.0000000000001283",
+        "title": "Reduction of Arachidonate Is Associated With Increase in B-Cell Activation Marker in Infants: A Randomized Trial.",
+        "journal": "J Pediatr Gastroenterol Nutr",
+        "year": "2017",
+        "publicationTypes": [
+         "Comparative Study",
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "89",
+         "snippet": "cells in term infants fed infant formula. METHODS: Infants (N = 89) were enrolled in this prospective, dou"
+        },
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × FADS2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27276431/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 27276431",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/27276431/"
+        }
+       },
+       {
+        "pmid": "32622152",
+        "doi": "10.1016/j.plefa.2020.102155",
+        "title": "Metabolic syndrome in postmenopausal women is associated with lower erythrocyte PUFA/MUFA and n-3/n-6 ratio: A case-control study.",
+        "journal": "Prostaglandins Leukot Essent Fatty Acids",
+        "year": "2020",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "131",
+         "snippet": "menopausal women with or without metabolic syndrome (MetS). 131 women were recruited to a case-control study "
+        },
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × FADS2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32622152/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 32622152",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/32622152/"
+        }
+       },
+       {
+        "pmid": "27273350",
+        "doi": "10.1007/s12603-016-0720-3",
+        "title": "Genetic Variants of the FADS Gene Cluster Are Associated with Erythrocyte Membrane LC PUFA Levels in Patients with Mild Cognitive Impairment.",
+        "journal": "J Nutr Health Aging",
+        "year": "2016",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × FADS2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27273350/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 27273350",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/27273350/"
+        }
+       },
+       {
+        "pmid": "32397743",
+        "doi": "10.1161/CIRCGEN.119.002710",
+        "title": "FADS1 (Fatty Acid Desaturase 1) Genotype Associates With Aortic Valve FADS mRNA Expression, Fatty Acid Content and Calcification.",
+        "journal": "Circ Genom Precis Med",
+        "year": "2020",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "58",
+         "snippet": "rays in calcified and noncalcified aortic valve tissue from 58 patients with AS (mean age, 74.2; SD, 5.9). Fatt"
+        },
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × FADS2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32397743/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 32397743",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/32397743/"
+        }
+       },
+       {
+        "pmid": "23221573",
+        "doi": "10.3945/ajcn.112.043117",
+        "title": "Dietary oils and FADS1-FADS2 genetic variants modulate [13C]α-linolenic acid metabolism and plasma fatty acid composition.",
+        "journal": "Am J Clin Nutr",
+        "year": "2013",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "26",
+         "snippet": "y 27, blood was sampled 0, 24, and 48 h after the subjects (n = 26) consumed 45 mg [U-(13)C]ALA. The subje"
+        },
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × FADS2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23221573/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 23221573",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/23221573/"
+        }
+       },
+       {
+        "pmid": "34543890",
+        "doi": "10.1016/j.clnu.2021.08.026",
+        "title": "Maternal FADS2 single nucleotide polymorphism modified the impact of prenatal docosahexaenoic acid (DHA) supplementation on child neurodevelopment at 5 years: Follow-up of a randomized clinical trial.",
+        "journal": "Clin Nutr",
+        "year": "2021",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, N.I.H., Extramural",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × FADS2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34543890/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 34543890",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/34543890/"
+        }
+       },
+       {
+        "pmid": "33310680",
+        "doi": "10.1016/j.plefa.2020.102216",
+        "title": "Differences in erythrocyte phospholipid membrane long-chain polyunsaturated fatty acids and the prevalence of fatty acid desaturase genotype among African Americans and European Americans.",
+        "journal": "Prostaglandins Leukot Essent Fatty Acids",
+        "year": "2021",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Research Support, N.I.H., Extramural"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "733",
+         "snippet": " and European American populations. We included data from 1,733 individuals who participated in the Tennessee Color"
+        },
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × FADS2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33310680/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 33310680",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/33310680/"
+        }
+       }
+      ],
+      "humanInteraction": 5,
+      "query": "(omega-3 OR fish oil OR n-3 fatty acids OR eicosapentaenoic OR docosahexaenoic) AND (FADS2[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     },
+     {
+      "gene": "APOE",
+      "total": 145,
+      "trials": 29,
+      "reviews": 2,
+      "screened": [
+       {
+        "pmid": "30060980",
+        "doi": "10.1016/j.ophtha.2018.05.028",
+        "title": "Progression of Geographic Atrophy in Age-related Macular Degeneration: AREDS2 Report Number 16.",
+        "journal": "Ophthalmology",
+        "year": "2018",
+        "publicationTypes": [
+         "Clinical Trial, Phase III",
+         "Journal Article",
+         "Multicenter Study",
+         "Randomized Controlled Trial",
+         "Research Support, N.I.H., Intramural"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "411",
+         "snippet": "GA area over time. RESULTS: At baseline, 517 eyes (6.2%) of 411 participants (9.8%) had pre-existing GA (without neo"
+        },
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × APOE",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30060980/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 30060980",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/30060980/"
+        }
+       },
+       {
+        "pmid": "39088212",
+        "doi": "10.1001/jamanetworkopen.2024.26872",
+        "title": "ω-3 PUFA for Secondary Prevention of White Matter Lesions and Neuronal Integrity Breakdown in Older Adults: A Randomized Clinical Trial.",
+        "journal": "JAMA Netw Open",
+        "year": "2024",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't",
+         "Research Support, N.I.H., Extramural"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "102",
+         "snippet": "resenting neuronal integrity breakdown. RESULTS: A total of 102 participants (62 women [60.8%]; mean age, 81 years ["
+        },
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × APOE",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/39088212/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 39088212",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/39088212/"
+        }
+       },
+       {
+        "pmid": "35373862",
+        "doi": "10.1002/gps.5707",
+        "title": "The effects of docosahexaenoic acid supplementation on cognition and well-being in mild cognitive impairment: A 12-month randomised controlled trial.",
+        "journal": "Int J Geriatr Psychiatry",
+        "year": "2022",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "60",
+         "snippet": " pressure and APOE genotyping. RESULTS: The final analysis (n = 60) found no evidence of a treatment effec"
+        },
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × APOE",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35373862/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 35373862",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/35373862/"
+        }
+       },
+       {
+        "pmid": "38823349",
+        "doi": "10.1016/j.plefa.2024.102623",
+        "title": "APOE genotype, eicosapentaenoic acid (EPA) supplementation and n-3 highly unsaturated fatty acid (HUFA) levels in patients with multiple colorectal polyps: A secondary analysis of the seAFOod polyp prevention trial.",
+        "journal": "Prostaglandins Leukot Essent Fatty Acids",
+        "year": "2024",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "584",
+         "snippet": "OE genotype (based on polymorphisms rs429358 and rs7412) in 584 participants. RESULTS: Before treatment, APOE2/2 ind"
+        },
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × APOE",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38823349/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 38823349",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/38823349/"
+        }
+       },
+       {
+        "pmid": "27358067",
+        "doi": "10.1186/s13195-016-0194-x",
+        "title": "The effect of APOE genotype on the delivery of DHA to cerebrospinal fluid in Alzheimer's disease.",
+        "journal": "Alzheimers Res Ther",
+        "year": "2016",
+        "publicationTypes": [
+         "Journal Article",
+         "Multicenter Study",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't",
+         "Research Support, N.I.H., Extramural"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "15",
+         "snippet": "d the 18-month follow-up visit after allocation to placebo (n = 15) or DHA (n = 29). Plasma and CSF DHA le"
+        },
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × APOE",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27358067/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 27358067",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/27358067/"
+        }
+       },
+       {
+        "pmid": "10938022",
+        "doi": "10.1161/01.atv.20.8.1990",
+        "title": "ApoE polymorphism and fish oil supplementation in subjects with an atherogenic lipoprotein phenotype.",
+        "journal": "Arterioscler Thromb Vasc Biol",
+        "year": "2000",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × APOE",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/10938022/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 10938022",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/10938022/"
+        }
+       },
+       {
+        "pmid": "30407633",
+        "doi": "10.1002/lipd.12096",
+        "title": "Triacylglycerol-Lowering Effect of Docosahexaenoic Acid Is Not Influenced by Single-Nucleotide Polymorphisms Involved in Lipid Metabolism in Humans.",
+        "journal": "Lipids",
+        "year": "2018",
+        "publicationTypes": [
+         "Journal Article",
+         "Multicenter Study",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "129",
+         "snippet": "HOCO). In a randomized, crossover-controlled feeding trial, 129 subjects with metabolic syndrome received high-o"
+        },
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × APOE",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30407633/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 30407633",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/30407633/"
+        }
+       },
+       {
+        "pmid": "23631810",
+        "doi": "10.1017/S0007114513001268",
+        "title": "Disturbance in uniformly 13C-labelled DHA metabolism in elderly human subjects carrying the apoE ε4 allele.",
+        "journal": "Br J Nutr",
+        "year": "2013",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "omega3",
+        "query": "Omega-3 (fish oil) × APOE",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23631810/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 23631810",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/23631810/"
+        }
+       }
+      ],
+      "humanInteraction": 5,
+      "query": "(omega-3 OR fish oil OR n-3 fatty acids OR eicosapentaenoic OR docosahexaenoic) AND (APOE[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     }
+    ]
+   },
+   {
+    "id": "vitd",
+    "name": "Vitamin D",
+    "aliases": [
+     "vitamin D3",
+     "cholecalciferol",
+     "vitamin D2",
+     "ergocalciferol"
+    ],
+    "what": "Vitamin D helps the body absorb calcium. Skin makes it in sunlight, and it is also in oily fish, fortified foods and supplements.",
+    "general": [
+     {
+      "value": "No lower risk of cancer or heart disease in a large trial",
+      "quote": "Supplementation with vitamin D was not associated with a lower risk of either of the primary end points.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 30415629",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/30415629/"
+      },
+      "citation": "Manson et al., N Engl J Med 2019"
+     },
+     {
+      "value": "Vitamin D3 seemed to lower deaths in older people",
+      "quote": "Vitamin D3 seemed to decrease mortality in elderly people living independently or in institutional care.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 24414552",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/24414552/"
+      },
+      "citation": "Bjelakovic et al., Cochrane Database Syst Rev 2014"
+     }
+    ],
+    "generalNote": "In a large trial, vitamin D supplements did not lower the risk of cancer or heart disease. A review of trials found vitamin D3 seemed to lower deaths in older people living independently or in care.",
+    "safety": {
+     "upperLimit": {
+      "value": "100 μg a day for adults and teens aged 11–17",
+      "quote": "A UL of 100 μg vitamin D equivalents (VDE)/day is established for adults (including pregnant and lactating women) and for adolescents aged 11-17 years",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 37560437",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/37560437/"
+      },
+      "citation": "EFSA Panel on Nutrition, Novel Foods and FoodAllergens (NDA) et al., EFSA J 2023"
+     },
+     "cautions": [
+      {
+       "value": "Taken with calcium, raised kidney-stone risk",
+       "quote": "Vitamin D3 combined with calcium increased nephrolithiasis.",
+       "source": {
+        "source": "PubMed",
+        "version": "PMID 24414552",
+        "retrievedAt": "2026-10-06",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24414552/"
+       },
+       "citation": "Bjelakovic et al., Cochrane Database Syst Rev 2014"
+      }
+     ]
+    },
+    "genes": [
+     "vitd"
+    ],
+    "marketed": [
+     "rs1544410",
+     "rs731236"
+    ],
+    "interventions": [
+     "vitamin-d-supplement"
+    ],
+    "map": [
+     {
+      "gene": "GC",
+      "total": 762,
+      "trials": 28,
+      "reviews": 28,
+      "screened": [
+       {
+        "pmid": "24740207",
+        "doi": "10.3945/ajcn.113.080309",
+        "title": "Genome-wide association study of circulating vitamin D-binding protein.",
+        "journal": "Am J Clin Nutr",
+        "year": "2014",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, N.I.H., Extramural",
+         "Research Support, N.I.H., Intramural"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "1380",
+         "snippet": "IGN: We conducted a genome-wide association study (GWAS) of 1380 men through linear regression of single-nuc"
+        },
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × GC",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24740207/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 24740207",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/24740207/"
+        }
+       },
+       {
+        "pmid": "24447085",
+        "doi": "10.1111/cea.12247",
+        "title": "Vitamin D-binding protein haplotype is associated with hospitalization for RSV bronchiolitis.",
+        "journal": "Clin Exp Allergy",
+        "year": "2014",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, N.I.H., Extramural",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × GC",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24447085/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 24447085",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/24447085/"
+        }
+       },
+       {
+        "pmid": "26568368",
+        "doi": "10.1017/S0007114515004353",
+        "title": "A prospective study of plasma 25-hydroxyvitamin D concentration and prostate cancer risk.",
+        "journal": "Br J Nutr",
+        "year": "2016",
+        "publicationTypes": [
+         "Controlled Clinical Trial",
+         "Journal Article",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "observational",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × GC",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26568368/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 26568368",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/26568368/"
+        }
+       },
+       {
+        "pmid": "26209090",
+        "doi": "10.1007/s00345-015-1646-9",
+        "title": "Vitamin D and prostate cancer prognosis: a Mendelian randomization study.",
+        "journal": "World J Urol",
+        "year": "2016",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × GC",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26209090/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 26209090",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/26209090/"
+        }
+       },
+       {
+        "pmid": "27625044",
+        "doi": "10.1038/srep33202",
+        "title": "Genetically Low Vitamin D Levels, Bone Mineral Density, and Bone Metabolism Markers: a Mendelian Randomisation Study.",
+        "journal": "Sci Rep",
+        "year": "2016",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × GC",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27625044/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 27625044",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/27625044/"
+        }
+       },
+       {
+        "pmid": "25281353",
+        "doi": "10.1016/S2213-8587(14)70184-6",
+        "title": "Association between circulating 25-hydroxyvitamin D and incident type 2 diabetes: a mendelian randomisation study.",
+        "journal": "Lancet Diabetes Endocrinol",
+        "year": "2015",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × GC",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25281353/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 25281353",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/25281353/"
+        }
+       },
+       {
+        "pmid": "22673963",
+        "doi": "10.1007/s00439-012-1185-z",
+        "title": "Genome-wide association analysis of circulating vitamin D levels in children with asthma.",
+        "journal": "Hum Genet",
+        "year": "2012",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Multicenter Study",
+         "Research Support, N.I.H., Extramural"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × GC",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22673963/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 22673963",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/22673963/"
+        }
+       },
+       {
+        "pmid": "29196501",
+        "doi": "10.1096/fj.201700992R",
+        "title": "Vitamin D binding protein rs7041 genotype alters vitamin D metabolism in pregnant women.",
+        "journal": "FASEB J",
+        "year": "2018",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Research Support, N.I.H., Extramural",
+         "Research Support, Non-U.S. Gov't",
+         "Research Support, U.S. Gov't, Non-P.H.S."
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "26",
+         "snippet": "41 on vitamin D biomarkers among third-trimester pregnant ( n = 26), lactating ( n = 28), and nonpregnant/"
+        },
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × GC",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29196501/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 29196501",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/29196501/"
+        }
+       }
+      ],
+      "humanInteraction": 2,
+      "query": "(vitamin D OR cholecalciferol OR ergocalciferol) AND (GC[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     },
+     {
+      "gene": "VDR",
+      "total": 3231,
+      "trials": 113,
+      "reviews": 312,
+      "screened": [
+       {
+        "pmid": "10457274",
+        "doi": "10.1359/jbmr.1999.14.8.1411",
+        "title": "Genetic markers, bone mineral density, and serum osteocalcin levels.",
+        "journal": "J Bone Miner Res",
+        "year": "1999",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × VDR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/10457274/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 10457274",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/10457274/"
+        }
+       },
+       {
+        "pmid": "15848611",
+        "doi": "10.1016/j.transproceed.2005.01.048",
+        "title": "Influence of vitamin D receptor gene polymorphisms on secondary hyperparathyroidism and bone density after kidney transplantation.",
+        "journal": "Transplant Proc",
+        "year": "2005",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Controlled Clinical Trial",
+         "Journal Article"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "67",
+         "snippet": "genotype on the PTH level and bone mineral density (BMD) in 67 patients, including 45 immunosuppressed with cyc"
+        },
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × VDR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/15848611/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 15848611",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/15848611/"
+        }
+       },
+       {
+        "pmid": "22923289",
+        "doi": "10.1007/s00223-012-9638-x",
+        "title": "Skeletal effects of vitamin D supplementation in postmenopausal black women.",
+        "journal": "Calcif Tissue Int",
+        "year": "2012",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, N.I.H., Extramural"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "103",
+         "snippet": "menopausal black women with serum 25(OH)D levels <20 ng/mL (n = 103). Measurements of 25(OH)D, PTH, and bon"
+        },
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × VDR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22923289/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 22923289",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/22923289/"
+        }
+       },
+       {
+        "pmid": "38483248",
+        "doi": "10.1111/jdv.19959",
+        "title": "Effect of weekly vitamin D supplementation on the severity of atopic dermatitis and type 2 immunity biomarkers in children: A randomized controlled trial.",
+        "journal": "J Eur Acad Dermatol Venereol",
+        "year": "2024",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "101",
+         "snippet": "ouble-blind, placebo-controlled trial. We randomly assigned 101 children with AD to weekly oral vitamin D3 (VD3)"
+        },
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × VDR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38483248/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 38483248",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/38483248/"
+        }
+       },
+       {
+        "pmid": "15883634",
+        "doi": "10.1359/JBMR.050114",
+        "title": "Vitamin D receptor Fok1 polymorphisms affect calcium absorption, kinetics, and bone mineralization rates during puberty.",
+        "journal": "J Bone Miner Res",
+        "year": "2005",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, N.I.H., Extramural",
+         "Research Support, U.S. Gov't, Non-P.H.S.",
+         "Research Support, U.S. Gov't, P.H.S."
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "99",
+         "snippet": "f pubertal adolescents. MATERIALS AND METHODS: Adolescents (n = 99) received comprehensive stable isotope "
+        },
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × VDR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/15883634/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 15883634",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/15883634/"
+        }
+       },
+       {
+        "pmid": "16604479",
+        "doi": null,
+        "title": "Association of bone metabolism related genes polymorphisms with the effect of raloxifene hydrochloride on bone mineral density and bone turnover markers in postmenopausal women with osteoporosis.",
+        "journal": "Zhonghua Yi Xue Yi Chuan Xue Za Zhi",
+        "year": "2006",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "34",
+         "snippet": "ity aged 47-74 years were randomly divided into 2 groups of 34 women: RLX group (60 mg were given daily for "
+        },
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × VDR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/16604479/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 16604479",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/16604479/"
+        }
+       },
+       {
+        "pmid": "27018192",
+        "doi": "10.1111/ijlh.12480",
+        "title": "Role of vitamin D receptor gene polymorphisms in aplastic anemia: a case-control study from China.",
+        "journal": "Int J Lab Hematol",
+        "year": "2016",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article"
+        ],
+        "design": "observational",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × VDR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27018192/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 27018192",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/27018192/"
+        }
+       },
+       {
+        "pmid": "10599715",
+        "doi": "10.1210/jcem.84.12.6183",
+        "title": "Vitamin D supplementation during infancy is associated with higher bone mineral mass in prepubertal girls.",
+        "journal": "J Clin Endocrinol Metab",
+        "year": "1999",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "91",
+         "snippet": "olymorphisms (BsmI) were also determined. The supplemented (n = 91) and unsupplemented (n = 15) groups wer"
+        },
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × VDR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/10599715/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 10599715",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/10599715/"
+        }
+       }
+      ],
+      "humanInteraction": 4,
+      "query": "(vitamin D OR cholecalciferol OR ergocalciferol) AND (VDR[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     },
+     {
+      "gene": "CYP2R1",
+      "total": 346,
+      "trials": 19,
+      "reviews": 20,
+      "screened": [
+       {
+        "pmid": "25281353",
+        "doi": "10.1016/S2213-8587(14)70184-6",
+        "title": "Association between circulating 25-hydroxyvitamin D and incident type 2 diabetes: a mendelian randomisation study.",
+        "journal": "Lancet Diabetes Endocrinol",
+        "year": "2015",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × CYP2R1",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25281353/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 25281353",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/25281353/"
+        }
+       },
+       {
+        "pmid": "22673963",
+        "doi": "10.1007/s00439-012-1185-z",
+        "title": "Genome-wide association analysis of circulating vitamin D levels in children with asthma.",
+        "journal": "Hum Genet",
+        "year": "2012",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Multicenter Study",
+         "Research Support, N.I.H., Extramural"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × CYP2R1",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22673963/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 22673963",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/22673963/"
+        }
+       },
+       {
+        "pmid": "28575224",
+        "doi": "10.1210/jc.2017-00682",
+        "title": "Response to Antenatal Cholecalciferol Supplementation Is Associated With Common Vitamin D-Related Genetic Variants.",
+        "journal": "J Clin Endocrinol Metab",
+        "year": "2017",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "682",
+         "snippet": "ETTING: Hospital antenatal clinics. PARTICIPANTS: In total, 682 women of white ethnicity (351 placebo, 331 ch"
+        },
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × CYP2R1",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28575224/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 28575224",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/28575224/"
+        }
+       },
+       {
+        "pmid": "27625044",
+        "doi": "10.1038/srep33202",
+        "title": "Genetically Low Vitamin D Levels, Bone Mineral Density, and Bone Metabolism Markers: a Mendelian Randomisation Study.",
+        "journal": "Sci Rep",
+        "year": "2016",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × CYP2R1",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27625044/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 27625044",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/27625044/"
+        }
+       },
+       {
+        "pmid": "24694335",
+        "doi": "10.1210/jc.2013-4101",
+        "title": "Environmental, personal, and genetic determinants of response to vitamin D supplementation in older adults.",
+        "journal": "J Clin Endocrinol Metab",
+        "year": "2014",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "644",
+         "snippet": "used data from a pilot randomized controlled trial in which 644 adults aged 60 to 84 years were randomly assig"
+        },
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × CYP2R1",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24694335/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 24694335",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/24694335/"
+        }
+       },
+       {
+        "pmid": "27473187",
+        "doi": "10.1007/s00198-016-3713-5",
+        "title": "CYP2R1 polymorphisms are important modulators of circulating 25-hydroxyvitamin D levels in elderly females with vitamin insufficiency, but not of the response to vitamin D supplementation.",
+        "journal": "Osteoporos Int",
+        "year": "2017",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "96",
+         "snippet": "or a dose equivalent to 3750 IU daily), in a cohort of 218 (96 men and 122 women) Lebanese elderly overwei"
+        },
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × CYP2R1",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27473187/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 27473187",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/27473187/"
+        }
+       },
+       {
+        "pmid": "27978548",
+        "doi": "10.1001/jamaoncol.2016.5917",
+        "title": "Vitamin D Receptor Genotype, Vitamin D3 Supplementation, and Risk of Colorectal Adenomas: A Randomized Clinical Trial.",
+        "journal": "JAMA Oncol",
+        "year": "2017",
+        "publicationTypes": [
+         "Journal Article",
+         "Multicenter Study",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "2259",
+         "snippet": "ined 41 candidate single-nucleotide polymorphisms (SNPs) in 2259 participants in a randomized, double-blind, placebo-"
+        },
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × CYP2R1",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27978548/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 27978548",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/27978548/"
+        }
+       },
+       {
+        "pmid": "28079136",
+        "doi": "10.1038/srep40593",
+        "title": "SNP rs11185644 of RXRA gene is identified for dose-response variability to vitamin D3 supplementation: a randomized clinical trial.",
+        "journal": "Sci Rep",
+        "year": "2017",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, N.I.H., Extramural",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "vitd",
+        "query": "Vitamin D × CYP2R1",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28079136/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 28079136",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/28079136/"
+        }
+       }
+      ],
+      "humanInteraction": 2,
+      "query": "(vitamin D OR cholecalciferol OR ergocalciferol) AND (CYP2R1[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     }
+    ]
+   },
+   {
+    "id": "folate",
+    "name": "Folic acid (folate)",
+    "aliases": [
+     "folate",
+     "methylfolate",
+     "5-MTHF",
+     "L-methylfolate"
+    ],
+    "what": "Folate is a B vitamin in leafy greens and beans. Folic acid is the form used in supplements and fortified foods.",
+    "general": [
+     {
+      "value": "Prevents neural tube defects when taken around conception",
+      "quote": "Folic acid, alone or in combination with vitamins and minerals, prevents NTDs, but does not have a clear effect on other birth defects.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 26662928",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/26662928/"
+      },
+      "citation": "De-Regil et al., Cochrane Database Syst Rev 2015"
+     },
+     {
+      "value": "The benefit held at 400 µg a day or more",
+      "quote": "Subgroup analyses suggest that the positive effect of folic acid on NTD incidence and recurrence is not affected by the explored daily folic acid dosage (400 µg (0.4 mg) or higher)",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 26662928",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/26662928/"
+      },
+      "citation": "De-Regil et al., Cochrane Database Syst Rev 2015"
+     }
+    ],
+    "generalNote": "Taken around conception, folic acid prevents neural tube defects (serious birth defects of the brain and spine), and the benefit held at 400 µg a day or more. It did not have a clear effect on other birth defects.",
+    "safety": {
+     "upperLimit": {
+      "value": "1,000 μg a day of folic acid for adults",
+      "quote": "1000 μg/day for adults, including pregnant and lactating women",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 37965303",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/37965303/"
+      },
+      "citation": "EFSA Panel on Nutrition, Novel Foods and Food Allergens (NDA Panel) et al., EFSA J 2023"
+     },
+     "cautions": [
+      {
+       "value": "High doses can let B12 deficiency harm the nerves unnoticed",
+       "quote": "The risk of progression of neurological symptoms in cobalamin-deficient patients is considered as the critical effect to establish an UL for folic acid.",
+       "source": {
+        "source": "PubMed",
+        "version": "PMID 37965303",
+        "retrievedAt": "2026-10-06",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37965303/"
+       },
+       "citation": "EFSA Panel on Nutrition, Novel Foods and Food Allergens (NDA Panel) et al., EFSA J 2023"
+      }
+     ]
+    },
+    "genes": [
+     "mthfr"
+    ],
+    "marketed": [
+     "rs1801131"
+    ],
+    "interventions": [
+     "folate-homocysteine",
+     "riboflavin-mthfr-tt"
+    ],
+    "map": [
+     {
+      "gene": "MTHFR",
+      "total": 2956,
+      "trials": 157,
+      "reviews": 174,
+      "screened": [
+       {
+        "pmid": "40362912",
+        "doi": "10.3390/nu17091602",
+        "title": "Safety and Efficacy of High-Dose Folinic Acid in Children with Autism: The Impact of Folate Metabolism Gene Polymorphisms.",
+        "journal": "Nutrients",
+        "year": "2025",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "50",
+         "snippet": "ldren with ASD, randomly assigned to an intervention group (n = 50) or a control group (n = 30). The inter"
+        },
+        "flags": [],
+        "topic": "folate",
+        "query": "Folic acid (folate) × MTHFR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40362912/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 40362912",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/40362912/"
+        }
+       },
+       {
+        "pmid": "25771069",
+        "doi": "10.1001/jama.2015.2274",
+        "title": "Efficacy of folic acid therapy in primary prevention of stroke among adults with hypertension in China: the CSPPT randomized clinical trial.",
+        "journal": "JAMA",
+        "year": "2015",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "10,348",
+         "snippet": "nation containing enalapril, 10 mg, and folic acid, 0.8 mg (n = 10,348) or a tablet containing enalapril, 10 m"
+        },
+        "flags": [],
+        "topic": "folate",
+        "query": "Folic acid (folate) × MTHFR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25771069/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 25771069",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/25771069/"
+        }
+       },
+       {
+        "pmid": "30264170",
+        "doi": "10.1007/s00726-018-2655-y",
+        "title": "Rehydration during exercise prevents the increase of homocysteine concentrations.",
+        "journal": "Amino Acids",
+        "year": "2019",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "folate",
+        "query": "Folic acid (folate) × MTHFR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30264170/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 30264170",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/30264170/"
+        }
+       },
+       {
+        "pmid": "11386854",
+        "doi": "10.1006/mgme.2001.3187",
+        "title": "A novel neurodevelopmental syndrome responsive to 5-hydroxytryptophan and carbidopa.",
+        "journal": "Mol Genet Metab",
+        "year": "2001",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Controlled Clinical Trial",
+         "Journal Article",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "folate",
+        "query": "Folic acid (folate) × MTHFR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/11386854/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 11386854",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/11386854/"
+        }
+       },
+       {
+        "pmid": "31395900",
+        "doi": "10.1038/s41598-019-47627-1",
+        "title": "Sex-Related Differences in Impact on Safety of Pharmacogenetic Profile for Colon Cancer Patients Treated with FOLFOX-4 or XELOX Adjuvant Chemotherapy.",
+        "journal": "Sci Rep",
+        "year": "2019",
+        "publicationTypes": [
+         "Clinical Trial, Phase III",
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't",
+         "Equivalence Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "218",
+         "snippet": "XELOX adjuvant chemotherapy. During this post-hoc analysis, 218 women and 294 men were genotyped for 17 polym"
+        },
+        "flags": [],
+        "topic": "folate",
+        "query": "Folic acid (folate) × MTHFR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31395900/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 31395900",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/31395900/"
+        }
+       },
+       {
+        "pmid": "26559681",
+        "doi": "10.1007/s40620-015-0235-8",
+        "title": "The C677T MTHFR genotypes influence the efficacy of B9 and B12 vitamins supplementation to lowering plasma total homocysteine in hemodialysis.",
+        "journal": "J Nephrol",
+        "year": "2016",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "folate",
+        "query": "Folic acid (folate) × MTHFR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26559681/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 26559681",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/26559681/"
+        }
+       },
+       {
+        "pmid": "25598270",
+        "doi": "10.1111/head.12490",
+        "title": "Effects of dietary folate intake on migraine disability and frequency.",
+        "journal": "Headache",
+        "year": "2015",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "folate",
+        "query": "Folic acid (folate) × MTHFR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25598270/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 25598270",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/25598270/"
+        }
+       },
+       {
+        "pmid": "20177420",
+        "doi": "10.1038/tpj.2010.10",
+        "title": "Prediction of irinotecan and 5-fluorouracil toxicity and response in patients with advanced colorectal cancer.",
+        "journal": "Pharmacogenomics J",
+        "year": "2011",
+        "publicationTypes": [
+         "Journal Article",
+         "Multicenter Study",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "folate",
+        "query": "Folic acid (folate) × MTHFR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/20177420/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 20177420",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/20177420/"
+        }
+       }
+      ],
+      "humanInteraction": 2,
+      "query": "(folic acid OR folate OR methylfolate OR methyltetrahydrofolate) AND (MTHFR[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     },
+     {
+      "gene": "MTRR",
+      "total": 493,
+      "trials": 14,
+      "reviews": 37,
+      "screened": [
+       {
+        "pmid": "40362912",
+        "doi": "10.3390/nu17091602",
+        "title": "Safety and Efficacy of High-Dose Folinic Acid in Children with Autism: The Impact of Folate Metabolism Gene Polymorphisms.",
+        "journal": "Nutrients",
+        "year": "2025",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "50",
+         "snippet": "ldren with ASD, randomly assigned to an intervention group (n = 50) or a control group (n = 30). The inter"
+        },
+        "flags": [],
+        "topic": "folate",
+        "query": "Folic acid (folate) × MTRR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40362912/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 40362912",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/40362912/"
+        }
+       },
+       {
+        "pmid": "20099281",
+        "doi": "10.1002/ijc.25190",
+        "title": "Blood leukocyte DNA hypomethylation and gastric cancer risk in a high-risk Polish population.",
+        "journal": "Int J Cancer",
+        "year": "2010",
+        "publicationTypes": [
+         "Comparative Study",
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, N.I.H., Intramural"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "folate",
+        "query": "Folic acid (folate) × MTRR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/20099281/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 20099281",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/20099281/"
+        }
+       },
+       {
+        "pmid": "22057956",
+        "doi": "10.4238/2011.October.25.7",
+        "title": "A66G and C524T polymorphisms of the methionine synthase reductase gene are associated with congenital heart defects in the Chinese Han population.",
+        "journal": "Genet Mol Res",
+        "year": "2011",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "observational",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "599",
+         "snippet": "524T) of the MTRR gene are associated with CHDs. A total of 599 children with CHDs and 672 healthy children were"
+        },
+        "flags": [],
+        "topic": "folate",
+        "query": "Folic acid (folate) × MTRR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22057956/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 22057956",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/22057956/"
+        }
+       },
+       {
+        "pmid": "38892484",
+        "doi": "10.3390/nu16111550",
+        "title": "Effect of Methylfolate, Pyridoxal-5'-Phosphate, and Methylcobalamin (SolowaysTM) Supplementation on Homocysteine and Low-Density Lipoprotein Cholesterol Levels in Patients with Methylenetetrahydrofolate Reductase, Methionine Synthase, and Methionine Synthase Reductase Polymorphisms: A Randomized Controlled Trial.",
+        "journal": "Nutrients",
+        "year": "2024",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "54",
+         "snippet": "t. In a randomized, double-blind, placebo-controlled trial, 54 patients aged 40-75 with elevated homocysteine a"
+        },
+        "flags": [],
+        "topic": "folate",
+        "query": "Folic acid (folate) × MTRR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38892484/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 38892484",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/38892484/"
+        }
+       },
+       {
+        "pmid": "26266420",
+        "doi": "10.3390/nu7085303",
+        "title": "Homocysteine Metabolism Gene Polymorphisms (MTHFR C677T, MTHFR A1298C, MTR A2756G and MTRR A66G) Jointly Elevate the Risk of Folate Deficiency.",
+        "journal": "Nutrients",
+        "year": "2015",
+        "publicationTypes": [
+         "Journal Article",
+         "Multicenter Study",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "480",
+         "snippet": "deficiency in a Chinese hypertensive population. A total of 480 subjects aged 28-75 were enrolled in this study "
+        },
+        "flags": [],
+        "topic": "folate",
+        "query": "Folic acid (folate) × MTRR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26266420/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 26266420",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/26266420/"
+        }
+       },
+       {
+        "pmid": "29293099",
+        "doi": "10.1097/PAI.0000000000000512",
+        "title": "Analysis of MTR and MTRR Gene Polymorphisms in Chinese Patients With Ventricular Septal Defect.",
+        "journal": "Appl Immunohistochem Mol Morphol",
+        "year": "2018",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "183",
+         "snippet": "524T) of the MTRR gene are associated with VSDs. A total of 183 children with VSDs and 201 healthy children were"
+        },
+        "flags": [],
+        "topic": "folate",
+        "query": "Folic acid (folate) × MTRR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29293099/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 29293099",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/29293099/"
+        }
+       },
+       {
+        "pmid": "19843671",
+        "doi": "10.1158/1055-9965.EPI-09-0289",
+        "title": "Genetic variants of methyl metabolizing enzymes and epigenetic regulators: associations with promoter CpG island hypermethylation in colorectal cancer.",
+        "journal": "Cancer Epidemiol Biomarkers Prev",
+        "year": "2009",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "120,852",
+         "snippet": "members of the Netherlands Cohort Study on diet and cancer (n = 120,852). Men with the MTHFR 677TT genotype wer"
+        },
+        "flags": [],
+        "topic": "folate",
+        "query": "Folic acid (folate) × MTRR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19843671/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 19843671",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/19843671/"
+        }
+       },
+       {
+        "pmid": "28397471",
+        "doi": "10.7754/Clin.Lab.2016.160918",
+        "title": "Interactions of Methylenetetrahydrofolate Reductase Gene Polymorphisms, Folate, and Homocysteine on Blood Pressure in a Chinese Hypertensive Population.",
+        "journal": "Clin Lab",
+        "year": "2017",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "folate",
+        "query": "Folic acid (folate) × MTRR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28397471/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 28397471",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/28397471/"
+        }
+       }
+      ],
+      "humanInteraction": 3,
+      "query": "(folic acid OR folate OR methylfolate OR methyltetrahydrofolate) AND (MTRR[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     }
+    ]
+   },
+   {
+    "id": "b12",
+    "name": "Vitamin B12",
+    "aliases": [
+     "cobalamin",
+     "cyanocobalamin",
+     "methylcobalamin"
+    ],
+    "what": "Vitamin B12 comes from animal foods and fortified foods. Deficiency is common, and becomes more common with age.",
+    "general": [
+     {
+      "value": "Deficiency is common and rises with age",
+      "quote": "Vitamin B12 deficiency is common, and the incidence increases with age.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 29543316",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/29543316/"
+      },
+      "citation": "Wang et al., Cochrane Database Syst Rev 2018"
+     },
+     {
+      "value": "For people who are deficient, tablets work about as well as injections",
+      "quote": "Low quality evidence shows oral and IM vitamin B12 having similar effects in terms of normalising serum vitamin B12 levels, but oral treatment costs less.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 29543316",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/29543316/"
+      },
+      "citation": "Wang et al., Cochrane Database Syst Rev 2018"
+     }
+    ],
+    "generalNote": "For people with a deficiency, B12 tablets brought blood levels back to normal about as well as injections, though the evidence is low quality. Whether you are low is something a blood test shows.",
+    "safety": {
+     "upperLimit": null,
+     "cautions": []
+    },
+    "genes": [
+     "b12"
+    ],
+    "marketed": [
+     "rs1801394"
+    ],
+    "interventions": [],
+    "map": [
+     {
+      "gene": "FUT2",
+      "total": 27,
+      "trials": 0,
+      "reviews": 4,
+      "screened": [],
+      "humanInteraction": 0,
+      "query": "(vitamin B12 OR cobalamin OR cyanocobalamin OR methylcobalamin) AND (FUT2[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     },
+     {
+      "gene": "MTRR",
+      "total": 114,
+      "trials": 2,
+      "reviews": 5,
+      "screened": [
+       {
+        "pmid": "38892484",
+        "doi": "10.3390/nu16111550",
+        "title": "Effect of Methylfolate, Pyridoxal-5'-Phosphate, and Methylcobalamin (SolowaysTM) Supplementation on Homocysteine and Low-Density Lipoprotein Cholesterol Levels in Patients with Methylenetetrahydrofolate Reductase, Methionine Synthase, and Methionine Synthase Reductase Polymorphisms: A Randomized Controlled Trial.",
+        "journal": "Nutrients",
+        "year": "2024",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "54",
+         "snippet": "t. In a randomized, double-blind, placebo-controlled trial, 54 patients aged 40-75 with elevated homocysteine a"
+        },
+        "flags": [],
+        "topic": "b12",
+        "query": "Vitamin B12 × MTRR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38892484/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 38892484",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/38892484/"
+        }
+       },
+       {
+        "pmid": "22926161",
+        "doi": "10.1097/FPC.0b013e3283576b6b",
+        "title": "Genotypes of the MTHFR C677T and MTRR A66G genes act independently to reduce migraine disability in response to vitamin supplementation.",
+        "journal": "Pharmacogenet Genomics",
+        "year": "2012",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "b12",
+        "query": "Vitamin B12 × MTRR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22926161/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 22926161",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/22926161/"
+        }
+       }
+      ],
+      "humanInteraction": 1,
+      "query": "(vitamin B12 OR cobalamin OR cyanocobalamin OR methylcobalamin) AND (MTRR[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     },
+     {
+      "gene": "TCN2",
+      "total": 83,
+      "trials": 2,
+      "reviews": 3,
+      "screened": [
+       {
+        "pmid": "21770021",
+        "doi": "10.1002/bdra.20841",
+        "title": "Maternal one-carbon metabolism, MTHFR and TCN2 genotypes and neural tube defects in India.",
+        "journal": "Birth Defects Res A Clin Mol Teratol",
+        "year": "2011",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Multicenter Study",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "observational",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "318",
+         "snippet": "and 236+724A>G) and transcobalamin (TCN2, 776C>G) genes, in 318 women with NTD-affected offspring (cases) and"
+        },
+        "flags": [],
+        "topic": "b12",
+        "query": "Vitamin B12 × TCN2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21770021/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 21770021",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/21770021/"
+        }
+       },
+       {
+        "pmid": "21865561",
+        "doi": "10.3945/jn.111.141960",
+        "title": "Transcobalamin polymorphism 67A->G, but not 776C->G, affects serum holotranscobalamin in a cohort of healthy middle-aged men and women.",
+        "journal": "J Nutr",
+        "year": "2011",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "observational",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "2411",
+         "snippet": " methylmalonic acid (MMA), and total homocysteine (tHcy) in 2411 individuals (50-64 y) that had been selected on the"
+        },
+        "flags": [],
+        "topic": "b12",
+        "query": "Vitamin B12 × TCN2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21865561/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 21865561",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/21865561/"
+        }
+       }
+      ],
+      "humanInteraction": 0,
+      "query": "(vitamin B12 OR cobalamin OR cyanocobalamin OR methylcobalamin) AND (TCN2[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     }
+    ]
+   },
+   {
+    "id": "iron",
+    "name": "Iron",
+    "aliases": [
+     "ferrous sulfate",
+     "iron supplement"
+    ],
+    "what": "Iron carries oxygen in red blood cells. It is in meat, beans and fortified cereals, and in supplements.",
+    "general": [
+     {
+      "value": "In menstruating women: less anaemia and less tiredness",
+      "quote": "Daily iron supplementation effectively reduces the prevalence of anaemia and iron deficiency, raises haemoglobin and iron stores, improves exercise performance and reduces symptomatic fatigue.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 27087396",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/27087396/"
+      },
+      "citation": "Low et al., Cochrane Database Syst Rev 2016"
+     },
+     {
+      "value": "More stomach side effects",
+      "quote": "These benefits come at the expense of increased gastrointestinal symptomatic side effects.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 27087396",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/27087396/"
+      },
+      "citation": "Low et al., Cochrane Database Syst Rev 2016"
+     }
+    ],
+    "generalNote": "In menstruating women, daily iron reduced anaemia and iron deficiency, improved exercise performance and reduced tiredness, at the cost of more stomach side effects.",
+    "safety": {
+     "upperLimit": {
+      "value": "No upper limit could be set; 40 mg a day is a safe level for adults",
+      "quote": "a safe level of intake for iron of 40 mg/day for adults (including pregnant and lactating women) was established",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 38868106",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/38868106/"
+      },
+      "citation": "EFSA Panel on Nutrition, Novel Foods and Food Allergens (NDA) et al., EFSA J 2024"
+     },
+     "cautions": [
+      {
+       "value": "Iron overload damages organs",
+       "quote": "It is established that systemic iron overload leads to organ toxicity, but no UL could be established.",
+       "source": {
+        "source": "PubMed",
+        "version": "PMID 38868106",
+        "retrievedAt": "2026-10-06",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38868106/"
+       },
+       "citation": "EFSA Panel on Nutrition, Novel Foods and Food Allergens (NDA) et al., EFSA J 2024"
+      }
+     ]
+    },
+    "genes": [
+     "iron"
+    ],
+    "marketed": [],
+    "interventions": [
+     "iron-panel-discussion"
+    ],
+    "map": [
+     {
+      "gene": "HFE",
+      "total": 84,
+      "trials": 4,
+      "reviews": 2,
+      "screened": [
+       {
+        "pmid": "35320401",
+        "doi": "10.1007/s00394-022-02829-8",
+        "title": "The effect of a natural polyphenol supplement on iron absorption in adults with hereditary hemochromatosis.",
+        "journal": "Eur J Nutr",
+        "year": "2022",
+        "publicationTypes": [
+         "Journal Article",
+         "Multicenter Study",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "14",
+         "snippet": "xtrinsically labelled test meal and test drink in patients (n = 14) with HH homozygous for the p.C282Y var"
+        },
+        "flags": [],
+        "topic": "iron",
+        "query": "Iron × HFE",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35320401/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 35320401",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/35320401/"
+        }
+       },
+       {
+        "pmid": "19874572",
+        "doi": "10.1111/j.1423-0410.2009.01270.x",
+        "title": "Effect of iron supplementation on iron status during the first week after blood donation.",
+        "journal": "Vox Sang",
+        "year": "2010",
+        "publicationTypes": [
+         "Comparative Study",
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "199",
+         "snippet": "pared to HFE wild types. METHODS: Subjects of both genders (199 women, 200 men) were randomised to receive ir"
+        },
+        "flags": [],
+        "topic": "iron",
+        "query": "Iron × HFE",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19874572/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 19874572",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/19874572/"
+        }
+       },
+       {
+        "pmid": "11505030",
+        "doi": null,
+        "title": "Effects of alcohol consumption on indices of iron stores and of iron stores on alcohol intake markers.",
+        "journal": "Alcohol Clin Exp Res",
+        "year": "2001",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Research Support, Non-U.S. Gov't",
+         "Research Support, U.S. Gov't, P.H.S.",
+         "Twin Study"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "iron",
+        "query": "Iron × HFE",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/11505030/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 11505030",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/11505030/"
+        }
+       },
+       {
+        "pmid": "34173816",
+        "doi": "10.1039/d1fo00482d",
+        "title": "Ilex paraguariensis (A. St.-Hil.) leaf infusion decreases iron absorption in patients with hereditary hemochromatosis: a randomized controlled crossover study.",
+        "journal": "Food Funct",
+        "year": "2021",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "iron",
+        "query": "Iron × HFE",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34173816/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 34173816",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/34173816/"
+        }
+       }
+      ],
+      "humanInteraction": 1,
+      "query": "(iron supplementation OR ferrous OR iron supplement OR iron intake) AND (HFE[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     },
+     {
+      "gene": "TMPRSS6",
+      "total": 21,
+      "trials": 1,
+      "reviews": 2,
+      "screened": [
+       {
+        "pmid": "31010126",
+        "doi": "10.3390/nu11040878",
+        "title": "The Association of TMPRSS6 Gene Polymorphism and Iron Intake with Iron Status among Under-Two-Year-Old Children in Lombok, Indonesia.",
+        "journal": "Nutrients",
+        "year": "2019",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "121",
+         "snippet": "4633) in East Lombok, Indonesia. Children aged 6-17 months (n = 121) were included in this study. The multi"
+        },
+        "flags": [],
+        "topic": "iron",
+        "query": "Iron × TMPRSS6",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31010126/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 31010126",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/31010126/"
+        }
+       }
+      ],
+      "humanInteraction": 0,
+      "query": "(iron supplementation OR ferrous OR iron supplement OR iron intake) AND (TMPRSS6[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     }
+    ]
+   },
+   {
+    "id": "vita",
+    "name": "Vitamin A and beta-carotene",
+    "aliases": [
+     "beta-carotene",
+     "retinol",
+     "vitamin A"
+    ],
+    "what": "Preformed vitamin A (retinol) comes from liver, dairy and supplements. Beta-carotene comes from orange and green vegetables, and the body turns some of it into vitamin A.",
+    "general": [
+     {
+      "value": "No support for antioxidant supplements to prevent disease",
+      "quote": "We found no evidence to support antioxidant supplements for primary or secondary prevention.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 22419320",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/22419320/"
+      },
+      "citation": "Bjelakovic et al., Cochrane Database Syst Rev 2012"
+     },
+     {
+      "value": "Beta-carotene supplements seemed to increase deaths",
+      "quote": "Beta-carotene and vitamin E seem to increase mortality, and so may higher doses of vitamin A.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 22419320",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/22419320/"
+      },
+      "citation": "Bjelakovic et al., Cochrane Database Syst Rev 2012"
+     }
+    ],
+    "generalNote": "A review of trials found no evidence that antioxidant supplements prevent disease. Beta-carotene supplements seemed to increase deaths, and so may higher doses of vitamin A.",
+    "safety": {
+     "upperLimit": {
+      "value": "3,000 μg a day of preformed vitamin A for adults",
+      "quote": "The Panel proposes to retain the UL for preformed vitamin A of 3000 μg RE/day for adults.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 38846679",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/38846679/"
+      },
+      "citation": "EFSA Panel on Nutrition, Novel Foods and Food Allergens (NDA) et al., EFSA J 2024"
+     },
+     "cautions": [
+      {
+       "value": "Too much preformed vitamin A can harm an unborn baby",
+       "quote": "Teratogenicity was selected as the critical effect on which to base the UL for preformed vitamin A.",
+       "source": {
+        "source": "PubMed",
+        "version": "PMID 38846679",
+        "retrievedAt": "2026-10-06",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38846679/"
+       },
+       "citation": "EFSA Panel on Nutrition, Novel Foods and Food Allergens (NDA) et al., EFSA J 2024"
+      }
+     ]
+    },
+    "genes": [
+     "carotene"
+    ],
+    "marketed": [
+     "rs7501331"
+    ],
+    "interventions": [],
+    "map": [
+     {
+      "gene": "BCO1",
+      "total": 29,
+      "trials": 1,
+      "reviews": 0,
+      "screened": [
+       {
+        "pmid": "38797482",
+        "doi": "10.1016/j.tjnut.2024.05.022",
+        "title": "Association of Candidate Single-Nucleotide Polymorphism Genotypes With Plasma and Skin Carotenoid Concentrations in Adults Provided a Lycopene-Rich Juice.",
+        "journal": "J Nutr",
+        "year": "2024",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, U.S. Gov't, Non-P.H.S."
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "80",
+         "snippet": "ETHODS: In this randomized, controlled trial, participants (n = 80) were provided with lycopene-rich veget"
+        },
+        "flags": [],
+        "topic": "vita",
+        "query": "Vitamin A and beta-carotene × BCO1",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38797482/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 38797482",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/38797482/"
+        }
+       }
+      ],
+      "humanInteraction": 1,
+      "query": "(beta-carotene OR vitamin A OR retinol) AND (BCO1[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     },
+     {
+      "gene": "BCMO1",
+      "total": 35,
+      "trials": 0,
+      "reviews": 1,
+      "screened": [],
+      "humanInteraction": 0,
+      "query": "(beta-carotene OR vitamin A OR retinol) AND (BCMO1[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     }
+    ]
+   },
+   {
+    "id": "caffeine",
+    "name": "Caffeine",
+    "aliases": [
+     "coffee",
+     "pre-workout"
+    ],
+    "what": "Caffeine is a stimulant in coffee, tea, energy drinks and many pre-workout supplements.",
+    "general": [
+     {
+      "value": "Improves exercise performance at 3–6 mg per kg",
+      "quote": "Caffeine has consistently been shown to improve exercise performance when consumed in doses of 3-6 mg/kg body mass.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 33388079",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/33388079/"
+      },
+      "citation": "Guest et al., J Int Soc Sports Nutr 2021"
+     },
+     {
+      "value": "Genes may explain some differences between people",
+      "quote": "Inter-individual differences in sport and exercise performance as well as adverse effects on sleep or feelings of anxiety following caffeine ingestion may be attributed to genetic variation associated with caffeine metabolism, and physical and psychological response.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 33388079",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/33388079/"
+      },
+      "citation": "Guest et al., J Int Soc Sports Nutr 2021"
+     }
+    ],
+    "generalNote": "Caffeine consistently improves exercise performance at 3–6 mg per kg of body weight. Some differences between people, including effects on sleep and anxiety, may come from genes that affect how caffeine is processed.",
+    "safety": {
+     "upperLimit": {
+      "value": "400 mg a day for most adults (FDA)",
+      "quote": "For most adults, the FDA has cited 400 milligrams* a day — that's about two to three 12-fluid-ounce cups of coffee — as an amount not generally associated with negative effects.",
+      "source": {
+       "source": "Web",
+       "version": "page",
+       "retrievedAt": "2026-09-23",
+       "url": "https://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much"
+      },
+      "citation": "Spilling the Beans: How Much Caffeine is Too Much? | FDA"
+     },
+     "cautions": [
+      {
+       "value": "Very high doses bring more side effects without more benefit",
+       "quote": "are associated with a high incidence of side-effects and do not seem to be required to elicit an ergogenic effect",
+       "source": {
+        "source": "PubMed",
+        "version": "PMID 33388079",
+        "retrievedAt": "2026-10-06",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33388079/"
+       },
+       "citation": "Guest et al., J Int Soc Sports Nutr 2021"
+      }
+     ]
+    },
+    "genes": [
+     "caffeine"
+    ],
+    "marketed": [
+     "rs5751876"
+    ],
+    "interventions": [
+     "caffeine-endurance"
+    ],
+    "map": [
+     {
+      "gene": "CYP1A2",
+      "total": 271,
+      "trials": 52,
+      "reviews": 15,
+      "screened": [
+       {
+        "pmid": "29509641",
+        "doi": "10.1249/MSS.0000000000001596",
+        "title": "Caffeine, CYP1A2 Genotype, and Endurance Performance in Athletes.",
+        "journal": "Med Sci Sports Exerc",
+        "year": "2018",
+        "publicationTypes": [
+         "Journal Article",
+         "Multicenter Study",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "101",
+         "snippet": "-km cycling time trial. METHODS: Competitive male athletes (n = 101; age = 25 ± 4 yr) completed the time tr"
+        },
+        "flags": [],
+        "topic": "caffeine",
+        "query": "Caffeine × CYP1A2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29509641/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 29509641",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/29509641/"
+        }
+       },
+       {
+        "pmid": "7893591",
+        "doi": "10.1111/j.1365-2125.1994.tb04385.x",
+        "title": "Clozapine disposition covaries with CYP1A2 activity determined by a caffeine test.",
+        "journal": "Br J Clin Pharmacol",
+        "year": "1994",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "caffeine",
+        "query": "Caffeine × CYP1A2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/7893591/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 7893591",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/7893591/"
+        }
+       },
+       {
+        "pmid": "15022032",
+        "doi": "10.1007/s00228-004-0734-3",
+        "title": "Salivary caffeine metabolic ratio in alcohol-dependent subjects.",
+        "journal": "Eur J Clin Pharmacol",
+        "year": "2004",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "caffeine",
+        "query": "Caffeine × CYP1A2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/15022032/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 15022032",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/15022032/"
+        }
+       },
+       {
+        "pmid": "14586384",
+        "doi": "10.1016/S0009-9236(03)00229-7",
+        "title": "Combined phenotypic assessment of cytochrome p450 1A2, 2C9, 2C19, 2D6, and 3A, N-acetyltransferase-2, and xanthine oxidase activities with the \"Cooperstown 5+1 cocktail\".",
+        "journal": "Clin Pharmacol Ther",
+        "year": "2003",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "caffeine",
+        "query": "Caffeine × CYP1A2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/14586384/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 14586384",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/14586384/"
+        }
+       },
+       {
+        "pmid": "26123704",
+        "doi": "10.1007/s40262-015-0294-y",
+        "title": "Effects of Cytochrome P450 Inhibition and Induction on the Phenotyping Metrics of the Basel Cocktail: A Randomized Crossover Study.",
+        "journal": "Clin Pharmacokinet",
+        "year": "2016",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "16",
+         "snippet": "6 (metoprolol), and CYP3A4 (midazolam) were administered to 16 subjects without pretreatment (baseline), after "
+        },
+        "flags": [],
+        "topic": "caffeine",
+        "query": "Caffeine × CYP1A2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26123704/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 26123704",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/26123704/"
+        }
+       },
+       {
+        "pmid": "34611052",
+        "doi": "10.1123/ijsnem.2021-0090",
+        "title": "CYP1A2 Genotype Polymorphism Influences the Effect of Caffeine on Anaerobic Performance in Trained Males.",
+        "journal": "Int J Sport Nutr Exerc Metab",
+        "year": "2022",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "caffeine",
+        "query": "Caffeine × CYP1A2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34611052/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 34611052",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/34611052/"
+        }
+       },
+       {
+        "pmid": "19593168",
+        "doi": "10.1097/JCP.0b013e3181acc372",
+        "title": "ABCB1 and cytochrome P450 polymorphisms: clinical pharmacogenetics of clozapine.",
+        "journal": "J Clin Psychopharmacol",
+        "year": "2009",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Multicenter Study"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "75",
+         "snippet": "the genetic factors influencing clozapine kinetics in vivo, 75 patients treated with clozapine were genotyped f"
+        },
+        "flags": [],
+        "topic": "caffeine",
+        "query": "Caffeine × CYP1A2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19593168/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 19593168",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/19593168/"
+        }
+       },
+       {
+        "pmid": "32538495",
+        "doi": "10.1111/sms.13749",
+        "title": "Caffeine improves various aspects of athletic performance in adolescents independent of their 163 C > A CYP1A2 genotypes.",
+        "journal": "Scand J Med Sci Sports",
+        "year": "2020",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "caffeine",
+        "query": "Caffeine × CYP1A2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32538495/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 32538495",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/32538495/"
+        }
+       }
+      ],
+      "humanInteraction": 4,
+      "query": "(caffeine OR coffee) AND (CYP1A2[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     },
+     {
+      "gene": "ADORA2A",
+      "total": 63,
+      "trials": 16,
+      "reviews": 5,
+      "screened": [
+       {
+        "pmid": "32168870",
+        "doi": "10.3390/nu12030741",
+        "title": "ADOR2A C Allele Carriers Exhibit Ergogenic Responses to Caffeine Supplementation.",
+        "journal": "Nutrients",
+        "year": "2020",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "caffeine",
+        "query": "Caffeine × ADORA2A",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32168870/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 32168870",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/32168870/"
+        }
+       },
+       {
+        "pmid": "33920292",
+        "doi": "10.3390/genes12040555",
+        "title": "Genetic Determinants of Neurobehavioral Responses to Caffeine Administration during Sleep Deprivation: A Randomized, Cross Over Study (NCT03859882).",
+        "journal": "Genes (Basel)",
+        "year": "2021",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "37",
+         "snippet": "ind and crossover total sleep deprivation (TSD) protocol in 37 subjects. In caffeine (2 × 2.5 mg/kg/24 h) or pl"
+        },
+        "flags": [],
+        "topic": "caffeine",
+        "query": "Caffeine × ADORA2A",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33920292/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 33920292",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/33920292/"
+        }
+       },
+       {
+        "pmid": "31324842",
+        "doi": "10.1038/s41598-019-46931-0",
+        "title": "Genetic Polymorphisms in ADORA2A and CYP1A2 Influence Caffeine's Effect on Postprandial Glycaemia.",
+        "journal": "Sci Rep",
+        "year": "2019",
+        "publicationTypes": [
+         "Comparative Study",
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, N.I.H., Extramural",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "caffeine",
+        "query": "Caffeine × ADORA2A",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31324842/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 31324842",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/31324842/"
+        }
+       },
+       {
+        "pmid": "22170367",
+        "doi": "10.3945/ajcn.111.018267",
+        "title": "Genetic determinants of blood pressure responses to caffeine drinking.",
+        "journal": "Am J Clin Nutr",
+        "year": "2012",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "caffeine",
+        "query": "Caffeine × ADORA2A",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22170367/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 22170367",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/22170367/"
+        }
+       },
+       {
+        "pmid": "33170731",
+        "doi": "10.1139/apnm-2020-0551",
+        "title": "Caffeine, exercise physiology, and time-trial performance: no effect of ADORA2A or CYP1A2 genotypes.",
+        "journal": "Appl Physiol Nutr Metab",
+        "year": "2021",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "caffeine",
+        "query": "Caffeine × ADORA2A",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33170731/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 33170731",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/33170731/"
+        }
+       },
+       {
+        "pmid": "22336631",
+        "doi": "10.1016/j.ophtha.2011.11.033",
+        "title": "Caffeine increases tear volume depending on polymorphisms within the adenosine A2a receptor gene and cytochrome P450 1A2.",
+        "journal": "Ophthalmology",
+        "year": "2012",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "caffeine",
+        "query": "Caffeine × ADORA2A",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22336631/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 22336631",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/22336631/"
+        }
+       },
+       {
+        "pmid": "20520601",
+        "doi": "10.1038/npp.2010.71",
+        "title": "Association of the anxiogenic and alerting effects of caffeine with ADORA2A and ADORA1 polymorphisms and habitual level of caffeine consumption.",
+        "journal": "Neuropsychopharmacology",
+        "year": "2010",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "caffeine",
+        "query": "Caffeine × ADORA2A",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/20520601/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 20520601",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/20520601/"
+        }
+       },
+       {
+        "pmid": "21950736",
+        "doi": "10.1111/j.1476-5381.2011.01689.x",
+        "title": "Polymorphisms of ADORA2A modulate psychomotor vigilance and the effects of caffeine on neurobehavioural performance and sleep EEG after sleep deprivation.",
+        "journal": "Br J Pharmacol",
+        "year": "2012",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "caffeine",
+        "query": "Caffeine × ADORA2A",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21950736/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 21950736",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/21950736/"
+        }
+       }
+      ],
+      "humanInteraction": 3,
+      "query": "(caffeine OR coffee) AND (ADORA2A[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     }
+    ]
+   },
+   {
+    "id": "choline",
+    "name": "Choline",
+    "aliases": [
+     "phosphatidylcholine",
+     "lecithin",
+     "citicoline"
+    ],
+    "what": "Choline is a nutrient found in eggs, meat, fish and soy.",
+    "general": [
+     {
+      "value": "In adults, possible benefits for thinking, but no high-quality trials",
+      "quote": "In adults, choline may have beneficial effects on cognition, but high-quality (intervention) studies are lacking.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 26108618",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/26108618/"
+      },
+      "citation": "Leermakers et al., Nutr Rev 2015"
+     },
+     {
+      "value": "Evidence is scarce",
+      "quote": "Evidence to confirm the suggested effects of choline on health in different stages of life is scarce.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 26108618",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/26108618/"
+      },
+      "citation": "Leermakers et al., Nutr Rev 2015"
+     }
+    ],
+    "generalNote": "A systematic review found choline may help thinking in adults, but high-quality trials are lacking and the evidence overall is scarce.",
+    "safety": {
+     "upperLimit": null,
+     "cautions": [
+      {
+       "value": "Possible harm to heart and metabolic health needs study",
+       "quote": "Possible harmful effects on cardiometabolic health need careful evaluation.",
+       "source": {
+        "source": "PubMed",
+        "version": "PMID 26108618",
+        "retrievedAt": "2026-10-06",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26108618/"
+       },
+       "citation": "Leermakers et al., Nutr Rev 2015"
+      }
+     ]
+    },
+    "genes": [],
+    "marketed": [
+     "rs7946"
+    ],
+    "interventions": [],
+    "map": [
+     {
+      "gene": "PEMT",
+      "total": 60,
+      "trials": 6,
+      "reviews": 0,
+      "screened": [
+       {
+        "pmid": "20861172",
+        "doi": "10.3945/ajcn.2010.30064",
+        "title": "Dietary choline requirements of women: effects of estrogen and genetic variation.",
+        "journal": "Am J Clin Nutr",
+        "year": "2010",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, N.I.H., Extramural"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "27",
+         "snippet": "t to developing such symptoms. DESIGN: Premenopausal women (n = 27) consumed a choline-sufficient diet fol"
+        },
+        "flags": [],
+        "topic": "choline",
+        "query": "Choline × PEMT",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/20861172/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 20861172",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/20861172/"
+        }
+       },
+       {
+        "pmid": "29474406",
+        "doi": "10.1371/journal.pone.0193298",
+        "title": "The role of the folate pathway in pancreatic cancer risk.",
+        "journal": "PLoS One",
+        "year": "2018",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "choline",
+        "query": "Choline × PEMT",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29474406/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 29474406",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/29474406/"
+        }
+       },
+       {
+        "pmid": "27342765",
+        "doi": "10.1096/fj.201500138RR",
+        "title": "Genetic impairments in folate enzymes increase dependence on dietary choline for phosphatidylcholine production at the expense of betaine synthesis.",
+        "journal": "FASEB J",
+        "year": "2016",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, U.S. Gov't, Non-P.H.S.",
+         "Research Support, N.I.H., Extramural"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "choline",
+        "query": "Choline × PEMT",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27342765/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 27342765",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/27342765/"
+        }
+       },
+       {
+        "pmid": "21411618",
+        "doi": "10.3945/ajcn.110.011064",
+        "title": "Docosahexaenoic acid in plasma phosphatidylcholine may be a potential marker for in vivo phosphatidylethanolamine N-methyltransferase activity in humans.",
+        "journal": "Am J Clin Nutr",
+        "year": "2011",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Research Support, N.I.H., Extramural"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "choline",
+        "query": "Choline × PEMT",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21411618/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 21411618",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/21411618/"
+        }
+       },
+       {
+        "pmid": "20534746",
+        "doi": "10.3945/ajcn.2010.29459",
+        "title": "Choline intake and genetic polymorphisms influence choline metabolite concentrations in human breast milk and plasma.",
+        "journal": "Am J Clin Nutr",
+        "year": "2010",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, N.I.H., Extramural"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "choline",
+        "query": "Choline × PEMT",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/20534746/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 20534746",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/20534746/"
+        }
+       },
+       {
+        "pmid": "36145177",
+        "doi": "10.3390/nu14183801",
+        "title": "Genetic Variants in One-Carbon Metabolism and Their Effects on DHA Biomarkers in Pregnant Women: A Post-Hoc Analysis.",
+        "journal": "Nutrients",
+        "year": "2022",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "15",
+         "snippet": "ster were randomized to consume, until delivery, either 25 (n = 15) or 550 (n = 15) mg choline/d, and the "
+        },
+        "flags": [],
+        "topic": "choline",
+        "query": "Choline × PEMT",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/36145177/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 36145177",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/36145177/"
+        }
+       }
+      ],
+      "humanInteraction": 2,
+      "query": "(choline OR phosphatidylcholine) AND (PEMT[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     },
+     {
+      "gene": "CHDH",
+      "total": 26,
+      "trials": 2,
+      "reviews": 0,
+      "screened": [
+       {
+        "pmid": "31473512",
+        "doi": "10.1016/j.jnutbio.2019.07.001",
+        "title": "Maternal choline supplementation alters vitamin B-12 status in human and murine pregnancy.",
+        "journal": "J Nutr Biochem",
+        "year": "2019",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, U.S. Gov't, Non-P.H.S."
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "26",
+         "snippet": "explored in humans. Healthy third-trimester pregnant women (n=26) consumed either 480 or 930 mg choline/"
+        },
+        "flags": [],
+        "topic": "choline",
+        "query": "Choline × CHDH",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31473512/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 31473512",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/31473512/"
+        }
+       },
+       {
+        "pmid": "29474406",
+        "doi": "10.1371/journal.pone.0193298",
+        "title": "The role of the folate pathway in pancreatic cancer risk.",
+        "journal": "PLoS One",
+        "year": "2018",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "choline",
+        "query": "Choline × CHDH",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29474406/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 29474406",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/29474406/"
+        }
+       }
+      ],
+      "humanInteraction": 1,
+      "query": "(choline OR phosphatidylcholine) AND (CHDH[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     }
+    ]
+   },
+   {
+    "id": "magnesium",
+    "name": "Magnesium",
+    "aliases": [
+     "magnesium citrate",
+     "magnesium glycinate"
+    ],
+    "what": "Magnesium is a mineral in nuts, seeds, whole grains and leafy greens.",
+    "general": [
+     {
+      "value": "Lowered blood pressure slightly",
+      "quote": "Mg supplementation at a median dose of 368 mg/d for a median duration of 3 months significantly reduced systolic BP by 2.00 mm Hg (95% confidence interval, 0.43-3.58) and diastolic BP by 1.78 mm Hg (95% confidence interval, 0.73-2.82)",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 27402922",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/27402922/"
+      },
+      "citation": "Zhang et al., Hypertension 2016"
+     }
+    ],
+    "generalNote": "In placebo-controlled trials, a median of 368 mg of magnesium a day for 3 months lowered blood pressure slightly: by 2.00 mm Hg (systolic) and 1.78 mm Hg (diastolic).",
+    "safety": {
+     "upperLimit": {
+      "value": "250 mg a day from supplements and added magnesium",
+      "quote": "the existing tolerable upper intake level for magnesium in nutritional supplements, water, or added to food and beverages (250 mg/day)",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 32625777",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/32625777/"
+      },
+      "citation": "EFSA Panel on Nutrition, Novel Foods and Food Allergens (NDA) et al., EFSA J 2018"
+     },
+     "cautions": []
+    },
+    "genes": [],
+    "marketed": [],
+    "interventions": [],
+    "map": [
+     {
+      "gene": "TRPM6",
+      "total": 50,
+      "trials": 0,
+      "reviews": 2,
+      "screened": [],
+      "humanInteraction": 0,
+      "query": "(magnesium) AND (TRPM6[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     },
+     {
+      "gene": "TRPM7",
+      "total": 24,
+      "trials": 2,
+      "reviews": 0,
+      "screened": [
+       {
+        "pmid": "40946805",
+        "doi": "10.1016/j.ajcnut.2025.09.011",
+        "title": "Magnesium treatment increases gut microbiome synthesizing vitamin D and inhibiting colorectal cancer: results from a double-blind precision-based randomized placebo-controlled trial.",
+        "journal": "Am J Clin Nutr",
+        "year": "2025",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "112",
+         "snippet": "al, 226 with valid microbiome data were analyzed (treatment n = 112, placebo n = 114). The interaction betw"
+        },
+        "flags": [],
+        "topic": "magnesium",
+        "query": "Magnesium × TRPM7",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40946805/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 40946805",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/40946805/"
+        }
+       },
+       {
+        "pmid": "40750038",
+        "doi": "10.1016/j.tjnut.2025.07.015",
+        "title": "The Association of Gut Microbiota With TRPM7 Genotype, Colorectal Polyps, and Magnesium.",
+        "journal": "J Nutr",
+        "year": "2025",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't",
+         "Research Support, N.I.H., Extramural"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "240",
+         "snippet": "lorectal polyps. METHODS: We analyzed the gut microbiota of 240 participants in a double-blind 2 × 2 factorial (TRPM"
+        },
+        "flags": [],
+        "topic": "magnesium",
+        "query": "Magnesium × TRPM7",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40750038/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 40750038",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/40750038/"
+        }
+       }
+      ],
+      "humanInteraction": 2,
+      "query": "(magnesium) AND (TRPM7[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     }
+    ]
+   },
+   {
+    "id": "calcium",
+    "name": "Calcium",
+    "aliases": [
+     "calcium carbonate",
+     "calcium citrate"
+    ],
+    "what": "Calcium is a mineral in dairy, fortified plant milks, tofu and leafy greens.",
+    "general": [
+     {
+      "value": "Small bone-density gains, unlikely to prevent fractures",
+      "quote": "Increasing calcium intake from dietary sources or by taking calcium supplements produces small non-progressive increases in BMD, which are unlikely to lead to a clinically significant reduction in risk of fracture.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 26420598",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/26420598/"
+      },
+      "citation": "Tai et al., BMJ 2015"
+     },
+     {
+      "value": "Weak, inconsistent evidence on fractures",
+      "quote": "Evidence that calcium supplements prevent fractures is weak and inconsistent.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 26420387",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/26420387/"
+      },
+      "citation": "Bolland et al., BMJ 2015"
+     }
+    ],
+    "generalNote": "Calcium from food or supplements gives small increases in bone density that are unlikely to meaningfully lower fracture risk, and evidence that supplements prevent fractures is weak and inconsistent.",
+    "safety": {
+     "upperLimit": {
+      "value": "2,500 mg a day for adults",
+      "quote": "No new data have become available which would require a revision of the UL for calcium for adults, including pregnant and lactating women, of 2,500 mg.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 42016128",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/42016128/"
+      },
+      "citation": "EFSA Panel on Dietetic Products, Nutrition and Allergies (NDA) et al., EFSA J 2012"
+     },
+     "cautions": [
+      {
+       "value": "Taken with vitamin D3, raised kidney-stone risk",
+       "quote": "Vitamin D3 combined with calcium increased nephrolithiasis.",
+       "source": {
+        "source": "PubMed",
+        "version": "PMID 24414552",
+        "retrievedAt": "2026-10-06",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24414552/"
+       },
+       "citation": "Bjelakovic et al., Cochrane Database Syst Rev 2014"
+      }
+     ]
+    },
+    "genes": [],
+    "marketed": [],
+    "interventions": [],
+    "map": [
+     {
+      "gene": "VDR",
+      "total": 186,
+      "trials": 34,
+      "reviews": 4,
+      "screened": [
+       {
+        "pmid": "25827670",
+        "doi": "10.1016/j.exger.2015.03.011",
+        "title": "Effect of vitamin D3 supplementation and influence of BsmI polymorphism of the VDR gene of the inflammatory profile and oxidative stress in elderly women with vitamin D insufficiency: Vitamin D3 megadose reduces inflammatory markers.",
+        "journal": "Exp Gerontol",
+        "year": "2015",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "20",
+         "snippet": "mentation group that received 200,000 IU of vitamin D3 (SG; n=20) and a placebo group (PG; n=20). Blood "
+        },
+        "flags": [],
+        "topic": "calcium",
+        "query": "Calcium × VDR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25827670/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 25827670",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/25827670/"
+        }
+       },
+       {
+        "pmid": "23485413",
+        "doi": "10.3945/ajcn.112.051664",
+        "title": "Randomized, double-blind, placebo-controlled trial of vitamin D supplementation in Parkinson disease.",
+        "journal": "Am J Clin Nutr",
+        "year": "2013",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "114",
+         "snippet": "e basis of patient VDR subgroups. DESIGN: Patients with PD (n = 114) were randomly assigned to receive vita"
+        },
+        "flags": [],
+        "topic": "calcium",
+        "query": "Calcium × VDR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23485413/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 23485413",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/23485413/"
+        }
+       },
+       {
+        "pmid": "14717945",
+        "doi": "10.1111/j.1523-1755.2004.00432.x",
+        "title": "Treatment with intermittent calcitriol and calcium reduces bone loss after renal transplantation.",
+        "journal": "Kidney Int",
+        "year": "2004",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "calcium",
+        "query": "Calcium × VDR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/14717945/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 14717945",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/14717945/"
+        }
+       },
+       {
+        "pmid": "34578782",
+        "doi": "10.3390/nu13092904",
+        "title": "Growth, Dietary Intake, and Vitamin D Receptor (VDR) Promoter Genotype in Indonesian School-Age Children.",
+        "journal": "Nutrients",
+        "year": "2021",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "142",
+         "snippet": " East Java, Indonesia. School children aged 8-10 years old (n = 142) were included in this study. Energy, p"
+        },
+        "flags": [],
+        "topic": "calcium",
+        "query": "Calcium × VDR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34578782/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 34578782",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/34578782/"
+        }
+       },
+       {
+        "pmid": "14652238",
+        "doi": "10.1093/jnci/djg110",
+        "title": "Vitamin D, calcium supplementation, and colorectal adenomas: results of a randomized trial.",
+        "journal": "J Natl Cancer Inst",
+        "year": "2003",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, U.S. Gov't, P.H.S."
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "803",
+         "snippet": "pplementation and vitamin D status on adenoma recurrence in 803 subjects in a multi-center, placebo-controlled r"
+        },
+        "flags": [],
+        "topic": "calcium",
+        "query": "Calcium × VDR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/14652238/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 14652238",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/14652238/"
+        }
+       },
+       {
+        "pmid": "15883634",
+        "doi": "10.1359/JBMR.050114",
+        "title": "Vitamin D receptor Fok1 polymorphisms affect calcium absorption, kinetics, and bone mineralization rates during puberty.",
+        "journal": "J Bone Miner Res",
+        "year": "2005",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, N.I.H., Extramural",
+         "Research Support, U.S. Gov't, Non-P.H.S.",
+         "Research Support, U.S. Gov't, P.H.S."
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "99",
+         "snippet": "f pubertal adolescents. MATERIALS AND METHODS: Adolescents (n = 99) received comprehensive stable isotope "
+        },
+        "flags": [],
+        "topic": "calcium",
+        "query": "Calcium × VDR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/15883634/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 15883634",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/15883634/"
+        }
+       },
+       {
+        "pmid": "19647104",
+        "doi": "10.1016/j.bone.2009.07.074",
+        "title": "Vitamin D receptor gene polymorphisms modulate the skeletal response to vitamin D supplementation in healthy girls.",
+        "journal": "Bone",
+        "year": "2009",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "calcium",
+        "query": "Calcium × VDR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19647104/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 19647104",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/19647104/"
+        }
+       },
+       {
+        "pmid": "12162507",
+        "doi": "10.1359/jbmr.2002.17.8.1535",
+        "title": "Two polymorphisms in the vitamin D receptor gene--association with bone mass and 5-year change in bone mass with or without hormone-replacement therapy in postmenopausal women: the Danish Osteoporosis Prevention Study.",
+        "journal": "J Bone Miner Res",
+        "year": "2002",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Multicenter Study",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "282",
+         "snippet": "her polymorphism. In women with body mass index (BMI) < 25 (n = 282), the f allele was associated with lowe"
+        },
+        "flags": [],
+        "topic": "calcium",
+        "query": "Calcium × VDR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/12162507/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 12162507",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/12162507/"
+        }
+       }
+      ],
+      "humanInteraction": 3,
+      "query": "(calcium supplementation OR calcium supplement OR calcium intake) AND (VDR[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     },
+     {
+      "gene": "CASR",
+      "total": 42,
+      "trials": 3,
+      "reviews": 3,
+      "screened": [
+       {
+        "pmid": "12574201",
+        "doi": "10.1210/jc.2002-020355",
+        "title": "Calcium sensing receptor gene A986S polymorphism and responsiveness to calcium supplementation in postmenopausal women.",
+        "journal": "J Clin Endocrinol Metab",
+        "year": "2003",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "calcium",
+        "query": "Calcium × CASR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/12574201/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 12574201",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/12574201/"
+        }
+       },
+       {
+        "pmid": "27978548",
+        "doi": "10.1001/jamaoncol.2016.5917",
+        "title": "Vitamin D Receptor Genotype, Vitamin D3 Supplementation, and Risk of Colorectal Adenomas: A Randomized Clinical Trial.",
+        "journal": "JAMA Oncol",
+        "year": "2017",
+        "publicationTypes": [
+         "Journal Article",
+         "Multicenter Study",
+         "Randomized Controlled Trial"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": {
+         "value": "2259",
+         "snippet": "ined 41 candidate single-nucleotide polymorphisms (SNPs) in 2259 participants in a randomized, double-blind, placebo-"
+        },
+        "flags": [],
+        "topic": "calcium",
+        "query": "Calcium × CASR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27978548/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 27978548",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/27978548/"
+        }
+       },
+       {
+        "pmid": "25070320",
+        "doi": "10.1210/jc.2014-1389",
+        "title": "Genetic variants in CYP2R1, CYP24A1, and VDR modify the efficacy of vitamin D3 supplementation for increasing serum 25-hydroxyvitamin D levels in a randomized controlled trial.",
+        "journal": "J Clin Endocrinol Metab",
+        "year": "2014",
+        "publicationTypes": [
+         "Journal Article",
+         "Multicenter Study",
+         "Randomized Controlled Trial",
+         "Research Support, N.I.H., Extramural"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "calcium",
+        "query": "Calcium × CASR",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25070320/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 25070320",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/25070320/"
+        }
+       }
+      ],
+      "humanInteraction": 2,
+      "query": "(calcium supplementation OR calcium supplement OR calcium intake) AND (CASR[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     }
+    ]
+   },
+   {
+    "id": "zinc",
+    "name": "Zinc",
+    "aliases": [
+     "zinc lozenges",
+     "zinc gluconate"
+    ],
+    "what": "Zinc is a mineral in meat, shellfish, beans and nuts, often sold as lozenges for colds.",
+    "general": [
+     {
+      "value": "Little or no effect on preventing colds; may shorten them",
+      "quote": "The findings suggest that zinc supplementation may have little or no effect on the prevention of colds but may reduce the duration of ongoing colds, with an increase in non-serious adverse events.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 38719213",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/38719213/"
+      },
+      "citation": "Nault et al., Cochrane Database Syst Rev 2024"
+     }
+    ],
+    "generalNote": "Zinc may have little or no effect on preventing colds, but may shorten colds you already have, with more minor side effects.",
+    "safety": {
+     "upperLimit": {
+      "value": "25 mg a day in Europe (EFSA); 40 mg a day in the US (FDA)",
+      "quote": "The European Food Safety Authority (EFSA) defines the tolerable upper intake level (UL) as 25 mg per day, whereas the Food and Drug Administration (FDA) allows 40 mg per day.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 38999082",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/38999082/"
+      },
+      "citation": "Schoofs et al., Molecules 2024"
+     },
+     "cautions": []
+    },
+    "genes": [],
+    "marketed": [],
+    "interventions": [],
+    "map": [
+     {
+      "gene": "SLC30A8",
+      "total": 182,
+      "trials": 2,
+      "reviews": 14,
+      "screened": [
+       {
+        "pmid": "22424623",
+        "doi": "10.3967/0895-3988.2012.01.004",
+        "title": "Association of a SLC30A8 genetic variant with monotherapy of repaglinide and rosiglitazone effect in newly diagnosed type 2 diabetes patients in China.",
+        "journal": "Biomed Environ Sci",
+        "year": "2012",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": {
+         "value": "105",
+         "snippet": "repaglinide or rosiglitazone randomly for 48 weeks (104 and 105 patients, respectively). Anthropometric measurem"
+        },
+        "flags": [],
+        "topic": "zinc",
+        "query": "Zinc × SLC30A8",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22424623/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 22424623",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/22424623/"
+        }
+       },
+       {
+        "pmid": "21779873",
+        "doi": "10.1007/s00125-011-2234-1",
+        "title": "Association of the SLC30A8 missense polymorphism R325W with proinsulin levels at baseline and after lifestyle, metformin or troglitazone intervention in the Diabetes Prevention Program.",
+        "journal": "Diabetologia",
+        "year": "2011",
+        "publicationTypes": [
+         "Journal Article",
+         "Randomized Controlled Trial",
+         "Research Support, N.I.H., Extramural",
+         "Research Support, N.I.H., Intramural",
+         "Research Support, Non-U.S. Gov't",
+         "Research Support, U.S. Gov't, Non-P.H.S.",
+         "Research Support, U.S. Gov't, P.H.S."
+        ],
+        "design": "randomized controlled trial",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": true,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "zinc",
+        "query": "Zinc × SLC30A8",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21779873/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 21779873",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/21779873/"
+        }
+       }
+      ],
+      "humanInteraction": 1,
+      "query": "(zinc) AND (SLC30A8[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     },
+     {
+      "gene": "SLC39A4",
+      "total": 21,
+      "trials": 0,
+      "reviews": 0,
+      "screened": [],
+      "humanInteraction": 0,
+      "query": "(zinc) AND (SLC39A4[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     }
+    ]
+   },
+   {
+    "id": "vitc",
+    "name": "Vitamin C",
+    "aliases": [
+     "ascorbic acid",
+     "ascorbate"
+    ],
+    "what": "Vitamin C is in citrus fruit, berries, peppers and many vegetables.",
+    "general": [
+     {
+      "value": "Doesn't prevent colds in the general population",
+      "quote": "The failure of vitamin C supplementation to reduce the incidence of colds in the general population indicates that routine vitamin C supplementation is not justified, yet vitamin C may be useful for people exposed to brief periods of severe physical exercise.",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 23440782",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/23440782/"
+      },
+      "citation": "Hemilä et al., Cochrane Database Syst Rev 2013"
+     },
+     {
+      "value": "Regular use shortened colds by 8% in adults",
+      "quote": "In adults the duration of colds was reduced by 8% (3% to 12%) and in children by 14% (7% to 21%).",
+      "source": {
+       "source": "PubMed",
+       "version": "PMID 23440782",
+       "retrievedAt": "2026-10-06",
+       "url": "https://pubmed.ncbi.nlm.nih.gov/23440782/"
+      },
+      "citation": "Hemilä et al., Cochrane Database Syst Rev 2013"
+     }
+    ],
+    "generalNote": "Taking vitamin C regularly did not reduce how often people caught colds, but it shortened colds by 8% in adults and 14% in children. It may help people exposed to brief periods of severe physical exercise.",
+    "safety": {
+     "upperLimit": null,
+     "cautions": []
+    },
+    "genes": [
+     "vitc"
+    ],
+    "marketed": [],
+    "interventions": [],
+    "map": [
+     {
+      "gene": "SLC23A1",
+      "total": 23,
+      "trials": 0,
+      "reviews": 2,
+      "screened": [],
+      "humanInteraction": 0,
+      "query": "(vitamin C OR ascorbic acid OR ascorbate) AND (SLC23A1[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
+     },
+     {
+      "gene": "SLC23A2",
+      "total": 24,
+      "trials": 1,
+      "reviews": 0,
+      "screened": [
+       {
+        "pmid": "25028485",
+        "doi": "10.1161/CIRCGENETICS.113.000332",
+        "title": "Genome-wide linkage and regional association study of blood pressure response to the cold pressor test in Han Chinese: the genetic epidemiology network of salt sensitivity study.",
+        "journal": "Circ Cardiovasc Genet",
+        "year": "2014",
+        "publicationTypes": [
+         "Clinical Trial",
+         "Journal Article",
+         "Research Support, N.I.H., Extramural",
+         "Research Support, Non-U.S. Gov't"
+        ],
+        "design": "other",
+        "humans": true,
+        "animalOnly": false,
+        "mentionsGeneInteraction": false,
+        "sampleSize": null,
+        "flags": [],
+        "topic": "vitc",
+        "query": "Vitamin C × SLC23A2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25028485/",
+        "source": {
+         "source": "PubMed",
+         "version": "PMID 25028485",
+         "retrievedAt": "2026-10-06",
+         "url": "https://pubmed.ncbi.nlm.nih.gov/25028485/"
+        }
+       }
+      ],
+      "humanInteraction": 0,
+      "query": "(vitamin C OR ascorbic acid OR ascorbate) AND (SLC23A2[tiab]) AND (polymorphism*[tiab] OR genotype*[tiab] OR variant*[tiab] OR allele*[tiab] OR SNP*[tiab])"
      }
     ]
    }

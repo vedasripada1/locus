@@ -26,6 +26,12 @@ export async function search(term: string, retmax = 8): Promise<string[]> {
   return c.body.esearchresult?.idlist ?? [];
 }
 
+/** Number of PubMed records matching a query, plus the top IDs by relevance. */
+export async function searchCount(term: string, retmax = 0): Promise<{ count: number; ids: string[] }> {
+  const c = await get<any>(`${EUTILS}/esearch.fcgi?db=pubmed&retmode=json&sort=relevance&retmax=${retmax}&term=${encodeURIComponent(term)}`);
+  return { count: Number(c.body.esearchresult?.count ?? 0), ids: c.body.esearchresult?.idlist ?? [] };
+}
+
 /** Decode XML/HTML entities, including numeric ones (&#x3bc; → μ). */
 export function decodeEntities(s: string): string {
   return s.replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16))).replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(+d))
